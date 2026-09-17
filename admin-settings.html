@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin - Settings</title>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f4f6f8;
+      color: #222;
+    }
+
+    header {
+      background: #111827;
+      color: white;
+      padding: 20px;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 24px;
+    }
+
+    header p {
+      margin: 6px 0 0;
+      color: #d1d5db;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 30px auto;
+      padding: 0 20px;
+    }
+
+    .back {
+      display: inline-block;
+      margin-bottom: 20px;
+      text-decoration: none;
+      color: #2563eb;
+      font-weight: bold;
+    }
+
+    .section {
+      background: white;
+      padding: 25px;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      margin-bottom: 25px;
+    }
+
+    .section h2 {
+      margin-top: 0;
+      margin-bottom: 20px;
+    }
+
+    .form-group {
+      margin-bottom: 18px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 7px;
+      font-weight: bold;
+    }
+
+    input,
+    select {
+      width: 100%;
+      box-sizing: border-box;
+      padding: 12px;
+      border: 1px solid #d1d5db;
+      border-radius: 6px;
+      font-size: 15px;
+    }
+
+    .checkbox-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 15px;
+    }
+
+    .checkbox-row input {
+      width: auto;
+    }
+
+    .button {
+      background: #2563eb;
+      color: white;
+      border: none;
+      padding: 11px 18px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 15px;
+      font-weight: bold;
+    }
+
+    .button:hover {
+      background: #1d4ed8;
+    }
+
+    .danger {
+      background: #dc2626;
+    }
+
+    .danger:hover {
+      background: #b91c1c;
+    }
+
+    .info {
+      color: #6b7280;
+      margin-top: -10px;
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <h1>Admin Dashboard</h1>
+    <p>System Settings</p>
+  </header>
+
+  <div class="container">
+
+    <a href="admin.html" class="back">← Back to Admin Dashboard</a>
+
+    <div class="section">
+      <h2>Company Information</h2>
+
+      <p class="info">
+        Update the basic information displayed for your logistics business.
+      </p>
+
+      <div class="form-group">
+        <label for="companyName">Company Name</label>
+        <input
+          type="text"
+          id="companyName"
+          value="Logistics Company"
+        >
+      </div>
+
+      <div class="form-group">
+        <label for="companyEmail">Company Email</label>
+        <input
+          type="email"
+          id="companyEmail"
+          value="info@example.com"
+        >
+      </div>
+
+      <div class="form-group">
+        <label for="companyPhone">Company Phone</label>
+        <input
+          type="tel"
+          id="companyPhone"
+          value="555-0100"
+        >
+      </div>
+
+      <div class="form-group">
+        <label for="companyAddress">Company Address</label>
+        <input
+          type="text"
+          id="companyAddress"
+          value="Newark, NJ"
+        >
+      </div>
+
+      <button class="button" onclick="saveCompanySettings()">
+        Save Changes
+      </button>
+    </div>
+
+    <div class="section">
+      <h2>Shipment Settings</h2>
+
+      <div class="form-group">
+        <label for="defaultStatus">Default Shipment Status</label>
+
+        <select id="defaultStatus">
+          <option value="Pending">Pending</option>
+          <option value="Processing">Processing</option>
+          <option value="Assigned">Assigned</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="currency">Currency</label>
+
+        <select id="currency">
+          <option value="USD">USD - US Dollar</option>
+          <option value="EUR">EUR - Euro</option>
+          <option value="GBP">GBP - British Pound</option>
+        </select>
+      </div>
+
+      <button class="button" onclick="saveShipmentSettings()">
+        Save Shipment Settings
+      </button>
+    </div>
+
+    <div class="section">
+      <h2>Notifications</h2>
+
+      <div class="checkbox-row">
+        <input type="checkbox" id="newRequest" checked>
+        <label for="newRequest">Notify me about new shipment requests</label>
+      </div>
+
+      <div class="checkbox-row">
+        <input type="checkbox" id="paymentNotification" checked>
+        <label for="paymentNotification">Notify me about payments</label>
+      </div>
+
+      <div class="checkbox-row">
+        <input type="checkbox" id="deliveryNotification" checked>
+        <label for="deliveryNotification">Notify me when shipments are delivered</label>
+      </div>
+
+      <button class="button" onclick="saveNotifications()">
+        Save Notification Settings
+      </button>
+    </div>
+
+    <div class="section">
+      <h2>Account</h2>
+
+      <p class="info">
+        Manage the administrator account.
+      </p>
+
+      <button class="button" onclick="changePassword()">
+        Change Password
+      </button>
+
+      <button class="button danger" onclick="logoutAdmin()">
+        Log Out
+      </button>
+    </div>
+
+  </div>
+
+  <script>
+    function saveCompanySettings() {
+      alert("Company settings saved.");
+    }
+
+    function saveShipmentSettings() {
+      alert("Shipment settings saved.");
+    }
+
+    function saveNotifications() {
+      alert("Notification settings saved.");
+    }
+
+    function changePassword() {
+      alert("Password change feature will be connected later.");
+    }
+
+    function logoutAdmin() {
+      alert("Logout feature will be connected later.");
+    }
+  </script>
+
+</body>
+</html>
