@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment History</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #f4f6f8;
+            color: #222;
+        }
+
+        header {
+            background: #1f2937;
+            color: white;
+            padding: 20px;
+        }
+
+        header h1 {
+            font-size: 24px;
+        }
+
+        header p {
+            margin-top: 6px;
+            color: #d1d5db;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+
+        .summary {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-bottom: 25px;
+        }
+
+        .card {
+            background: white;
+            padding: 22px;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+
+        .card h3 {
+            color: #6b7280;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+
+        .amount {
+            font-size: 26px;
+            font-weight: bold;
+        }
+
+        .section {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+
+        .section h2 {
+            margin-bottom: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th,
+        td {
+            padding: 14px 10px;
+            text-align: left;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        th {
+            background: #f9fafb;
+        }
+
+        .status {
+            display: inline-block;
+            padding: 6px 10px;
+            border-radius: 20px;
+            font-size: 13px;
+        }
+
+        .paid {
+            background: #dcfce7;
+            color: #166534;
+        }
+
+        .pending {
+            background: #fef3c7;
+            color: #92400e;
+        }
+
+        .failed {
+            background: #fee2e2;
+            color: #991b1b;
+        }
+
+        .button {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 11px 17px;
+            background: #6b7280;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+        }
+
+        .button:hover {
+            background: #4b5563;
+        }
+
+        @media (max-width: 700px) {
+            .summary {
+                grid-template-columns: 1fr;
+            }
+
+            table {
+                display: block;
+                overflow-x: auto;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>Payment History</h1>
+        <p>View your shipment payments</p>
+    </header>
+
+    <div class="container">
+
+        <div class="summary">
+
+            <div class="card">
+                <h3>Total Paid</h3>
+                <div class="amount">$1,250.00</div>
+            </div>
+
+            <div class="card">
+                <h3>Pending</h3>
+                <div class="amount">$450.00</div>
+            </div>
+
+            <div class="card">
+                <h3>Payments</h3>
+                <div class="amount">4</div>
+            </div>
+
+        </div>
+
+        <div class="section">
+
+            <h2>Payment Records</h2>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Payment ID</th>
+                        <th>Shipment ID</th>
+                        <th>Date</th>
+                        <th>Method</th>
+                        <th>Amount</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+
+                    <tr>
+                        <td>PAY-1001</td>
+                        <td>TRK-10001</td>
+                        <td>09/17/2026</td>
+                        <td>Card</td>
+                        <td>$500.00</td>
+                        <td>
+                            <span class="status paid">Paid</span>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>PAY-1002</td>
+                        <td>TRK-10002</td>
+                        <td>09/17/2026</td>
+                        <td>Card</td>
+                        <td>$750.00</td>
+                        <td>
+                            <span class="status paid">Paid</span>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>PAY-1003</td>
+                        <td>TRK-10003</td>
+                        <td>09/17/2026</td>
+                        <td>Bank Transfer</td>
+                        <td>$450.00</td>
+                        <td>
+                            <span class="status pending">Pending</span>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>PAY-1004</td>
+                        <td>TRK-10004</td>
+                        <td>09/16/2026</td>
+                        <td>Card</td>
+                        <td>$125.00</td>
+                        <td>
+                            <span class="status failed">Failed</span>
+                        </td>
+                    </tr>
+
+                </tbody>
+            </table>
+
+            <a href="profile.html" class="button">
+                Back to Profile
+            </a>
+
+        </div>
+
+    </div>
+
+</body>
+</html>
