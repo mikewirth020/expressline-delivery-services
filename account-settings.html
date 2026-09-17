@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Account Settings | ExpressLine Delivery Services</title>
+
+  <meta
+    name="description"
+    content="Manage your ExpressLine account security and preferences."
+  >
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <header class="site-header">
+
+    <div class="container navbar">
+
+      <a href="index.html" class="logo">
+        <span class="logo-mark">EL</span>
+        <span>ExpressLine</span>
+      </a>
+
+      <button
+        class="menu-toggle"
+        type="button"
+        aria-label="Open navigation menu"
+      >
+        ☰
+      </button>
+
+      <nav class="nav-links">
+
+        <a href="index.html">Home</a>
+        <a href="track.html">Track Shipment</a>
+        <a href="services.html">Services</a>
+        <a href="about.html">About Us</a>
+        <a href="contact.html">Contact Us</a>
+        <a href="request.html">Request Shipment</a>
+
+        <a href="dashboard.html" class="nav-button">
+          Dashboard
+        </a>
+
+      </nav>
+
+    </div>
+
+  </header>
+
+
+  <main>
+
+    <section class="section section-light">
+
+      <div class="container">
+
+        <div class="section-heading">
+
+          <p class="section-label">
+            CUSTOMER PORTAL
+          </p>
+
+          <h1>
+            Account Settings
+          </h1>
+
+          <p>
+            Manage your account security and notification
+            preferences.
+          </p>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- CHANGE PASSWORD -->
+
+    <section class="section">
+
+      <div class="container">
+
+        <div class="section-heading">
+
+          <p class="section-label">
+            SECURITY
+          </p>
+
+          <h2>
+            Change Password
+          </h2>
+
+          <p>
+            Update your password to help keep your account
+            secure.
+          </p>
+
+        </div>
+
+
+        <div class="form-card">
+
+          <form id="changePasswordForm">
+
+            <div class="form-group">
+
+              <label for="currentPassword">
+                Current Password
+              </label>
+
+              <input
+                type="password"
+                id="currentPassword"
+                name="currentPassword"
+                placeholder="Enter current password"
+                autocomplete="current-password"
+                required
+              >
+
+            </div>
+
+
+            <div class="form-group">
+
+              <label for="newPassword">
+                New Password
+              </label>
+
+              <input
+                type="password"
+                id="newPassword"
+                name="newPassword"
+                placeholder="Enter new password"
+                autocomplete="new-password"
+                minlength="8"
+                required
+              >
+
+            </div>
+
+
+            <div class="form-group">
+
+              <label for="confirmPassword">
+                Confirm New Password
+              </label>
+
+              <input
+                type="password"
+                id="confirmPassword"
+                name="confirmPassword"
+                placeholder="Confirm new password"
+                autocomplete="new-password"
+                minlength="8"
+                required
+              >
+
+            </div>
+
+
+            <button
+              type="submit"
+              class="btn btn-primary"
+            >
+              Update Password
+            </button>
+
+          </form>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- NOTIFICATIONS -->
+
+    <section class="section section-light">
+
+      <div class="container">
+
+        <div class="section-heading">
+
+          <p class="section-label">
+            NOTIFICATIONS
+          </p>
+
+          <h2>
+            Notification Preferences
+          </h2>
+
+          <p>
+            Choose which account and shipment notifications
+            you would like to receive.
+          </p>
+
+        </div>
+
+
+        <div class="form-card">
+
+          <form id="notificationPreferencesForm">
+
+            <div class="form-group">
+
+              <label>
+                <input
+                  type="checkbox"
+                  name="shipmentUpdates"
+                >
+                Shipment status updates
+              </label>
+
+            </div>
+
+
+            <div class="form-group">
+
+              <label>
+                <input
+                  type="checkbox"
+                  name="deliveryUpdates"
+                >
+                Delivery updates
+              </label>
+
+            </div>
+
+
+            <div class="form-group">
+
+              <label>
+                <input
+                  type="checkbox"
+                  name="accountNotifications"
+                >
+                Account notifications
+              </label>
+
+            </div>
+
+
+            <button
+              type="submit"
+              class="btn btn-primary"
+            >
+              Save Preferences
+            </button>
+
+          </form>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- ACCOUNT NAVIGATION -->
+
+    <section class="section">
+
+      <div class="container">
+
+        <div class="section-heading">
+
+          <p class="section-label">
+            ACCOUNT
+          </p>
+
+          <h2>
+            Manage Your Account
+          </h2>
+
+        </div>
+
+
+        <div class="cards-grid">
+
+          <article class="feature-card">
+
+            <h3>
+              Profile
+            </h3>
+
+            <p>
+              Update your personal and company information.
+            </p>
+
+            <a
+              href="profile.html"
+              class="btn btn-secondary"
+            >
+              View Profile
+            </a>
+
+          </article>
+
+
+          <article class="feature-card">
+
+            <h3>
+              Notifications
+            </h3>
+
+            <p>
+              View your latest shipment and account
+              notifications.
+            </p>
+
+            <a
+              href="notifications.html"
+              class="btn btn-secondary"
+            >
+              View Notifications
+            </a>
+
+          </article>
+
+
+          <article class="feature-card">
+
+            <h3>
+              Dashboard
+            </h3>
+
+            <p>
+              Return to your customer account dashboard.
+            </p>
+
+            <a
+              href="dashboard.html"
+              class="btn btn-secondary"
+            >
+              Go to Dashboard
+            </a>
+
+          </article>
+
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <footer class="site-footer">
+
+    <div class="container">
+
+      <div class="footer-grid">
+
+        <div>
+
+          <div class="logo">
+            <span class="logo-mark">EL</span>
+            <span>ExpressLine</span>
+          </div>
+
+          <p>
+            Professional courier and logistics solutions
+            designed to keep shipments moving with confidence.
+          </p>
+
+        </div>
+
+
+        <div>
+
+          <h3>
+            Customer
+          </h3>
+
+          <ul class="footer-links">
+
+            <li>
+              <a href="dashboard.html">
+                Dashboard
+              </a>
+            </li>
+
+            <li>
+              <a href="shipments.html">
+                Active Shipments
+              </a>
+            </li>
+
+            <li>
+              <a href="shipment-history.html">
+                Shipment History
+              </a>
+            </li>
+
+            <li>
+              <a href="requests.html">
+                Shipment Requests
+              </a>
+            </li>
+
+            <li>
+              <a href="notifications.html">
+                Notifications
+              </a>
+            </li>
+
+          </ul>
+
+        </div>
+
+
+        <div>
+
+          <h3>
+            Support
+          </h3>
+
+          <ul class="footer-links">
+
+            <li>
+              <a href="track.html">
+                Track Shipment
+              </a>
+            </li>
+
+            <li>
+              <a href="request.html">
+                Request Shipment
+              </a>
+            </li>
+
+            <li>
+              <a href="contact.html">
+                Contact Us
+              </a>
+            </li>
+
+          </ul>
+
+        </div>
+
+
+        <div>
+
+          <h3>
+            Account
+          </h3>
+
+          <ul class="footer-links">
+
+            <li>
+              <a href="profile.html">
+                Profile
+              </a>
+            </li>
+
+            <li>
+              <a href="account-settings.html">
+                Account Settings
+              </a>
+            </li>
+
+            <li>
+              <a href="login.html">
+                Sign Out
+              </a>
+            </li>
+
+          </ul>
+
+        </div>
+
+      </div>
+
+
+      <div class="footer-bottom">
+
+        <p>
+          © 2026 ExpressLine Delivery Services.
+          All rights reserved.
+        </p>
+
+      </div>
+
+    </div>
+
+  </footer>
+
+
+  <script src="script.js"></script>
+
+</body>
+</html>
