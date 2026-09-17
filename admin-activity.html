@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin - Activity Log</title>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f4f6f8;
+      color: #222;
+    }
+
+    header {
+      background: #111827;
+      color: white;
+      padding: 20px;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 24px;
+    }
+
+    header p {
+      margin: 6px 0 0;
+      color: #d1d5db;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 30px auto;
+      padding: 0 20px;
+    }
+
+    .back {
+      display: inline-block;
+      margin-bottom: 20px;
+      text-decoration: none;
+      color: #2563eb;
+      font-weight: bold;
+    }
+
+    .section {
+      background: white;
+      padding: 25px;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    }
+
+    .section h2 {
+      margin-top: 0;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 15px;
+    }
+
+    th,
+    td {
+      padding: 14px 10px;
+      border-bottom: 1px solid #e5e7eb;
+      text-align: left;
+    }
+
+    th {
+      background: #f9fafb;
+    }
+
+    .action {
+      font-weight: bold;
+    }
+
+    .success {
+      color: #15803d;
+    }
+
+    .warning {
+      color: #b45309;
+    }
+
+    .info {
+      color: #2563eb;
+    }
+
+    .button {
+      background: #dc2626;
+      color: white;
+      border: none;
+      padding: 10px 16px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: bold;
+      margin-top: 20px;
+    }
+
+    .button:hover {
+      background: #b91c1c;
+    }
+
+    @media (max-width: 700px) {
+      table {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <h1>Admin Dashboard</h1>
+    <p>System Activity Log</p>
+  </header>
+
+  <div class="container">
+
+    <a href="admin.html" class="back">← Back to Admin Dashboard</a>
+
+    <div class="section">
+
+      <h2>Recent Activity</h2>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Date & Time</th>
+            <th>Admin</th>
+            <th>Action</th>
+            <th>Reference</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+
+        <tbody>
+
+          <tr>
+            <td>09/17/2026 8:15 PM</td>
+            <td>Administrator</td>
+            <td class="action info">Shipment Request Created</td>
+            <td>SR-1001</td>
+            <td class="success">Success</td>
+          </tr>
+
+          <tr>
+            <td>09/17/2026 7:50 PM</td>
+            <td>Administrator</td>
+            <td class="action info">Payment Received</td>
+            <td>PAY-1002</td>
+            <td class="success">Success</td>
+          </tr>
+
+          <tr>
+            <td>09/17/2026 7:20 PM</td>
+            <td>Administrator</td>
+            <td class="action info">Driver Assigned</td>
+            <td>TRK-10001</td>
+            <td class="success">Success</td>
+          </tr>
+
+          <tr>
+            <td>09/17/2026 6:45 PM</td>
+            <td>Administrator</td>
+            <td class="action warning">Payment Requires Attention</td>
+            <td>PAY-1004</td>
+            <td class="warning">Warning</td>
+          </tr>
+
+          <tr>
+            <td>09/17/2026 6:10 PM</td>
+            <td>Administrator</td>
+            <td class="action info">Customer Updated</td>
+            <td>CUS-003</td>
+            <td class="success">Success</td>
+          </tr>
+
+          <tr>
+            <td>09/17/2026 5:40 PM</td>
+            <td>Administrator</td>
+            <td class="action info">Shipment Status Updated</td>
+            <td>TRK-10003</td>
+            <td class="success">Success</td>
+          </tr>
+
+        </tbody>
+      </table>
+
+      <button class="button" onclick="clearLog()">
+        Clear Activity Log
+      </button>
+
+    </div>
+
+  </div>
+
+  <script>
+    function clearLog() {
+      const confirmed = confirm(
+        "Are you sure you want to clear the activity log?"
+      );
+
+      if (confirmed) {
+        alert("Activity log cleared.");
+      }
+    }
+  </script>
+
+</body>
+</html>
