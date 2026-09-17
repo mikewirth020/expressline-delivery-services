@@ -1,808 +1,1163 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>ExpressLine Delivery Services | Reliable Logistics & Shipping</title>
+<title>ExpressLine Delivery Services | Logistics & Shipping</title>
 
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+<style>
 
-    body {
-      font-family: Arial, Helvetica, sans-serif;
-      color: #1f2937;
-      background: #ffffff;
-      line-height: 1.6;
-    }
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
 
-    a {
-      text-decoration: none;
-    }
+html {
+    scroll-behavior: smooth;
+}
 
-    .top-bar {
-      background: #111827;
-      color: #ffffff;
-      padding: 9px 5%;
-      display: flex;
-      justify-content: space-between;
-      font-size: 13px;
-    }
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    color: #172033;
+    background: #ffffff;
+    line-height: 1.6;
+}
+
+/* TOP BAR */
+
+.topbar {
+    background: #111827;
+    color: #ffffff;
+    padding: 9px 6%;
+    display: flex;
+    justify-content: flex-end;
+    gap: 25px;
+    font-size: 13px;
+}
+
+/* NAVIGATION */
+
+.navbar {
+    background: #ffffff;
+    min-height: 76px;
+    padding: 0 6%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 30px;
+    border-bottom: 1px solid #e5e7eb;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.logo {
+    font-size: 25px;
+    font-weight: 800;
+    color: #c8102e;
+    white-space: nowrap;
+}
+
+.logo span {
+    color: #172033;
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+    gap: 5px;
+}
+
+.nav-links a {
+    color: #172033;
+    text-decoration: none;
+    padding: 27px 13px;
+    font-size: 14px;
+    font-weight: 700;
+    transition: 0.2s;
+}
+
+.nav-links a:hover {
+    color: #c8102e;
+    background: #f8fafc;
+}
+
+.nav-links .nav-button {
+    background: #c8102e;
+    color: #ffffff;
+    border-radius: 5px;
+    padding: 11px 16px;
+    margin-left: 8px;
+}
+
+.nav-links .nav-button:hover {
+    background: #a90d27;
+    color: #ffffff;
+}
+
+/* HERO */
+
+.hero {
+    min-height: 560px;
+    background:
+        linear-gradient(rgba(12,22,40,0.88), rgba(12,22,40,0.88)),
+        linear-gradient(120deg, #172033, #334155);
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    padding: 80px 6%;
+}
+
+.hero-content {
+    width: 100%;
+    max-width: 1200px;
+    margin: auto;
+}
+
+.hero-tag {
+    display: inline-block;
+    background: rgba(255,255,255,0.12);
+    border: 1px solid rgba(255,255,255,0.2);
+    padding: 8px 14px;
+    border-radius: 30px;
+    font-size: 13px;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+.hero h1 {
+    max-width: 800px;
+    font-size: 58px;
+    line-height: 1.08;
+    margin-bottom: 22px;
+}
+
+.hero p {
+    max-width: 700px;
+    font-size: 19px;
+    color: #dbe2ea;
+    margin-bottom: 32px;
+}
+
+.hero-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.btn {
+    display: inline-block;
+    text-decoration: none;
+    padding: 14px 24px;
+    border-radius: 5px;
+    font-weight: 700;
+    font-size: 15px;
+}
+
+.btn-primary {
+    background: #c8102e;
+    color: #ffffff;
+}
+
+.btn-primary:hover {
+    background: #a90d27;
+}
+
+.btn-light {
+    background: #ffffff;
+    color: #172033;
+}
+
+.btn-light:hover {
+    background: #e5e7eb;
+}
+
+/* TRACKING */
+
+.tracking-section {
+    margin-top: -55px;
+    position: relative;
+    z-index: 5;
+    padding: 0 6%;
+}
+
+.tracking-box {
+    max-width: 1100px;
+    margin: auto;
+    background: #ffffff;
+    padding: 28px;
+    border-radius: 8px;
+    box-shadow: 0 12px 35px rgba(0,0,0,0.14);
+}
+
+.tracking-box h2 {
+    margin-bottom: 7px;
+    font-size: 25px;
+}
+
+.tracking-box p {
+    color: #64748b;
+    margin-bottom: 18px;
+}
+
+.tracking-form {
+    display: flex;
+    gap: 10px;
+}
+
+.tracking-form input {
+    flex: 1;
+    min-width: 0;
+    padding: 15px;
+    border: 1px solid #cbd5e1;
+    border-radius: 5px;
+    font-size: 15px;
+}
+
+.tracking-form button {
+    padding: 15px 25px;
+    border: none;
+    border-radius: 5px;
+    background: #c8102e;
+    color: #ffffff;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.tracking-form button:hover {
+    background: #a90d27;
+}
+
+.track-message {
+    display: none;
+    margin-top: 15px;
+    padding: 12px;
+    background: #f1f5f9;
+    border-radius: 5px;
+}
+
+/* GENERAL */
+
+.section {
+    padding: 85px 6%;
+}
+
+.section-light {
+    background: #f8fafc;
+}
+
+.section-header {
+    max-width: 750px;
+    margin: 0 auto 45px;
+    text-align: center;
+}
+
+.section-label {
+    color: #c8102e;
+    font-size: 13px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+}
+
+.section-header h2 {
+    font-size: 38px;
+    margin-bottom: 14px;
+}
+
+.section-header p {
+    color: #64748b;
+    font-size: 17px;
+}
+
+/* SERVICES */
+
+.services-grid {
+    max-width: 1200px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+}
+
+.service-card {
+    background: #ffffff;
+    padding: 30px;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    transition: 0.2s;
+}
+
+.service-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 28px rgba(0,0,0,0.08);
+}
+
+.service-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 6px;
+    background: #fef2f2;
+    color: #c8102e;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    margin-bottom: 20px;
+}
+
+.service-card h3 {
+    font-size: 21px;
+    margin-bottom: 10px;
+}
+
+.service-card p {
+    color: #64748b;
+    margin-bottom: 18px;
+}
+
+.service-card a {
+    color: #c8102e;
+    text-decoration: none;
+    font-weight: 700;
+}
+
+/* BUSINESS */
+
+.business {
+    max-width: 1200px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 50px;
+    align-items: center;
+}
+
+.business-text h2 {
+    font-size: 38px;
+    margin-bottom: 18px;
+}
+
+.business-text p {
+    color: #64748b;
+    margin-bottom: 22px;
+}
+
+.business-list {
+    list-style: none;
+    margin-bottom: 25px;
+}
+
+.business-list li {
+    margin-bottom: 12px;
+    font-weight: 600;
+}
+
+.business-list li::before {
+    content: "✓";
+    color: #c8102e;
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+.business-panel {
+    background: #172033;
+    color: #ffffff;
+    border-radius: 10px;
+    padding: 45px;
+}
+
+.business-panel h3 {
+    font-size: 28px;
+    margin-bottom: 15px;
+}
+
+.business-panel p {
+    color: #dbe2ea;
+    margin-bottom: 25px;
+}
+
+/* STATS */
+
+.stats {
+    background: #111827;
+    color: #ffffff;
+    padding: 55px 6%;
+}
+
+.stats-grid {
+    max-width: 1100px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 25px;
+    text-align: center;
+}
+
+.stat h3 {
+    color: #ffffff;
+    font-size: 36px;
+    margin-bottom: 5px;
+}
+
+.stat p {
+    color: #9ca3af;
+}
+
+/* WHY US */
+
+.why-grid {
+    max-width: 1100px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+}
+
+.why-card {
+    padding: 25px;
+    border-left: 4px solid #c8102e;
+    background: #f8fafc;
+}
+
+.why-card h3 {
+    margin-bottom: 8px;
+}
+
+.why-card p {
+    color: #64748b;
+}
+
+/* CTA */
+
+.cta {
+    background: #c8102e;
+    color: #ffffff;
+    padding: 70px 6%;
+    text-align: center;
+}
+
+.cta h2 {
+    font-size: 38px;
+    margin-bottom: 12px;
+}
+
+.cta p {
+    max-width: 650px;
+    margin: 0 auto 25px;
+}
+
+/* FOOTER */
+
+footer {
+    background: #0b1120;
+    color: #cbd5e1;
+    padding: 55px 6% 25px;
+}
+
+.footer-grid {
+    max-width: 1200px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 40px;
+}
+
+.footer-column h3 {
+    color: #ffffff;
+    margin-bottom: 17px;
+}
+
+.footer-column p {
+    color: #94a3b8;
+    max-width: 330px;
+}
+
+.footer-column a {
+    display: block;
+    color: #cbd5e1;
+    text-decoration: none;
+    margin-bottom: 10px;
+}
+
+.footer-column a:hover {
+    color: #ffffff;
+}
+
+.footer-bottom {
+    max-width: 1200px;
+    margin: 40px auto 0;
+    padding-top: 20px;
+    border-top: 1px solid #1e293b;
+    font-size: 13px;
+    color: #64748b;
+}
+
+/* MOBILE */
+
+@media (max-width: 950px) {
 
     .navbar {
-      min-height: 76px;
-      padding: 0 5%;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 25px;
-      background: #ffffff;
-      border-bottom: 1px solid #e5e7eb;
-    }
-
-    .logo {
-      color: #c8102e;
-      font-size: 25px;
-      font-weight: 800;
-      white-space: nowrap;
+        flex-direction: column;
+        padding: 15px 5%;
     }
 
     .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 21px;
-      flex-wrap: wrap;
+        justify-content: center;
     }
 
     .nav-links a {
-      color: #1f2937;
-      font-size: 14px;
-      font-weight: 600;
+        padding: 8px 7px;
     }
 
-    .nav-links a:hover {
-      color: #c8102e;
-    }
-
-    .nav-button {
-      background: #c8102e;
-      color: #ffffff !important;
-      padding: 10px 17px;
-      border-radius: 6px;
-    }
-
-    .hero {
-      background: linear-gradient(135deg, #111827, #334155);
-      color: #ffffff;
-      padding: 90px 5%;
-    }
-
-    .hero-content {
-      max-width: 1200px;
-      margin: auto;
-      display: grid;
-      grid-template-columns: 1.2fr 0.8fr;
-      gap: 50px;
-      align-items: center;
+    .nav-links .nav-button {
+        margin-left: 0;
     }
 
     .hero h1 {
-      font-size: clamp(40px, 5vw, 64px);
-      line-height: 1.1;
-      margin-bottom: 22px;
+        font-size: 44px;
     }
 
-    .hero p {
-      max-width: 700px;
-      color: #dbe3ec;
-      font-size: 18px;
-      margin-bottom: 30px;
-    }
-
-    .hero-buttons {
-      display: flex;
-      gap: 15px;
-      flex-wrap: wrap;
-    }
-
-    .primary-button,
-    .secondary-button {
-      display: inline-block;
-      padding: 14px 23px;
-      border-radius: 7px;
-      font-weight: 700;
-    }
-
-    .primary-button {
-      background: #c8102e;
-      color: #ffffff;
-    }
-
-    .secondary-button {
-      border: 1px solid #ffffff;
-      color: #ffffff;
-    }
-
-    .tracking-card {
-      background: #ffffff;
-      color: #1f2937;
-      padding: 30px;
-      border-radius: 12px;
-      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
-    }
-
-    .tracking-card h2 {
-      margin-bottom: 8px;
-      color: #111827;
-    }
-
-    .tracking-card p {
-      color: #6b7280;
-      font-size: 14px;
-      margin-bottom: 20px;
-    }
-
-    .tracking-card input {
-      width: 100%;
-      padding: 14px;
-      border: 1px solid #d1d5db;
-      border-radius: 7px;
-      margin-bottom: 12px;
-      font-size: 15px;
-    }
-
-    .tracking-card button {
-      width: 100%;
-      padding: 14px;
-      background: #c8102e;
-      color: #ffffff;
-      border: none;
-      border-radius: 7px;
-      font-weight: 700;
-      cursor: pointer;
-    }
-
-    .section {
-      padding: 75px 5%;
-    }
-
-    .container {
-      max-width: 1200px;
-      margin: auto;
-    }
-
-    .section-heading {
-      text-align: center;
-      margin-bottom: 45px;
-    }
-
-    .section-heading h2 {
-      font-size: 36px;
-      color: #111827;
-      margin-bottom: 10px;
-    }
-
-    .section-heading p {
-      max-width: 700px;
-      margin: auto;
-      color: #6b7280;
-    }
-
-    .services {
-      background: #f5f7fa;
-    }
-
-    .service-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 25px;
-    }
-
-    .service-card {
-      background: #ffffff;
-      padding: 30px;
-      border: 1px solid #e5e7eb;
-      border-radius: 10px;
-    }
-
-    .service-card .icon {
-      font-size: 32px;
-      margin-bottom: 15px;
-    }
-
-    .service-card h3 {
-      color: #111827;
-      margin-bottom: 10px;
-    }
-
-    .service-card p {
-      color: #6b7280;
-    }
-
-    .business {
-      background: #ffffff;
-    }
-
-    .business-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 45px;
-      align-items: center;
-    }
-
-    .business h2 {
-      font-size: 38px;
-      margin-bottom: 18px;
-      color: #111827;
-    }
-
-    .business p {
-      color: #6b7280;
-      margin-bottom: 20px;
-    }
-
-    .business ul {
-      list-style: none;
-    }
-
-    .business li {
-      padding: 9px 0;
-      color: #374151;
-    }
-
-    .business li::before {
-      content: "✓";
-      color: #c8102e;
-      font-weight: bold;
-      margin-right: 10px;
-    }
-
-    .business-panel {
-      background: #111827;
-      color: #ffffff;
-      border-radius: 12px;
-      padding: 40px;
-    }
-
-    .business-panel h3 {
-      font-size: 27px;
-      margin-bottom: 15px;
-    }
-
-    .business-panel p {
-      color: #d1d5db;
-    }
-
-    .stats {
-      background: #f5f7fa;
+    .services-grid,
+    .why-grid {
+        grid-template-columns: 1fr 1fr;
     }
 
     .stats-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 20px;
-      text-align: center;
+        grid-template-columns: 1fr 1fr;
     }
 
-    .stat {
-      background: #ffffff;
-      padding: 30px 15px;
-      border: 1px solid #e5e7eb;
-      border-radius: 10px;
-    }
-
-    .stat strong {
-      display: block;
-      color: #c8102e;
-      font-size: 34px;
-      margin-bottom: 5px;
-    }
-
-    .stat span {
-      color: #6b7280;
-    }
-
-    .why-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 25px;
-    }
-
-    .why-card {
-      padding: 28px;
-      border-left: 4px solid #c8102e;
-      background: #f9fafb;
-    }
-
-    .why-card h3 {
-      margin-bottom: 8px;
-    }
-
-    .why-card p {
-      color: #6b7280;
-    }
-
-    .cta {
-      background: #c8102e;
-      color: #ffffff;
-      text-align: center;
-      padding: 70px 5%;
-    }
-
-    .cta h2 {
-      font-size: 38px;
-      margin-bottom: 12px;
-    }
-
-    .cta p {
-      max-width: 650px;
-      margin: 0 auto 25px;
-    }
-
-    .cta a {
-      display: inline-block;
-      background: #ffffff;
-      color: #c8102e;
-      padding: 14px 25px;
-      border-radius: 7px;
-      font-weight: 700;
-    }
-
-    footer {
-      background: #111827;
-      color: #d1d5db;
-      padding: 50px 5%;
+    .business {
+        grid-template-columns: 1fr;
     }
 
     .footer-grid {
-      max-width: 1200px;
-      margin: auto;
-      display: grid;
-      grid-template-columns: 1.5fr 1fr 1fr 1fr;
-      gap: 35px;
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (max-width: 650px) {
+
+    .topbar {
+        justify-content: center;
+        text-align: center;
     }
 
-    footer h3,
-    footer h4 {
-      color: #ffffff;
-      margin-bottom: 13px;
+    .hero {
+        padding: 65px 6%;
     }
 
-    footer p {
-      color: #9ca3af;
+    .hero h1 {
+        font-size: 36px;
     }
 
-    footer a {
-      display: block;
-      color: #d1d5db;
-      margin-bottom: 8px;
+    .hero p {
+        font-size: 17px;
     }
 
-    footer a:hover {
-      color: #ffffff;
+    .tracking-section {
+        margin-top: -35px;
     }
 
-    .copyright {
-      max-width: 1200px;
-      margin: 35px auto 0;
-      padding-top: 20px;
-      border-top: 1px solid #374151;
-      font-size: 13px;
-      color: #9ca3af;
-    }
-
-    @media (max-width: 900px) {
-      .top-bar {
-        display: none;
-      }
-
-      .navbar {
-        padding: 18px 5%;
+    .tracking-form {
         flex-direction: column;
-        align-items: flex-start;
-      }
-
-      .hero-content,
-      .business-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .service-grid,
-      .why-grid {
-        grid-template-columns: 1fr 1fr;
-      }
-
-      .stats-grid {
-        grid-template-columns: 1fr 1fr;
-      }
-
-      .footer-grid {
-        grid-template-columns: 1fr 1fr;
-      }
     }
 
-    @media (max-width: 600px) {
-      .service-grid,
-      .why-grid,
-      .stats-grid,
-      .footer-grid {
+    .services-grid,
+    .why-grid,
+    .stats-grid,
+    .footer-grid {
         grid-template-columns: 1fr;
-      }
-
-      .hero {
-        padding: 60px 5%;
-      }
-
-      .hero h1 {
-        font-size: 40px;
-      }
-
-      .nav-links {
-        gap: 12px;
-      }
     }
-  </style>
+
+    .section-header h2,
+    .business-text h2,
+    .cta h2 {
+        font-size: 30px;
+    }
+
+    .business-panel {
+        padding: 30px;
+    }
+}
+
+</style>
 </head>
 
 <body>
 
-  <div class="top-bar">
+<!-- TOP INFORMATION BAR -->
+
+<div class="topbar">
     <span>ExpressLine Delivery Services</span>
-    <span>Reliable Logistics • Secure Delivery • Customer Support</span>
-  </div>
+    <span>Reliable Logistics Solutions</span>
+</div>
 
-  <nav class="navbar">
 
-    <a href="index.html" class="logo">
-      ExpressLine
-    </a>
+<!-- MAIN NAVIGATION -->
 
-    <div class="nav-links">
-      <a href="index.html">Home</a>
-      <a href="services.html">Services</a>
-      <a href="track.html">Track Shipment</a>
-      <a href="request.html">Request a Shipment</a>
-      <a href="about.html">About Us</a>
-      <a href="customer-contact.html">Contact</a>
-      <a href="support.html">Customer Support</a>
-      <a href="login.html">Login</a>
-      <a href="register.html" class="nav-button">Create Account</a>
+<header class="navbar">
+
+    <div class="logo">
+        Express<span>Line</span>
     </div>
 
-  </nav>
+    <nav class="nav-links">
+
+        <a href="index.html">Home</a>
+
+        <a href="services.html">Services</a>
+
+        <a href="track.html">Track Shipment</a>
+
+        <a href="request.html">Request Shipment</a>
+
+        <a href="about.html">About Us</a>
+
+        <a href="Contact.html">Contact</a>
+
+        <a href="Customer Support.html">Support</a>
+
+        <a href="login.html">Login</a>
+
+        <a href="register.html" class="nav-button">
+            Create Account
+        </a>
+
+    </nav>
+
+</header>
 
 
-  <section class="hero">
+<!-- HERO -->
+
+<section class="hero">
 
     <div class="hero-content">
 
-      <div>
+        <div class="hero-tag">
+            LOGISTICS • DELIVERY • SHIPPING
+        </div>
 
         <h1>
-          Logistics that move your business forward.
+            Moving Your Shipments Forward.
         </h1>
 
         <p>
-          ExpressLine Delivery Services provides dependable shipment
-          solutions for individuals and businesses, from local deliveries
-          to organized logistics operations.
+            ExpressLine Delivery Services provides dependable shipment
+            management, delivery coordination, tracking, and logistics
+            solutions for individuals and businesses.
         </p>
 
         <div class="hero-buttons">
-          <a href="request.html" class="primary-button">
-            Request a Shipment
-          </a>
 
-          <a href="services.html" class="secondary-button">
-            Explore Services
-          </a>
+            <a href="request.html" class="btn btn-primary">
+                Request a Shipment
+            </a>
+
+            <a href="track.html" class="btn btn-light">
+                Track Your Shipment
+            </a>
+
         </div>
 
-      </div>
+    </div>
+
+</section>
 
 
-      <div class="tracking-card">
+<!-- TRACKING -->
+
+<section class="tracking-section">
+
+    <div class="tracking-box">
 
         <h2>Track Your Shipment</h2>
 
         <p>
-          Enter your shipment number to access tracking information.
+            Enter your shipment tracking number to access your delivery information.
         </p>
 
-        <form onsubmit="trackShipment(event)">
+        <form class="tracking-form" onsubmit="trackShipment(event)">
 
-          <input
-            type="text"
-            id="trackingNumber"
-            placeholder="Enter tracking number"
-            required
-          >
+            <input
+                type="text"
+                id="trackingNumber"
+                placeholder="Enter tracking number"
+                required
+            >
 
-          <button type="submit">
-            Track Shipment
-          </button>
+            <button type="submit">
+                Track Shipment
+            </button>
 
         </form>
 
-      </div>
+        <div id="trackMessage" class="track-message"></div>
 
     </div>
 
-  </section>
+</section>
 
 
-  <section class="section services">
+<!-- SERVICES -->
 
-    <div class="container">
+<section class="section">
 
-      <div class="section-heading">
+    <div class="section-header">
 
-        <h2>Our Services</h2>
+        <div class="section-label">
+            Our Services
+        </div>
+
+        <h2>
+            Logistics Solutions Built Around Your Needs
+        </h2>
 
         <p>
-          Flexible logistics services designed for reliable movement
-          of shipments and goods.
+            From individual deliveries to business shipments,
+            ExpressLine provides practical logistics services designed
+            to keep your goods moving.
         </p>
-
-      </div>
-
-
-      <div class="service-grid">
-
-        <div class="service-card">
-          <div class="icon">🚚</div>
-          <h3>Local Delivery</h3>
-          <p>
-            Reliable delivery solutions for shipments moving within
-            local service areas.
-          </p>
-        </div>
-
-        <div class="service-card">
-          <div class="icon">📦</div>
-          <h3>Package Delivery</h3>
-          <p>
-            Convenient shipment handling for packages of different
-            sizes and requirements.
-          </p>
-        </div>
-
-        <div class="service-card">
-          <div class="icon">🏢</div>
-          <h3>Business Logistics</h3>
-          <p>
-            Organized logistics support for businesses managing
-            regular shipments and deliveries.
-          </p>
-        </div>
-
-      </div>
 
     </div>
 
-  </section>
 
+    <div class="services-grid">
 
-  <section class="section business">
+        <div class="service-card">
 
-    <div class="container">
+            <div class="service-icon">
+                01
+            </div>
 
-      <div class="business-grid">
+            <h3>Shipment Delivery</h3>
 
-        <div>
+            <p>
+                Reliable delivery coordination for packages,
+                documents, and other shipments.
+            </p>
 
-          <h2>Solutions built around your shipment.</h2>
-
-          <p>
-            From a single package to recurring business deliveries,
-            ExpressLine helps organize the shipment process from
-            request to delivery.
-          </p>
-
-          <ul>
-            <li>Shipment request management</li>
-            <li>Shipment tracking</li>
-            <li>Delivery coordination</li>
-            <li>Customer support</li>
-            <li>Shipment history and account access</li>
-          </ul>
+            <a href="services.html">
+                Explore Services →
+            </a>
 
         </div>
+
+
+        <div class="service-card">
+
+            <div class="service-icon">
+                02
+            </div>
+
+            <h3>Shipment Tracking</h3>
+
+            <p>
+                Follow shipment progress and stay informed
+                about important delivery updates.
+            </p>
+
+            <a href="track.html">
+                Track a Shipment →
+            </a>
+
+        </div>
+
+
+        <div class="service-card">
+
+            <div class="service-icon">
+                03
+            </div>
+
+            <h3>Business Logistics</h3>
+
+            <p>
+                Logistics support for businesses that need
+                organized shipment and delivery management.
+            </p>
+
+            <a href="services.html">
+                View Solutions →
+            </a>
+
+        </div>
+
+
+        <div class="service-card">
+
+            <div class="service-icon">
+                04
+            </div>
+
+            <h3>Shipment Requests</h3>
+
+            <p>
+                Submit shipment details online and begin
+                the delivery request process.
+            </p>
+
+            <a href="request.html">
+                Request Shipment →
+            </a>
+
+        </div>
+
+
+        <div class="service-card">
+
+            <div class="service-icon">
+                05
+            </div>
+
+            <h3>Customer Support</h3>
+
+            <p>
+                Get assistance with tracking, deliveries,
+                accounts, and other service questions.
+            </p>
+
+            <a href="Customer Support.html">
+                Get Support →
+            </a>
+
+        </div>
+
+
+        <div class="service-card">
+
+            <div class="service-icon">
+                06
+            </div>
+
+            <h3>Account Management</h3>
+
+            <p>
+                Manage your customer profile, shipment activity,
+                and account information.
+            </p>
+
+            <a href="login.html">
+                Access Account →
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- BUSINESS SOLUTIONS -->
+
+<section class="section section-light">
+
+    <div class="business">
+
+        <div class="business-text">
+
+            <div class="section-label">
+                Business Solutions
+            </div>
+
+            <h2>
+                Logistics Support That Helps Your Business Move
+            </h2>
+
+            <p>
+                Whether you manage occasional shipments or regular
+                delivery activity, ExpressLine gives you tools and
+                services to organize your logistics operations.
+            </p>
+
+            <ul class="business-list">
+
+                <li>Shipment management</li>
+                <li>Delivery coordination</li>
+                <li>Shipment tracking</li>
+                <li>Customer support</li>
+                <li>Business shipment solutions</li>
+
+            </ul>
+
+            <a href="services.html" class="btn btn-primary">
+                Explore Business Services
+            </a>
+
+        </div>
+
 
         <div class="business-panel">
 
-          <h3>Need a shipment?</h3>
+            <h3>
+                Need to move a shipment?
+            </h3>
 
-          <p>
-            Start your delivery request and provide your pickup,
-            destination, and shipment details.
-          </p>
+            <p>
+                Start your shipment request and provide the
+                information needed to organize your delivery.
+            </p>
 
-          <br>
-
-          <a href="request.html" class="primary-button">
-            Start a Shipment Request
-          </a>
+            <a href="request.html" class="btn btn-light">
+                Start a Shipment Request
+            </a>
 
         </div>
-
-      </div>
 
     </div>
 
-  </section>
+</section>
 
 
-  <section class="section stats">
+<!-- STATS -->
 
-    <div class="container">
+<section class="stats">
 
-      <div class="stats-grid">
+    <div class="stats-grid">
 
         <div class="stat">
-          <strong>24/7</strong>
-          <span>Online Shipment Access</span>
+            <h3>24/7</h3>
+            <p>Shipment Visibility</p>
         </div>
 
         <div class="stat">
-          <strong>100%</strong>
-          <span>Shipment Visibility</span>
+            <h3>100%</h3>
+            <p>Customer Focus</p>
         </div>
 
         <div class="stat">
-          <strong>Fast</strong>
-          <span>Request Processing</span>
+            <h3>6+</h3>
+            <p>Logistics Services</p>
         </div>
 
         <div class="stat">
-          <strong>1</strong>
-          <span>Connected Logistics Platform</span>
+            <h3>1</h3>
+            <p>Connected Platform</p>
         </div>
-
-      </div>
 
     </div>
 
-  </section>
+</section>
 
 
-  <section class="section">
+<!-- WHY EXPRESSLINE -->
 
-    <div class="container">
+<section class="section">
 
-      <div class="section-heading">
+    <div class="section-header">
 
-        <h2>Why ExpressLine?</h2>
+        <div class="section-label">
+            Why ExpressLine
+        </div>
+
+        <h2>
+            Designed Around Reliable Delivery
+        </h2>
 
         <p>
-          A straightforward logistics experience designed around
-          customers and their shipments.
+            Our platform brings shipment requests, tracking,
+            delivery information, and customer support together
+            in one place.
         </p>
-
-      </div>
-
-
-      <div class="why-grid">
-
-        <div class="why-card">
-          <h3>Simple Process</h3>
-          <p>
-            Request, manage, and track your shipments through
-            an organized online experience.
-          </p>
-        </div>
-
-        <div class="why-card">
-          <h3>Clear Tracking</h3>
-          <p>
-            Access shipment information and status updates
-            through the tracking system.
-          </p>
-        </div>
-
-        <div class="why-card">
-          <h3>Customer Support</h3>
-          <p>
-            Get assistance with shipment questions, delivery
-            concerns, and account needs.
-          </p>
-        </div>
-
-      </div>
 
     </div>
 
-  </section>
+
+    <div class="why-grid">
+
+        <div class="why-card">
+
+            <h3>Clear Tracking</h3>
+
+            <p>
+                Easily access shipment information and
+                delivery updates.
+            </p>
+
+        </div>
 
 
-  <section class="cta">
+        <div class="why-card">
 
-    <h2>Ready to move your shipment?</h2>
+            <h3>Simple Requests</h3>
+
+            <p>
+                Submit shipment information through a
+                straightforward online process.
+            </p>
+
+        </div>
+
+
+        <div class="why-card">
+
+            <h3>Customer Support</h3>
+
+            <p>
+                Access help for shipment, delivery,
+                account, and service questions.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- CALL TO ACTION -->
+
+<section class="cta">
+
+    <h2>
+        Ready to Move Your Shipment?
+    </h2>
 
     <p>
-      Start a shipment request or contact our team for assistance.
+        Request a shipment, track an existing delivery,
+        or contact our support team today.
     </p>
 
-    <a href="request.html">
-      Request a Shipment
-    </a>
+    <div class="hero-buttons" style="justify-content:center;">
 
-  </section>
+        <a href="request.html" class="btn btn-light">
+            Request a Shipment
+        </a>
+
+        <a href="Contact.html" class="btn btn-light">
+            Contact Us
+        </a>
+
+    </div>
+
+</section>
 
 
-  <footer>
+<!-- FOOTER -->
+
+<footer>
 
     <div class="footer-grid">
 
-      <div>
+        <div class="footer-column">
 
-        <h3>ExpressLine Delivery Services</h3>
+            <h3>
+                ExpressLine Delivery Services
+            </h3>
 
-        <p>
-          Reliable logistics and delivery services for individuals
-          and businesses.
-        </p>
+            <p>
+                Professional logistics and delivery solutions
+                designed to keep shipments moving.
+            </p>
 
-      </div>
+        </div>
 
-      <div>
 
-        <h4>Company</h4>
+        <div class="footer-column">
 
-        <a href="about.html">About Us</a>
-        <a href="services.html">Services</a>
-        <a href="customer-contact.html">Contact</a>
+            <h3>
+                Company
+            </h3>
 
-      </div>
+            <a href="index.html">Home</a>
 
-      <div>
+            <a href="about.html">About Us</a>
 
-        <h4>Shipments</h4>
+            <a href="services.html">Services</a>
 
-        <a href="request.html">Request a Shipment</a>
-        <a href="track.html">Track Shipment</a>
-        <a href="shipment-history.html">Shipment History</a>
+            <a href="Contact.html">Contact</a>
 
-      </div>
+        </div>
 
-      <div>
 
-        <h4>Support</h4>
+        <div class="footer-column">
 
-        <a href="support.html">Customer Support</a>
-        <a href="login.html">Login</a>
-        <a href="register.html">Create Account</a>
+            <h3>
+                Shipments
+            </h3>
 
-      </div>
+            <a href="request.html">Request Shipment</a>
+
+            <a href="track.html">Track Shipment</a>
+
+            <a href="Shipment History.html">Shipment History</a>
+
+            <a href="services.html">Shipping Services</a>
+
+        </div>
+
+
+        <div class="footer-column">
+
+            <h3>
+                Support
+            </h3>
+
+            <a href="Customer Support.html">Customer Support</a>
+
+            <a href="login.html">Login</a>
+
+            <a href="register.html">Create Account</a>
+
+            <a href="Contact.html">Contact Us</a>
+
+        </div>
 
     </div>
 
 
-    <div class="copyright">
-      © 2026 ExpressLine Delivery Services. All rights reserved.
+    <div class="footer-bottom">
+
+        © 2026 ExpressLine Delivery Services. All rights reserved.
+
     </div>
 
-  </footer>
+</footer>
 
 
-  <script>
-    function trackShipment(event) {
-      event.preventDefault();
+<script>
 
-      const trackingNumber =
+function trackShipment(event) {
+
+    event.preventDefault();
+
+    const number =
         document.getElementById("trackingNumber").value.trim();
 
-      if (trackingNumber !== "") {
-        window.location.href =
-          "track.html?tracking=" +
-          encodeURIComponent(trackingNumber);
-      }
+    const message =
+        document.getElementById("trackMessage");
+
+    if (number === "") {
+        message.style.display = "block";
+        message.innerHTML =
+            "Please enter a tracking number.";
+        return;
     }
-  </script>
+
+    message.style.display = "block";
+
+    message.innerHTML =
+        "Tracking number <strong>" +
+        number +
+        "</strong> submitted. Opening the tracking page...";
+
+    setTimeout(function() {
+
+        window.location.href =
+            "track.html?tracking=" +
+            encodeURIComponent(number);
+
+    }, 1000);
+
+}
+
+</script>
 
 </body>
 </html>
