@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Track Shipment | ExpressLine Delivery Services</title>
+
+    <meta
+        name="description"
+        content="Track your ExpressLine Delivery Services shipment."
+    >
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- HEADER -->
+    <header class="site-header">
+
+        <div class="container nav-container">
+
+            <a href="index.html" class="logo">
+                <span class="logo-mark">EL</span>
+                <span>
+                    <strong>ExpressLine</strong>
+                    <small>Delivery Services</small>
+                </span>
+            </a>
+
+            <button
+                class="menu-toggle"
+                type="button"
+                aria-label="Open navigation menu"
+            >
+                ☰
+            </button>
+
+            <nav class="nav-links">
+
+                <a href="index.html">Home</a>
+
+                <a href="track.html" class="active">
+                    Track Shipment
+                </a>
+
+                <a href="services.html">
+                    Services
+                </a>
+
+                <a href="about.html">
+                    About Us
+                </a>
+
+                <a href="contact.html">
+                    Contact Us
+                </a>
+
+                <a href="request.html">
+                    Request Shipment
+                </a>
+
+                <a href="login.html" class="nav-login">
+                    Customer Login
+                </a>
+
+            </nav>
+
+        </div>
+
+    </header>
+
+
+    <!-- PAGE HERO -->
+    <section class="page-hero">
+
+        <div class="container">
+
+            <span class="eyebrow">
+                SHIPMENT TRACKING
+            </span>
+
+            <h1>
+                Track Your Shipment
+            </h1>
+
+            <p>
+                Enter your tracking number to view the latest
+                available shipment information.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- TRACKING SECTION -->
+    <main>
+
+        <section class="tracking-section">
+
+            <div class="container">
+
+                <div class="tracking-card">
+
+                    <div class="tracking-icon">
+                        📦
+                    </div>
+
+                    <h2>
+                        Track Your Shipment
+                    </h2>
+
+                    <p class="tracking-description">
+                        Enter your tracking number below to check
+                        your shipment status and tracking history.
+                    </p>
+
+
+                    <form
+                        id="trackingForm"
+                        class="tracking-form"
+                    >
+
+                        <label for="trackingNumber">
+                            Tracking Number
+                        </label>
+
+                        <div class="tracking-input-row">
+
+                            <input
+                                type="text"
+                                id="trackingNumber"
+                                name="trackingNumber"
+                                placeholder="Enter tracking number"
+                                autocomplete="off"
+                                required
+                            >
+
+                            <button
+                                type="submit"
+                                class="btn btn-primary"
+                            >
+                                Track Shipment
+                            </button>
+
+                        </div>
+
+                        <div
+                            id="trackingMessage"
+                            class="tracking-message"
+                            role="alert"
+                            aria-live="polite"
+                        ></div>
+
+                    </form>
+
+                </div>
+
+
+                <!-- TRACKING RESULT -->
+
+                <div
+                    id="trackingResult"
+                    class="tracking-result"
+                    style="display: none;"
+                >
+
+                    <div class="tracking-result-header">
+
+                        <div>
+                            <span class="result-label">
+                                Tracking Number
+                            </span>
+
+                            <h2 id="resultTrackingNumber">
+                            </h2>
+                        </div>
+
+                        <span
+                            id="resultStatus"
+                            class="status-badge"
+                        >
+                        </span>
+
+                    </div>
+
+
+                    <!-- SHIPMENT INFORMATION -->
+
+                    <div class="shipment-info-grid">
+
+                        <div class="info-box">
+                            <span>Origin</span>
+                            <strong id="resultOrigin"></strong>
+                        </div>
+
+                        <div class="info-box">
+                            <span>Destination</span>
+                            <strong id="resultDestination"></strong>
+                        </div>
+
+                        <div class="info-box">
+                            <span>Estimated Delivery</span>
+                            <strong id="resultDelivery"></strong>
+                        </div>
+
+                        <div class="info-box">
+                            <span>Shipping Method</span>
+                            <strong id="resultMethod"></strong>
+                        </div>
+
+                        <div class="info-box">
+                            <span>Package Description</span>
+                            <strong id="resultDescription"></strong>
+                        </div>
+
+                        <div class="info-box">
+                            <span>Weight</span>
+                            <strong id="resultWeight"></strong>
+                        </div>
+
+                        <div class="info-box">
+                            <span>Quantity</span>
+                            <strong id="resultQuantity"></strong>
+                        </div>
+
+                        <div class="info-box">
+                            <span>Progress</span>
+                            <strong id="resultProgress"></strong>
+                        </div>
+
+                    </div>
+
+
+                    <!-- PROGRESS -->
+
+                    <div class="shipment-progress">
+
+                        <div class="section-heading">
+
+                            <span class="eyebrow">
+                                SHIPMENT PROGRESS
+                            </span>
+
+                            <h2>
+                                Shipment Progress
+                            </h2>
+
+                        </div>
+
+                        <div class="progress-bar">
+
+                            <div
+                                id="progressFill"
+                                class="progress-fill"
+                                style="width: 0%;"
+                            ></div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- TIMELINE -->
+
+                    <div class="tracking-timeline">
+
+                        <div class="section-heading">
+
+                            <span class="eyebrow">
+                                TRACKING HISTORY
+                            </span>
+
+                            <h2>
+                                Shipment Timeline
+                            </h2>
+
+                        </div>
+
+                        <div id="timelineContainer">
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- FOOTER -->
+
+    <footer class="site-footer">
+
+        <div class="container footer-content">
+
+            <div>
+
+                <div class="logo footer-logo">
+
+                    <span class="logo-mark">
+                        EL
+                    </span>
+
+                    <span>
+                        <strong>ExpressLine</strong>
+                        <small>Delivery Services</small>
+                    </span>
+
+                </div>
+
+                <p>
+                    Reliable courier and logistics solutions
+                    designed to keep your shipments moving
+                    with confidence.
+                </p>
+
+            </div>
+
+
+            <div class="footer-links">
+
+                <h3>
+                    Quick Links
+                </h3>
+
+                <a href="index.html">
+                    Home
+                </a>
+
+                <a href="track.html">
+                    Track Shipment
+                </a>
+
+                <a href="services.html">
+                    Services
+                </a>
+
+                <a href="contact.html">
+                    Contact Us
+                </a>
+
+            </div>
+
+
+            <div class="footer-contact">
+
+                <h3>
+                    Contact
+                </h3>
+
+                <p>
+                    Company information coming soon.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="footer-bottom">
+
+            <p>
+                © 2026 ExpressLine Delivery Services.
+                All rights reserved.
+            </p>
+
+        </div>
+
+    </footer>
+
+
+    <script src="script.js"></script>
+
+</body>
+</html>
