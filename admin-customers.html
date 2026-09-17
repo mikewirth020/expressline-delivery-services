@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Admin - Customers</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f7fb;
+      color: #222;
+    }
+
+    header {
+      background: #0b1f3a;
+      color: white;
+      padding: 20px;
+    }
+
+    header h1 {
+      margin-bottom: 6px;
+    }
+
+    .container {
+      width: 92%;
+      max-width: 1200px;
+      margin: 30px auto;
+    }
+
+    .top-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+
+    .top-bar h2 {
+      color: #0b1f3a;
+    }
+
+    .back-btn {
+      background: #0b1f3a;
+      color: white;
+      text-decoration: none;
+      padding: 11px 16px;
+      border-radius: 6px;
+      font-weight: bold;
+    }
+
+    .summary {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 15px;
+      margin-bottom: 25px;
+    }
+
+    .summary-card {
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 3px 12px rgba(0,0,0,0.08);
+    }
+
+    .summary-card h3 {
+      font-size: 14px;
+      color: #777;
+      margin-bottom: 10px;
+    }
+
+    .summary-card p {
+      font-size: 28px;
+      font-weight: bold;
+      color: #0b1f3a;
+    }
+
+    .customers-box {
+      background: white;
+      border-radius: 10px;
+      padding: 20px;
+      box-shadow: 0 3px 12px rgba(0,0,0,0.08);
+      overflow-x: auto;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 850px;
+    }
+
+    th,
+    td {
+      padding: 14px;
+      border-bottom: 1px solid #ddd;
+      text-align: left;
+    }
+
+    th {
+      background: #0b1f3a;
+      color: white;
+    }
+
+    tr:hover {
+      background: #f7f9fc;
+    }
+
+    .status {
+      padding: 6px 10px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: bold;
+      display: inline-block;
+    }
+
+    .active {
+      background: #d4edda;
+      color: #155724;
+    }
+
+    .inactive {
+      background: #e2e3e5;
+      color: #383d41;
+    }
+
+    .actions {
+      display: flex;
+      gap: 7px;
+      flex-wrap: wrap;
+    }
+
+    button {
+      border: none;
+      padding: 8px 12px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .view {
+      background: #e9eef5;
+      color: #0b1f3a;
+    }
+
+    button:hover {
+      opacity: 0.8;
+    }
+
+    @media (max-width: 700px) {
+      .summary {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <h1>Admin Dashboard</h1>
+    <p>Customer Management</p>
+  </header>
+
+  <div class="container">
+
+    <div class="top-bar">
+
+      <h2>Customers</h2>
+
+      <a href="admin.html" class="back-btn">
+        ← Admin Dashboard
+      </a>
+
+    </div>
+
+    <div class="summary">
+
+      <div class="summary-card">
+        <h3>Total Customers</h3>
+        <p>4</p>
+      </div>
+
+      <div class="summary-card">
+        <h3>Active Customers</h3>
+        <p>3</p>
+      </div>
+
+      <div class="summary-card">
+        <h3>Total Shipments</h3>
+        <p>6</p>
+      </div>
+
+    </div>
+
+    <div class="customers-box">
+
+      <table>
+
+        <thead>
+          <tr>
+            <th>Customer ID</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Shipments</th>
+            <th>Status</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+
+        <tbody>
+
+          <tr>
+            <td>CUS-001</td>
+            <td>John Smith</td>
+            <td>john@example.com</td>
+            <td>555-0201</td>
+            <td>2</td>
+
+            <td>
+              <span class="status active">
+                Active
+              </span>
+            </td>
+
+            <td>
+              <button
+                class="view"
+                onclick="viewCustomer('CUS-001')">
+                View
+              </button>
+            </td>
+          </tr>
+
+          <tr>
+            <td>CUS-002</td>
+            <td>Michael Brown</td>
+            <td>michael@example.com</td>
+            <td>555-0202</td>
+            <td>2</td>
+
+            <td>
+              <span class="status active">
+                Active
+              </span>
+            </td>
+
+            <td>
+              <button
+                class="view"
+                onclick="viewCustomer('CUS-002')">
+                View
+              </button>
+            </td>
+          </tr>
+
+          <tr>
+            <td>CUS-003</td>
+            <td>Sarah Johnson</td>
+            <td>sarah@example.com</td>
+            <td>555-0203</td>
+            <td>1</td>
+
+            <td>
+              <span class="status active">
+                Active
+              </span>
+            </td>
+
+            <td>
+              <button
+                class="view"
+                onclick="viewCustomer('CUS-003')">
+                View
+              </button>
+            </td>
+          </tr>
+
+          <tr>
+            <td>CUS-004</td>
+            <td>Robert Taylor</td>
+            <td>robert@example.com</td>
+            <td>555-0204</td>
+            <td>1</td>
+
+            <td>
+              <span class="status inactive">
+                Inactive
+              </span>
+            </td>
+
+            <td>
+              <button
+                class="view"
+                onclick="viewCustomer('CUS-004')">
+                View
+              </button>
+            </td>
+          </tr>
+
+        </tbody>
+
+      </table>
+
+    </div>
+
+  </div>
+
+  <script>
+
+    function viewCustomer(customerId) {
+      alert(
+        "Opening customer profile: " + customerId
+      );
+    }
+
+  </script>
+
+</body>
+</html>
