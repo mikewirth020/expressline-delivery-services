@@ -1,352 +1,215 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Admin Login | ExpressLine Delivery Services</title>
+    <title>Admin Login - Logistics Company</title>
 
-  <meta
-    name="description"
-    content="Secure administrator login for ExpressLine Delivery Services."
-  >
+    <style>
+        * {
+            box-sizing: border-box;
+        }
 
-  <meta
-    name="robots"
-    content="noindex, nofollow"
-  >
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f3f4f6;
+            color: #1f2937;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
 
-  <link rel="stylesheet" href="style.css">
+        .login-container {
+            width: 100%;
+            max-width: 420px;
+            padding: 20px;
+        }
+
+        .login-box {
+            background: white;
+            padding: 35px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.10);
+        }
+
+        .logo {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .logo h1 {
+            margin: 0;
+            color: #111827;
+            font-size: 28px;
+        }
+
+        .logo p {
+            margin-top: 8px;
+            color: #6b7280;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 7px;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        input {
+            width: 100%;
+            padding: 13px;
+            border: 1px solid #d1d5db;
+            border-radius: 7px;
+            margin-bottom: 18px;
+            font-size: 15px;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: #2563eb;
+        }
+
+        button {
+            width: 100%;
+            padding: 14px;
+            border: none;
+            border-radius: 7px;
+            background: #2563eb;
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #1d4ed8;
+        }
+
+        .error {
+            display: none;
+            background: #fee2e2;
+            color: #b91c1c;
+            padding: 12px;
+            border-radius: 7px;
+            margin-bottom: 18px;
+            text-align: center;
+            font-size: 14px;
+        }
+
+        .demo {
+            margin-top: 20px;
+            padding: 15px;
+            background: #f9fafb;
+            border-radius: 8px;
+            text-align: center;
+            font-size: 13px;
+            color: #4b5563;
+        }
+
+        .demo strong {
+            color: #111827;
+        }
+
+        .back {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            color: #2563eb;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .back:hover {
+            text-decoration: underline;
+        }
+    </style>
 </head>
 
 <body>
 
-  <header class="site-header">
+<div class="login-container">
 
-    <div class="container navbar">
+    <div class="login-box">
 
-      <a href="index.html" class="logo">
-        <span class="logo-mark">EL</span>
-        <span>ExpressLine</span>
-      </a>
-
-    </div>
-
-  </header>
-
-
-  <main>
-
-    <section class="section section-light">
-
-      <div class="container">
-
-        <div class="section-heading">
-
-          <p class="section-label">
-            ADMINISTRATION
-          </p>
-
-          <h1>
-            Administrator Login
-          </h1>
-
-          <p>
-            Secure access for authorized ExpressLine
-            administrators.
-          </p>
-
+        <div class="logo">
+            <h1>Admin Login</h1>
+            <p>Logistics Company</p>
         </div>
 
+        <div id="errorMessage" class="error">
+            Incorrect email or password.
+        </div>
 
-        <div class="form-card">
+        <form id="adminLoginForm">
 
-          <form
-            id="adminLoginForm"
-            method="post"
-            autocomplete="on"
-          >
+            <label for="email">Admin Email</label>
 
-            <div class="form-group">
-
-              <label for="adminEmail">
-                Administrator Email
-              </label>
-
-              <input
+            <input
                 type="email"
-                id="adminEmail"
-                name="email"
-                placeholder="Enter administrator email"
-                autocomplete="username"
+                id="email"
+                placeholder="Enter admin email"
                 required
-              >
-
-            </div>
-
-
-            <div class="form-group">
-
-              <label for="adminPassword">
-                Password
-              </label>
-
-              <input
-                type="password"
-                id="adminPassword"
-                name="password"
-                placeholder="Enter administrator password"
-                autocomplete="current-password"
-                required
-              >
-
-            </div>
-
-
-            <div class="form-group">
-
-              <label>
-                <input
-                  type="checkbox"
-                  name="remember"
-                >
-                Keep me signed in on this device
-              </label>
-
-            </div>
-
-
-            <button
-              type="submit"
-              class="btn btn-primary"
             >
-              Administrator Login
+
+            <label for="password">Password</label>
+
+            <input
+                type="password"
+                id="password"
+                placeholder="Enter password"
+                required
+            >
+
+            <button type="submit">
+                Login as Admin
             </button>
 
-          </form>
+        </form>
 
-
-          <div class="section-heading">
-
-            <p>
-              Authorized administrators only.
-              Unauthorized access is not permitted.
-            </p>
-
-            <a href="index.html">
-              Return to ExpressLine website
-            </a>
-
-          </div>
-
+        <div class="demo">
+            <strong>Demo Admin Login</strong><br><br>
+            Email: admin@logistics.com<br>
+            Password: admin123
         </div>
 
-      </div>
-
-    </section>
-
-
-    <section class="section">
-
-      <div class="container">
-
-        <div class="section-heading">
-
-          <p class="section-label">
-            SECURITY
-          </p>
-
-          <h2>
-            Protected Administration
-          </h2>
-
-          <p>
-            The production administrator portal will use
-            server-side authentication, secure sessions,
-            password hashing, access controls, rate limiting,
-            and audit logging.
-          </p>
-
-        </div>
-
-
-        <div class="cards-grid">
-
-          <article class="feature-card">
-
-            <h3>
-              Secure Authentication
-            </h3>
-
-            <p>
-              Administrator credentials will be verified by
-              the secure backend rather than by frontend code.
-            </p>
-
-          </article>
-
-
-          <article class="feature-card">
-
-            <h3>
-              Role-Based Access
-            </h3>
-
-            <p>
-              Administrative permissions will be controlled
-              by assigned roles.
-            </p>
-
-          </article>
-
-
-          <article class="feature-card">
-
-            <h3>
-              Audit Logging
-            </h3>
-
-            <p>
-              Important administrative actions will be recorded
-              in secure audit logs.
-            </p>
-
-          </article>
-
-        </div>
-
-      </div>
-
-    </section>
-
-  </main>
-
-
-  <footer class="site-footer">
-
-    <div class="container">
-
-      <div class="footer-grid">
-
-        <div>
-
-          <div class="logo">
-            <span class="logo-mark">EL</span>
-            <span>ExpressLine</span>
-          </div>
-
-          <p>
-            Professional courier and logistics solutions
-            designed to keep shipments moving with confidence.
-          </p>
-
-        </div>
-
-
-        <div>
-
-          <h3>
-            Customer
-          </h3>
-
-          <ul class="footer-links">
-
-            <li>
-              <a href="login.html">
-                Customer Login
-              </a>
-            </li>
-
-            <li>
-              <a href="register.html">
-                Create Account
-              </a>
-            </li>
-
-            <li>
-              <a href="request.html">
-                Request Shipment
-              </a>
-            </li>
-
-          </ul>
-
-        </div>
-
-
-        <div>
-
-          <h3>
-            Support
-          </h3>
-
-          <ul class="footer-links">
-
-            <li>
-              <a href="track.html">
-                Track Shipment
-              </a>
-            </li>
-
-            <li>
-              <a href="contact.html">
-                Contact Us
-              </a>
-            </li>
-
-          </ul>
-
-        </div>
-
-
-        <div>
-
-          <h3>
-            Website
-          </h3>
-
-          <ul class="footer-links">
-
-            <li>
-              <a href="index.html">
-                Home
-              </a>
-            </li>
-
-            <li>
-              <a href="services.html">
-                Services
-              </a>
-            </li>
-
-            <li>
-              <a href="about.html">
-                About Us
-              </a>
-            </li>
-
-          </ul>
-
-        </div>
-
-      </div>
-
-
-      <div class="footer-bottom">
-
-        <p>
-          © 2026 ExpressLine Delivery Services.
-          All rights reserved.
-        </p>
-
-      </div>
+        <a href="index.html" class="back">
+            ← Back to Homepage
+        </a>
 
     </div>
 
-  </footer>
+</div>
 
+<script>
+    document.getElementById("adminLoginForm").addEventListener("submit", function(event) {
 
-  <script src="script.js"></script>
+        event.preventDefault();
+
+        const email = document.getElementById("email").value.trim();
+        const password = document.getElementById("password").value;
+
+        const correctEmail = "admin@logistics.com";
+        const correctPassword = "admin123";
+
+        const errorMessage = document.getElementById("errorMessage");
+
+        if (email === correctEmail && password === correctPassword) {
+
+            localStorage.setItem("adminLoggedIn", "true");
+
+            window.location.href = "admin.html";
+
+        } else {
+
+            errorMessage.style.display = "block";
+
+        }
+
+    });
+</script>
 
 </body>
 </html>
