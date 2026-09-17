@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin - Messages</title>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f4f6f8;
+      color: #222;
+    }
+
+    header {
+      background: #111827;
+      color: white;
+      padding: 20px;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 24px;
+    }
+
+    header p {
+      margin: 6px 0 0;
+      color: #d1d5db;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 30px auto;
+      padding: 0 20px;
+    }
+
+    .back {
+      display: inline-block;
+      margin-bottom: 20px;
+      text-decoration: none;
+      color: #2563eb;
+      font-weight: bold;
+    }
+
+    .section {
+      background: white;
+      padding: 25px;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      margin-bottom: 25px;
+    }
+
+    .section h2 {
+      margin-top: 0;
+    }
+
+    .message {
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+      padding: 18px;
+      margin-bottom: 15px;
+    }
+
+    .message:last-child {
+      margin-bottom: 0;
+    }
+
+    .message-header {
+      display: flex;
+      justify-content: space-between;
+      gap: 15px;
+      margin-bottom: 10px;
+    }
+
+    .message-header h3 {
+      margin: 0;
+      font-size: 17px;
+    }
+
+    .message-header span {
+      color: #6b7280;
+      font-size: 13px;
+      white-space: nowrap;
+    }
+
+    .message p {
+      margin: 7px 0;
+      color: #555;
+    }
+
+    .unread {
+      border-left: 5px solid #2563eb;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 5px 9px;
+      border-radius: 15px;
+      background: #dbeafe;
+      color: #1d4ed8;
+      font-size: 12px;
+      font-weight: bold;
+      margin-top: 8px;
+    }
+
+    .form-group {
+      margin-bottom: 18px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 7px;
+      font-weight: bold;
+    }
+
+    input,
+    select,
+    textarea {
+      width: 100%;
+      box-sizing: border-box;
+      padding: 12px;
+      border: 1px solid #d1d5db;
+      border-radius: 6px;
+      font-size: 15px;
+    }
+
+    textarea {
+      min-height: 130px;
+      resize: vertical;
+    }
+
+    .button {
+      background: #2563eb;
+      color: white;
+      border: none;
+      padding: 11px 18px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 15px;
+      font-weight: bold;
+    }
+
+    .button:hover {
+      background: #1d4ed8;
+    }
+
+    .secondary {
+      background: #6b7280;
+      margin-left: 8px;
+    }
+
+    .secondary:hover {
+      background: #4b5563;
+    }
+
+    @media (max-width: 600px) {
+      .message-header {
+        flex-direction: column;
+      }
+
+      .secondary {
+        margin-left: 0;
+        margin-top: 10px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <h1>Admin Dashboard</h1>
+    <p>Customer Messages</p>
+  </header>
+
+  <div class="container">
+
+    <a href="admin.html" class="back">← Back to Admin Dashboard</a>
+
+    <div class="section">
+
+      <h2>Inbox</h2>
+
+      <div class="message unread">
+        <div class="message-header">
+          <h3>John Smith</h3>
+          <span>09/17/2026 8:30 PM</span>
+        </div>
+
+        <p><strong>Subject:</strong> Shipment Update</p>
+
+        <p>
+          Hello, I would like to know the current status of my shipment
+          TRK-10001.
+        </p>
+
+        <span class="badge">Unread</span>
+      </div>
+
+      <div class="message">
+        <div class="message-header">
+          <h3>Michael Brown</h3>
+          <span>09/17/2026 7:45 PM</span>
+        </div>
+
+        <p><strong>Subject:</strong> Payment Confirmation</p>
+
+        <p>
+          I have completed my payment. Please confirm that it was received.
+        </p>
+
+        <span class="badge">Read</span>
+      </div>
+
+      <div class="message">
+        <div class="message-header">
+          <h3>Sarah Johnson</h3>
+          <span>09/17/2026 6:20 PM</span>
+        </div>
+
+        <p><strong>Subject:</strong> Delivery Address</p>
+
+        <p>
+          I need to update the delivery address for my shipment.
+        </p>
+
+        <span class="badge">Read</span>
+      </div>
+
+    </div>
+
+    <div class="section">
+
+      <h2>Send Message</h2>
+
+      <div class="form-group">
+        <label for="customer">Customer</label>
+
+        <select id="customer">
+          <option value="">Select Customer</option>
+          <option>John Smith</option>
+          <option>Michael Brown</option>
+          <option>Sarah Johnson</option>
+          <option>Robert Taylor</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="subject">Subject</label>
+
+        <input
+          type="text"
+          id="subject"
+          placeholder="Enter message subject"
+        >
+      </div>
+
+      <div class="form-group">
+        <label for="message">Message</label>
+
+        <textarea
+          id="message"
+          placeholder="Type your message here..."
+        ></textarea>
+      </div>
+
+      <button class="button" onclick="sendMessage()">
+        Send Message
+      </button>
+
+      <button class="button secondary" onclick="clearMessage()">
+        Clear
+      </button>
+
+    </div>
+
+  </div>
+
+  <script>
+    function sendMessage() {
+      const customer = document.getElementById("customer").value;
+      const subject = document.getElementById("subject").value;
+      const message = document.getElementById("message").value;
+
+      if (customer === "" || subject === "" || message === "") {
+        alert("Please complete all fields.");
+        return;
+      }
+
+      alert("Message sent successfully.");
+
+      clearMessage();
+    }
+
+    function clearMessage() {
+      document.getElementById("customer").value = "";
+      document.getElementById("subject").value = "";
+      document.getElementById("message").value = "";
+    }
+  </script>
+
+</body>
+</html>
