@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Admin - Drivers</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f7fb;
+      color: #222;
+    }
+
+    header {
+      background: #0b1f3a;
+      color: white;
+      padding: 20px;
+    }
+
+    header h1 {
+      margin-bottom: 6px;
+    }
+
+    .container {
+      width: 92%;
+      max-width: 1200px;
+      margin: 30px auto;
+    }
+
+    .top-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+
+    .top-bar h2 {
+      color: #0b1f3a;
+    }
+
+    .back-btn {
+      background: #0b1f3a;
+      color: white;
+      text-decoration: none;
+      padding: 11px 16px;
+      border-radius: 6px;
+      font-weight: bold;
+    }
+
+    .summary {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 15px;
+      margin-bottom: 25px;
+    }
+
+    .summary-card {
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 3px 12px rgba(0,0,0,0.08);
+    }
+
+    .summary-card h3 {
+      font-size: 14px;
+      color: #777;
+      margin-bottom: 10px;
+    }
+
+    .summary-card p {
+      font-size: 28px;
+      font-weight: bold;
+      color: #0b1f3a;
+    }
+
+    .drivers-box {
+      background: white;
+      border-radius: 10px;
+      padding: 20px;
+      box-shadow: 0 3px 12px rgba(0,0,0,0.08);
+      overflow-x: auto;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 800px;
+    }
+
+    th,
+    td {
+      padding: 14px;
+      border-bottom: 1px solid #ddd;
+      text-align: left;
+    }
+
+    th {
+      background: #0b1f3a;
+      color: white;
+    }
+
+    tr:hover {
+      background: #f7f9fc;
+    }
+
+    .status {
+      padding: 6px 10px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: bold;
+      display: inline-block;
+    }
+
+    .available {
+      background: #d4edda;
+      color: #155724;
+    }
+
+    .busy {
+      background: #fff3cd;
+      color: #856404;
+    }
+
+    .offline {
+      background: #e2e3e5;
+      color: #383d41;
+    }
+
+    .actions {
+      display: flex;
+      gap: 7px;
+      flex-wrap: wrap;
+    }
+
+    button {
+      border: none;
+      padding: 8px 12px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .view {
+      background: #e9eef5;
+      color: #0b1f3a;
+    }
+
+    .assign {
+      background: #0b1f3a;
+      color: white;
+    }
+
+    button:hover {
+      opacity: 0.8;
+    }
+
+    @media (max-width: 700px) {
+      .summary {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <h1>Admin Dashboard</h1>
+    <p>Driver Management</p>
+  </header>
+
+  <div class="container">
+
+    <div class="top-bar">
+
+      <h2>Drivers</h2>
+
+      <a href="admin.html" class="back-btn">
+        ← Admin Dashboard
+      </a>
+
+    </div>
+
+    <!-- SUMMARY -->
+
+    <div class="summary">
+
+      <div class="summary-card">
+        <h3>Total Drivers</h3>
+        <p>4</p>
+      </div>
+
+      <div class="summary-card">
+        <h3>Available</h3>
+        <p>2</p>
+      </div>
+
+      <div class="summary-card">
+        <h3>Currently Busy</h3>
+        <p>2</p>
+      </div>
+
+    </div>
+
+    <!-- DRIVER LIST -->
+
+    <div class="drivers-box">
+
+      <table>
+
+        <thead>
+          <tr>
+            <th>Driver ID</th>
+            <th>Driver Name</th>
+            <th>Phone</th>
+            <th>Vehicle</th>
+            <th>Current Shipment</th>
+            <th>Status</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+
+        <tbody>
+
+          <tr>
+            <td>DRV-001</td>
+            <td>James Wilson</td>
+            <td>555-0101</td>
+            <td>Ford Transit</td>
+            <td>TRK-10001</td>
+
+            <td>
+              <span class="status busy">
+                Busy
+              </span>
+            </td>
+
+            <td>
+              <div class="actions">
+
+                <button
+                  class="view"
+                  onclick="viewDriver('DRV-001')">
+                  View
+                </button>
+
+                <button
+                  class="assign"
+                  onclick="assignDriver('DRV-001')">
+                  Assign
+                </button>
+
+              </div>
+            </td>
+          </tr>
+
+          <tr>
+            <td>DRV-002</td>
+            <td>Robert Davis</td>
+            <td>555-0102</td>
+            <td>Mercedes Sprinter</td>
+            <td>TRK-10002</td>
+
+            <td>
+              <span class="status busy">
+                Busy
+              </span>
+            </td>
+
+            <td>
+              <div class="actions">
+
+                <button
+                  class="view"
+                  onclick="viewDriver('DRV-002')">
+                  View
+                </button>
+
+                <button
+                  class="assign"
+                  onclick="assignDriver('DRV-002')">
+                  Assign
+                </button>
+
+              </div>
+            </td>
+          </tr>
+
+          <tr>
+            <td>DRV-003</td>
+            <td>David Miller</td>
+            <td>555-0103</td>
+            <td>Ram ProMaster</td>
+            <td>None</td>
+
+            <td>
+              <span class="status available">
+                Available
+              </span>
+            </td>
+
+            <td>
+              <div class="actions">
+
+                <button
+                  class="view"
+                  onclick="viewDriver('DRV-003')">
+                  View
+                </button>
+
+                <button
+                  class="assign"
+                  onclick="assignDriver('DRV-003')">
+                  Assign
+                </button>
+
+              </div>
+            </td>
+          </tr>
+
+          <tr>
+            <td>DRV-004</td>
+            <td>William Anderson</td>
+            <td>555-0104</td>
+            <td>Chevrolet Express</td>
+            <td>None</td>
+
+            <td>
+              <span class="status available">
+                Available
+              </span>
+            </td>
+
+            <td>
+              <div class="actions">
+
+                <button
+                  class="view"
+                  onclick="viewDriver('DRV-004')">
+                  View
+                </button>
+
+                <button
+                  class="assign"
+                  onclick="assignDriver('DRV-004')">
+                  Assign
+                </button>
+
+              </div>
+            </td>
+          </tr>
+
+        </tbody>
+
+      </table>
+
+    </div>
+
+  </div>
+
+  <script>
+
+    function viewDriver(driverId) {
+      alert(
+        "Opening driver profile: " + driverId
+      );
+    }
+
+    function assignDriver(driverId) {
+      alert(
+        "Assigning a shipment to driver: " + driverId
+      );
+    }
+
+  </script>
+
+</body>
+</html>
