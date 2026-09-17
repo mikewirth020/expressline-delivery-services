@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Request Shipment | ExpressLine Delivery Services</title>
+
+  <meta
+    name="description"
+    content="Submit a shipment request to ExpressLine Delivery Services."
+  >
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <!-- HEADER -->
+  <header class="site-header">
+
+    <div class="container navbar">
+
+      <a href="index.html" class="logo">
+        <span class="logo-mark">EL</span>
+        <span>ExpressLine</span>
+      </a>
+
+      <button
+        class="menu-toggle"
+        type="button"
+        aria-label="Open navigation menu"
+      >
+        ☰
+      </button>
+
+      <nav class="nav-links">
+
+        <a href="index.html">Home</a>
+
+        <a href="track.html">Track Shipment</a>
+
+        <a href="services.html">Services</a>
+
+        <a href="about.html">About Us</a>
+
+        <a href="contact.html">Contact Us</a>
+
+        <a href="request.html">Request Shipment</a>
+
+        <a href="login.html" class="nav-button">
+          Customer Login
+        </a>
+
+      </nav>
+
+    </div>
+
+  </header>
+
+
+  <!-- MAIN -->
+  <main>
+
+    <!-- HERO -->
+    <section class="hero" style="min-height: 430px;">
+
+      <div class="container hero-content">
+
+        <span class="hero-badge">
+          SHIPMENT REQUEST
+        </span>
+
+        <h1>
+          Request a shipment.
+        </h1>
+
+        <p>
+          Provide the shipment details below so our team can
+          review your transportation requirements.
+        </p>
+
+      </div>
+
+    </section>
+
+
+    <!-- REQUEST FORM -->
+    <section class="section section-light">
+
+      <div class="container">
+
+        <div class="section-heading">
+
+          <p class="section-label">
+            GET STARTED
+          </p>
+
+          <h2>
+            Tell us about your shipment.
+          </h2>
+
+          <p>
+            Please provide accurate information about the sender,
+            recipient and package. Additional details can be
+            confirmed after your request is reviewed.
+          </p>
+
+        </div>
+
+
+        <div class="form-card">
+
+          <form id="shipmentRequestForm">
+
+            <!-- CUSTOMER INFORMATION -->
+            <div class="form-section">
+
+              <h3>
+                Your Information
+              </h3>
+
+              <div class="form-grid">
+
+                <div class="form-group">
+
+                  <label for="requestName">
+                    Full Name
+                  </label>
+
+                  <input
+                    type="text"
+                    id="requestName"
+                    name="name"
+                    placeholder="Enter your full name"
+                    autocomplete="name"
+                    required
+                  >
+
+                </div>
+
+
+                <div class="form-group">
+
+                  <label for="requestPhone">
+                    Phone Number
+                  </label>
+
+                  <input
+                    type="tel"
+                    id="requestPhone"
+                    name="phone"
+                    placeholder="Enter your phone number"
+                    autocomplete="tel"
+                    required
+                  >
+
+                </div>
+
+
+                <div class="form-group">
+
+                  <label for="requestEmail">
+                    Email Address
+                  </label>
+
+                  <input
+                    type="email"
+                    id="requestEmail"
+                    name="email"
+                    placeholder="Enter your email address"
+                    autocomplete="email"
+                    required
+                  >
+
+                </div>
+
+              </div>
+
+            </div>
+
+
+            <!-- SENDER -->
+            <div class="form-section">
+
+              <h3>
+                Sender Information
+              </h3>
+
+              <div class="form-grid">
+
+                <div class="form-group">
+
+                  <label for="senderName">
+                    Sender Name
+                  </label>
+
+                  <input
+                    type="text"
+                    id="senderName"
+                    name="senderName"
+                    placeholder="Enter sender name"
+                    required
+                  >
+
+                </div>
+
+
+                <div class="form-group">
+
+                  <label for="senderPhone">
+                    Sender Phone
+                  </label>
+
+                  <input
+                    type="tel"
+                    id="senderPhone"
+                    name="senderPhone"
+                    placeholder="Enter sender phone"
+                    required
+                  >
+
+                </div>
+
+              </div>
+
+
+              <div class="form-group">
+
+                <label for="senderAddress">
+                  Pickup Address
+                </label>
+
+                <textarea
+                  id="senderAddress"
+                  name="senderAddress"
+                  rows="4"
+                  placeholder="Enter the pickup address"
+                  required
+                ></textarea>
+
+              </div>
+
+            </div>
+
+
+            <!-- RECIPIENT -->
+            <div class="form-section">
+
+              <h3>
+                Recipient Information
+              </h3>
+
+              <div class="form-grid">
+
+                <div class="form-group">
+
+                  <label for="recipientName">
+                    Recipient Name
+                  </label>
+
+                  <input
+                    type="text"
+                    id="recipientName"
+                    name="recipientName"
+                    placeholder="Enter recipient name"
+                    required
+                  >
+
+                </div>
+
+
+                <div class="form-group">
+
+                  <label for="recipientPhone">
+                    Recipient Phone
+                  </label>
+
+                  <input
+                    type="tel"
+                    id="recipientPhone"
+                    name="recipientPhone"
+                    placeholder="Enter recipient phone"
+                    required
+                  >
+
+                </div>
+
+              </div>
+
+
+              <div class="form-group">
+
+                <label for="recipientAddress">
+                  Delivery Address
+                </label>
+
+                <textarea
+                  id="recipientAddress"
+                  name="recipientAddress"
+                  rows="4"
+                  placeholder="Enter the delivery address"
+                  required
+                ></textarea>
+
+              </div>
+
+            </div>
+
+
+            <!-- SHIPMENT DETAILS -->
+            <div class="form-section">
+
+              <h3>
+                Shipment Details
+              </h3>
+
+              <div class="form-grid">
+
+                <div class="form-group">
+
+                  <label for="shippingMethod">
+                    Preferred Shipping Method
+                  </label>
+
+                  <select
+                    id="shippingMethod"
+                    name="shippingMethod"
+                    required
+                  >
+
+                    <option value="">
+                      Select a shipping method
+                    </option>
+
+                    <option value="Express Courier">
+                      Express Courier
+                    </option>
+
+                    <option value="Road Delivery">
+                      Road Delivery
+                    </option>
+
+                    <option value="Air Freight">
+                      Air Freight
+                    </option>
+
+                    <option value="Ocean Freight">
+                      Ocean Freight
+                    </option>
+
+                    <option value="Warehousing">
+                      Warehousing / Distribution
+                    </option>
+
+                  </select>
+
+                </div>
+
+
+                <div class="form-group">
+
+                  <label for="packageQuantity">
+                    Quantity
+                  </label>
+
+                  <input
+                    type="number"
+                    id="packageQuantity"
+                    name="quantity"
+                    min="1"
+                    placeholder="Number of packages"
+                    required
+                  >
+
+                </div>
+
+
+                <div class="form-group">
+
+                  <label for="packageWeight">
+                    Approximate Weight
+                  </label>
+
+                  <input
+                    type="text"
+                    id="packageWeight"
+                    name="weight"
+                    placeholder="Example: 10 lb"
+                    required
+                  >
+
+                </div>
+
+
+                <div class="form-group">
+
+                  <label for="packageDescription">
+                    Package Description
+                  </label>
+
+                  <input
+                    type="text"
+                    id="packageDescription"
+                    name="packageDescription"
+                    placeholder="What are you shipping?"
+                    required
+                  >
+
+                </div>
+
+              </div>
+
+            </div>
+
+
+            <!-- ADDITIONAL INFORMATION -->
+            <div class="form-section">
+
+              <h3>
+                Additional Information
+              </h3>
+
+              <div class="form-group">
+
+                <label for="requestNotes">
+                  Special Instructions
+                </label>
+
+                <textarea
+                  id="requestNotes"
+                  name="notes"
+                  rows="6"
+                  placeholder="Add any special instructions or additional shipment details."
+                ></textarea>
+
+              </div>
+
+            </div>
+
+
+            <!-- STATUS MESSAGE -->
+            <div
+              id="requestMessage"
+              class="tracking-message"
+              style="display: none;"
+              role="alert"
+            ></div>
+
+
+            <!-- SUBMIT -->
+            <button
+              type="submit"
+              class="btn btn-primary"
+            >
+              Submit Shipment Request
+            </button>
+
+          </form>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- INFORMATION -->
+    <section class="section">
+
+      <div class="container">
+
+        <div class="section-heading">
+
+          <p class="section-label">
+            WHAT HAPPENS NEXT
+          </p>
+
+          <h2>
+            Your request starts the process.
+          </h2>
+
+        </div>
+
+
+        <div class="cards">
+
+          <article class="card">
+
+            <div class="card-icon">
+              1
+            </div>
+
+            <h3>
+              Submit Request
+            </h3>
+
+            <p>
+              Provide your shipment and contact information
+              through the secure request form.
+            </p>
+
+          </article>
+
+
+          <article class="card">
+
+            <div class="card-icon">
+              2
+            </div>
+
+            <h3>
+              Request Review
+            </h3>
+
+            <p>
+              An authorized administrator will review the
+              shipment request and available details.
+            </p>
+
+          </article>
+
+
+          <article class="card">
+
+            <div class="card-icon">
+              3
+            </div>
+
+            <h3>
+              Shipment Setup
+            </h3>
+
+            <p>
+              Once approved, shipment information can be
+              created and managed through the administrative
+              system.
+            </p>
+
+          </article>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- CTA -->
+    <section class="cta">
+
+      <div class="container">
+
+        <h2>
+          Already have a shipment?
+        </h2>
+
+        <p>
+          Enter your tracking number to view available
+          shipment updates.
+        </p>
+
+        <a
+          href="track.html"
+          class="btn btn-primary"
+        >
+          Track Shipment
+        </a>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+
+    <div class="container">
+
+      <div class="footer-grid">
+
+        <div>
+
+          <div class="logo">
+            <span class="logo-mark">EL</span>
+            <span>ExpressLine</span>
+          </div>
+
+          <p>
+            Professional courier and logistics solutions
+            designed to keep shipments moving with confidence.
+          </p>
+
+        </div>
+
+
+        <div>
+
+          <h3>
+            Company
+          </h3>
+
+          <ul class="footer-links">
+
+            <li>
+              <a href="about.html">
+                About Us
+              </a>
+            </li>
+
+            <li>
+              <a href="services.html">
+                Services
+              </a>
+            </li>
+
+            <li>
+              <a href="contact.html">
+                Contact Us
+              </a>
+            </li>
+
+          </ul>
+
+        </div>
+
+
+        <div>
+
+          <h3>
+            Customer
+          </h3>
+
+          <ul class="footer-links">
+
+            <li>
+              <a href="track.html">
+                Track Shipment
+              </a>
+            </li>
+
+            <li>
+              <a href="request.html">
+                Request Shipment
+              </a>
+            </li>
+
+            <li>
+              <a href="login.html">
+                Customer Login
+              </a>
+            </li>
+
+          </ul>
+
+        </div>
+
+
+        <div>
+
+          <h3>
+            Contact
+          </h3>
+
+          <p>
+            Company contact information will be configured
+            through the administrator settings.
+          </p>
+
+        </div>
+
+      </div>
+
+
+      <div class="footer-bottom">
+
+        <p>
+          © 2026 ExpressLine Delivery Services.
+          All rights reserved.
+        </p>
+
+      </div>
+
+    </div>
+
+  </footer>
+
+
+  <script src="script.js"></script>
+
+</body>
+</html>
