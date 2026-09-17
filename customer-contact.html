@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Us | ExpressLine Delivery Services</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      color: #1f2937;
+      background: #f5f7fa;
+      line-height: 1.6;
+    }
+
+    header {
+      background: #ffffff;
+      border-bottom: 1px solid #e5e7eb;
+    }
+
+    .top-bar {
+      background: #111827;
+      color: #ffffff;
+      padding: 10px 5%;
+      display: flex;
+      justify-content: space-between;
+      font-size: 13px;
+    }
+
+    .navbar {
+      min-height: 75px;
+      padding: 0 5%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 30px;
+    }
+
+    .logo {
+      text-decoration: none;
+      color: #c8102e;
+      font-size: 25px;
+      font-weight: 800;
+      white-space: nowrap;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 22px;
+      flex-wrap: wrap;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: #1f2937;
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .nav-links a:hover {
+      color: #c8102e;
+    }
+
+    .hero {
+      background: linear-gradient(135deg, #111827, #334155);
+      color: #ffffff;
+      padding: 75px 5%;
+    }
+
+    .hero-content {
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    .hero h1 {
+      font-size: 52px;
+      margin-bottom: 15px;
+    }
+
+    .hero p {
+      max-width: 700px;
+      font-size: 18px;
+      color: #dbe3ec;
+    }
+
+    .container {
+      width: 90%;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    .section {
+      padding: 65px 0;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 35px;
+    }
+
+    .card {
+      background: #ffffff;
+      padding: 32px;
+      border: 1px solid #e5e7eb;
+      border-radius: 12px;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.06);
+    }
+
+    .card h2 {
+      color: #111827;
+      margin-bottom: 12px;
+      font-size: 27px;
+    }
+
+    .card-intro {
+      color: #6b7280;
+      margin-bottom: 25px;
+    }
+
+    .contact-item {
+      padding: 18px 0;
+      border-bottom: 1px solid #e5e7eb;
+    }
+
+    .contact-item:last-child {
+      border-bottom: none;
+    }
+
+    .contact-item strong {
+      display: block;
+      margin-bottom: 5px;
+      color: #111827;
+    }
+
+    .contact-item a {
+      color: #c8102e;
+      text-decoration: none;
+    }
+
+    form {
+      display: grid;
+      gap: 18px;
+    }
+
+    label {
+      display: block;
+      font-weight: 700;
+      font-size: 14px;
+      margin-bottom: 7px;
+      color: #374151;
+    }
+
+    input,
+    select,
+    textarea {
+      width: 100%;
+      padding: 14px;
+      border: 1px solid #d1d5db;
+      border-radius: 7px;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 15px;
+      outline: none;
+    }
+
+    input:focus,
+    select:focus,
+    textarea:focus {
+      border-color: #c8102e;
+    }
+
+    textarea {
+      min-height: 150px;
+      resize: vertical;
+    }
+
+    button {
+      border: none;
+      background: #c8102e;
+      color: #ffffff;
+      padding: 15px 25px;
+      border-radius: 7px;
+      font-size: 16px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #a80e26;
+    }
+
+    .success {
+      display: none;
+      margin-top: 15px;
+      padding: 12px;
+      border-radius: 7px;
+      background: #ecfdf5;
+      color: #166534;
+    }
+
+    footer {
+      background: #111827;
+      color: #d1d5db;
+      padding: 45px 5%;
+    }
+
+    .footer-content {
+      max-width: 1200px;
+      margin: auto;
+      display: flex;
+      justify-content: space-between;
+      gap: 30px;
+      flex-wrap: wrap;
+    }
+
+    .footer-brand {
+      max-width: 450px;
+    }
+
+    .footer-brand h3 {
+      color: #ffffff;
+      margin-bottom: 10px;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a {
+      color: #d1d5db;
+      text-decoration: none;
+    }
+
+    .footer-links a:hover {
+      color: #ffffff;
+    }
+
+    @media (max-width: 850px) {
+      .top-bar {
+        display: none;
+      }
+
+      .navbar {
+        padding: 18px 5%;
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .nav-links {
+        gap: 14px;
+      }
+
+      .hero h1 {
+        font-size: 38px;
+      }
+
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+
+    <div class="top-bar">
+      <span>ExpressLine Delivery Services</span>
+      <span>Reliable Logistics • Secure Delivery • Customer Support</span>
+    </div>
+
+    <nav class="navbar">
+
+      <a href="index.html" class="logo">
+        ExpressLine
+      </a>
+
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="services.html">Services</a>
+        <a href="track.html">Track Shipment</a>
+        <a href="request.html">Request a Shipment</a>
+        <a href="about.html">About Us</a>
+        <a href="customer-contact.html">Contact</a>
+        <a href="support.html">Customer Support</a>
+        <a href="login.html">Login</a>
+      </div>
+
+    </nav>
+
+  </header>
+
+
+  <section class="hero">
+
+    <div class="hero-content">
+
+      <h1>Contact ExpressLine</h1>
+
+      <p>
+        Have a question about your shipment, delivery service, account,
+        or logistics needs? Our team is ready to assist you.
+      </p>
+
+    </div>
+
+  </section>
+
+
+  <section class="section">
+
+    <div class="container">
+
+      <div class="contact-grid">
+
+        <div class="card">
+
+          <h2>Get in Touch</h2>
+
+          <p class="card-intro">
+            Reach out to ExpressLine Delivery Services for assistance
+            with your shipping and delivery needs.
+          </p>
+
+          <div class="contact-item">
+            <strong>Office</strong>
+            <span>Newark, New Jersey, USA</span>
+          </div>
+
+          <div class="contact-item">
+            <strong>Phone</strong>
+            <a href="tel:+15550100">555-0100</a>
+          </div>
+
+          <div class="contact-item">
+            <strong>Email</strong>
+            <a href="mailto:info@example.com">
+              info@example.com
+            </a>
+          </div>
+
+          <div class="contact-item">
+            <strong>Business Hours</strong>
+            <span>
+              Monday – Friday: 8:00 AM – 6:00 PM
+            </span>
+          </div>
+
+          <div class="contact-item">
+            <strong>Customer Support</strong>
+            <span>
+              Our support team can assist with shipment questions,
+              delivery updates, and account assistance.
+            </span>
+          </div>
+
+        </div>
+
+
+        <div class="card">
+
+          <h2>Send Us a Message</h2>
+
+          <p class="card-intro">
+            Complete the form below and submit your inquiry.
+          </p>
+
+          <form onsubmit="sendMessage(event)">
+
+            <div>
+              <label for="name">Full Name</label>
+              <input
+                type="text"
+                id="name"
+                placeholder="Enter your full name"
+                required
+              >
+            </div>
+
+            <div>
+              <label for="email">Email Address</label>
+              <input
+                type="email"
+                id="email"
+                placeholder="Enter your email address"
+                required
+              >
+            </div>
+
+            <div>
+              <label for="subject">Subject</label>
+
+              <select id="subject" required>
+
+                <option value="">
+                  Select a subject
+                </option>
+
+                <option>
+                  Shipment Question
+                </option>
+
+                <option>
+                  Delivery Question
+                </option>
+
+                <option>
+                  Account Assistance
+                </option>
+
+                <option>
+                  Pricing Question
+                </option>
+
+                <option>
+                  General Inquiry
+                </option>
+
+              </select>
+
+            </div>
+
+            <div>
+
+              <label for="message">Message</label>
+
+              <textarea
+                id="message"
+                placeholder="Write your message here..."
+                required
+              ></textarea>
+
+            </div>
+
+            <button type="submit">
+              Send Message
+            </button>
+
+            <div id="successMessage" class="success">
+              Thank you. Your message has been received.
+            </div>
+
+          </form>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <footer>
+
+    <div class="footer-content">
+
+      <div class="footer-brand">
+
+        <h3>ExpressLine Delivery Services</h3>
+
+        <p>
+          Reliable logistics and delivery services designed
+          around your shipment needs.
+        </p>
+
+      </div>
+
+      <div class="footer-links">
+
+        <a href="index.html">Home</a>
+        <a href="services.html">Services</a>
+        <a href="track.html">Track Shipment</a>
+        <a href="about.html">About</a>
+        <a href="customer-contact.html">Contact</a>
+        <a href="support.html">Customer Support</a>
+
+      </div>
+
+    </div>
+
+  </footer>
+
+
+  <script>
+    function sendMessage(event) {
+      event.preventDefault();
+
+      document.getElementById("successMessage").style.display = "block";
+
+      event.target.reset();
+    }
+  </script>
+
+</body>
+</html>
