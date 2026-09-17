@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin - Support</title>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f4f6f8;
+      color: #222;
+    }
+
+    header {
+      background: #111827;
+      color: white;
+      padding: 20px;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 24px;
+    }
+
+    header p {
+      margin: 6px 0 0;
+      color: #d1d5db;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 30px auto;
+      padding: 0 20px;
+    }
+
+    .back {
+      display: inline-block;
+      margin-bottom: 20px;
+      text-decoration: none;
+      color: #2563eb;
+      font-weight: bold;
+    }
+
+    .section {
+      background: white;
+      padding: 25px;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      margin-bottom: 25px;
+    }
+
+    .section h2 {
+      margin-top: 0;
+    }
+
+    .tickets {
+      display: grid;
+      gap: 15px;
+    }
+
+    .ticket {
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+      padding: 18px;
+    }
+
+    .ticket-header {
+      display: flex;
+      justify-content: space-between;
+      gap: 15px;
+      margin-bottom: 10px;
+    }
+
+    .ticket h3 {
+      margin: 0;
+      font-size: 16px;
+    }
+
+    .ticket p {
+      margin: 6px 0;
+      color: #6b7280;
+    }
+
+    .status {
+      font-size: 13px;
+      font-weight: bold;
+      padding: 6px 10px;
+      border-radius: 15px;
+      white-space: nowrap;
+    }
+
+    .open {
+      background: #fee2e2;
+      color: #b91c1c;
+    }
+
+    .progress {
+      background: #fef3c7;
+      color: #b45309;
+    }
+
+    .closed {
+      background: #dcfce7;
+      color: #166534;
+    }
+
+    .button {
+      background: #2563eb;
+      color: white;
+      border: none;
+      padding: 9px 14px;
+      border-radius: 6px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+
+    .button:hover {
+      background: #1d4ed8;
+    }
+
+    .form-group {
+      margin-bottom: 18px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 7px;
+      font-weight: bold;
+    }
+
+    input,
+    textarea,
+    select {
+      width: 100%;
+      box-sizing: border-box;
+      padding: 12px;
+      border: 1px solid #d1d5db;
+      border-radius: 6px;
+      font-size: 15px;
+    }
+
+    textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+
+    @media (max-width: 600px) {
+      .ticket-header {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <h1>Admin Dashboard</h1>
+    <p>Customer Support</p>
+  </header>
+
+  <div class="container">
+
+    <a href="admin.html" class="back">← Back to Admin Dashboard</a>
+
+    <div class="section">
+      <h2>Support Tickets</h2>
+
+      <div class="tickets">
+
+        <div class="ticket">
+          <div class="ticket-header">
+            <h3>TKT-1001 - Shipment Delay</h3>
+            <span class="status open">Open</span>
+          </div>
+          <p><strong>Customer:</strong> John Smith</p>
+          <p>Customer is asking about the delivery status of TRK-10001.</p>
+          <button class="button" onclick="viewTicket('TKT-1001')">
+            View Ticket
+          </button>
+        </div>
+
+        <div class="ticket">
+          <div class="ticket-header">
+            <h3>TKT-1002 - Payment Question</h3>
+            <span class="status progress">In Progress</span>
+          </div>
+          <p><strong>Customer:</strong> Michael Brown</p>
+          <p>Customer needs assistance with payment PAY-1002.</p>
+          <button class="button" onclick="viewTicket('TKT-1002')">
+            View Ticket
+          </button>
+        </div>
+
+        <div class="ticket">
+          <div class="ticket-header">
+            <h3>TKT-1003 - Address Update</h3>
+            <span class="status closed">Closed</span>
+          </div>
+          <p><strong>Customer:</strong> Sarah Johnson</p>
+          <p>Customer requested an update to the delivery address.</p>
+          <button class="button" onclick="viewTicket('TKT-1003')">
+            View Ticket
+          </button>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>Create Support Ticket</h2>
+
+      <div class="form-group">
+        <label for="customer">Customer</label>
+        <select id="customer">
+          <option>John Smith</option>
+          <option>Michael Brown</option>
+          <option>Sarah Johnson</option>
+          <option>Robert Taylor</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="subject">Subject</label>
+        <input
+          type="text"
+          id="subject"
+          placeholder="Enter ticket subject"
+        >
+      </div>
+
+      <div class="form-group">
+        <label for="message">Message</label>
+        <textarea
+          id="message"
+          placeholder="Enter support message"
+        ></textarea>
+      </div>
+
+      <button class="button" onclick="createTicket()">
+        Create Ticket
+      </button>
+    </div>
+
+  </div>
+
+  <script>
+    function viewTicket(ticketId) {
+      alert("Opening " + ticketId + ".");
+    }
+
+    function createTicket() {
+      const subject = document.getElementById("subject").value;
+      const message = document.getElementById("message").value;
+
+      if (subject === "" || message === "") {
+        alert("Please enter a subject and message.");
+        return;
+      }
+
+      alert("Support ticket created successfully.");
+
+      document.getElementById("subject").value = "";
+      document.getElementById("message").value = "";
+    }
+  </script>
+
+</body>
+</html>
