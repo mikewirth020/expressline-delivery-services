@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Driver Dashboard</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #f4f6f8;
+            color: #222;
+        }
+
+        header {
+            background: #1f2937;
+            color: white;
+            padding: 20px;
+        }
+
+        header h1 {
+            font-size: 24px;
+        }
+
+        header p {
+            margin-top: 6px;
+            color: #d1d5db;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+
+        .welcome {
+            background: white;
+            padding: 24px;
+            border-radius: 10px;
+            margin-bottom: 25px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+
+        .welcome h2 {
+            margin-bottom: 8px;
+        }
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .card {
+            background: white;
+            padding: 22px;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+
+        .card h3 {
+            font-size: 15px;
+            color: #6b7280;
+            margin-bottom: 10px;
+        }
+
+        .card .number {
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .section {
+            background: white;
+            padding: 24px;
+            border-radius: 10px;
+            margin-bottom: 25px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+
+        .section h2 {
+            margin-bottom: 18px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th,
+        td {
+            padding: 14px 10px;
+            text-align: left;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        th {
+            background: #f9fafb;
+        }
+
+        .status {
+            display: inline-block;
+            padding: 6px 10px;
+            border-radius: 20px;
+            background: #fef3c7;
+            color: #92400e;
+            font-size: 13px;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 10px 16px;
+            border: none;
+            border-radius: 6px;
+            background: #2563eb;
+            color: white;
+            cursor: pointer;
+            text-decoration: none;
+            margin-right: 8px;
+        }
+
+        .button:hover {
+            background: #1d4ed8;
+        }
+
+        .button.secondary {
+            background: #6b7280;
+        }
+
+        .button.secondary:hover {
+            background: #4b5563;
+        }
+
+        .actions {
+            margin-top: 20px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 25px;
+            color: #6b7280;
+        }
+
+        @media (max-width: 800px) {
+            .cards {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            table {
+                display: block;
+                overflow-x: auto;
+            }
+        }
+
+        @media (max-width: 500px) {
+            .cards {
+                grid-template-columns: 1fr;
+            }
+
+            .container {
+                padding: 0 12px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>Driver Dashboard</h1>
+        <p>Logistics Driver Portal</p>
+    </header>
+
+    <div class="container">
+
+        <div class="welcome">
+            <h2>Welcome, James Wilson</h2>
+            <p>Here you can view your assigned shipments and update delivery status.</p>
+        </div>
+
+        <div class="cards">
+
+            <div class="card">
+                <h3>Assigned Shipments</h3>
+                <div class="number">2</div>
+            </div>
+
+            <div class="card">
+                <h3>In Transit</h3>
+                <div class="number">1</div>
+            </div>
+
+            <div class="card">
+                <h3>Delivered</h3>
+                <div class="number">12</div>
+            </div>
+
+            <div class="card">
+                <h3>Vehicle</h3>
+                <div class="number">TRK-10001</div>
+            </div>
+
+        </div>
+
+        <div class="section">
+            <h2>My Assigned Shipments</h2>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Shipment ID</th>
+                        <th>Customer</th>
+                        <th>Pickup</th>
+                        <th>Destination</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+
+                    <tr>
+                        <td>TRK-10001</td>
+                        <td>John Smith</td>
+                        <td>Newark, NJ</td>
+                        <td>New York, NY</td>
+                        <td>
+                            <span class="status">In Transit</span>
+                        </td>
+                        <td>
+                            <button class="button" onclick="updateStatus('TRK-10001')">
+                                Update
+                            </button>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>TRK-10005</td>
+                        <td>Michael Brown</td>
+                        <td>Newark, NJ</td>
+                        <td>Brooklyn, NY</td>
+                        <td>
+                            <span class="status">Assigned</span>
+                        </td>
+                        <td>
+                            <button class="button" onclick="updateStatus('TRK-10005')">
+                                Update
+                            </button>
+                        </td>
+                    </tr>
+
+                </tbody>
+            </table>
+
+            <div class="actions">
+                <a href="shipment-history.html" class="button secondary">
+                    Shipment History
+                </a>
+
+                <a href="profile.html" class="button secondary">
+                    My Profile
+                </a>
+            </div>
+        </div>
+
+    </div>
+
+    <footer>
+        &copy; 2026 Logistics Company. All rights reserved.
+    </footer>
+
+    <script>
+        function updateStatus(shipmentId) {
+            alert("Shipment " + shipmentId + " status update feature will be connected to the system.");
+        }
+    </script>
+
+</body>
+</html>
