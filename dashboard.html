@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Customer Dashboard | ExpressLine Delivery Services</title>
+
+  <meta
+    name="description"
+    content="Customer dashboard for ExpressLine Delivery Services."
+  >
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <!-- HEADER -->
+  <header class="site-header">
+
+    <div class="container navbar">
+
+      <a href="index.html" class="logo">
+        <span class="logo-mark">EL</span>
+        <span>ExpressLine</span>
+      </a>
+
+      <button
+        class="menu-toggle"
+        type="button"
+        aria-label="Open navigation menu"
+      >
+        ☰
+      </button>
+
+      <nav class="nav-links">
+
+        <a href="index.html">Home</a>
+
+        <a href="track.html">Track Shipment</a>
+
+        <a href="services.html">Services</a>
+
+        <a href="contact.html">Contact Us</a>
+
+        <a href="request.html">Request Shipment</a>
+
+        <a href="dashboard.html" class="nav-button">
+          Dashboard
+        </a>
+
+      </nav>
+
+    </div>
+
+  </header>
+
+
+  <!-- MAIN -->
+  <main>
+
+    <!-- DASHBOARD HEADER -->
+    <section class="section section-light">
+
+      <div class="container">
+
+        <div class="section-heading">
+
+          <p class="section-label">
+            CUSTOMER PORTAL
+          </p>
+
+          <h1>
+            Customer Dashboard
+          </h1>
+
+          <p>
+            Welcome to your ExpressLine customer portal.
+            Manage your shipments, requests and account
+            information from one place.
+          </p>
+
+        </div>
+
+
+        <!-- DASHBOARD STATS -->
+        <div class="stats-grid">
+
+          <div class="stat-card">
+
+            <span class="stat-number">
+              —
+            </span>
+
+            <span class="stat-label">
+              Active Shipments
+            </span>
+
+          </div>
+
+
+          <div class="stat-card">
+
+            <span class="stat-number">
+              —
+            </span>
+
+            <span class="stat-label">
+              Shipment Requests
+            </span>
+
+          </div>
+
+
+          <div class="stat-card">
+
+            <span class="stat-number">
+              —
+            </span>
+
+            <span class="stat-label">
+              Completed Shipments
+            </span>
+
+          </div>
+
+
+          <div class="stat-card">
+
+            <span class="stat-number">
+              —
+            </span>
+
+            <span class="stat-label">
+              Notifications
+            </span>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- DASHBOARD MENU -->
+    <section class="section">
+
+      <div class="container">
+
+        <div class="section-heading">
+
+          <p class="section-label">
+            ACCOUNT
+          </p>
+
+          <h2>
+            Manage your account.
+          </h2>
+
+        </div>
+
+
+        <div class="cards">
+
+          <article class="card">
+
+            <div class="card-icon">
+              📦
+            </div>
+
+            <h3>
+              Active Shipments
+            </h3>
+
+            <p>
+              View your current shipments and available
+              tracking information.
+            </p>
+
+            <a
+              href="shipments.html"
+              class="btn btn-secondary"
+            >
+              View Shipments
+            </a>
+
+          </article>
+
+
+          <article class="card">
+
+            <div class="card-icon">
+              🕐
+            </div>
+
+            <h3>
+              Shipment History
+            </h3>
+
+            <p>
+              Review your previous and completed shipments.
+            </p>
+
+            <a
+              href="shipment-history.html"
+              class="btn btn-secondary"
+            >
+              View History
+            </a>
+
+          </article>
+
+
+          <article class="card">
+
+            <div class="card-icon">
+              📝
+            </div>
+
+            <h3>
+              Shipment Requests
+            </h3>
+
+            <p>
+              Submit a new shipment request or review
+              existing requests.
+            </p>
+
+            <a
+              href="requests.html"
+              class="btn btn-secondary"
+            >
+              View Requests
+            </a>
+
+          </article>
+
+
+          <article class="card">
+
+            <div class="card-icon">
+              🔔
+            </div>
+
+            <h3>
+              Notifications
+            </h3>
+
+            <p>
+              View important shipment and account
+              notifications.
+            </p>
+
+            <a
+              href="notifications.html"
+              class="btn btn-secondary"
+            >
+              View Notifications
+            </a>
+
+          </article>
+
+
+          <article class="card">
+
+            <div class="card-icon">
+              👤
+            </div>
+
+            <h3>
+              Profile
+            </h3>
+
+            <p>
+              View and manage your customer profile
+              information.
+            </p>
+
+            <a
+              href="profile.html"
+              class="btn btn-secondary"
+            >
+              View Profile
+            </a>
+
+          </article>
+
+
+          <article class="card">
+
+            <div class="card-icon">
+              ⚙️
+            </div>
+
+            <h3>
+              Account Settings
+            </h3>
+
+            <p>
+              Manage your account preferences and
+              security settings.
+            </p>
+
+            <a
+              href="account-settings.html"
+              class="btn btn-secondary"
+            >
+              Account Settings
+            </a>
+
+          </article>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- RECENT SHIPMENTS -->
+    <section class="section section-light">
+
+      <div class="container">
+
+        <div class="section-heading">
+
+          <p class="section-label">
+            RECENT ACTIVITY
+          </p>
+
+          <h2>
+            Recent Shipments
+          </h2>
+
+          <p>
+            Your most recent shipments will appear here after
+            your account is connected to the secure backend.
+          </p>
+
+        </div>
+
+
+        <div class="table-container">
+
+          <table>
+
+            <thead>
+
+              <tr>
+
+                <th>
+                  Tracking Number
+                </th>
+
+                <th>
+                  Status
+                </th>
+
+                <th>
+                  Destination
+                </th>
+
+                <th>
+                  Estimated Delivery
+                </th>
+
+                <th>
+                  Details
+                </th>
+
+              </tr>
+
+            </thead>
+
+            <tbody>
+
+              <tr>
+
+                <td colspan="5">
+                  No shipment data available yet.
+                </td>
+
+              </tr>
+
+            </tbody>
+
+          </table>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- QUICK ACTIONS -->
+    <section class="section">
+
+      <div class="container">
+
+        <div class="section-heading">
+
+          <p class="section-label">
+            QUICK ACTIONS
+          </p>
+
+          <h2>
+            What would you like to do?
+          </h2>
+
+        </div>
+
+
+        <div class="cards">
+
+          <article class="card">
+
+            <h3>
+              Request a Shipment
+            </h3>
+
+            <p>
+              Start a new shipment request with your pickup,
+              delivery and package information.
+            </p>
+
+            <a
+              href="request.html"
+              class="btn btn-primary"
+            >
+              Request Shipment
+            </a>
+
+          </article>
+
+
+          <article class="card">
+
+            <h3>
+              Track a Shipment
+            </h3>
+
+            <p>
+              Enter a tracking number to check the available
+              shipment status and history.
+            </p>
+
+            <a
+              href="track.html"
+              class="btn btn-primary"
+            >
+              Track Shipment
+            </a>
+
+          </article>
+
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+
+    <div class="container">
+
+      <div class="footer-grid">
+
+        <div>
+
+          <div class="logo">
+            <span class="logo-mark">EL</span>
+            <span>ExpressLine</span>
+          </div>
+
+          <p>
+            Professional courier and logistics solutions
+            designed to keep shipments moving with confidence.
+          </p>
+
+        </div>
+
+
+        <div>
+
+          <h3>
+            Customer
+          </h3>
+
+          <ul class="footer-links">
+
+            <li>
+              <a href="dashboard.html">
+                Dashboard
+              </a>
+            </li>
+
+            <li>
+              <a href="shipments.html">
+                Active Shipments
+              </a>
+            </li>
+
+            <li>
+              <a href="shipment-history.html">
+                Shipment History
+              </a>
+            </li>
+
+          </ul>
+
+        </div>
+
+
+        <div>
+
+          <h3>
+            Support
+          </h3>
+
+          <ul class="footer-links">
+
+            <li>
+              <a href="track.html">
+                Track Shipment
+              </a>
+            </li>
+
+            <li>
+              <a href="request.html">
+                Request Shipment
+              </a>
+            </li>
+
+            <li>
+              <a href="contact.html">
+                Contact Us
+              </a>
+            </li>
+
+          </ul>
+
+        </div>
+
+
+        <div>
+
+          <h3>
+            Account
+          </h3>
+
+          <ul class="footer-links">
+
+            <li>
+              <a href="profile.html">
+                Profile
+              </a>
+            </li>
+
+            <li>
+              <a href="account-settings.html">
+                Account Settings
+              </a>
+            </li>
+
+            <li>
+              <a href="login.html">
+                Sign Out
+              </a>
+            </li>
+
+          </ul>
+
+        </div>
+
+      </div>
+
+
+      <div class="footer-bottom">
+
+        <p>
+          © 2026 ExpressLine Delivery Services.
+          All rights reserved.
+        </p>
+
+      </div>
+
+    </div>
+
+  </footer>
+
+
+  <script src="script.js"></script>
+
+</body>
+</html>
