@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Login</title>
+    <title>Admin Login - ExpressLine Delivery Services</title>
 
     <style>
         * {
@@ -26,12 +26,19 @@
             background: white;
             padding: 35px;
             border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.10);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.10);
         }
 
         h1 {
             text-align: center;
-            margin-bottom: 25px;
+            color: #111827;
+            margin: 0 0 10px;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #6b7280;
+            margin-bottom: 30px;
         }
 
         label {
@@ -49,6 +56,11 @@
             font-size: 15px;
         }
 
+        input:focus {
+            outline: none;
+            border-color: #2563eb;
+        }
+
         button {
             width: 100%;
             padding: 14px;
@@ -59,6 +71,10 @@
             font-size: 16px;
             font-weight: bold;
             cursor: pointer;
+        }
+
+        button:hover {
+            background: #1d4ed8;
         }
 
         .error {
@@ -78,6 +94,10 @@
             color: #2563eb;
             text-decoration: none;
         }
+
+        .back:hover {
+            text-decoration: underline;
+        }
     </style>
 </head>
 
@@ -87,18 +107,22 @@
 
     <h1>Admin Login</h1>
 
-    <div id="error" class="error">
+    <p class="subtitle">
+        ExpressLine Delivery Services
+    </p>
+
+    <div id="errorMessage" class="error">
         Incorrect admin email or password.
     </div>
 
-    <form id="loginForm">
+    <form id="adminLoginForm">
 
         <label for="email">Admin Email</label>
 
         <input
             type="email"
             id="email"
-            placeholder="admin@logistics.com"
+            placeholder="Enter admin email"
             required
         >
 
@@ -107,7 +131,7 @@
         <input
             type="password"
             id="password"
-            placeholder="Enter password"
+            placeholder="Enter admin password"
             required
         >
 
@@ -117,39 +141,36 @@
 
     </form>
 
-    <a class="back" href="index.html">
+    <a href="index.html" class="back">
         ← Back to Homepage
     </a>
 
 </div>
 
 <script>
-document.getElementById("loginForm").addEventListener("submit", function(event) {
+    document.getElementById("adminLoginForm").addEventListener("submit", function(event) {
 
-    event.preventDefault();
+        event.preventDefault();
 
-    const email = document.getElementById("email").value.trim();
-    const password = document.getElementById("password").value;
+        const email = document.getElementById("email").value.trim();
+        const password = document.getElementById("password").value;
 
-    if (
-        email === "admin@logistics.com" &&
-        password === "admin123"
-    ) {
+        const adminEmail = "admin@logistics.com";
+        const adminPassword = "admin123";
 
-        localStorage.setItem("adminLoggedIn", "true");
+        if (email === adminEmail && password === adminPassword) {
 
-        /*
-         * Admin Dashboard is in the same folder.
-         */
-        window.location.assign("./admin-dashboard.html");
+            localStorage.setItem("adminLoggedIn", "true");
 
-    } else {
+            window.location.href = "admin.html";
 
-        document.getElementById("error").style.display = "block";
+        } else {
 
-    }
+            document.getElementById("errorMessage").style.display = "block";
 
-});
+        }
+
+    });
 </script>
 
 </body>
