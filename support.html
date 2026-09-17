@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Customer Support | ExpressLine Delivery Services</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: #f5f7fa;
+      color: #1f2937;
+      line-height: 1.6;
+    }
+
+    header {
+      background: #ffffff;
+      border-bottom: 1px solid #e5e7eb;
+    }
+
+    .top-bar {
+      background: #111827;
+      color: #ffffff;
+      padding: 10px 5%;
+      display: flex;
+      justify-content: space-between;
+      font-size: 13px;
+    }
+
+    .navbar {
+      min-height: 75px;
+      padding: 0 5%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 30px;
+    }
+
+    .logo {
+      color: #c8102e;
+      text-decoration: none;
+      font-size: 25px;
+      font-weight: 800;
+      white-space: nowrap;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 22px;
+      flex-wrap: wrap;
+    }
+
+    .nav-links a {
+      color: #1f2937;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .nav-links a:hover {
+      color: #c8102e;
+    }
+
+    .hero {
+      background: linear-gradient(135deg, #111827, #334155);
+      color: #ffffff;
+      padding: 75px 5%;
+    }
+
+    .hero-content {
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    .hero h1 {
+      font-size: 52px;
+      margin-bottom: 15px;
+    }
+
+    .hero p {
+      max-width: 720px;
+      font-size: 18px;
+      color: #dbe3ec;
+    }
+
+    .container {
+      width: 90%;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    .section {
+      padding: 65px 0;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .section-title h2 {
+      font-size: 34px;
+      color: #111827;
+      margin-bottom: 10px;
+    }
+
+    .section-title p {
+      color: #6b7280;
+    }
+
+    .support-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 25px;
+      margin-bottom: 45px;
+    }
+
+    .support-card {
+      background: #ffffff;
+      padding: 30px;
+      border: 1px solid #e5e7eb;
+      border-radius: 12px;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.05);
+    }
+
+    .support-icon {
+      font-size: 32px;
+      margin-bottom: 15px;
+    }
+
+    .support-card h3 {
+      color: #111827;
+      margin-bottom: 10px;
+    }
+
+    .support-card p {
+      color: #6b7280;
+      margin-bottom: 15px;
+    }
+
+    .support-card a {
+      color: #c8102e;
+      text-decoration: none;
+      font-weight: 700;
+    }
+
+    .faq {
+      background: #ffffff;
+      border: 1px solid #e5e7eb;
+      border-radius: 12px;
+      padding: 30px;
+      margin-bottom: 35px;
+    }
+
+    .faq h2 {
+      margin-bottom: 20px;
+      color: #111827;
+    }
+
+    .faq-item {
+      padding: 18px 0;
+      border-bottom: 1px solid #e5e7eb;
+    }
+
+    .faq-item:last-child {
+      border-bottom: none;
+    }
+
+    .faq-item h3 {
+      font-size: 17px;
+      margin-bottom: 7px;
+      color: #1f2937;
+    }
+
+    .faq-item p {
+      color: #6b7280;
+    }
+
+    .ticket {
+      background: #ffffff;
+      border: 1px solid #e5e7eb;
+      border-radius: 12px;
+      padding: 35px;
+    }
+
+    .ticket h2 {
+      color: #111827;
+      margin-bottom: 10px;
+    }
+
+    .ticket > p {
+      color: #6b7280;
+      margin-bottom: 25px;
+    }
+
+    form {
+      display: grid;
+      gap: 18px;
+    }
+
+    label {
+      display: block;
+      font-weight: 700;
+      font-size: 14px;
+      margin-bottom: 7px;
+    }
+
+    input,
+    select,
+    textarea {
+      width: 100%;
+      padding: 14px;
+      border: 1px solid #d1d5db;
+      border-radius: 7px;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 15px;
+      outline: none;
+    }
+
+    input:focus,
+    select:focus,
+    textarea:focus {
+      border-color: #c8102e;
+    }
+
+    textarea {
+      min-height: 150px;
+      resize: vertical;
+    }
+
+    button {
+      background: #c8102e;
+      color: #ffffff;
+      border: none;
+      padding: 15px 25px;
+      border-radius: 7px;
+      font-size: 16px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #a80e26;
+    }
+
+    .success {
+      display: none;
+      padding: 14px;
+      border-radius: 7px;
+      background: #ecfdf5;
+      color: #166534;
+    }
+
+    footer {
+      background: #111827;
+      color: #d1d5db;
+      padding: 45px 5%;
+    }
+
+    .footer-content {
+      max-width: 1200px;
+      margin: auto;
+      display: flex;
+      justify-content: space-between;
+      gap: 30px;
+      flex-wrap: wrap;
+    }
+
+    .footer-brand {
+      max-width: 450px;
+    }
+
+    .footer-brand h3 {
+      color: #ffffff;
+      margin-bottom: 10px;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a {
+      color: #d1d5db;
+      text-decoration: none;
+    }
+
+    .footer-links a:hover {
+      color: #ffffff;
+    }
+
+    @media (max-width: 850px) {
+      .top-bar {
+        display: none;
+      }
+
+      .navbar {
+        padding: 18px 5%;
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .nav-links {
+        gap: 14px;
+      }
+
+      .hero h1 {
+        font-size: 38px;
+      }
+
+      .support-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+
+    <div class="top-bar">
+      <span>ExpressLine Delivery Services</span>
+      <span>Reliable Logistics • Secure Delivery • Customer Support</span>
+    </div>
+
+    <nav class="navbar">
+
+      <a href="index.html" class="logo">
+        ExpressLine
+      </a>
+
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="services.html">Services</a>
+        <a href="track.html">Track Shipment</a>
+        <a href="request.html">Request a Shipment</a>
+        <a href="about.html">About Us</a>
+        <a href="customer-contact.html">Contact</a>
+        <a href="support.html">Customer Support</a>
+        <a href="login.html">Login</a>
+      </div>
+
+    </nav>
+
+  </header>
+
+
+  <section class="hero">
+
+    <div class="hero-content">
+
+      <h1>Customer Support</h1>
+
+      <p>
+        We're here to help with shipment tracking, delivery questions,
+        account assistance, and other logistics concerns.
+      </p>
+
+    </div>
+
+  </section>
+
+
+  <section class="section">
+
+    <div class="container">
+
+      <div class="section-title">
+
+        <h2>How Can We Help?</h2>
+
+        <p>
+          Choose the support option that best matches your needs.
+        </p>
+
+      </div>
+
+
+      <div class="support-grid">
+
+        <div class="support-card">
+
+          <div class="support-icon">📦</div>
+
+          <h3>Shipment Support</h3>
+
+          <p>
+            Need help finding a shipment or understanding its delivery status?
+          </p>
+
+          <a href="track.html">Track a Shipment →</a>
+
+        </div>
+
+
+        <div class="support-card">
+
+          <div class="support-icon">💬</div>
+
+          <h3>Contact Our Team</h3>
+
+          <p>
+            Have a general question about ExpressLine or our services?
+          </p>
+
+          <a href="customer-contact.html">Contact Us →</a>
+
+        </div>
+
+
+        <div class="support-card">
+
+          <div class="support-icon">🚚</div>
+
+          <h3>Request Delivery</h3>
+
+          <p>
+            Ready to arrange a shipment with ExpressLine?
+          </p>
+
+          <a href="request.html">Request a Shipment →</a>
+
+        </div>
+
+      </div>
+
+
+      <div class="faq">
+
+        <h2>Frequently Asked Questions</h2>
+
+        <div class="faq-item">
+
+          <h3>How can I track my shipment?</h3>
+
+          <p>
+            Use our shipment tracking page and enter your shipment
+            information to view the available status information.
+          </p>
+
+        </div>
+
+        <div class="faq-item">
+
+          <h3>How do I request a shipment?</h3>
+
+          <p>
+            Visit the Request a Shipment page and provide the required
+            pickup, destination, and shipment details.
+          </p>
+
+        </div>
+
+        <div class="faq-item">
+
+          <h3>How can I contact ExpressLine?</h3>
+
+          <p>
+            Visit our Contact page to send a message to the ExpressLine team.
+          </p>
+
+        </div>
+
+        <div class="faq-item">
+
+          <h3>What if my shipment is delayed?</h3>
+
+          <p>
+            Check the shipment status first. If you need additional
+            assistance, contact our support team.
+          </p>
+
+        </div>
+
+      </div>
+
+
+      <div class="ticket">
+
+        <h2>Submit a Support Request</h2>
+
+        <p>
+          Tell us what you need help with and we'll record your request.
+        </p>
+
+        <form onsubmit="submitSupport(event)">
+
+          <div>
+            <label for="name">Full Name</label>
+            <input
+              type="text"
+              id="name"
+              placeholder="Enter your full name"
+              required
+            >
+          </div>
+
+          <div>
+            <label for="email">Email Address</label>
+            <input
+              type="email"
+              id="email"
+              placeholder="Enter your email address"
+              required
+            >
+          </div>
+
+          <div>
+
+            <label for="category">Support Category</label>
+
+            <select id="category" required>
+
+              <option value="">
+                Select a category
+              </option>
+
+              <option>
+                Shipment Tracking
+              </option>
+
+              <option>
+                Delivery Issue
+              </option>
+
+              <option>
+                Account Assistance
+              </option>
+
+              <option>
+                Payment Question
+              </option>
+
+              <option>
+                General Support
+              </option>
+
+            </select>
+
+          </div>
+
+          <div>
+
+            <label for="message">Describe Your Issue</label>
+
+            <textarea
+              id="message"
+              placeholder="Tell us how we can help..."
+              required
+            ></textarea>
+
+          </div>
+
+          <button type="submit">
+            Submit Support Request
+          </button>
+
+          <div id="successMessage" class="success">
+            Your support request has been submitted successfully.
+          </div>
+
+        </form>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <footer>
+
+    <div class="footer-content">
+
+      <div class="footer-brand">
+
+        <h3>ExpressLine Delivery Services</h3>
+
+        <p>
+          Reliable logistics and delivery services designed
+          around your shipment needs.
+        </p>
+
+      </div>
+
+      <div class="footer-links">
+
+        <a href="index.html">Home</a>
+        <a href="services.html">Services</a>
+        <a href="track.html">Track Shipment</a>
+        <a href="about.html">About</a>
+        <a href="customer-contact.html">Contact</a>
+
+      </div>
+
+    </div>
+
+  </footer>
+
+
+  <script>
+    function submitSupport(event) {
+      event.preventDefault();
+
+      document.getElementById("successMessage").style.display = "block";
+
+      event.target.reset();
+    }
+  </script>
+
+</body>
+</html>
