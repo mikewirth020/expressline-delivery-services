@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Driver Notifications</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #f4f6f8;
+            color: #222;
+        }
+
+        header {
+            background: #1f2937;
+            color: white;
+            padding: 20px;
+        }
+
+        header h1 {
+            font-size: 24px;
+        }
+
+        header p {
+            margin-top: 6px;
+            color: #d1d5db;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+
+        .section {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+
+        .top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            gap: 15px;
+        }
+
+        .notification {
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            padding: 18px;
+            margin-bottom: 12px;
+        }
+
+        .notification:last-child {
+            margin-bottom: 0;
+        }
+
+        .notification h3 {
+            margin-bottom: 7px;
+        }
+
+        .notification p {
+            color: #6b7280;
+            line-height: 1.5;
+        }
+
+        .time {
+            display: block;
+            margin-top: 8px;
+            font-size: 13px;
+            color: #9ca3af;
+        }
+
+        .new {
+            border-left: 5px solid #2563eb;
+        }
+
+        .button {
+            border: none;
+            padding: 10px 15px;
+            border-radius: 6px;
+            background: #2563eb;
+            color: white;
+            cursor: pointer;
+        }
+
+        .button:hover {
+            background: #1d4ed8;
+        }
+
+        .back {
+            display: inline-block;
+            margin-top: 20px;
+            text-decoration: none;
+            background: #6b7280;
+        }
+
+        .back:hover {
+            background: #4b5563;
+        }
+
+        @media (max-width: 600px) {
+            .top {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>Driver Notifications</h1>
+        <p>Important updates about your deliveries</p>
+    </header>
+
+    <div class="container">
+
+        <div class="section">
+
+            <div class="top">
+                <h2>Notifications</h2>
+
+                <button class="button" onclick="markAllRead()">
+                    Mark All as Read
+                </button>
+            </div>
+
+            <div class="notification new">
+                <h3>New Shipment Assignment</h3>
+                <p>
+                    You have been assigned shipment TRK-10005
+                    for delivery from Newark, NJ to Brooklyn, NY.
+                </p>
+                <span class="time">Today, 8:20 PM</span>
+            </div>
+
+            <div class="notification new">
+                <h3>Delivery Reminder</h3>
+                <p>
+                    Shipment TRK-10001 is scheduled for delivery
+                    today. Please update the shipment status after delivery.
+                </p>
+                <span class="time">Today, 7:45 PM</span>
+            </div>
+
+            <div class="notification">
+                <h3>Shipment Status Updated</h3>
+                <p>
+                    Shipment TRK-10001 has been marked as In Transit.
+                </p>
+                <span class="time">Today, 6:30 PM</span>
+            </div>
+
+            <div class="notification">
+                <h3>Payment Processed</h3>
+                <p>
+                    Your earnings for a completed delivery have been
+                    processed.
+                </p>
+                <span class="time">Yesterday, 5:15 PM</span>
+            </div>
+
+            <div class="notification">
+                <h3>System Notice</h3>
+                <p>
+                    Please make sure your vehicle information and
+                    contact details remain up to date.
+                </p>
+                <span class="time">09/15/2026</span>
+            </div>
+
+            <a href="driver-dashboard.html" class="button back">
+                Back to Driver Dashboard
+            </a>
+
+        </div>
+
+    </div>
+
+    <script>
+        function markAllRead() {
+            const notifications =
+                document.querySelectorAll(".notification");
+
+            notifications.forEach(function(notification) {
+                notification.classList.remove("new");
+            });
+
+            alert("All notifications have been marked as read.");
+        }
+    </script>
+
+</body>
+</html>
