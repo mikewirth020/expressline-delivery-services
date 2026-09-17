@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Contact Us | ExpressLine Delivery Services</title>
+
+  <meta
+    name="description"
+    content="Contact ExpressLine Delivery Services for courier, freight and logistics assistance."
+  >
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <!-- HEADER -->
+  <header class="site-header">
+
+    <div class="container navbar">
+
+      <a href="index.html" class="logo">
+        <span class="logo-mark">EL</span>
+        <span>ExpressLine</span>
+      </a>
+
+      <button
+        class="menu-toggle"
+        type="button"
+        aria-label="Open navigation menu"
+      >
+        ☰
+      </button>
+
+      <nav class="nav-links">
+
+        <a href="index.html">Home</a>
+
+        <a href="track.html">Track Shipment</a>
+
+        <a href="services.html">Services</a>
+
+        <a href="about.html">About Us</a>
+
+        <a href="contact.html">Contact Us</a>
+
+        <a href="request.html">Request Shipment</a>
+
+        <a href="login.html" class="nav-button">
+          Customer Login
+        </a>
+
+      </nav>
+
+    </div>
+
+  </header>
+
+
+  <!-- MAIN -->
+  <main>
+
+    <!-- HERO -->
+    <section class="hero" style="min-height: 400px;">
+
+      <div class="container hero-content">
+
+        <span class="hero-badge">
+          CONTACT EXPRESSLINE
+        </span>
+
+        <h1>
+          We're here to help.
+        </h1>
+
+        <p>
+          Have a question about a shipment, delivery service or
+          shipment request? Contact ExpressLine Delivery Services.
+        </p>
+
+      </div>
+
+    </section>
+
+
+    <!-- CONTACT INFORMATION -->
+    <section class="section section-light">
+
+      <div class="container">
+
+        <div class="section-heading">
+
+          <p class="section-label">
+            GET IN TOUCH
+          </p>
+
+          <h2>
+            Contact our team.
+          </h2>
+
+          <p>
+            Company contact details can be configured by an
+            authorized administrator through the website settings.
+          </p>
+
+        </div>
+
+
+        <div class="cards">
+
+          <article class="card">
+
+            <div class="card-icon">
+              📞
+            </div>
+
+            <h3>
+              Phone
+            </h3>
+
+            <p>
+              Company phone number will be displayed here once
+              configured by the administrator.
+            </p>
+
+          </article>
+
+
+          <article class="card">
+
+            <div class="card-icon">
+              📍
+            </div>
+
+            <h3>
+              Location
+            </h3>
+
+            <p>
+              Company address and service location information
+              will be configured through the administrator settings.
+            </p>
+
+          </article>
+
+
+          <article class="card">
+
+            <div class="card-icon">
+              🕐
+            </div>
+
+            <h3>
+              Business Hours
+            </h3>
+
+            <p>
+              Business hours will be displayed here once configured
+              by an authorized administrator.
+            </p>
+
+          </article>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- CONTACT FORM -->
+    <section class="section">
+
+      <div class="container">
+
+        <div class="section-heading">
+
+          <p class="section-label">
+            SEND A MESSAGE
+          </p>
+
+          <h2>
+            How can we help?
+          </h2>
+
+          <p>
+            Complete the form below and provide the details
+            needed for your inquiry.
+          </p>
+
+        </div>
+
+
+        <div class="form-card">
+
+          <form id="contactForm">
+
+            <div class="form-grid">
+
+              <div class="form-group">
+
+                <label for="contactName">
+                  Full Name
+                </label>
+
+                <input
+                  type="text"
+                  id="contactName"
+                  name="name"
+                  placeholder="Enter your full name"
+                  autocomplete="name"
+                  required
+                >
+
+              </div>
+
+
+              <div class="form-group">
+
+                <label for="contactPhone">
+                  Phone Number
+                </label>
+
+                <input
+                  type="tel"
+                  id="contactPhone"
+                  name="phone"
+                  placeholder="Enter your phone number"
+                  autocomplete="tel"
+                >
+
+              </div>
+
+
+              <div class="form-group">
+
+                <label for="contactSubject">
+                  Subject
+                </label>
+
+                <input
+                  type="text"
+                  id="contactSubject"
+                  name="subject"
+                  placeholder="What can we help with?"
+                  required
+                >
+
+              </div>
+
+
+              <div class="form-group">
+
+                <label for="contactTracking">
+                  Tracking Number
+                </label>
+
+                <input
+                  type="text"
+                  id="contactTracking"
+                  name="trackingNumber"
+                  placeholder="Enter tracking number if applicable"
+                >
+
+              </div>
+
+            </div>
+
+
+            <div class="form-group">
+
+              <label for="contactMessage">
+                Message
+              </label>
+
+              <textarea
+                id="contactMessage"
+                name="message"
+                rows="7"
+                placeholder="Enter your message"
+                required
+              ></textarea>
+
+            </div>
+
+
+            <div
+              id="contactMessageStatus"
+              class="tracking-message"
+              style="display: none;"
+              role="alert"
+            ></div>
+
+
+            <button
+              type="submit"
+              class="btn btn-primary"
+            >
+              Send Message
+            </button>
+
+          </form>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- FAQ -->
+    <section class="section section-light">
+
+      <div class="container">
+
+        <div class="section-heading">
+
+          <p class="section-label">
+            SUPPORT
+          </p>
+
+          <h2>
+            Need shipment assistance?
+          </h2>
+
+          <p>
+            For an existing shipment, have your tracking number
+            available so the appropriate shipment information can
+            be located.
+          </p>
+
+        </div>
+
+
+        <div class="cards">
+
+          <article class="card">
+
+            <h3>
+              Track a Shipment
+            </h3>
+
+            <p>
+              Check the latest available shipment status and
+              tracking updates.
+            </p>
+
+            <a
+              href="track.html"
+              class="btn btn-secondary"
+            >
+              Track Shipment
+            </a>
+
+          </article>
+
+
+          <article class="card">
+
+            <h3>
+              Request a Shipment
+            </h3>
+
+            <p>
+              Submit the information needed to begin a new
+              shipment request.
+            </p>
+
+            <a
+              href="request.html"
+              class="btn btn-secondary"
+            >
+              Request Shipment
+            </a>
+
+          </article>
+
+
+          <article class="card">
+
+            <h3>
+              Customer Account
+            </h3>
+
+            <p>
+              Customers can sign in to access their authorized
+              shipment information and account features.
+            </p>
+
+            <a
+              href="login.html"
+              class="btn btn-secondary"
+            >
+              Customer Login
+            </a>
+
+          </article>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- CTA -->
+    <section class="cta">
+
+      <div class="container">
+
+        <h2>
+          Need to ship something?
+        </h2>
+
+        <p>
+          Start a shipment request through the ExpressLine
+          customer platform.
+        </p>
+
+        <a
+          href="request.html"
+          class="btn btn-primary"
+        >
+          Request a Shipment
+        </a>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+
+    <div class="container">
+
+      <div class="footer-grid">
+
+        <div>
+
+          <div class="logo">
+            <span class="logo-mark">EL</span>
+            <span>ExpressLine</span>
+          </div>
+
+          <p>
+            Professional courier and logistics solutions
+            designed to keep shipments moving with confidence.
+          </p>
+
+        </div>
+
+
+        <div>
+
+          <h3>
+            Company
+          </h3>
+
+          <ul class="footer-links">
+
+            <li>
+              <a href="about.html">
+                About Us
+              </a>
+            </li>
+
+            <li>
+              <a href="services.html">
+                Services
+              </a>
+            </li>
+
+            <li>
+              <a href="contact.html">
+                Contact Us
+              </a>
+            </li>
+
+          </ul>
+
+        </div>
+
+
+        <div>
+
+          <h3>
+            Customer
+          </h3>
+
+          <ul class="footer-links">
+
+            <li>
+              <a href="track.html">
+                Track Shipment
+              </a>
+            </li>
+
+            <li>
+              <a href="request.html">
+                Request Shipment
+              </a>
+            </li>
+
+            <li>
+              <a href="login.html">
+                Customer Login
+              </a>
+            </li>
+
+          </ul>
+
+        </div>
+
+
+        <div>
+
+          <h3>
+            Contact
+          </h3>
+
+          <p>
+            Company contact information will be configured
+            through the administrator settings.
+          </p>
+
+        </div>
+
+      </div>
+
+
+      <div class="footer-bottom">
+
+        <p>
+          © 2026 ExpressLine Delivery Services.
+          All rights reserved.
+        </p>
+
+      </div>
+
+    </div>
+
+  </footer>
+
+
+  <script src="script.js"></script>
+
+</body>
+</html>
