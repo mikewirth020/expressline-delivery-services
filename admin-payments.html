@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Admin - Payments</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f7fb;
+      color: #222;
+    }
+
+    header {
+      background: #0b1f3a;
+      color: white;
+      padding: 20px;
+    }
+
+    header h1 {
+      margin-bottom: 6px;
+    }
+
+    .container {
+      width: 92%;
+      max-width: 1200px;
+      margin: 30px auto;
+    }
+
+    .top-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+
+    .top-bar h2 {
+      color: #0b1f3a;
+    }
+
+    .back-btn {
+      background: #0b1f3a;
+      color: white;
+      text-decoration: none;
+      padding: 11px 16px;
+      border-radius: 6px;
+      font-weight: bold;
+    }
+
+    .summary {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 15px;
+      margin-bottom: 25px;
+    }
+
+    .summary-card {
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 3px 12px rgba(0,0,0,0.08);
+    }
+
+    .summary-card h3 {
+      font-size: 14px;
+      color: #777;
+      margin-bottom: 10px;
+    }
+
+    .summary-card p {
+      font-size: 26px;
+      font-weight: bold;
+      color: #0b1f3a;
+    }
+
+    .payments-box {
+      background: white;
+      border-radius: 10px;
+      padding: 20px;
+      box-shadow: 0 3px 12px rgba(0,0,0,0.08);
+      overflow-x: auto;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 900px;
+    }
+
+    th,
+    td {
+      padding: 14px;
+      border-bottom: 1px solid #ddd;
+      text-align: left;
+    }
+
+    th {
+      background: #0b1f3a;
+      color: white;
+    }
+
+    tr:hover {
+      background: #f7f9fc;
+    }
+
+    .status {
+      padding: 6px 10px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: bold;
+      display: inline-block;
+    }
+
+    .paid {
+      background: #d4edda;
+      color: #155724;
+    }
+
+    .pending {
+      background: #fff3cd;
+      color: #856404;
+    }
+
+    .failed {
+      background: #f8d7da;
+      color: #721c24;
+    }
+
+    .view-btn {
+      background: #e9eef5;
+      color: #0b1f3a;
+      border: none;
+      padding: 8px 12px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .view-btn:hover {
+      opacity: 0.8;
+    }
+
+    @media (max-width: 800px) {
+      .summary {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 500px) {
+      .summary {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <h1>Admin Dashboard</h1>
+    <p>Payment Management</p>
+  </header>
+
+  <div class="container">
+
+    <div class="top-bar">
+
+      <h2>Payments</h2>
+
+      <a href="admin.html" class="back-btn">
+        ← Admin Dashboard
+      </a>
+
+    </div>
+
+    <div class="summary">
+
+      <div class="summary-card">
+        <h3>Total Payments</h3>
+        <p>4</p>
+      </div>
+
+      <div class="summary-card">
+        <h3>Paid</h3>
+        <p>$1,850</p>
+      </div>
+
+      <div class="summary-card">
+        <h3>Pending</h3>
+        <p>$450</p>
+      </div>
+
+      <div class="summary-card">
+        <h3>Failed</h3>
+        <p>$125</p>
+      </div>
+
+    </div>
+
+    <div class="payments-box">
+
+      <table>
+
+        <thead>
+          <tr>
+            <th>Payment ID</th>
+            <th>Customer</th>
+            <th>Tracking Number</th>
+            <th>Amount</th>
+            <th>Date</th>
+            <th>Method</th>
+            <th>Status</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+
+        <tbody>
+
+          <tr>
+            <td>PAY-1001</td>
+            <td>John Smith</td>
+            <td>TRK-10001</td>
+            <td>$500.00</td>
+            <td>09/17/2026</td>
+            <td>Card</td>
+
+            <td>
+              <span class="status paid">
+                Paid
+              </span>
+            </td>
+
+            <td>
+              <button
+                class="view-btn"
+                onclick="viewPayment('PAY-1001')">
+                View
+              </button>
+            </td>
+          </tr>
+
+          <tr>
+            <td>PAY-1002</td>
+            <td>Michael Brown</td>
+            <td>TRK-10002</td>
+            <td>$750.00</td>
+            <td>09/17/2026</td>
+            <td>Card</td>
+
+            <td>
+              <span class="status paid">
+                Paid
+              </span>
+            </td>
+
+            <td>
+              <button
+                class="view-btn"
+                onclick="viewPayment('PAY-1002')">
+                View
+              </button>
+            </td>
+          </tr>
+
+          <tr>
+            <td>PAY-1003</td>
+            <td>Sarah Johnson</td>
+            <td>TRK-10003</td>
+            <td>$450.00</td>
+            <td>09/17/2026</td>
+            <td>Bank Transfer</td>
+
+            <td>
+              <span class="status pending">
+                Pending
+              </span>
+            </td>
+
+            <td>
+              <button
+                class="view-btn"
+                onclick="viewPayment('PAY-1003')">
+                View
+              </button>
+            </td>
+          </tr>
+
+          <tr>
+            <td>PAY-1004</td>
+            <td>Robert Taylor</td>
+            <td>TRK-10004</td>
+            <td>$125.00</td>
+            <td>09/16/2026</td>
+            <td>Card</td>
+
+            <td>
+              <span class="status failed">
+                Failed
+              </span>
+            </td>
+
+            <td>
+              <button
+                class="view-btn"
+                onclick="viewPayment('PAY-1004')">
+                View
+              </button>
+            </td>
+          </tr>
+
+        </tbody>
+
+      </table>
+
+    </div>
+
+  </div>
+
+  <script>
+
+    function viewPayment(paymentId) {
+      alert(
+        "Opening payment details: " + paymentId
+      );
+    }
+
+  </script>
+
+</body>
+</html>
