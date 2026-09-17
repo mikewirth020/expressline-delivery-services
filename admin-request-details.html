@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Shipment Request Details</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f7fb;
+      color: #222;
+    }
+
+    header {
+      background: #0b1f3a;
+      color: white;
+      padding: 20px;
+    }
+
+    .container {
+      width: 92%;
+      max-width: 1000px;
+      margin: 30px auto;
+    }
+
+    .back {
+      display: inline-block;
+      margin-bottom: 20px;
+      color: #0b1f3a;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .card {
+      background: white;
+      border-radius: 10px;
+      padding: 25px;
+      box-shadow: 0 3px 12px rgba(0,0,0,0.08);
+      margin-bottom: 20px;
+    }
+
+    h2 {
+      color: #0b1f3a;
+      margin-bottom: 20px;
+    }
+
+    .details {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+
+    .detail {
+      border-bottom: 1px solid #ddd;
+      padding-bottom: 12px;
+    }
+
+    .detail strong {
+      display: block;
+      color: #777;
+      font-size: 13px;
+      margin-bottom: 5px;
+    }
+
+    .detail span {
+      font-size: 16px;
+    }
+
+    .status {
+      display: inline-block;
+      padding: 7px 12px;
+      border-radius: 20px;
+      background: #fff3cd;
+      color: #856404;
+      font-weight: bold;
+    }
+
+    .actions {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    button {
+      border: none;
+      padding: 12px 20px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .approve {
+      background: #d4edda;
+      color: #155724;
+    }
+
+    .reject {
+      background: #f8d7da;
+      color: #721c24;
+    }
+
+    .assign {
+      background: #0b1f3a;
+      color: white;
+    }
+
+    @media (max-width: 650px) {
+      .details {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <h1>Admin Shipment Request</h1>
+    <p>View complete shipment information</p>
+  </header>
+
+  <div class="container">
+
+    <a href="admin-requests.html" class="back">
+      ← Back to Shipment Requests
+    </a>
+
+    <div class="card">
+
+      <h2>Request SR-1001</h2>
+
+      <div class="details">
+
+        <div class="detail">
+          <strong>Customer Name</strong>
+          <span>John Smith</span>
+        </div>
+
+        <div class="detail">
+          <strong>Customer Email</strong>
+          <span>john@example.com</span>
+        </div>
+
+        <div class="detail">
+          <strong>Pickup Location</strong>
+          <span>Newark, NJ</span>
+        </div>
+
+        <div class="detail">
+          <strong>Destination</strong>
+          <span>New York, NY</span>
+        </div>
+
+        <div class="detail">
+          <strong>Shipment Date</strong>
+          <span>09/18/2026</span>
+        </div>
+
+        <div class="detail">
+          <strong>Package Type</strong>
+          <span>Box</span>
+        </div>
+
+        <div class="detail">
+          <strong>Weight</strong>
+          <span>25 lbs</span>
+        </div>
+
+        <div class="detail">
+          <strong>Current Status</strong>
+          <span class="status">Pending</span>
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="card">
+
+      <h2>Admin Actions</h2>
+
+      <div class="actions">
+
+        <button
+          class="approve"
+          onclick="approveRequest()">
+          Approve Request
+        </button>
+
+        <button
+          class="reject"
+          onclick="rejectRequest()">
+          Reject Request
+        </button>
+
+        <button
+          class="assign"
+          onclick="assignShipment()">
+          Assign Shipment
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <script>
+
+    function approveRequest() {
+      alert("Shipment request SR-1001 has been approved.");
+    }
+
+    function rejectRequest() {
+      alert("Shipment request SR-1001 has been rejected.");
+    }
+
+    function assignShipment() {
+      alert("Shipment assignment will be connected next.");
+    }
+
+  </script>
+
+</body>
+</html>
