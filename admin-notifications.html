@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin - Notifications</title>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f4f6f8;
+      color: #222;
+    }
+
+    header {
+      background: #111827;
+      color: white;
+      padding: 20px;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 24px;
+    }
+
+    header p {
+      margin: 6px 0 0;
+      color: #d1d5db;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 30px auto;
+      padding: 0 20px;
+    }
+
+    .back {
+      display: inline-block;
+      margin-bottom: 20px;
+      text-decoration: none;
+      color: #2563eb;
+      font-weight: bold;
+    }
+
+    .section {
+      background: white;
+      padding: 25px;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    }
+
+    .section h2 {
+      margin-top: 0;
+    }
+
+    .notification {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+      padding: 18px 0;
+      border-bottom: 1px solid #e5e7eb;
+    }
+
+    .notification:last-child {
+      border-bottom: none;
+    }
+
+    .notification h3 {
+      margin: 0 0 6px;
+      font-size: 16px;
+    }
+
+    .notification p {
+      margin: 0;
+      color: #6b7280;
+      font-size: 14px;
+    }
+
+    .badge {
+      padding: 7px 12px;
+      border-radius: 20px;
+      background: #dcfce7;
+      color: #166534;
+      font-size: 13px;
+      font-weight: bold;
+      white-space: nowrap;
+    }
+
+    .badge.unread {
+      background: #dbeafe;
+      color: #1d4ed8;
+    }
+
+    .button {
+      margin-top: 25px;
+      background: #2563eb;
+      color: white;
+      border: none;
+      padding: 11px 18px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 15px;
+      font-weight: bold;
+    }
+
+    .button:hover {
+      background: #1d4ed8;
+    }
+
+    @media (max-width: 600px) {
+      .notification {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <h1>Admin Dashboard</h1>
+    <p>Notifications</p>
+  </header>
+
+  <div class="container">
+
+    <a href="admin.html" class="back">← Back to Admin Dashboard</a>
+
+    <div class="section">
+
+      <h2>Recent Notifications</h2>
+
+      <div class="notification">
+        <div>
+          <h3>New Shipment Request</h3>
+          <p>John Smith submitted shipment request SR-1001.</p>
+        </div>
+        <span class="badge unread">New</span>
+      </div>
+
+      <div class="notification">
+        <div>
+          <h3>Payment Received</h3>
+          <p>Payment PAY-1002 of $750 was received.</p>
+        </div>
+        <span class="badge">Read</span>
+      </div>
+
+      <div class="notification">
+        <div>
+          <h3>Driver Assignment</h3>
+          <p>Driver James Wilson was assigned to TRK-10001.</p>
+        </div>
+        <span class="badge">Read</span>
+      </div>
+
+      <div class="notification">
+        <div>
+          <h3>Shipment Delivered</h3>
+          <p>Shipment TRK-10001 has been marked as delivered.</p>
+        </div>
+        <span class="badge">Read</span>
+      </div>
+
+      <div class="notification">
+        <div>
+          <h3>Payment Failed</h3>
+          <p>Payment PAY-1004 for $125 requires attention.</p>
+        </div>
+        <span class="badge unread">Action Needed</span>
+      </div>
+
+      <button class="button" onclick="markAllRead()">
+        Mark All as Read
+      </button>
+
+    </div>
+
+  </div>
+
+  <script>
+    function markAllRead() {
+      const badges = document.querySelectorAll(".badge");
+
+      badges.forEach(function(badge) {
+        badge.classList.remove("unread");
+        badge.textContent = "Read";
+      });
+
+      alert("All notifications marked as read.");
+    }
+  </script>
+
+</body>
+</html>
