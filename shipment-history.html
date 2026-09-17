@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Shipment History | ExpressLine Delivery Services</title>
+
+  <meta
+    name="description"
+    content="View completed and historical shipments associated with your ExpressLine customer account."
+  >
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <header class="site-header">
+
+    <div class="container navbar">
+
+      <a href="index.html" class="logo">
+        <span class="logo-mark">EL</span>
+        <span>ExpressLine</span>
+      </a>
+
+      <button
+        class="menu-toggle"
+        type="button"
+        aria-label="Open navigation menu"
+      >
+        ☰
+      </button>
+
+      <nav class="nav-links">
+
+        <a href="index.html">Home</a>
+        <a href="track.html">Track Shipment</a>
+        <a href="services.html">Services</a>
+        <a href="about.html">About Us</a>
+        <a href="contact.html">Contact Us</a>
+        <a href="request.html">Request Shipment</a>
+
+        <a href="dashboard.html" class="nav-button">
+          Dashboard
+        </a>
+
+      </nav>
+
+    </div>
+
+  </header>
+
+
+  <main>
+
+    <section class="section section-light">
+
+      <div class="container">
+
+        <div class="section-heading">
+
+          <p class="section-label">
+            CUSTOMER PORTAL
+          </p>
+
+          <h1>
+            Shipment History
+          </h1>
+
+          <p>
+            Review shipments previously associated with your
+            customer account.
+          </p>
+
+        </div>
+
+
+        <div class="form-card">
+
+          <form
+            id="shipmentHistorySearchForm"
+            class="tracking-form"
+          >
+
+            <div class="form-group">
+
+              <label for="historySearch">
+                Search Tracking Number
+              </label>
+
+              <input
+                type="text"
+                id="historySearch"
+                name="trackingNumber"
+                placeholder="Enter tracking number"
+                autocomplete="off"
+              >
+
+            </div>
+
+            <button
+              type="submit"
+              class="btn btn-primary"
+            >
+              Search History
+            </button>
+
+          </form>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <section class="section">
+
+      <div class="container">
+
+        <div class="section-heading">
+
+          <p class="section-label">
+            PREVIOUS SHIPMENTS
+          </p>
+
+          <h2>
+            Shipment records
+          </h2>
+
+          <p>
+            Completed and previous shipment records will
+            appear here when your account is connected to
+            the secure backend.
+          </p>
+
+        </div>
+
+
+        <div class="table-container">
+
+          <table>
+
+            <thead>
+
+              <tr>
+
+                <th>
+                  Tracking Number
+                </th>
+
+                <th>
+                  Status
+                </th>
+
+                <th>
+                  Origin
+                </th>
+
+                <th>
+                  Destination
+                </th>
+
+                <th>
+                  Delivery Date
+                </th>
+
+                <th>
+                  Details
+                </th>
+
+              </tr>
+
+            </thead>
+
+            <tbody>
+
+              <tr>
+
+                <td colspan="6">
+                  No shipment history available.
+                </td>
+
+              </tr>
+
+            </tbody>
+
+          </table>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <section class="section section-light">
+
+      <div class="container">
+
+        <div class="section-heading">
+
+          <p class="section-label">
+            NEED HELP?
+          </p>
+
+          <h2>
+            Track a shipment
+          </h2>
+
+          <p>
+            You can also use the public tracking page to
+            look up a shipment using its tracking number.
+          </p>
+
+          <a
+            href="track.html"
+            class="btn btn-primary"
+          >
+            Track Shipment
+          </a>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <section class="cta">
+
+      <div class="container">
+
+        <h2>
+          Need to arrange another delivery?
+        </h2>
+
+        <p>
+          Submit a new shipment request through your
+          ExpressLine account.
+        </p>
+
+        <a
+          href="request.html"
+          class="btn btn-primary"
+        >
+          Request a Shipment
+        </a>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <footer class="site-footer">
+
+    <div class="container">
+
+      <div class="footer-grid">
+
+        <div>
+
+          <div class="logo">
+            <span class="logo-mark">EL</span>
+            <span>ExpressLine</span>
+          </div>
+
+          <p>
+            Professional courier and logistics solutions
+            designed to keep shipments moving with confidence.
+          </p>
+
+        </div>
+
+
+        <div>
+
+          <h3>
+            Customer
+          </h3>
+
+          <ul class="footer-links">
+
+            <li>
+              <a href="dashboard.html">
+                Dashboard
+              </a>
+            </li>
+
+            <li>
+              <a href="shipments.html">
+                Active Shipments
+              </a>
+            </li>
+
+            <li>
+              <a href="shipment-history.html">
+                Shipment History
+              </a>
+            </li>
+
+            <li>
+              <a href="requests.html">
+                Shipment Requests
+              </a>
+            </li>
+
+          </ul>
+
+        </div>
+
+
+        <div>
+
+          <h3>
+            Support
+          </h3>
+
+          <ul class="footer-links">
+
+            <li>
+              <a href="track.html">
+                Track Shipment
+              </a>
+            </li>
+
+            <li>
+              <a href="request.html">
+                Request Shipment
+              </a>
+            </li>
+
+            <li>
+              <a href="contact.html">
+                Contact Us
+              </a>
+            </li>
+
+          </ul>
+
+        </div>
+
+
+        <div>
+
+          <h3>
+            Account
+          </h3>
+
+          <ul class="footer-links">
+
+            <li>
+              <a href="profile.html">
+                Profile
+              </a>
+            </li>
+
+            <li>
+              <a href="account-settings.html">
+                Account Settings
+              </a>
+            </li>
+
+            <li>
+              <a href="login.html">
+                Sign Out
+              </a>
+            </li>
+
+          </ul>
+
+        </div>
+
+      </div>
+
+
+      <div class="footer-bottom">
+
+        <p>
+          © 2026 ExpressLine Delivery Services.
+          All rights reserved.
+        </p>
+
+      </div>
+
+    </div>
+
+  </footer>
+
+
+  <script src="script.js"></script>
+
+</body>
+</html>
