@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Manage Shipments | ExpressLine Admin</title>
+
+  <meta
+    name="description"
+    content="Manage ExpressLine Delivery Services shipments."
+  >
+
+  <meta
+    name="robots"
+    content="noindex, nofollow"
+  >
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <!-- ADMIN HEADER -->
+  <header class="site-header">
+
+    <div class="container navbar">
+
+      <a href="admin-dashboard.html" class="logo">
+        <span class="logo-mark">EL</span>
+        <span>ExpressLine Admin</span>
+      </a>
+
+      <nav class="nav-links">
+
+        <a href="admin-dashboard.html">
+          Dashboard
+        </a>
+
+        <a href="admin-shipments.html">
+          Shipments
+        </a>
+
+        <a href="index.html">
+          View Website
+        </a>
+
+        <a href="admin-login.html">
+          Logout
+        </a>
+
+      </nav>
+
+    </div>
+
+  </header>
+
+
+  <main>
+
+    <!-- PAGE HEADER -->
+    <section class="section section-light">
+
+      <div class="container">
+
+        <div class="section-heading">
+
+          <p class="section-label">
+            ADMINISTRATION
+          </p>
+
+          <h1>
+            Manage Shipments
+          </h1>
+
+          <p>
+            Create and manage shipment records, tracking
+            numbers, shipment status, and delivery information.
+          </p>
+
+        </div>
+
+
+        <!-- ACTION BUTTONS -->
+        <div class="button-group">
+
+          <a
+            href="#create-shipment"
+            class="btn btn-primary"
+          >
+            Create Shipment
+          </a>
+
+          <a
+            href="admin-dashboard.html"
+            class="btn btn-secondary"
+          >
+            Back to Dashboard
+          </a>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- CREATE SHIPMENT -->
+    <section
+      class="section"
+      id="create-shipment"
+    >
+
+      <div class="container">
+
+        <div class="section-heading">
+
+          <p class="section-label">
+            CREATE
+          </p>
+
+          <h2>
+            Create New Shipment
+          </h2>
+
+          <p>
+            Tracking numbers must be entered manually by an
+            authorized administrator. The system will verify
+            that the tracking number is unique.
+          </p>
+
+        </div>
+
+
+        <div class="form-card">
+
+          <form
+            id="adminShipmentForm"
+            method="post"
+            autocomplete="off"
+          >
+
+            <!-- TRACKING NUMBER -->
+            <div class="form-group">
+
+              <label for="trackingNumber">
+                Tracking Number
+              </label>
+
+              <input
+                type="text"
+                id="trackingNumber"
+                name="trackingNumber"
+                placeholder="Enter tracking number"
+                required
+              >
+
+              <small>
+                Enter the official tracking number manually.
+              </small>
+
+            </div>
+
+
+            <!-- CUSTOMER -->
+            <div class="form-group">
+
+              <label for="customer">
+                Customer
+              </label>
+
+              <input
+                type="text"
+                id="customer"
+                name="customer"
+                placeholder="Customer name or account"
+                required
+              >
+
+            </div>
+
+
+            <!-- ORIGIN -->
+            <div class="form-group">
+
+              <label for="origin">
+                Origin
+              </label>
+
+              <input
+                type="text"
+                id="origin"
+                name="origin"
+                placeholder="Shipment origin"
+                required
+              >
+
+            </div>
+
+
+            <!-- DESTINATION -->
+            <div class="form-group">
+
+              <label for="destination">
+                Destination
+              </label>
+
+              <input
+                type="text"
+                id="destination"
+                name="destination"
+                placeholder="Shipment destination"
+                required
+              >
+
+            </div>
+
+
+            <!-- SHIPPING METHOD -->
+            <div class="form-group">
+
+              <label for="shippingMethod">
+                Shipping Method
+              </label>
+
+              <select
+                id="shippingMethod"
+                name="shippingMethod"
+                required
+              >
+
+                <option value="">
+                  Select shipping method
+                </option>
+
+                <option value="Standard Delivery">
+                  Standard Delivery
+                </option>
+
+                <option value="Express Delivery">
+                  Express Delivery
+                </option>
+
+                <option value="Priority Delivery">
+                  Priority Delivery
+                </option>
+
+                <option value="International Delivery">
+                  International Delivery
+                </option>
+
+                <option value="Custom">
+                  Custom
+                </option>
+
+              </select>
+
+            </div>
+
+
+            <!-- PACKAGE DESCRIPTION -->
+            <div class="form-group">
+
+              <label for="packageDescription">
+                Package Description
+              </label>
+
+              <textarea
+                id="packageDescription"
+                name="packageDescription"
+                rows="4"
+                placeholder="Describe the package"
+                required
+              ></textarea>
+
+            </div>
+
+
+            <!-- WEIGHT -->
+            <div class="form-group">
+
+              <label for="weight">
+                Weight
+              </label>
+
+              <input
+                type="text"
+                id="weight"
+                name="weight"
+                placeholder="Example: 5 lb"
+              >
+
+            </div>
+
+
+            <!-- QUANTITY -->
+            <div class="form-group">
+
+              <label for="quantity">
+                Quantity
+              </label>
+
+              <input
+                type="number"
+                id="quantity"
+                name="quantity"
+                min="1"
+                placeholder="Package quantity"
+                required
+              >
+
+            </div>
+
+
+            <!-- STATUS -->
+            <div class="form-group">
+
+              <label for="status">
+                Shipment Status
+              </label>
+
+              <select
+                id="status"
+                name="status"
+                required
+              >
+
+                <option value="">
+                  Select status
+                </option>
+
+                <option value="Shipment Created">
+                  Shipment Created
+                </option>
+
+                <option value="Awaiting Pickup">
+                  Awaiting Pickup
+                </option>
+
+                <option value="Package Picked Up">
+                  Package Picked Up
+                </option>
+
+                <option value="Processing Facility">
+                  Processing Facility
+                </option>
+
+                <option value="Customs Clearance">
+                  Customs Clearance
+                </option>
+
+                <option value="In Transit">
+                  In Transit
+                </option>
+
+                <option value="Delayed">
+                  Delayed
+                </option>
+
+                <option value="Arrived at Destination">
+                  Arrived at Destination
+                </option>
+
+                <option value="Destination Warehouse">
+                  Destination Warehouse
+                </option>
+
+                <option value="Out for Delivery">
+                  Out for Delivery
+                </option>
+
+                <option value="Delivered">
+                  Delivered
+                </option>
+
+                <option value="Cancelled">
+                  Cancelled
+                </option>
+
+              </select>
+
+            </div>
+
+
+            <!-- ESTIMATED DELIVERY -->
+            <div class="form-group">
+
+              <label for="estimatedDelivery">
+                Estimated Delivery
+              </label>
+
+              <input
+                type="datetime-local"
+                id="estimatedDelivery"
+                name="estimatedDelivery"
+              >
+
+            </div>
+
+
+            <!-- PROGRESS -->
+            <div class="form-group">
+
+              <label for="progress">
+                Progress Percentage
+              </label>
+
+              <input
+                type="number"
+                id="progress"
+                name="progress"
+                min="0"
+                max="100"
+                placeholder="0–100"
+              >
+
+            </div>
+
+
+            <!-- SUBMIT -->
+            <button
+              type="submit"
+              class="btn btn-primary"
+            >
+              Create Shipment
+            </button>
+
+          </form>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- SHIPMENT LIST -->
+    <section class="section section-light">
+
+      <div class="container">
+
+        <div class="section-heading">
+
+          <p class="section-label">
+            SHIPMENTS
+          </p>
+
+          <h2>
+            Shipment Records
+          </h2>
+
+          <p>
+            Shipment records will appear here after the
+            production database is connected.
+          </p>
+
+        </div>
+
+
+        <!-- SEARCH -->
+        <div class="form-card">
+
+          <form
+            id="shipmentSearchForm"
+            method="get"
+          >
+
+            <div class="form-group">
+
+              <label for="shipmentSearch">
+                Search Shipments
+              </label>
+
+              <input
+                type="search"
+                id="shipmentSearch"
+                name="search"
+                placeholder="Search by tracking number or customer"
+              >
+
+            </div>
+
+            <button
+              type="submit"
+              class="btn btn-primary"
+            >
+              Search
+            </button>
+
+          </form>
+
+        </div>
+
+
+        <!-- TABLE -->
+        <div class="table-wrapper">
+
+          <table>
+
+            <thead>
+
+              <tr>
+
+                <th>
+                  Tracking Number
+                </th>
+
+                <th>
+                  Customer
+                </th>
+
+                <th>
+                  Origin
+                </th>
+
+                <th>
+                  Destination
+                </th>
+
+                <th>
+                  Status
+                </th>
+
+                <th>
+                  Actions
+                </th>
+
+              </tr>
+
+            </thead>
+
+            <tbody>
+
+              <tr>
+
+                <td>
+                  —
+                </td>
+
+                <td>
+                  —
+                </td>
+
+                <td>
+                  —
+                </td>
+
+                <td>
+                  —
+                </td>
+
+                <td>
+                  —
+                </td>
+
+                <td>
+                  No shipments available yet.
+                </td>
+
+              </tr>
+
+            </tbody>
+
+          </table>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- TRACKING EVENTS -->
+    <section class="section">
+
+      <div class="container">
+
+        <div class="section-heading">
+
+          <p class="section-label">
+            TRACKING
+          </p>
+
+          <h2>
+            Shipment Updates
+          </h2>
+
+          <p>
+            Administrators will be able to add tracking events
+            to a shipment. These updates will automatically
+            appear on the public tracking page.
+          </p>
+
+        </div>
+
+
+        <div class="cards-grid">
+
+          <article class="feature-card">
+
+            <h3>
+              Manual Tracking Updates
+            </h3>
+
+            <p>
+              Add shipment events and status changes from the
+              administration system.
+            </p>
+
+          </article>
+
+
+          <article class="feature-card">
+
+            <h3>
+              Public Tracking
+            </h3>
+
+            <p>
+              Approved tracking updates will become visible
+              to customers through the tracking page.
+            </p>
+
+          </article>
+
+
+          <article class="feature-card">
+
+            <h3>
+              Shipment History
+            </h3>
+
+            <p>
+              Each shipment will maintain a chronological
+              history of tracking events.
+            </p>
+
+          </article>
+
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+
+    <div class="container">
+
+      <div class="footer-bottom">
+
+        <p>
+          © 2026 ExpressLine Delivery Services.
+          All rights reserved.
+        </p>
+
+        <p>
+          Administrator Portal
+        </p>
+
+      </div>
+
+    </div>
+
+  </footer>
+
+
+  <script src="script.js"></script>
+
+</body>
+</html>
