@@ -29,84 +29,677 @@
 
 <style>
 
-.contact-hero {
-  min-height: 360px;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+:root {
+  --primary-color: #F97316;
+  --secondary-color: #111111;
+  --accent-color: #C2410C;
+  --text-color: #111111;
+  --font-family: Inter, sans-serif;
+  --font-size: 16px;
 }
 
-.contact-image {
-  width: 100%;
-  max-width: 100%;
-  height: 280px;
-  object-fit: cover;
-  border-radius: 16px;
-  margin-top: 25px;
-  display: none;
+* {
+  box-sizing: border-box;
 }
+
+body {
+  margin: 0;
+  font-family: var(--font-family);
+  font-size: var(--font-size);
+  color: var(--text-color);
+  background: #ffffff;
+  line-height: 1.6;
+}
+
+/* =========================
+   HEADER
+========================= */
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  width: 100%;
+  background: #ffffff;
+  border-bottom: 1px solid #e5e7eb;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+}
+
+.contact-navbar {
+  width: 100%;
+}
+
+.contact-navbar-inner {
+  width: min(1200px, 92%);
+  min-height: 76px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 25px;
+}
+
+.contact-logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  color: #111111;
+  font-weight: 800;
+  font-size: 19px;
+  white-space: nowrap;
+}
+
+.logo-mark {
+  width: 42px;
+  height: 42px;
+  border-radius: 10px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: #F97316;
+  color: #ffffff;
+  font-weight: 900;
+  font-size: 15px;
+}
+
+.contact-nav-links {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 5px;
+}
+
+.contact-nav-links a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 42px;
+  padding: 9px 12px;
+  border-radius: 8px;
+  color: #111111;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 650;
+  white-space: nowrap;
+  transition: 0.2s ease;
+}
+
+.contact-nav-links a:hover {
+  background: #fff7ed;
+  color: #C2410C;
+}
+
+.contact-nav-links .nav-button {
+  background: #111111;
+  color: #ffffff;
+  margin-left: 5px;
+}
+
+.contact-nav-links .nav-button:hover {
+  background: #F97316;
+  color: #ffffff;
+}
+
+.contact-menu-toggle {
+  display: none;
+  border: 0;
+  background: #111111;
+  color: #ffffff;
+  width: 44px;
+  height: 44px;
+  border-radius: 8px;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+/* =========================
+   HERO
+========================= */
+
+.contact-hero {
+  min-height: 390px;
+  display: flex;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  background:
+    linear-gradient(
+      110deg,
+      rgba(17,17,17,0.96),
+      rgba(17,17,17,0.82),
+      rgba(194,65,12,0.72)
+    );
+  color: #ffffff;
+}
+
+.contact-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(
+      circle at 85% 30%,
+      rgba(249,115,22,0.35),
+      transparent 35%
+    );
+  pointer-events: none;
+}
+
+.contact-hero-content {
+  position: relative;
+  z-index: 2;
+  width: min(1200px, 92%);
+  margin: 0 auto;
+  padding: 70px 0;
+}
+
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 7px 13px;
+  border-radius: 999px;
+  background: rgba(249,115,22,0.18);
+  border: 1px solid rgba(249,115,22,0.55);
+  color: #fed7aa;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  margin-bottom: 18px;
+}
+
+.contact-hero h1 {
+  margin: 0 0 18px;
+  max-width: 760px;
+  color: #ffffff;
+  font-size: clamp(38px, 6vw, 62px);
+  line-height: 1.08;
+  font-weight: 850;
+  letter-spacing: -1.5px;
+}
+
+.contact-hero p {
+  max-width: 720px;
+  margin: 0;
+  color: #f3f4f6;
+  font-size: 18px;
+  line-height: 1.75;
+}
+
+/* =========================
+   MAIN
+========================= */
+
+.contact-main {
+  background: #f8fafc;
+  padding: 75px 0;
+}
+
+.contact-container {
+  width: min(1200px, 92%);
+  margin: 0 auto;
+}
+
+.section-heading {
+  max-width: 760px;
+  margin: 0 auto 45px;
+  text-align: center;
+}
+
+.section-label {
+  margin: 0 0 8px;
+  color: #C2410C;
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+}
+
+.section-heading h2 {
+  margin: 0 0 14px;
+  color: #111111;
+  font-size: clamp(30px, 4vw, 44px);
+  line-height: 1.15;
+}
+
+.section-heading p {
+  margin: 0;
+  color: #4b5563;
+  font-size: 16px;
+}
+
+/* =========================
+   CONTACT GRID
+========================= */
 
 .contact-grid {
   display: grid;
-  grid-template-columns: 1fr 1.2fr;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
   gap: 30px;
+  align-items: start;
 }
 
 .contact-card {
   background: #ffffff;
-  padding: 30px;
-  border-radius: 16px;
-  box-shadow: 0 8px 25px rgba(0,0,0,0.07);
+  border: 1px solid #e5e7eb;
+  border-radius: 18px;
+  padding: 32px;
+  box-shadow: 0 10px 30px rgba(15,23,42,0.07);
+}
+
+.contact-card h2 {
+  margin: 0 0 25px;
+  color: #111111;
+  font-size: 25px;
+  line-height: 1.25;
 }
 
 .contact-info {
-  margin-bottom: 22px;
+  padding: 0 0 19px;
+  margin: 0 0 19px;
+  border-bottom: 1px solid #edf0f3;
+}
+
+.contact-info:last-of-type {
+  margin-bottom: 0;
 }
 
 .contact-info strong {
   display: block;
   margin-bottom: 5px;
+  color: #111111;
+  font-size: 14px;
+  font-weight: 800;
 }
+
+.contact-info span {
+  display: block;
+  color: #4b5563;
+  font-size: 15px;
+  line-height: 1.6;
+  overflow-wrap: anywhere;
+}
+
+.contact-image {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+  border-radius: 14px;
+  margin-top: 25px;
+  display: none;
+}
+
+/* =========================
+   FORM
+========================= */
 
 .contact-form {
   display: grid;
-  gap: 15px;
+  gap: 18px;
+}
+
+.form-group {
+  width: 100%;
 }
 
 .contact-form label {
-  font-weight: 600;
+  display: block;
+  margin-bottom: 7px;
+  color: #111111;
   font-size: 14px;
+  font-weight: 750;
 }
 
 .contact-form input,
 .contact-form select,
 .contact-form textarea {
+  display: block;
   width: 100%;
-  padding: 13px;
-  margin-top: 6px;
+  max-width: 100%;
   border: 1px solid #d1d5db;
-  border-radius: 7px;
-  font-size: 15px;
+  border-radius: 9px;
+  background: #ffffff;
+  color: #111111;
+  padding: 13px 14px;
   font-family: inherit;
+  font-size: 15px;
+  outline: none;
+  transition: 0.2s ease;
+}
+
+.contact-form input,
+.contact-form select {
+  min-height: 48px;
 }
 
 .contact-form textarea {
-  min-height: 150px;
+  min-height: 155px;
   resize: vertical;
+}
+
+.contact-form input::placeholder,
+.contact-form textarea::placeholder {
+  color: #9ca3af;
+}
+
+.contact-form input:focus,
+.contact-form select:focus,
+.contact-form textarea:focus {
+  border-color: #F97316;
+  box-shadow: 0 0 0 3px rgba(249,115,22,0.12);
+}
+
+.contact-submit {
+  width: 100%;
+  min-height: 50px;
+  border: 0;
+  border-radius: 9px;
+  background: #F97316;
+  color: #ffffff;
+  font-family: inherit;
+  font-size: 15px;
+  font-weight: 800;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.contact-submit:hover {
+  background: #C2410C;
 }
 
 .contact-message {
   display: none;
-  padding: 12px;
-  border-radius: 6px;
+  padding: 13px 15px;
+  border-radius: 9px;
   background: #ecfdf5;
+  border: 1px solid #a7f3d0;
   color: #065f46;
+  font-size: 14px;
+  font-weight: 600;
 }
 
-@media (max-width: 800px) {
+/* =========================
+   SUPPORT SECTION
+========================= */
+
+.support-panel {
+  margin-top: 30px;
+  padding: 30px;
+  border-radius: 18px;
+  background: #111111;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 25px;
+}
+
+.support-panel h3 {
+  margin: 0 0 6px;
+  color: #ffffff;
+  font-size: 23px;
+}
+
+.support-panel p {
+  margin: 0;
+  color: #d1d5db;
+}
+
+.support-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  padding: 12px 20px;
+  border-radius: 9px;
+  background: #F97316;
+  color: #ffffff;
+  text-decoration: none;
+  font-weight: 800;
+  white-space: nowrap;
+  transition: 0.2s ease;
+}
+
+.support-button:hover {
+  background: #C2410C;
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+.site-footer {
+  background: #111111;
+  color: #ffffff;
+  padding: 55px 0 0;
+}
+
+.footer-container {
+  width: min(1200px, 92%);
+  margin: 0 auto;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr;
+  gap: 45px;
+  padding-bottom: 40px;
+}
+
+.footer-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.footer-brand .logo-mark {
+  background: #F97316;
+}
+
+.footer-brand-name {
+  color: #ffffff;
+  font-size: 19px;
+  font-weight: 800;
+}
+
+.footer-description {
+  max-width: 430px;
+  margin: 0;
+  color: #cbd5e1;
+  line-height: 1.7;
+}
+
+.site-footer h3 {
+  margin: 0 0 15px;
+  color: #ffffff;
+  font-size: 17px;
+}
+
+.site-footer p {
+  color: #cbd5e1;
+}
+
+.footer-links {
+  display: grid;
+  gap: 9px;
+}
+
+.footer-links a {
+  color: #cbd5e1;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.footer-links a:hover {
+  color: #F97316;
+}
+
+.footer-contact p {
+  margin: 0 0 9px;
+  overflow-wrap: anywhere;
+}
+
+.footer-bottom {
+  border-top: 1px solid #292929;
+  padding: 20px 0;
+}
+
+.footer-bottom p {
+  margin: 0;
+  color: #9ca3af;
+  font-size: 13px;
+}
+
+/* =========================
+   FLOATING SMART SUPPORT
+========================= */
+
+.smart-support {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  z-index: 900;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  padding: 12px 18px;
+  border-radius: 999px;
+  background: #F97316;
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 800;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.18);
+  transition: 0.2s ease;
+}
+
+.smart-support:hover {
+  background: #C2410C;
+  transform: translateY(-2px);
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 1050px) {
+
+  .contact-nav-links {
+    gap: 2px;
+  }
+
+  .contact-nav-links a {
+    padding-left: 9px;
+    padding-right: 9px;
+    font-size: 13px;
+  }
+
+}
+
+@media (max-width: 900px) {
+
+  .contact-menu-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .contact-nav-links {
+    display: none;
+    position: absolute;
+    top: 76px;
+    left: 0;
+    right: 0;
+    width: 100%;
+    padding: 12px 4%;
+    background: #ffffff;
+    border-bottom: 1px solid #e5e7eb;
+    box-shadow: 0 12px 20px rgba(0,0,0,0.08);
+    flex-direction: column;
+    align-items: stretch;
+    gap: 4px;
+  }
+
+  .contact-nav-links.active {
+    display: flex;
+  }
+
+  .contact-nav-links a {
+    width: 100%;
+    justify-content: flex-start;
+    padding: 13px 14px;
+    font-size: 15px;
+  }
+
+  .contact-nav-links .nav-button {
+    margin-left: 0;
+    justify-content: center;
+  }
 
   .contact-grid {
     grid-template-columns: 1fr;
+  }
+
+  .footer-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+}
+
+@media (max-width: 650px) {
+
+  .contact-navbar-inner {
+    min-height: 70px;
+  }
+
+  .contact-nav-links {
+    top: 70px;
+  }
+
+  .contact-hero {
+    min-height: 350px;
+  }
+
+  .contact-hero-content {
+    padding: 55px 0;
+  }
+
+  .contact-hero h1 {
+    font-size: 40px;
+  }
+
+  .contact-hero p {
+    font-size: 16px;
+  }
+
+  .contact-main {
+    padding: 55px 0;
+  }
+
+  .contact-card {
+    padding: 24px 20px;
+  }
+
+  .support-panel {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .support-button {
+    width: 100%;
+  }
+
+  .footer-grid {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+
+  .smart-support {
+    right: 14px;
+    bottom: 14px;
+    min-height: 45px;
+    padding: 10px 15px;
   }
 
 }
@@ -117,112 +710,130 @@
 
 <body>
 
-
-<!-- HEADER -->
+<!-- =========================
+     HEADER
+========================= -->
 
 <header class="site-header">
 
-  <div class="container navbar">
+  <div class="contact-navbar">
 
-    <a
-      href="index.html"
-      class="logo"
-    >
-
-      <span class="logo-mark">
-        EL
-      </span>
-
-      <span id="siteShortName">
-        ExpressLine
-      </span>
-
-    </a>
-
-
-    <button
-      class="menu-toggle"
-      type="button"
-      aria-label="Open navigation menu"
-    >
-      ☰
-    </button>
-
-
-    <nav class="nav-links">
+    <div class="contact-navbar-inner">
 
       <a
-        id="navHome"
         href="index.html"
+        class="contact-logo"
       >
-        Home
+
+        <span class="logo-mark">
+          EL
+        </span>
+
+        <span id="siteShortName">
+          ExpressLine
+        </span>
+
       </a>
 
-      <a
-        id="navTrack"
-        href="track.html"
-      >
-        Track Shipment
-      </a>
 
-      <a
-        id="navServices"
-        href="services.html"
+      <button
+        class="contact-menu-toggle"
+        type="button"
+        aria-label="Open navigation menu"
+        aria-expanded="false"
       >
-        Services
-      </a>
+        ☰
+      </button>
 
-      <a
-        id="navAbout"
-        href="about.html"
+
+      <nav
+        class="contact-nav-links"
+        id="contactNavLinks"
       >
-        About Us
-      </a>
 
-      <a
-        id="navContact"
-        href="contact.html"
-      >
-        Contact Us
-      </a>
+        <a
+          id="navHome"
+          href="index.html"
+        >
+          Home
+        </a>
 
-      <a
-        id="navRequest"
-        href="request.html"
-      >
-        Request Shipment
-      </a>
+        <a
+          id="navServices"
+          href="services.html"
+        >
+          Services
+        </a>
 
-      <a
-        id="navLogin"
-        href="login.html"
-        class="nav-button"
-      >
-        Customer Login
-      </a>
+        <a
+          id="navTrack"
+          href="track.html"
+        >
+          Track Shipment
+        </a>
 
-    </nav>
+        <a
+          id="navRequest"
+          href="request.html"
+        >
+          Request a Shipment
+        </a>
+
+        <a
+          id="navAbout"
+          href="about.html"
+        >
+          About Us
+        </a>
+
+        <a
+          id="navSupport"
+          href="Customer Support.html"
+        >
+          Support
+        </a>
+
+        <a
+          id="navContact"
+          href="contact.html"
+        >
+          Contact
+        </a>
+
+        <a
+          id="navLogin"
+          href="login.html"
+          class="nav-button"
+        >
+          Customer Login
+        </a>
+
+      </nav>
+
+    </div>
 
   </div>
 
 </header>
 
 
-<!-- HERO -->
+<!-- =========================
+     HERO
+========================= -->
 
 <section
   id="contactHero"
-  class="hero contact-hero"
+  class="contact-hero"
 >
 
-  <div class="container hero-content">
+  <div class="contact-hero-content">
 
     <span class="hero-badge">
       CONTACT EXPRESSLINE
     </span>
 
     <h1>
-      Contact Us
+      We're Here to Help
     </h1>
 
     <p>
@@ -235,11 +846,13 @@
 </section>
 
 
-<!-- MAIN -->
+<!-- =========================
+     MAIN CONTENT
+========================= -->
 
-<main class="section section-light">
+<main class="contact-main">
 
-  <div class="container">
+  <div class="contact-container">
 
     <div class="section-heading">
 
@@ -248,12 +861,12 @@
       </p>
 
       <h2>
-        We are here to help.
+        Contact ExpressLine
       </h2>
 
       <p>
-        Contact ExpressLine Delivery Services for assistance
-        with shipments, deliveries, tracking and logistics services.
+        Reach out to our team for help with shipments,
+        deliveries, tracking, accounts and logistics services.
       </p>
 
     </div>
@@ -261,10 +874,9 @@
 
     <div class="contact-grid">
 
-
       <!-- CONTACT INFORMATION -->
 
-      <div class="contact-card">
+      <section class="contact-card">
 
         <h2>
           Contact Information
@@ -358,12 +970,12 @@
           alt="ExpressLine Delivery Services"
         >
 
-      </div>
+      </section>
 
 
       <!-- MESSAGE FORM -->
 
-      <div class="contact-card">
+      <section class="contact-card">
 
         <h2>
           Send Us a Message
@@ -372,10 +984,11 @@
 
         <form
           class="contact-form"
+          id="contactForm"
           onsubmit="sendMessage(event)"
         >
 
-          <div>
+          <div class="form-group">
 
             <label for="contactName">
               Full Name
@@ -384,6 +997,7 @@
             <input
               id="contactName"
               type="text"
+              autocomplete="name"
               required
               placeholder="Enter your full name"
             >
@@ -391,7 +1005,7 @@
           </div>
 
 
-          <div>
+          <div class="form-group">
 
             <label for="contactEmailInput">
               Email Address
@@ -400,14 +1014,15 @@
             <input
               id="contactEmailInput"
               type="email"
+              autocomplete="email"
               required
-              placeholder="Enter your email"
+              placeholder="Enter your email address"
             >
 
           </div>
 
 
-          <div>
+          <div class="form-group">
 
             <label for="contactSubject">
               Subject
@@ -422,27 +1037,27 @@
                 Select a subject
               </option>
 
-              <option>
+              <option value="Shipment Inquiry">
                 Shipment Inquiry
               </option>
 
-              <option>
+              <option value="Tracking Help">
                 Tracking Help
               </option>
 
-              <option>
+              <option value="Delivery Question">
                 Delivery Question
               </option>
 
-              <option>
+              <option value="Account Help">
                 Account Help
               </option>
 
-              <option>
+              <option value="Business Services">
                 Business Services
               </option>
 
-              <option>
+              <option value="Other">
                 Other
               </option>
 
@@ -451,7 +1066,7 @@
           </div>
 
 
-          <div>
+          <div class="form-group">
 
             <label for="contactMessageInput">
               Message
@@ -468,7 +1083,7 @@
 
           <button
             type="submit"
-            class="btn btn-primary"
+            class="contact-submit"
           >
             Send Message
           </button>
@@ -477,13 +1092,41 @@
           <div
             id="message"
             class="contact-message"
+            role="status"
           >
             Thank you. Your message has been received.
           </div>
 
         </form>
 
+      </section>
+
+    </div>
+
+
+    <!-- SMART SUPPORT -->
+
+    <div class="support-panel">
+
+      <div>
+
+        <h3>
+          Need immediate assistance?
+        </h3>
+
+        <p>
+          Our Smart Support team can help with shipment,
+          tracking and delivery questions.
+        </p>
+
       </div>
+
+      <a
+        href="Customer Support.html"
+        class="support-button"
+      >
+        Smart Support
+      </a>
 
     </div>
 
@@ -492,33 +1135,40 @@
 </main>
 
 
-<!-- FOOTER -->
+<!-- =========================
+     FOOTER
+========================= -->
 
 <footer class="site-footer">
 
-  <div class="container">
+  <div class="footer-container">
 
     <div class="footer-grid">
 
 
       <div>
 
-        <div class="logo">
+        <div class="footer-brand">
 
           <span class="logo-mark">
             EL
           </span>
 
-          <span id="footerCompanyName">
+          <span
+            id="footerCompanyName"
+            class="footer-brand-name"
+          >
             ExpressLine
           </span>
 
         </div>
 
-        <p id="footerText">
-          Professional courier and logistics solutions
-          designed around reliable service, shipment
-          visibility and customer convenience.
+        <p
+          id="footerText"
+          class="footer-description"
+        >
+          Reliable logistics and delivery solutions
+          for individuals and businesses.
         </p>
 
       </div>
@@ -530,34 +1180,38 @@
           Quick Links
         </h3>
 
-        <p>
+        <div class="footer-links">
+
           <a href="index.html">
             Home
           </a>
-        </p>
 
-        <p>
           <a href="services.html">
             Services
           </a>
-        </p>
 
-        <p>
           <a href="track.html">
             Track Shipment
           </a>
-        </p>
 
-        <p>
           <a href="request.html">
-            Request Shipment
+            Request a Shipment
           </a>
-        </p>
+
+          <a href="about.html">
+            About Us
+          </a>
+
+          <a href="contact.html">
+            Contact
+          </a>
+
+        </div>
 
       </div>
 
 
-      <div>
+      <div class="footer-contact">
 
         <h3>
           Contact
@@ -569,6 +1223,15 @@
 
         <p id="footerContactPhone">
           +1 (800) 555-0199
+        </p>
+
+        <p>
+          <a
+            href="Customer Support.html"
+            class="footer-links"
+          >
+            Smart Support
+          </a>
         </p>
 
       </div>
@@ -590,7 +1253,20 @@
 </footer>
 
 
-<!-- SUPABASE -->
+<!-- FLOATING SMART SUPPORT -->
+
+<a
+  href="Customer Support.html"
+  class="smart-support"
+  aria-label="Open Smart Support"
+>
+  Smart Support
+</a>
+
+
+<!-- =========================
+     SUPABASE
+========================= -->
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
@@ -610,16 +1286,22 @@ const supabaseClient =
   );
 
 
+/* =========================
+   LOAD WEBSITE SETTINGS
+========================= */
+
 async function getWebsiteSettings() {
 
   try {
 
-    const { data, error } =
-      await supabaseClient
-        .from("website_settings")
-        .select("settings")
-        .eq("id", 1)
-        .maybeSingle();
+    const {
+      data,
+      error
+    } = await supabaseClient
+      .from("website_settings")
+      .select("settings")
+      .eq("id", 1)
+      .maybeSingle();
 
 
     if (error) {
@@ -650,10 +1332,15 @@ async function getWebsiteSettings() {
 }
 
 
+/* =========================
+   SET TEXT
+========================= */
+
 function setText(id, value) {
 
   const element =
     document.getElementById(id);
+
 
   if (
     element &&
@@ -669,6 +1356,10 @@ function setText(id, value) {
 
 }
 
+
+/* =========================
+   APPLY WEBSITE SETTINGS
+========================= */
 
 async function applyWebsiteSettings() {
 
@@ -699,13 +1390,18 @@ async function applyWebsiteSettings() {
   );
 
   setText(
+    "navServices",
+    settings.navServices
+  );
+
+  setText(
     "navTrack",
     settings.navTrack
   );
 
   setText(
-    "navServices",
-    settings.navServices
+    "navRequest",
+    settings.navRequest
   );
 
   setText(
@@ -714,13 +1410,13 @@ async function applyWebsiteSettings() {
   );
 
   setText(
-    "navContact",
-    settings.navContact
+    "navSupport",
+    settings.navSupport
   );
 
   setText(
-    "navRequest",
-    settings.navRequest
+    "navContact",
+    settings.navContact
   );
 
   setText(
@@ -806,6 +1502,7 @@ async function applyWebsiteSettings() {
       "contactImage"
     );
 
+
   if (
     contactImage &&
     settings.contactImage &&
@@ -841,6 +1538,7 @@ async function applyWebsiteSettings() {
       "pageDescription"
     );
 
+
   if (
     description &&
     settings.seoDescription
@@ -860,6 +1558,7 @@ async function applyWebsiteSettings() {
     document.getElementById(
       "pageKeywords"
     );
+
 
   if (
     keywords &&
@@ -982,6 +1681,7 @@ async function applyWebsiteSettings() {
         'link[rel="icon"]'
       );
 
+
     if (!favicon) {
 
       favicon =
@@ -998,24 +1698,110 @@ async function applyWebsiteSettings() {
 
     }
 
+
     favicon.href =
       settings.faviconUrl;
+
+  }
+
+
+  /* HERO IMAGE */
+
+  if (
+    settings.contactHeroImage &&
+    String(settings.contactHeroImage).trim() !== ""
+  ) {
+
+    const hero =
+      document.getElementById(
+        "contactHero"
+      );
+
+
+    if (hero) {
+
+      hero.style.backgroundImage =
+        "linear-gradient(rgba(17,17,17,0.78), rgba(17,17,17,0.78)), url('" +
+        settings.contactHeroImage +
+        "')";
+
+    }
+
+  }
+
+
+  /* MAINTENANCE MODE */
+
+  if (
+    settings.maintenanceMode === true ||
+    settings.maintenanceMode === "true"
+  ) {
+
+    document.body.innerHTML = `
+      <div style="
+        min-height:100vh;
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        padding:30px;
+        background:#111111;
+        color:#ffffff;
+        text-align:center;
+        font-family:Inter,Arial,sans-serif;
+      ">
+        <div style="max-width:600px;">
+          <div style="
+            width:58px;
+            height:58px;
+            margin:0 auto 20px;
+            border-radius:14px;
+            background:#F97316;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            font-weight:900;
+          ">
+            EL
+          </div>
+
+          <h1 style="
+            margin:0 0 12px;
+            font-size:36px;
+          ">
+            Website Temporarily Unavailable
+          </h1>
+
+          <p style="
+            margin:0;
+            color:#d1d5db;
+            line-height:1.7;
+          ">
+            We are currently updating our website.
+            Please check back shortly.
+          </p>
+        </div>
+      </div>
+    `;
+
+    return;
 
   }
 
 }
 
 
-/* MOBILE MENU */
+/* =========================
+   MOBILE MENU
+========================= */
 
 const menuToggle =
   document.querySelector(
-    ".menu-toggle"
+    ".contact-menu-toggle"
   );
 
 const navLinks =
-  document.querySelector(
-    ".nav-links"
+  document.getElementById(
+    "contactNavLinks"
   );
 
 
@@ -1026,11 +1812,20 @@ if (
 
   menuToggle.addEventListener(
     "click",
-    function () {
+    function() {
 
-      navLinks.classList.toggle(
-        "active"
+      const isOpen =
+        navLinks.classList.toggle(
+          "active"
+        );
+
+      menuToggle.setAttribute(
+        "aria-expanded",
+        isOpen ? "true" : "false"
       );
+
+      menuToggle.innerHTML =
+        isOpen ? "✕" : "☰";
 
     }
   );
@@ -1048,6 +1843,14 @@ if (
             "active"
           );
 
+          menuToggle.setAttribute(
+            "aria-expanded",
+            "false"
+          );
+
+          menuToggle.innerHTML =
+            "☰";
+
         }
       );
 
@@ -1056,16 +1859,20 @@ if (
 }
 
 
-/* CONTACT FORM */
+/* =========================
+   CONTACT FORM
+========================= */
 
 function sendMessage(event) {
 
   event.preventDefault();
 
+
   const message =
     document.getElementById(
       "message"
     );
+
 
   if (message) {
 
@@ -1074,10 +1881,27 @@ function sendMessage(event) {
 
   }
 
+
   event.target.reset();
+
+
+  setTimeout(function() {
+
+    if (message) {
+
+      message.style.display =
+        "none";
+
+    }
+
+  }, 6000);
 
 }
 
+
+/* =========================
+   START
+========================= */
 
 applyWebsiteSettings();
 
