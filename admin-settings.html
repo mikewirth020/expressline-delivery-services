@@ -214,6 +214,13 @@
       background: #e1e6ee;
     }
 
+    .key-help {
+      margin: 8px 0 0;
+      font-size: 12px;
+      color: #697386;
+      line-height: 1.5;
+    }
+
     .actions {
       position: sticky;
       bottom: 0;
@@ -328,7 +335,7 @@
   <div class="notice">
     <strong>Website image management:</strong>
     Choose your images directly from your phone or computer below.
-    Your website settings are now saved online through the ExpressLine database.
+    Your website settings are saved online through the ExpressLine database.
   </div>
 
   <div id="message" class="message"></div>
@@ -411,10 +418,13 @@
       <div class="image-box">
         <label for="logoFile">Company Logo</label>
         <input id="logoFile" type="file" accept="image/*">
+
         <p class="image-help">
           Choose the logo image that should appear in the website header.
         </p>
+
         <img id="logoPreview" class="preview" alt="Logo preview">
+
         <div class="image-actions">
           <button type="button" class="small-button" onclick="removeImage('logo')">
             Remove Logo
@@ -425,10 +435,13 @@
       <div class="image-box">
         <label for="faviconFile">Website Favicon</label>
         <input id="faviconFile" type="file" accept="image/png,image/jpeg,image/webp,image/x-icon,.ico">
+
         <p class="image-help">
           Choose the small icon used in the browser tab.
         </p>
+
         <img id="faviconPreview" class="preview" alt="Favicon preview">
+
         <div class="image-actions">
           <button type="button" class="small-button" onclick="removeImage('favicon')">
             Remove Favicon
@@ -439,10 +452,13 @@
       <div class="image-box">
         <label for="heroImageFile">Homepage Hero Image</label>
         <input id="heroImageFile" type="file" accept="image/*">
+
         <p class="image-help">
           This image is used by the homepage hero section.
         </p>
+
         <img id="heroImagePreview" class="preview" alt="Homepage hero preview">
+
         <div class="image-actions">
           <button type="button" class="small-button" onclick="removeImage('heroImage')">
             Remove Image
@@ -453,10 +469,13 @@
       <div class="image-box">
         <label for="servicesImageFile">Services Page Image</label>
         <input id="servicesImageFile" type="file" accept="image/*">
+
         <p class="image-help">
           This image is connected to the Services page.
         </p>
+
         <img id="servicesImagePreview" class="preview" alt="Services image preview">
+
         <div class="image-actions">
           <button type="button" class="small-button" onclick="removeImage('servicesImage')">
             Remove Image
@@ -467,10 +486,13 @@
       <div class="image-box">
         <label for="businessImageFile">Business Image</label>
         <input id="businessImageFile" type="file" accept="image/*">
+
         <p class="image-help">
           Choose the image used for business/company sections.
         </p>
+
         <img id="businessImagePreview" class="preview" alt="Business image preview">
+
         <div class="image-actions">
           <button type="button" class="small-button" onclick="removeImage('businessImage')">
             Remove Image
@@ -481,10 +503,13 @@
       <div class="image-box">
         <label for="aboutImageFile">About Page Image</label>
         <input id="aboutImageFile" type="file" accept="image/*">
+
         <p class="image-help">
           This image is connected to the About page.
         </p>
+
         <img id="aboutImagePreview" class="preview" alt="About image preview">
+
         <div class="image-actions">
           <button type="button" class="small-button" onclick="removeImage('aboutImage')">
             Remove Image
@@ -495,10 +520,13 @@
       <div class="image-box">
         <label for="contactImageFile">Contact Page Image</label>
         <input id="contactImageFile" type="file" accept="image/*">
+
         <p class="image-help">
           This image is connected to the Contact page.
         </p>
+
         <img id="contactImagePreview" class="preview" alt="Contact image preview">
+
         <div class="image-actions">
           <button type="button" class="small-button" onclick="removeImage('contactImage')">
             Remove Image
@@ -509,10 +537,13 @@
       <div class="image-box full">
         <label for="backgroundImageFile">Website Background Image</label>
         <input id="backgroundImageFile" type="file" accept="image/*">
+
         <p class="image-help">
           Choose the background image for website sections that use a background image.
         </p>
+
         <img id="backgroundImagePreview" class="preview" alt="Background image preview">
+
         <div class="image-actions">
           <button type="button" class="small-button" onclick="removeImage('backgroundImage')">
             Remove Image
@@ -523,9 +554,36 @@
     </div>
   </section>
 
+  <!-- LOGO SIZE -->
+  <section class="section">
+    <h2>Logo Display Size</h2>
+
+    <p class="section-description">
+      Choose how large the company logo should appear in the public website navigation.
+    </p>
+
+    <div class="grid">
+      <div>
+        <label for="logoSize">Logo Size</label>
+
+        <select id="logoSize">
+          <option value="small">Small</option>
+          <option value="medium">Medium</option>
+          <option value="large">Large</option>
+        </select>
+
+        <p class="image-help">
+          Small keeps the logo compact. Medium gives it normal visibility.
+          Large makes the logo more prominent.
+        </p>
+      </div>
+    </div>
+  </section>
+
   <!-- HEADER -->
   <section class="section">
     <h2>Header Navigation</h2>
+
     <p class="section-description">
       Change the text displayed in the website navigation.
     </p>
@@ -576,6 +634,7 @@
   <!-- HOMEPAGE -->
   <section class="section">
     <h2>Homepage</h2>
+
     <p class="section-description">
       Control the main homepage heading, description and buttons.
     </p>
@@ -606,6 +665,7 @@
   <!-- COLORS -->
   <section class="section">
     <h2>Website Colors</h2>
+
     <p class="section-description">
       Change the main colors used throughout the website.
     </p>
@@ -640,6 +700,7 @@
   <!-- TYPOGRAPHY -->
   <section class="section">
     <h2>Typography</h2>
+
     <p class="section-description">
       Control the website font family and base font size.
     </p>
@@ -647,6 +708,7 @@
     <div class="grid">
       <div>
         <label for="fontFamily">Font Family</label>
+
         <select id="fontFamily">
           <option value="Arial, Helvetica, sans-serif">Arial</option>
           <option value="Inter, Arial, Helvetica, sans-serif">Inter</option>
@@ -666,6 +728,7 @@
   <!-- SERVICES -->
   <section class="section">
     <h2>Services</h2>
+
     <p class="section-description">
       Manage the first three service cards shown on the website.
     </p>
@@ -706,6 +769,7 @@
   <!-- CONTACT -->
   <section class="section">
     <h2>Contact Information</h2>
+
     <p class="section-description">
       These details can be displayed throughout the public website.
     </p>
@@ -742,7 +806,12 @@
   <section class="section">
     <h2>Customer Support</h2>
 
+    <p class="section-description">
+      Configure the public customer support area and Smartsupp live chat.
+    </p>
+
     <div class="grid">
+
       <div>
         <label for="supportEmail">Support Email</label>
         <input id="supportEmail" type="email">
@@ -760,6 +829,7 @@
 
       <div>
         <label>Live Chat</label>
+
         <div class="checkbox-row">
           <input id="liveChat" type="checkbox">
           <span>Enable live chat</span>
@@ -770,6 +840,41 @@
         <label for="supportMessage">Support Message</label>
         <textarea id="supportMessage"></textarea>
       </div>
+
+      <div>
+        <label>Smartsupp</label>
+
+        <div class="checkbox-row">
+          <input id="smartsuppEnabled" type="checkbox">
+          <span>Enable Smartsupp live support</span>
+        </div>
+      </div>
+
+      <div>
+        <label for="smartsuppKey">Smartsupp Key</label>
+
+        <input
+          id="smartsuppKey"
+          type="text"
+          placeholder="Enter your Smartsupp key"
+          autocomplete="off"
+        >
+
+        <p class="key-help">
+          Enter your Smartsupp website key here. Do not paste your password.
+        </p>
+      </div>
+
+      <div>
+        <label for="smartsuppButtonText">Live Support Button Text</label>
+
+        <input
+          id="smartsuppButtonText"
+          type="text"
+          placeholder="Live Support"
+        >
+      </div>
+
     </div>
   </section>
 
@@ -823,25 +928,39 @@
   </section>
 
   <div class="actions">
-    <button type="button" class="btn btn-primary" onclick="saveSettings()">
+
+    <button
+      type="button"
+      class="btn btn-primary"
+      onclick="saveSettings()"
+    >
       Save Website Changes
     </button>
 
-    <button type="button" class="btn btn-secondary" onclick="loadSettings()">
+    <button
+      type="button"
+      class="btn btn-secondary"
+      onclick="loadSettings()"
+    >
       Reload Saved Settings
     </button>
 
-    <button type="button" class="btn btn-danger" onclick="clearSettings()">
+    <button
+      type="button"
+      class="btn btn-danger"
+      onclick="clearSettings()"
+    >
       Clear Website Settings
     </button>
+
   </div>
 
 </main>
 
-<!-- Supabase JavaScript client -->
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <script>
+
   /* ==========================================
      EXPRESSLINE SUPABASE CONNECTION
      ========================================== */
@@ -852,21 +971,28 @@
   const SUPABASE_PUBLISHABLE_KEY =
     "sb_publishable_zZ0JiBW-2uarX2gnR5w9hQ_77RpB6SM";
 
-  const supabaseClient = window.supabase.createClient(
-    SUPABASE_URL,
-    SUPABASE_PUBLISHABLE_KEY,
-    {
-      auth: {
-        persistSession: true,
-        autoRefreshToken: true,
-        detectSessionInUrl: true
+  const supabaseClient =
+    window.supabase.createClient(
+      SUPABASE_URL,
+      SUPABASE_PUBLISHABLE_KEY,
+      {
+        auth: {
+          persistSession: true,
+          autoRefreshToken: true,
+          detectSessionInUrl: true
+        }
       }
-    }
-  );
+    );
 
   const SETTINGS_TABLE = "website_settings";
 
+
+  /* ==========================================
+     IMAGE FIELDS
+     ========================================== */
+
   const imageFields = {
+
     logo: {
       inputId: "logoFile",
       previewId: "logoPreview",
@@ -914,9 +1040,16 @@
       previewId: "backgroundImagePreview",
       settingKey: "backgroundImage"
     }
+
   };
 
+
+  /* ==========================================
+     FORM FIELDS
+     ========================================== */
+
   const fields = [
+
     "companyName",
     "shortName",
     "tagline",
@@ -926,6 +1059,8 @@
     "websiteDescription",
     "announcementText",
     "announcementEnabled",
+
+    "logoSize",
 
     "navHome",
     "navServices",
@@ -972,6 +1107,10 @@
     "liveChat",
     "supportHours",
 
+    "smartsuppEnabled",
+    "smartsuppKey",
+    "smartsuppButtonText",
+
     "seoTitle",
     "seoDescription",
     "seoKeywords",
@@ -980,139 +1119,210 @@
     "copyrightText",
     "privacyUrl",
     "termsUrl"
+
   ];
+
 
   let uploadedImages = {};
 
+
+  /* ==========================================
+     MESSAGE
+     ========================================== */
+
   function showMessage(message, type) {
-    const box = document.getElementById("message");
+
+    const box =
+      document.getElementById("message");
 
     box.textContent = message;
-    box.className = "message " + type;
+
+    box.className =
+      "message " + type;
 
     window.scrollTo({
       top: 0,
       behavior: "smooth"
     });
 
-    setTimeout(function () {
+    setTimeout(function() {
+
       box.className = "message";
+
       box.textContent = "";
+
     }, 6000);
+
   }
 
+
+  /* ==========================================
+     FILE READER
+     ========================================== */
+
   function readFileAsDataURL(file) {
+
     return new Promise(function(resolve, reject) {
-      const reader = new FileReader();
+
+      const reader =
+        new FileReader();
 
       reader.onload = function() {
         resolve(reader.result);
       };
 
       reader.onerror = function() {
-        reject(new Error("Unable to read image."));
+        reject(
+          new Error("Unable to read image.")
+        );
       };
 
       reader.readAsDataURL(file);
+
     });
+
   }
 
-  function showImagePreview(previewId, source) {
-    const preview = document.getElementById(previewId);
+
+  /* ==========================================
+     IMAGE PREVIEW
+     ========================================== */
+
+  function showImagePreview(
+    previewId,
+    source
+  ) {
+
+    const preview =
+      document.getElementById(previewId);
 
     if (!preview) {
       return;
     }
 
     if (!source) {
+
       preview.removeAttribute("src");
+
       preview.classList.remove("show");
+
       return;
     }
 
     preview.src = source;
+
     preview.classList.add("show");
+
   }
 
+
+  /* ==========================================
+     IMAGE UPLOAD
+     ========================================== */
+
   function setupImageUpload(imageName) {
-    const config = imageFields[imageName];
+
+    const config =
+      imageFields[imageName];
 
     if (!config) {
       return;
     }
 
-    const input = document.getElementById(config.inputId);
+    const input =
+      document.getElementById(
+        config.inputId
+      );
 
     if (!input) {
       return;
     }
 
-    input.addEventListener("change", async function() {
-      const file = input.files && input.files[0];
+    input.addEventListener(
+      "change",
+      async function() {
 
-      if (!file) {
-        return;
+        const file =
+          input.files &&
+          input.files[0];
+
+        if (!file) {
+          return;
+        }
+
+        if (!file.type.startsWith("image/")) {
+
+          input.value = "";
+
+          showMessage(
+            "Please choose an image file.",
+            "error"
+          );
+
+          return;
+        }
+
+        const maxSize =
+          700 * 1024;
+
+        if (file.size > maxSize) {
+
+          input.value = "";
+
+          showMessage(
+            "Please choose an image smaller than 700 KB.",
+            "error"
+          );
+
+          return;
+        }
+
+        try {
+
+          const dataUrl =
+            await readFileAsDataURL(file);
+
+          uploadedImages[imageName] =
+            dataUrl;
+
+          showImagePreview(
+            config.previewId,
+            dataUrl
+          );
+
+          showMessage(
+            file.name +
+            " selected. Click Save Website Changes.",
+            "success"
+          );
+
+        } catch (error) {
+
+          console.error(error);
+
+          input.value = "";
+
+          showMessage(
+            "The image could not be loaded.",
+            "error"
+          );
+
+        }
+
       }
+    );
 
-      if (!file.type.startsWith("image/")) {
-        input.value = "";
-
-        showMessage(
-          "Please choose an image file.",
-          "error"
-        );
-
-        return;
-      }
-
-      /*
-        Keep images small enough for the website settings record.
-        We will move large images to Supabase Storage in the next
-        stage of the project.
-      */
-      const maxSize = 700 * 1024;
-
-      if (file.size > maxSize) {
-        input.value = "";
-
-        showMessage(
-          "Please choose an image smaller than 700 KB.",
-          "error"
-        );
-
-        return;
-      }
-
-      try {
-        const dataUrl = await readFileAsDataURL(file);
-
-        uploadedImages[imageName] = dataUrl;
-
-        showImagePreview(
-          config.previewId,
-          dataUrl
-        );
-
-        showMessage(
-          file.name + " selected. Click Save Website Changes.",
-          "success"
-        );
-
-      } catch (error) {
-        console.error(error);
-
-        input.value = "";
-
-        showMessage(
-          "The image could not be loaded.",
-          "error"
-        );
-      }
-    });
   }
 
+
+  /* ==========================================
+     REMOVE IMAGE
+     ========================================== */
+
   function removeImage(imageName) {
-    const config = imageFields[imageName];
+
+    const config =
+      imageFields[imageName];
 
     if (!config) {
       return;
@@ -1120,7 +1330,10 @@
 
     uploadedImages[imageName] = "";
 
-    const input = document.getElementById(config.inputId);
+    const input =
+      document.getElementById(
+        config.inputId
+      );
 
     if (input) {
       input.value = "";
@@ -1135,10 +1348,18 @@
       "Image removed. Click Save Website Changes to save the removal.",
       "success"
     );
+
   }
 
+
+  /* ==========================================
+     FORM VALUES
+     ========================================== */
+
   function getFormValue(id) {
-    const element = document.getElementById(id);
+
+    const element =
+      document.getElementById(id);
 
     if (!element) {
       return "";
@@ -1149,62 +1370,103 @@
     }
 
     return element.value;
+
   }
 
+
   function setFormValue(id, value) {
-    const element = document.getElementById(id);
+
+    const element =
+      document.getElementById(id);
 
     if (!element) {
       return;
     }
 
     if (element.type === "checkbox") {
-      element.checked = Boolean(value);
+
+      element.checked =
+        Boolean(value);
+
       return;
     }
 
-    element.value = value ?? "";
+    element.value =
+      value ?? "";
+
   }
 
+
+  /* ==========================================
+     COLLECT SETTINGS
+     ========================================== */
+
   function collectSettings() {
+
     const settings = {};
 
     fields.forEach(function(field) {
-      settings[field] = getFormValue(field);
+
+      settings[field] =
+        getFormValue(field);
+
     });
 
-    Object.keys(imageFields).forEach(function(imageName) {
-      const config = imageFields[imageName];
 
-      if (
-        Object.prototype.hasOwnProperty.call(
-          uploadedImages,
-          imageName
-        )
-      ) {
-        settings[config.settingKey] =
-          uploadedImages[imageName];
-      }
-    });
+    Object.keys(imageFields)
+      .forEach(function(imageName) {
+
+        const config =
+          imageFields[imageName];
+
+        if (
+          Object.prototype.hasOwnProperty.call(
+            uploadedImages,
+            imageName
+          )
+        ) {
+
+          settings[config.settingKey] =
+            uploadedImages[imageName];
+
+        }
+
+      });
+
 
     return settings;
+
   }
 
+
+  /* ==========================================
+     SESSION
+     ========================================== */
+
   async function getSupabaseSession() {
-    const result = await supabaseClient.auth.getSession();
+
+    const result =
+      await supabaseClient.auth.getSession();
 
     if (result.error) {
+
       console.error(result.error);
+
       return null;
     }
 
     return result.data.session;
+
   }
 
+
   async function requireSupabaseAdmin() {
-    const session = await getSupabaseSession();
+
+    const session =
+      await getSupabaseSession();
 
     if (!session || !session.user) {
+
       showMessage(
         "Your Supabase Admin session is not active. We will connect the Admin login next.",
         "error"
@@ -1214,32 +1476,47 @@
     }
 
     return true;
+
   }
 
+
+  /* ==========================================
+     SAVE SETTINGS
+     ========================================== */
+
   async function saveSettings() {
+
     try {
-      const allowed = await requireSupabaseAdmin();
+
+      const allowed =
+        await requireSupabaseAdmin();
 
       if (!allowed) {
         return;
       }
 
-      const settings = collectSettings();
+      const settings =
+        collectSettings();
 
-      const { error } = await supabaseClient
-        .from(SETTINGS_TABLE)
-        .upsert(
-          {
-            id: 1,
-            settings: settings,
-            updated_at: new Date().toISOString()
-          },
-          {
-            onConflict: "id"
-          }
-        );
+
+      const { error } =
+        await supabaseClient
+          .from(SETTINGS_TABLE)
+          .upsert(
+            {
+              id: 1,
+              settings: settings,
+              updated_at:
+                new Date().toISOString()
+            },
+            {
+              onConflict: "id"
+            }
+          );
+
 
       if (error) {
+
         console.error(error);
 
         showMessage(
@@ -1251,18 +1528,20 @@
         return;
       }
 
-      /*
-        Keep a local copy temporarily as a fallback.
-        Supabase is now the main source.
-      */
+
       try {
+
         localStorage.setItem(
           "expresslineWebsiteSettings",
           JSON.stringify(settings)
         );
+
       } catch (localError) {
+
         console.warn(localError);
+
       }
+
 
       showMessage(
         "Website settings saved online successfully.",
@@ -1270,24 +1549,37 @@
       );
 
     } catch (error) {
+
       console.error(error);
 
       showMessage(
         "An unexpected error occurred while saving.",
         "error"
       );
+
     }
+
   }
 
+
+  /* ==========================================
+     LOAD SETTINGS
+     ========================================== */
+
   async function loadSettings() {
+
     try {
-      const { data, error } = await supabaseClient
-        .from(SETTINGS_TABLE)
-        .select("settings")
-        .eq("id", 1)
-        .maybeSingle();
+
+      const { data, error } =
+        await supabaseClient
+          .from(SETTINGS_TABLE)
+          .select("settings")
+          .eq("id", 1)
+          .maybeSingle();
+
 
       if (error) {
+
         console.error(error);
 
         showMessage(
@@ -1299,99 +1591,171 @@
         return;
       }
 
-      let settings = data && data.settings
-        ? data.settings
-        : {};
 
-      /*
-        If the online database is empty, temporarily check the
-        previous local settings so nothing is lost.
-      */
+      let settings =
+        data && data.settings
+          ? data.settings
+          : {};
+
+
       if (
-        (!settings || Object.keys(settings).length === 0) &&
-        localStorage.getItem("expresslineWebsiteSettings")
+        (!settings ||
+          Object.keys(settings).length === 0) &&
+        localStorage.getItem(
+          "expresslineWebsiteSettings"
+        )
       ) {
+
         try {
-          settings = JSON.parse(
-            localStorage.getItem(
-              "expresslineWebsiteSettings"
-            )
-          );
+
+          settings =
+            JSON.parse(
+              localStorage.getItem(
+                "expresslineWebsiteSettings"
+              )
+            );
+
         } catch (localError) {
+
           console.warn(localError);
+
         }
+
       }
 
+
       fields.forEach(function(field) {
+
         if (
           Object.prototype.hasOwnProperty.call(
             settings,
             field
           )
         ) {
+
           setFormValue(
             field,
             settings[field]
           );
+
         }
+
       });
+
+
+      /*
+        If no logo size has been saved yet,
+        use Medium as the default.
+      */
+
+      if (!settings.logoSize) {
+
+        setFormValue(
+          "logoSize",
+          "medium"
+        );
+
+      }
+
+
+      /*
+        If no Smartsupp button text has
+        been saved yet, use Live Support.
+      */
+
+      if (!settings.smartsuppButtonText) {
+
+        setFormValue(
+          "smartsuppButtonText",
+          "Live Support"
+        );
+
+      }
+
 
       uploadedImages = {};
 
-      Object.keys(imageFields).forEach(function(imageName) {
-        const config = imageFields[imageName];
 
-        const savedImage =
-          settings[config.settingKey] || "";
+      Object.keys(imageFields)
+        .forEach(function(imageName) {
 
-        uploadedImages[imageName] = savedImage;
+          const config =
+            imageFields[imageName];
 
-        showImagePreview(
-          config.previewId,
-          savedImage
-        );
-      });
+          const savedImage =
+            settings[
+              config.settingKey
+            ] || "";
+
+          uploadedImages[imageName] =
+            savedImage;
+
+          showImagePreview(
+            config.previewId,
+            savedImage
+          );
+
+        });
+
 
     } catch (error) {
+
       console.error(error);
 
       showMessage(
         "Website settings could not be loaded.",
         "error"
       );
+
     }
+
   }
 
+
+  /* ==========================================
+     CLEAR SETTINGS
+     ========================================== */
+
   async function clearSettings() {
-    const confirmed = confirm(
-      "Clear all saved ExpressLine website settings?"
-    );
+
+    const confirmed =
+      confirm(
+        "Clear all saved ExpressLine website settings?"
+      );
 
     if (!confirmed) {
       return;
     }
 
+
     try {
-      const allowed = await requireSupabaseAdmin();
+
+      const allowed =
+        await requireSupabaseAdmin();
 
       if (!allowed) {
         return;
       }
 
-      const { error } = await supabaseClient
-        .from(SETTINGS_TABLE)
-        .upsert(
-          {
-            id: 1,
-            settings: {},
-            updated_at: new Date().toISOString()
-          },
-          {
-            onConflict: "id"
-          }
-        );
+
+      const { error } =
+        await supabaseClient
+          .from(SETTINGS_TABLE)
+          .upsert(
+            {
+              id: 1,
+              settings: {},
+              updated_at:
+                new Date().toISOString()
+            },
+            {
+              onConflict: "id"
+            }
+          );
+
 
       if (error) {
+
         console.error(error);
 
         showMessage(
@@ -1403,9 +1767,12 @@
         return;
       }
 
+
       uploadedImages = {};
 
+
       fields.forEach(function(field) {
+
         const element =
           document.getElementById(field);
 
@@ -1413,31 +1780,43 @@
           return;
         }
 
-        if (element.type === "checkbox") {
+        if (
+          element.type === "checkbox"
+        ) {
+
           element.checked = false;
+
         } else {
+
           element.value = "";
+
         }
+
       });
 
-      Object.keys(imageFields).forEach(function(imageName) {
-        const config =
-          imageFields[imageName];
 
-        const input =
-          document.getElementById(
-            config.inputId
+      Object.keys(imageFields)
+        .forEach(function(imageName) {
+
+          const config =
+            imageFields[imageName];
+
+          const input =
+            document.getElementById(
+              config.inputId
+            );
+
+          if (input) {
+            input.value = "";
+          }
+
+          showImagePreview(
+            config.previewId,
+            ""
           );
 
-        if (input) {
-          input.value = "";
-        }
+        });
 
-        showImagePreview(
-          config.previewId,
-          ""
-        );
-      });
 
       setFormValue(
         "primaryColor",
@@ -1489,9 +1868,31 @@
         "16px"
       );
 
+      setFormValue(
+        "logoSize",
+        "medium"
+      );
+
+      setFormValue(
+        "smartsuppEnabled",
+        false
+      );
+
+      setFormValue(
+        "smartsuppKey",
+        ""
+      );
+
+      setFormValue(
+        "smartsuppButtonText",
+        "Live Support"
+      );
+
+
       localStorage.removeItem(
         "expresslineWebsiteSettings"
       );
+
 
       showMessage(
         "Online website settings have been cleared.",
@@ -1499,19 +1900,28 @@
       );
 
     } catch (error) {
+
       console.error(error);
 
       showMessage(
         "The website settings could not be cleared.",
         "error"
       );
+
     }
+
   }
+
+
+  /* ==========================================
+     COLOR PICKERS
+     ========================================== */
 
   function connectColorPicker(
     colorId,
     textId
   ) {
+
     const color =
       document.getElementById(colorId);
 
@@ -1522,53 +1932,74 @@
       return;
     }
 
+
     color.addEventListener(
       "input",
       function() {
-        text.value = color.value;
+
+        text.value =
+          color.value;
+
       }
     );
+
 
     text.addEventListener(
       "input",
       function() {
+
         if (
           /^#[0-9A-Fa-f]{6}$/.test(
             text.value
           )
         ) {
+
           color.value =
             text.value;
+
         }
+
       }
     );
+
   }
 
-  /*
-    Keep the existing Admin protection.
-  */
+
+  /* ==========================================
+     ADMIN PROTECTION
+     ========================================== */
+
   if (
     localStorage.getItem(
       "adminLoggedIn"
     ) !== "true"
   ) {
+
     window.location.replace(
       "admin-login.html"
     );
+
   }
 
-  /*
-    Image controls.
-  */
-  Object.keys(imageFields).forEach(
-    function(imageName) {
-      setupImageUpload(imageName);
-    }
-  );
 
-  /*
-    Color controls.
-  */
+  /* ==========================================
+     IMAGE CONTROLS
+     ========================================== */
+
+  Object.keys(imageFields)
+    .forEach(function(imageName) {
+
+      setupImageUpload(
+        imageName
+      );
+
+    });
+
+
+  /* ==========================================
+     COLOR CONTROLS
+     ========================================== */
+
   connectColorPicker(
     "primaryColor",
     "primaryColorText"
@@ -1589,10 +2020,13 @@
     "textColorText"
   );
 
-  /*
-    Load online settings.
-  */
+
+  /* ==========================================
+     LOAD ONLINE SETTINGS
+     ========================================== */
+
   loadSettings();
+
 </script>
 
 </body>
