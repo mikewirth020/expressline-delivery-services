@@ -474,27 +474,78 @@
   </footer>
 
 
+  <!-- SUPABASE -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+  <script src="script.js"></script>
+
+
   <!-- WEBSITE SETTINGS CONNECTION -->
   <script>
 
-    const WEBSITE_SETTINGS_KEY = "expresslineWebsiteSettings";
+    /* =========================
+       SUPABASE CONFIGURATION
+    ========================= */
+
+    const SUPABASE_URL =
+      "https://uhjgietvznkfzckmxqfz.supabase.co";
+
+    const SUPABASE_PUBLISHABLE_KEY =
+      "sb_publishable_zZ0JiBW-2uarX2gnR5w9hQ_77RpB6SM";
 
 
-    function getWebsiteSettings() {
+    const supabaseClient =
+      window.supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_PUBLISHABLE_KEY
+      );
+
+
+    /* =========================
+       LOAD WEBSITE SETTINGS
+    ========================= */
+
+    async function getWebsiteSettings() {
 
       try {
 
-        const saved =
-          localStorage.getItem(WEBSITE_SETTINGS_KEY);
+        const { data, error } =
+          await supabaseClient
+            .from("website_settings")
+            .select("settings")
+            .eq("id", 1)
+            .maybeSingle();
 
-        return saved
-          ? JSON.parse(saved)
-          : {};
+
+        if (error) {
+
+          console.error(
+            "Unable to load website settings:",
+            error
+          );
+
+          return {};
+
+        }
+
+
+        if (
+          data &&
+          data.settings &&
+          typeof data.settings === "object"
+        ) {
+
+          return data.settings;
+
+        }
+
+
+        return {};
 
       } catch (error) {
 
         console.error(
-          "Unable to load website settings:",
+          "Website settings error:",
           error
         );
 
@@ -505,10 +556,15 @@
     }
 
 
+    /* =========================
+       SET TEXT
+    ========================= */
+
     function setText(id, value) {
 
       const element =
         document.getElementById(id);
+
 
       if (
         element &&
@@ -524,18 +580,25 @@
     }
 
 
-    function applyWebsiteSettings() {
+    /* =========================
+       APPLY WEBSITE SETTINGS
+    ========================= */
+
+    async function applyWebsiteSettings() {
 
       const settings =
-        getWebsiteSettings();
+        await getWebsiteSettings();
 
 
-      /* COMPANY */
+      /* =========================
+         COMPANY
+      ========================= */
 
       setText(
         "siteShortName",
         settings.shortName || settings.companyName
       );
+
 
       setText(
         "footerCompanyName",
@@ -543,7 +606,9 @@
       );
 
 
-      /* NAVIGATION */
+      /* =========================
+         NAVIGATION
+      ========================= */
 
       setText(
         "navHome",
@@ -581,12 +646,15 @@
       );
 
 
-      /* FOOTER */
+      /* =========================
+         FOOTER
+      ========================= */
 
       setText(
         "footerText",
         settings.footerText
       );
+
 
       setText(
         "copyrightText",
@@ -594,7 +662,9 @@
       );
 
 
-      /* CONTACT */
+      /* =========================
+         CONTACT
+      ========================= */
 
       setText(
         "footerContactEmail",
@@ -602,6 +672,7 @@
           ? "Email: " + settings.contactEmail
           : ""
       );
+
 
       setText(
         "footerContactPhone",
@@ -611,10 +682,15 @@
       );
 
 
-      /* ABOUT IMAGE */
+      /* =========================
+         ABOUT IMAGE
+      ========================= */
 
       const aboutImage =
-        document.getElementById("aboutImage");
+        document.getElementById(
+          "aboutImage"
+        );
+
 
       if (
         aboutImage &&
@@ -631,7 +707,9 @@
       }
 
 
-      /* WEBSITE TITLE */
+      /* =========================
+         WEBSITE TITLE
+      ========================= */
 
       if (
         settings.websiteTitle &&
@@ -644,10 +722,15 @@
       }
 
 
-      /* SEO */
+      /* =========================
+         SEO
+      ========================= */
 
       const description =
-        document.getElementById("pageDescription");
+        document.getElementById(
+          "pageDescription"
+        );
+
 
       if (
         description &&
@@ -663,7 +746,10 @@
 
 
       const keywords =
-        document.getElementById("pageKeywords");
+        document.getElementById(
+          "pageKeywords"
+        );
+
 
       if (
         keywords &&
@@ -678,103 +764,73 @@
       }
 
 
-      /* COLORS */
+      /* =========================
+         COLORS
+      ========================= */
 
       if (settings.primaryColor) {
 
         document.documentElement.style.setProperty(
-          "--primary-color",
+          "--navy",
           settings.primaryColor
         );
 
       }
 
-      if (settings.primaryColorText) {
-
-        document.documentElement.style.setProperty(
-          "--primary-text",
-          settings.primaryColorText
-        );
-
-      }
 
       if (settings.secondaryColor) {
 
         document.documentElement.style.setProperty(
-          "--secondary-color",
+          "--navy-dark",
           settings.secondaryColor
         );
 
       }
 
-      if (settings.secondaryColorText) {
-
-        document.documentElement.style.setProperty(
-          "--secondary-text",
-          settings.secondaryColorText
-        );
-
-      }
 
       if (settings.accentColor) {
 
         document.documentElement.style.setProperty(
-          "--accent-color",
+          "--orange",
           settings.accentColor
         );
 
       }
 
-      if (settings.accentColorText) {
-
-        document.documentElement.style.setProperty(
-          "--accent-text",
-          settings.accentColorText
-        );
-
-      }
 
       if (settings.textColor) {
 
         document.documentElement.style.setProperty(
-          "--text-color",
+          "--text",
           settings.textColor
         );
 
       }
 
-      if (settings.textColorText) {
 
-        document.documentElement.style.setProperty(
-          "--text-color-text",
-          settings.textColorText
-        );
-
-      }
-
-
-      /* TYPOGRAPHY */
+      /* =========================
+         TYPOGRAPHY
+      ========================= */
 
       if (settings.fontFamily) {
 
-        document.documentElement.style.setProperty(
-          "--font-family",
-          settings.fontFamily
-        );
+        document.body.style.fontFamily =
+          settings.fontFamily;
 
       }
+
 
       if (settings.fontSize) {
 
-        document.documentElement.style.setProperty(
-          "--font-size",
-          settings.fontSize
-        );
+        document.documentElement.style.fontSize =
+          settings.fontSize;
 
       }
 
 
-      /* FAVICON */
+      /* =========================
+         FAVICON
+      ========================= */
 
       if (
         settings.faviconUrl &&
@@ -786,10 +842,13 @@
             'link[rel="icon"]'
           );
 
+
         if (!favicon) {
 
           favicon =
-            document.createElement("link");
+            document.createElement(
+              "link"
+            );
 
           favicon.rel = "icon";
 
@@ -799,6 +858,7 @@
 
         }
 
+
         favicon.href =
           settings.faviconUrl;
 
@@ -807,13 +867,20 @@
     }
 
 
-    /* MOBILE MENU */
+    /* =========================
+       MOBILE MENU
+    ========================= */
 
     const menuToggle =
-      document.querySelector(".menu-toggle");
+      document.querySelector(
+        ".menu-toggle"
+      );
+
 
     const navLinks =
-      document.querySelector(".nav-links");
+      document.querySelector(
+        ".nav-links"
+      );
 
 
     if (
@@ -827,6 +894,11 @@
 
           navLinks.classList.toggle(
             "active"
+          );
+
+          menuToggle.setAttribute(
+            "aria-expanded",
+            navLinks.classList.contains("active")
           );
 
         }
@@ -845,6 +917,11 @@
                 "active"
               );
 
+              menuToggle.setAttribute(
+                "aria-expanded",
+                "false"
+              );
+
             }
           );
 
@@ -853,7 +930,18 @@
     }
 
 
-    applyWebsiteSettings();
+    /* =========================
+       START
+    ========================= */
+
+    document.addEventListener(
+      "DOMContentLoaded",
+      function () {
+
+        applyWebsiteSettings();
+
+      }
+    );
 
   </script>
 
