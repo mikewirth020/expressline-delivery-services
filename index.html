@@ -14,13 +14,27 @@
     box-sizing: border-box;
 }
 
+:root {
+    --primary-color: #e30613;
+    --primary-text: #ffffff;
+    --secondary-color: #172033;
+    --secondary-text: #ffffff;
+    --accent-color: #111827;
+    --accent-text: #ffffff;
+    --text-color: #172033;
+    --text-color-text: #ffffff;
+    --font-family: Arial, Helvetica, sans-serif;
+    --font-size: 16px;
+}
+
 html {
     scroll-behavior: smooth;
 }
 
 body {
-    font-family: Arial, Helvetica, sans-serif;
-    color: #172033;
+    font-family: var(--font-family);
+    font-size: var(--font-size);
+    color: var(--text-color);
     background: #ffffff;
 }
 
@@ -49,7 +63,7 @@ body {
 }
 
 .logo span {
-    color: #e30613;
+    color: var(--primary-color);
 }
 
 /* RIGHT CORNER NAVIGATION */
@@ -82,31 +96,45 @@ body {
 
 .nav-menu a:hover {
     background: #ffffff;
-    color: #172033;
+    color: var(--secondary-color);
 }
 
 .nav-menu .ship-button {
-    background: #e30613;
-    color: #ffffff;
+    background: var(--primary-color);
+    color: var(--primary-text);
 }
 
 .nav-menu .ship-button:hover {
-    background: #c40511;
-    color: #ffffff;
+    background: var(--primary-color);
+    color: var(--primary-text);
 }
-
-/* MOBILE MENU BUTTON */
 
 .menu-button {
     display: none;
     border: none;
-    background: #111827;
-    color: #ffffff;
+    background: var(--accent-color);
+    color: var(--accent-text);
     width: 45px;
     height: 45px;
     border-radius: 50%;
     font-size: 22px;
     cursor: pointer;
+}
+
+/* =========================
+   ANNOUNCEMENT BAR
+========================= */
+
+#announcementBar {
+    display: none;
+    position: relative;
+    z-index: 2000;
+    background: var(--primary-color);
+    color: var(--primary-text);
+    text-align: center;
+    padding: 10px 20px;
+    font-size: 14px;
+    font-weight: 700;
 }
 
 /* =========================
@@ -130,6 +158,9 @@ body {
     align-items: center;
 
     padding: 120px 7% 80px;
+
+    background-size: cover;
+    background-position: center;
 }
 
 .hero-content {
@@ -138,7 +169,8 @@ body {
 
 .hero-label {
     display: inline-block;
-    background: rgba(227, 6, 19, 0.95);
+    background: var(--primary-color);
+    color: var(--primary-text);
     padding: 8px 15px;
     border-radius: 4px;
     font-size: 12px;
@@ -177,17 +209,17 @@ body {
 }
 
 .button-red {
-    background: #e30613;
-    color: #ffffff;
+    background: var(--primary-color);
+    color: var(--primary-text);
 }
 
 .button-red:hover {
-    background: #c40511;
+    opacity: 0.9;
 }
 
 .button-white {
     background: #ffffff;
-    color: #172033;
+    color: var(--secondary-color);
 }
 
 .button-white:hover {
@@ -239,7 +271,7 @@ body {
 }
 
 .quick-item a {
-    color: #e30613;
+    color: var(--primary-color);
     text-decoration: none;
     font-weight: 800;
     font-size: 14px;
@@ -264,7 +296,7 @@ body {
 }
 
 .section-title small {
-    color: #e30613;
+    color: var(--primary-color);
     font-weight: 800;
     text-transform: uppercase;
     letter-spacing: 1px;
@@ -281,7 +313,7 @@ body {
 }
 
 .track-box {
-    background: #172033;
+    background: var(--secondary-color);
     padding: 35px;
     border-radius: 8px;
 }
@@ -301,8 +333,8 @@ body {
 
 .track-form button {
     border: none;
-    background: #e30613;
-    color: #ffffff;
+    background: var(--primary-color);
+    color: var(--primary-text);
     padding: 16px 25px;
     border-radius: 5px;
     font-weight: 800;
@@ -341,7 +373,7 @@ body {
 }
 
 .service-number {
-    color: #e30613;
+    color: var(--primary-color);
     font-size: 13px;
     font-weight: 900;
     margin-bottom: 20px;
@@ -359,7 +391,7 @@ body {
 }
 
 .service a {
-    color: #e30613;
+    color: var(--primary-color);
     text-decoration: none;
     font-weight: 800;
 }
@@ -405,13 +437,13 @@ body {
 
 .business li::before {
     content: "✓";
-    color: #e30613;
+    color: var(--primary-color);
     margin-right: 10px;
 }
 
 .business-card {
-    background: #172033;
-    color: #ffffff;
+    background: var(--secondary-color);
+    color: var(--secondary-text);
     padding: 45px;
     border-radius: 10px;
 }
@@ -430,8 +462,8 @@ body {
 ========================= */
 
 .stats {
-    background: #111827;
-    color: #ffffff;
+    background: var(--accent-color);
+    color: var(--accent-text);
     padding: 55px 6%;
 }
 
@@ -459,8 +491,8 @@ body {
 ========================= */
 
 .cta {
-    background: #e30613;
-    color: #ffffff;
+    background: var(--primary-color);
+    color: var(--primary-text);
     text-align: center;
     padding: 70px 6%;
 }
@@ -521,6 +553,35 @@ footer {
     border-top: 1px solid #1e293b;
     color: #64748b;
     font-size: 13px;
+}
+
+/* =========================
+   MAINTENANCE
+========================= */
+
+#maintenanceMessage {
+    display: none;
+    min-height: 100vh;
+    background: var(--secondary-color);
+    color: var(--secondary-text);
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 40px 20px;
+}
+
+#maintenanceMessage .maintenance-inner {
+    max-width: 650px;
+}
+
+#maintenanceMessage h1 {
+    font-size: 42px;
+    margin-bottom: 15px;
+}
+
+#maintenanceMessage p {
+    color: #cbd5e1;
+    line-height: 1.7;
 }
 
 /* =========================
@@ -630,6 +691,8 @@ footer {
 
 <body>
 
+<!-- WEBSITE ANNOUNCEMENT -->
+<div id="announcementBar"></div>
 
 <!-- =========================
      HEADER + CORNER NAVIGATION
@@ -637,7 +700,7 @@ footer {
 
 <header class="header">
 
-    <a href="index.html" class="logo">
+    <a href="index.html" class="logo" id="siteLogo">
         Express<span>Line</span>
     </a>
 
@@ -645,27 +708,27 @@ footer {
 
         <nav class="nav-menu" id="navMenu">
 
-            <a href="index.html">Home</a>
+            <a href="index.html" id="navHome">Home</a>
 
-            <a href="services.html">Services</a>
+            <a href="services.html" id="navServices">Services</a>
 
-            <a href="track.html">Track</a>
+            <a href="track.html" id="navTrack">Track</a>
 
-            <a href="request.html" class="ship-button">
+            <a href="request.html" class="ship-button" id="navRequest">
                 Ship Now
             </a>
 
-            <a href="about.html">About</a>
+            <a href="about.html" id="navAbout">About</a>
 
-            <a href="Customer Support.html">
+            <a href="Customer Support.html" id="navContact">
                 Support
             </a>
 
-            <a href="Contact.html">
+            <a href="Contact.html" id="navContactPage">
                 Contact
             </a>
 
-            <a href="login.html">
+            <a href="login.html" id="navLogin">
                 Login
             </a>
 
@@ -684,20 +747,20 @@ footer {
      HERO
 ========================= -->
 
-<section class="hero">
+<section class="hero" id="heroSection">
 
     <div class="hero-content">
 
-        <div class="hero-label">
+        <div class="hero-label" id="heroLabel">
             EXPRESSLINE LOGISTICS
         </div>
 
-        <h1>
+        <h1 id="heroHeading">
             Your shipment.<br>
             Our responsibility.
         </h1>
 
-        <p>
+        <p id="heroDescription">
             Reliable logistics and delivery services for individuals
             and businesses. Ship with confidence, track your delivery,
             and stay connected every step of the way.
@@ -705,11 +768,11 @@ footer {
 
         <div class="hero-buttons">
 
-            <a href="request.html" class="button button-red">
+            <a href="request.html" class="button button-red" id="heroPrimaryButton">
                 Ship Now
             </a>
 
-            <a href="track.html" class="button button-white">
+            <a href="track.html" class="button button-white" id="heroSecondaryButton">
                 Track Shipment
             </a>
 
@@ -854,9 +917,9 @@ footer {
 
             <div class="service-number">01</div>
 
-            <h3>Express Delivery</h3>
+            <h3 id="service1Name">Express Delivery</h3>
 
-            <p>
+            <p id="service1Description">
                 Reliable delivery solutions for packages,
                 documents, and shipments.
             </p>
@@ -872,9 +935,9 @@ footer {
 
             <div class="service-number">02</div>
 
-            <h3>Shipment Tracking</h3>
+            <h3 id="service2Name">Shipment Tracking</h3>
 
-            <p>
+            <p id="service2Description">
                 Stay informed about your shipment throughout
                 its delivery journey.
             </p>
@@ -890,9 +953,9 @@ footer {
 
             <div class="service-number">03</div>
 
-            <h3>Business Logistics</h3>
+            <h3 id="service3Name">Business Logistics</h3>
 
-            <p>
+            <p id="service3Description">
                 Organized logistics support for businesses
                 and regular shipping needs.
             </p>
@@ -972,7 +1035,7 @@ footer {
 
         <div>
 
-            <small style="color:#e30613;font-weight:800;">
+            <small style="color:var(--primary-color);font-weight:800;">
                 BUSINESS LOGISTICS
             </small>
 
@@ -1099,11 +1162,11 @@ footer {
 
         <div class="footer-column">
 
-            <h3>
+            <h3 id="footerCompanyName">
                 ExpressLine Delivery Services
             </h3>
 
-            <p>
+            <p id="footerText">
                 Professional logistics and delivery solutions
                 for individuals and businesses.
             </p>
@@ -1160,7 +1223,7 @@ footer {
     </div>
 
 
-    <div class="copyright">
+    <div class="copyright" id="copyrightText">
 
         © 2026 ExpressLine Delivery Services. All rights reserved.
 
@@ -1169,23 +1232,728 @@ footer {
 </footer>
 
 
+<!-- =========================
+     MAINTENANCE MESSAGE
+========================= -->
+
+<div id="maintenanceMessage">
+
+    <div class="maintenance-inner">
+
+        <h1 id="maintenanceTitle">
+            Website Temporarily Unavailable
+        </h1>
+
+        <p id="maintenanceDescription">
+            We are currently updating the website. Please check back soon.
+        </p>
+
+    </div>
+
+</div>
+
+
 <script>
+
+/* =========================
+   WEBSITE SETTINGS
+========================= */
+
+const WEBSITE_SETTINGS_KEY = "expresslineWebsiteSettings";
+
+
+function getWebsiteSettings() {
+
+    try {
+
+        const saved =
+            localStorage.getItem(WEBSITE_SETTINGS_KEY);
+
+        if (!saved) {
+            return {};
+        }
+
+        return JSON.parse(saved) || {};
+
+    } catch (error) {
+
+        console.error(
+            "Unable to load website settings:",
+            error
+        );
+
+        return {};
+
+    }
+
+}
+
+
+function getSetting(settings, key, fallback = "") {
+
+    if (
+        settings &&
+        settings[key] !== undefined &&
+        settings[key] !== null &&
+        String(settings[key]).trim() !== ""
+    ) {
+
+        return String(settings[key]).trim();
+
+    }
+
+    return fallback;
+
+}
+
+
+function setText(settings, id, key) {
+
+    const element =
+        document.getElementById(id);
+
+    if (!element) {
+        return;
+    }
+
+    const value =
+        getSetting(settings, key, "");
+
+    if (value !== "") {
+
+        element.textContent = value;
+
+    }
+
+}
+
+
+function setLinkText(settings, id, key) {
+
+    const element =
+        document.getElementById(id);
+
+    if (!element) {
+        return;
+    }
+
+    const value =
+        getSetting(settings, key, "");
+
+    if (value !== "") {
+
+        element.textContent = value;
+
+    }
+
+}
+
+
+function applyWebsiteSettings() {
+
+    const settings =
+        getWebsiteSettings();
+
+    /* =========================
+       COMPANY IDENTITY
+    ========================= */
+
+    const companyName =
+        getSetting(
+            settings,
+            "companyName",
+            "ExpressLine Delivery Services"
+        );
+
+    const shortName =
+        getSetting(
+            settings,
+            "shortName",
+            "ExpressLine"
+        );
+
+    const tagline =
+        getSetting(
+            settings,
+            "tagline",
+            "EXPRESSLINE LOGISTICS"
+        );
+
+    document.title =
+        getSetting(
+            settings,
+            "websiteTitle",
+            "ExpressLine Delivery Services"
+        );
+
+
+    const logo =
+        document.getElementById("siteLogo");
+
+    if (logo) {
+
+        logo.innerHTML =
+            shortName.replace(
+                /Line/i,
+                "<span>Line</span>"
+            );
+
+    }
+
+
+    const heroLabel =
+        document.getElementById("heroLabel");
+
+    if (heroLabel && tagline) {
+
+        heroLabel.textContent =
+            tagline;
+
+    }
+
+
+    /* =========================
+       NAVIGATION
+    ========================= */
+
+    setLinkText(settings, "navHome", "navHome");
+    setLinkText(settings, "navServices", "navServices");
+    setLinkText(settings, "navTrack", "navTrack");
+    setLinkText(settings, "navRequest", "navRequest");
+    setLinkText(settings, "navAbout", "navAbout");
+    setLinkText(settings, "navContact", "navContact");
+    setLinkText(settings, "navLogin", "navLogin");
+
+
+    /* =========================
+       HERO
+    ========================= */
+
+    setText(
+        settings,
+        "heroHeading",
+        "heroHeading"
+    );
+
+    setText(
+        settings,
+        "heroDescription",
+        "heroDescription"
+    );
+
+    setLinkText(
+        settings,
+        "heroPrimaryButton",
+        "heroPrimaryButton"
+    );
+
+    setLinkText(
+        settings,
+        "heroSecondaryButton",
+        "heroSecondaryButton"
+    );
+
+
+    /* =========================
+       HERO IMAGE
+    ========================= */
+
+    const heroImage =
+        getSetting(
+            settings,
+            "heroImage",
+            ""
+        );
+
+    const heroSection =
+        document.getElementById("heroSection");
+
+    if (
+        heroSection &&
+        heroImage
+    ) {
+
+        heroSection.style.backgroundImage =
+            "linear-gradient(90deg, rgba(5, 15, 30, 0.95), rgba(5, 15, 30, 0.72), rgba(5, 15, 30, 0.40)), url('" +
+            heroImage.replace(/'/g, "\\'") +
+            "')";
+
+    }
+
+
+    /* =========================
+       SERVICES
+    ========================= */
+
+    setText(
+        settings,
+        "service1Name",
+        "service1Name"
+    );
+
+    setText(
+        settings,
+        "service1Description",
+        "service1Description"
+    );
+
+    setText(
+        settings,
+        "service2Name",
+        "service2Name"
+    );
+
+    setText(
+        settings,
+        "service2Description",
+        "service2Description"
+    );
+
+    setText(
+        settings,
+        "service3Name",
+        "service3Name"
+    );
+
+    setText(
+        settings,
+        "service3Description",
+        "service3Description"
+    );
+
+
+    /* =========================
+       FOOTER
+    ========================= */
+
+    setText(
+        settings,
+        "footerCompanyName",
+        "companyName"
+    );
+
+    setText(
+        settings,
+        "footerText",
+        "footerText"
+    );
+
+    setText(
+        settings,
+        "copyrightText",
+        "copyrightText"
+    );
+
+
+    /* =========================
+       COLORS
+    ========================= */
+
+    const root =
+        document.documentElement;
+
+    const primaryColor =
+        getSetting(
+            settings,
+            "primaryColor",
+            "#e30613"
+        );
+
+    const primaryColorText =
+        getSetting(
+            settings,
+            "primaryColorText",
+            "#ffffff"
+        );
+
+    const secondaryColor =
+        getSetting(
+            settings,
+            "secondaryColor",
+            "#172033"
+        );
+
+    const secondaryColorText =
+        getSetting(
+            settings,
+            "secondaryColorText",
+            "#ffffff"
+        );
+
+    const accentColor =
+        getSetting(
+            settings,
+            "accentColor",
+            "#111827"
+        );
+
+    const accentColorText =
+        getSetting(
+            settings,
+            "accentColorText",
+            "#ffffff"
+        );
+
+    const textColor =
+        getSetting(
+            settings,
+            "textColor",
+            "#172033"
+        );
+
+    const fontFamily =
+        getSetting(
+            settings,
+            "fontFamily",
+            "Arial, Helvetica, sans-serif"
+        );
+
+    const fontSize =
+        getSetting(
+            settings,
+            "fontSize",
+            "16px"
+        );
+
+
+    root.style.setProperty(
+        "--primary-color",
+        primaryColor
+    );
+
+    root.style.setProperty(
+        "--primary-text",
+        primaryColorText
+    );
+
+    root.style.setProperty(
+        "--secondary-color",
+        secondaryColor
+    );
+
+    root.style.setProperty(
+        "--secondary-text",
+        secondaryColorText
+    );
+
+    root.style.setProperty(
+        "--accent-color",
+        accentColor
+    );
+
+    root.style.setProperty(
+        "--accent-text",
+        accentColorText
+    );
+
+    root.style.setProperty(
+        "--text-color",
+        textColor
+    );
+
+    root.style.setProperty(
+        "--font-family",
+        fontFamily
+    );
+
+    root.style.setProperty(
+        "--font-size",
+        fontSize
+    );
+
+
+    /* =========================
+       ANNOUNCEMENT
+    ========================= */
+
+    const announcementText =
+        getSetting(
+            settings,
+            "announcementText",
+            ""
+        );
+
+    const announcementEnabled =
+        settings.announcementEnabled === true ||
+        String(
+            settings.announcementEnabled
+        ).toLowerCase() === "true" ||
+        String(
+            settings.announcementEnabled
+        ).toLowerCase() === "yes";
+
+    const announcementBar =
+        document.getElementById(
+            "announcementBar"
+        );
+
+    if (
+        announcementBar &&
+        announcementEnabled &&
+        announcementText
+    ) {
+
+        announcementBar.textContent =
+            announcementText;
+
+        announcementBar.style.display =
+            "block";
+
+    }
+
+
+    /* =========================
+       WEBSITE STATUS
+    ========================= */
+
+    const websiteStatus =
+        getSetting(
+            settings,
+            "websiteStatus",
+            "Live"
+        ).toLowerCase();
+
+    const maintenance =
+        websiteStatus === "maintenance" ||
+        websiteStatus === "offline" ||
+        websiteStatus === "disabled";
+
+    const mainContent =
+        document.querySelectorAll(
+            "body > header, body > section, body > footer"
+        );
+
+    const maintenanceMessage =
+        document.getElementById(
+            "maintenanceMessage"
+        );
+
+    if (maintenance) {
+
+        mainContent.forEach(function(element) {
+
+            element.style.display = "none";
+
+        });
+
+        if (announcementBar) {
+            announcementBar.style.display = "none";
+        }
+
+        if (maintenanceMessage) {
+
+            maintenanceMessage.style.display =
+                "flex";
+
+        }
+
+    }
+
+
+    /* =========================
+       WEBSITE DESCRIPTION
+    ========================= */
+
+    const websiteDescription =
+        getSetting(
+            settings,
+            "websiteDescription",
+            ""
+        );
+
+    if (websiteDescription) {
+
+        let descriptionMeta =
+            document.querySelector(
+                'meta[name="description"]'
+            );
+
+        if (!descriptionMeta) {
+
+            descriptionMeta =
+                document.createElement("meta");
+
+            descriptionMeta.name =
+                "description";
+
+            document.head.appendChild(
+                descriptionMeta
+            );
+
+        }
+
+        descriptionMeta.content =
+            websiteDescription;
+
+    }
+
+
+    /* =========================
+       SEO TITLE
+    ========================= */
+
+    const seoTitle =
+        getSetting(
+            settings,
+            "seoTitle",
+            ""
+        );
+
+    if (seoTitle) {
+
+        document.title =
+            seoTitle;
+
+    }
+
+
+    /* =========================
+       SEO DESCRIPTION
+    ========================= */
+
+    const seoDescription =
+        getSetting(
+            settings,
+            "seoDescription",
+            ""
+        );
+
+    if (seoDescription) {
+
+        let seoMeta =
+            document.querySelector(
+                'meta[name="description"]'
+            );
+
+        if (!seoMeta) {
+
+            seoMeta =
+                document.createElement("meta");
+
+            seoMeta.name =
+                "description";
+
+            document.head.appendChild(
+                seoMeta
+            );
+
+        }
+
+        seoMeta.content =
+            seoDescription;
+
+    }
+
+
+    /* =========================
+       SEO KEYWORDS
+    ========================= */
+
+    const seoKeywords =
+        getSetting(
+            settings,
+            "seoKeywords",
+            ""
+        );
+
+    if (seoKeywords) {
+
+        let keywordMeta =
+            document.querySelector(
+                'meta[name="keywords"]'
+            );
+
+        if (!keywordMeta) {
+
+            keywordMeta =
+                document.createElement("meta");
+
+            keywordMeta.name =
+                "keywords";
+
+            document.head.appendChild(
+                keywordMeta
+            );
+
+        }
+
+        keywordMeta.content =
+            seoKeywords;
+
+    }
+
+
+    /* =========================
+       FAVICON
+    ========================= */
+
+    const faviconUrl =
+        getSetting(
+            settings,
+            "faviconUrl",
+            ""
+        );
+
+    if (faviconUrl) {
+
+        let favicon =
+            document.querySelector(
+                'link[rel="icon"]'
+            );
+
+        if (!favicon) {
+
+            favicon =
+                document.createElement("link");
+
+            favicon.rel =
+                "icon";
+
+            document.head.appendChild(
+                favicon
+            );
+
+        }
+
+        favicon.href =
+            faviconUrl;
+
+    }
+
+}
+
+
+/* =========================
+   MOBILE MENU
+========================= */
 
 function toggleMenu() {
 
-    const menu = document.getElementById("navMenu");
+    const menu =
+        document.getElementById(
+            "navMenu"
+        );
 
     menu.classList.toggle("active");
 
 }
 
 
+/* =========================
+   TRACK SHIPMENT
+========================= */
+
 function trackShipment(event) {
 
     event.preventDefault();
 
     const number =
-        document.getElementById("trackingNumber").value.trim();
+        document
+            .getElementById(
+                "trackingNumber"
+            )
+            .value
+            .trim();
 
     if (number) {
 
@@ -1196,6 +1964,20 @@ function trackShipment(event) {
     }
 
 }
+
+
+/* =========================
+   LOAD WEBSITE SETTINGS
+========================= */
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function() {
+
+        applyWebsiteSettings();
+
+    }
+);
 
 </script>
 
