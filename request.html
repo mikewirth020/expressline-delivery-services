@@ -1,19 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Request Shipment | ExpressLine Delivery Services</title>
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>
+    Request Shipment | ExpressLine Delivery Services
+  </title>
 
   <meta
     name="description"
     content="Submit a shipment request to ExpressLine Delivery Services."
   >
 
-  <link rel="stylesheet" href="style.css">
+  <link
+    rel="stylesheet"
+    href="style.css"
+  >
 
   <style>
+
     .shipment-preview {
       display: none;
       margin-top: 15px;
@@ -47,31 +58,59 @@
       margin-top: 5px;
     }
 
-    .tracking-created {
+    .request-success {
       display: none;
       margin-top: 20px;
       padding: 18px;
       border-radius: 12px;
       background: #f1f7ff;
       border: 1px solid #cfe2ff;
+      color: #1e3a5f;
     }
 
-    .tracking-created strong {
-      font-size: 20px;
+    .request-success strong {
+      font-size: 18px;
     }
+
+    .request-error {
+      display: none;
+      margin-top: 20px;
+      padding: 15px;
+      border-radius: 10px;
+      background: #fee2e2;
+      border: 1px solid #fecaca;
+      color: #991b1b;
+      font-weight: bold;
+    }
+
   </style>
+
 </head>
 
 <body>
 
+
   <!-- HEADER -->
+
   <header class="site-header">
+
     <div class="container navbar">
 
-      <a href="index.html" class="logo">
-        <span class="logo-mark">EL</span>
-        <span>ExpressLine</span>
+      <a
+        href="index.html"
+        class="logo"
+      >
+
+        <span class="logo-mark">
+          EL
+        </span>
+
+        <span>
+          ExpressLine
+        </span>
+
       </a>
+
 
       <button
         class="menu-toggle"
@@ -81,35 +120,61 @@
         ☰
       </button>
 
+
       <nav class="nav-links">
 
-        <a href="index.html">Home</a>
+        <a href="index.html">
+          Home
+        </a>
 
-        <a href="track.html">Track Shipment</a>
+        <a href="track.html">
+          Track Shipment
+        </a>
 
-        <a href="services.html">Services</a>
+        <a href="services.html">
+          Services
+        </a>
 
-        <a href="about.html">About Us</a>
+        <a href="about.html">
+          About Us
+        </a>
 
-        <a href="Contact.html">Contact Us</a>
+        <a href="Contact.html">
+          Contact Us
+        </a>
 
-        <a href="request.html">Request Shipment</a>
+        <a
+          href="request.html"
+          class="active"
+        >
+          Request Shipment
+        </a>
 
-        <a href="login.html" class="nav-button">
+        <a
+          href="login.html"
+          class="nav-button"
+        >
           Customer Login
         </a>
 
       </nav>
 
     </div>
+
   </header>
 
 
   <!-- MAIN -->
+
   <main>
 
+
     <!-- HERO -->
-    <section class="hero" style="min-height: 430px;">
+
+    <section
+      class="hero"
+      style="min-height:430px;"
+    >
 
       <div class="container hero-content">
 
@@ -132,6 +197,7 @@
 
 
     <!-- REQUEST FORM -->
+
     <section class="section section-light">
 
       <div class="container">
@@ -156,9 +222,13 @@
 
         <div class="form-card">
 
-          <form id="shipmentRequestForm">
+          <form
+            id="shipmentRequestForm"
+          >
+
 
             <!-- CUSTOMER INFORMATION -->
+
             <div class="form-section">
 
               <h3>
@@ -168,6 +238,7 @@
               <div class="form-grid">
 
                 <div class="form-group">
+
                   <label for="requestName">
                     Full Name
                   </label>
@@ -180,10 +251,12 @@
                     autocomplete="name"
                     required
                   >
+
                 </div>
 
 
                 <div class="form-group">
+
                   <label for="requestPhone">
                     Phone Number
                   </label>
@@ -196,10 +269,12 @@
                     autocomplete="tel"
                     required
                   >
+
                 </div>
 
 
                 <div class="form-group">
+
                   <label for="requestEmail">
                     Email Address
                   </label>
@@ -212,6 +287,7 @@
                     autocomplete="email"
                     required
                   >
+
                 </div>
 
               </div>
@@ -220,6 +296,7 @@
 
 
             <!-- SENDER -->
+
             <div class="form-section">
 
               <h3>
@@ -229,6 +306,7 @@
               <div class="form-grid">
 
                 <div class="form-group">
+
                   <label for="senderName">
                     Sender Name
                   </label>
@@ -240,10 +318,12 @@
                     placeholder="Enter sender name"
                     required
                   >
+
                 </div>
 
 
                 <div class="form-group">
+
                   <label for="senderPhone">
                     Sender Phone Number
                   </label>
@@ -255,6 +335,7 @@
                     placeholder="Enter sender phone number"
                     required
                   >
+
                 </div>
 
               </div>
@@ -280,6 +361,7 @@
 
 
             <!-- RECEIVER -->
+
             <div class="form-section">
 
               <h3>
@@ -344,6 +426,7 @@
 
 
             <!-- PACKAGE -->
+
             <div class="form-section">
 
               <h3>
@@ -452,6 +535,7 @@
 
 
             <!-- SHIPPING -->
+
             <div class="form-section">
 
               <h3>
@@ -552,6 +636,7 @@
 
 
             <!-- ORIGIN -->
+
             <div class="form-section">
 
               <h3>
@@ -631,6 +716,7 @@
 
               </div>
 
+
               <p class="coordinate-note">
                 Enter the geographical coordinates for the shipment origin.
               </p>
@@ -639,6 +725,7 @@
 
 
             <!-- DESTINATION -->
+
             <div class="form-section">
 
               <h3>
@@ -718,6 +805,7 @@
 
               </div>
 
+
               <p class="coordinate-note">
                 Enter the geographical coordinates for the shipment destination.
               </p>
@@ -726,6 +814,7 @@
 
 
             <!-- DELIVERY ESTIMATE -->
+
             <div class="form-section">
 
               <h3>
@@ -771,6 +860,7 @@
 
 
             <!-- SHIPMENT IMAGE -->
+
             <div class="form-section">
 
               <h3>
@@ -778,14 +868,17 @@
               </h3>
 
               <p>
-                Upload an image of the actual shipment item being tracked.
+                You may upload an image of the shipment item.
+                This is optional.
               </p>
+
 
               <div class="form-group">
 
                 <label for="shipmentImage">
-                  Upload Shipment Image
+                  Upload Shipment Image (Optional)
                 </label>
+
 
                 <div class="upload-box">
 
@@ -794,25 +887,27 @@
                     id="shipmentImage"
                     name="shipmentImage"
                     accept="image/*"
-                    required
                   >
 
                   <p>
-                    Select a photo of the parcel, envelope, pallet,
-                    container or freight.
+                    Select a photo of the parcel, envelope,
+                    pallet, container or freight.
                   </p>
 
                 </div>
+
 
                 <div
                   id="shipmentImagePreview"
                   class="shipment-preview"
                 >
+
                   <img
                     id="shipmentPreviewImage"
                     src=""
                     alt="Shipment preview"
                   >
+
                 </div>
 
               </div>
@@ -821,43 +916,30 @@
 
 
             <!-- STATUS MESSAGE -->
+
             <div
               id="requestMessage"
-              class="tracking-message"
-              style="display: none;"
+              class="request-success"
               role="alert"
             ></div>
 
 
-            <!-- CREATED TRACKING NUMBER -->
             <div
-              id="trackingCreated"
-              class="tracking-created"
-            >
-
-              <p>
-                Your shipment request has been created.
-              </p>
-
-              <p>
-                Tracking Number:
-                <strong id="createdTrackingNumber"></strong>
-              </p>
-
-              <p>
-                Keep this tracking number to check shipment updates.
-              </p>
-
-            </div>
+              id="requestError"
+              class="request-error"
+              role="alert"
+            ></div>
 
 
             <!-- SUBMIT -->
+
             <button
               type="submit"
               class="btn btn-primary"
             >
               Submit Shipment Request
             </button>
+
 
           </form>
 
@@ -869,6 +951,7 @@
 
 
     <!-- INFORMATION -->
+
     <section class="section">
 
       <div class="container">
@@ -935,8 +1018,8 @@
             </h3>
 
             <p>
-              Shipment information can then be managed through
-              the administrative system.
+              After review, the shipment can be created and
+              managed through the administrative system.
             </p>
 
           </article>
@@ -949,6 +1032,7 @@
 
 
     <!-- CTA -->
+
     <section class="cta">
 
       <div class="container">
@@ -977,17 +1061,26 @@
 
 
   <!-- FOOTER -->
+
   <footer class="site-footer">
 
     <div class="container">
 
       <div class="footer-grid">
 
+
         <div>
 
           <div class="logo">
-            <span class="logo-mark">EL</span>
-            <span>ExpressLine</span>
+
+            <span class="logo-mark">
+              EL
+            </span>
+
+            <span>
+              ExpressLine
+            </span>
+
           </div>
 
           <p>
@@ -1073,6 +1166,7 @@
 
         </div>
 
+
       </div>
 
 
@@ -1092,357 +1186,753 @@
 
   <script src="script.js"></script>
 
+
   <script>
 
     /*
-      SHIPMENT REQUEST STORAGE
-      ------------------------
-      This creates a shipment record in the browser's
-      local storage so the information can be used by
-      the administrative/tracking system we build next.
+      ==========================================
+      CUSTOMER SHIPMENT REQUEST SYSTEM
+      ==========================================
+
+      IMPORTANT:
+
+      Customer requests are stored separately
+      from actual Admin-managed shipments.
+
+      Customer request:
+      expresslineShipmentRequests
+
+      Actual shipment:
+      expresslineShipments
+
+      A customer request does NOT automatically
+      become a shipment.
     */
+
+
+    const REQUEST_STORAGE_KEY =
+      "expresslineShipmentRequests";
+
 
     const shipmentForm =
-      document.getElementById("shipmentRequestForm");
+      document.getElementById(
+        "shipmentRequestForm"
+      );
+
 
     const imageInput =
-      document.getElementById("shipmentImage");
+      document.getElementById(
+        "shipmentImage"
+      );
+
 
     const imagePreview =
-      document.getElementById("shipmentPreviewImage");
+      document.getElementById(
+        "shipmentPreviewImage"
+      );
+
 
     const imagePreviewBox =
-      document.getElementById("shipmentImagePreview");
+      document.getElementById(
+        "shipmentImagePreview"
+      );
 
 
     /*
+      ==========================================
       IMAGE PREVIEW
+      ==========================================
     */
 
-    imageInput.addEventListener("change", function () {
+    imageInput.addEventListener(
+      "change",
+      function () {
 
-      const file = this.files[0];
+        const file =
+          this.files[0];
 
-      if (!file) {
-        imagePreviewBox.style.display = "none";
-        imagePreview.src = "";
-        return;
+
+        if (!file) {
+
+          imagePreviewBox.style.display =
+            "none";
+
+          imagePreview.src =
+            "";
+
+          return;
+
+        }
+
+
+        if (
+          !file.type.startsWith(
+            "image/"
+          )
+        ) {
+
+          showError(
+            "Please select a valid image file."
+          );
+
+          this.value =
+            "";
+
+          imagePreviewBox.style.display =
+            "none";
+
+          imagePreview.src =
+            "";
+
+          return;
+
+        }
+
+
+        const reader =
+          new FileReader();
+
+
+        reader.onload =
+          function (event) {
+
+            imagePreview.src =
+              event.target.result;
+
+            imagePreviewBox.style.display =
+              "block";
+
+          };
+
+
+        reader.readAsDataURL(
+          file
+        );
+
       }
-
-      const reader = new FileReader();
-
-      reader.onload = function (event) {
-
-        imagePreview.src = event.target.result;
-
-        imagePreviewBox.style.display = "block";
-
-      };
-
-      reader.readAsDataURL(file);
-
-    });
+    );
 
 
     /*
-      CREATE TRACKING NUMBER
+      ==========================================
+      CREATE REQUEST ID
+      ==========================================
     */
 
-    function createTrackingNumber() {
+    function createRequestId() {
 
-      const randomNumber =
-        Math.floor(10000 + Math.random() * 90000);
+      const time =
+        Date.now()
+          .toString()
+          .slice(-8);
 
-      return "EXP-" + randomNumber;
+
+      const random =
+        Math.floor(
+          100 +
+          Math.random() * 900
+        );
+
+
+      return (
+        "REQ-" +
+        time +
+        "-" +
+        random
+      );
 
     }
 
 
     /*
-      SUBMIT SHIPMENT REQUEST
+      ==========================================
+      LOAD EXISTING REQUESTS
+      ==========================================
     */
 
-    shipmentForm.addEventListener("submit", function (event) {
+    function loadRequests() {
 
-      event.preventDefault();
+      try {
 
+        const saved =
+          localStorage.getItem(
+            REQUEST_STORAGE_KEY
+          );
 
-      const message =
-        document.getElementById("requestMessage");
 
-      const trackingCreated =
-        document.getElementById("trackingCreated");
-
-      const trackingNumberDisplay =
-        document.getElementById("createdTrackingNumber");
-
-
-      const imageFile =
-        imageInput.files[0];
-
-
-      if (!imageFile) {
-
-        message.textContent =
-          "Please upload an image of the shipment.";
-
-        message.style.display = "block";
-
-        return;
-
-      }
-
-
-      const reader = new FileReader();
-
-
-      reader.onload = function () {
-
-        const trackingNumber =
-          createTrackingNumber();
-
-
-        const shipment = {
-
-          trackingNumber: trackingNumber,
-
-          createdAt:
-            new Date().toISOString(),
-
-          customer: {
-
-            name:
-              document.getElementById("requestName").value,
-
-            phone:
-              document.getElementById("requestPhone").value,
-
-            email:
-              document.getElementById("requestEmail").value
-
-          },
-
-
-          sender: {
-
-            name:
-              document.getElementById("senderName").value,
-
-            phone:
-              document.getElementById("senderPhone").value,
-
-            address:
-              document.getElementById("senderAddress").value
-
-          },
-
-
-          receiver: {
-
-            name:
-              document.getElementById("receiverName").value,
-
-            phone:
-              document.getElementById("receiverPhone").value,
-
-            address:
-              document.getElementById("receiverAddress").value
-
-          },
-
-
-          package: {
-
-            description:
-              document.getElementById("packageDescription").value,
-
-            weight:
-              document.getElementById("packageWeight").value,
-
-            quantity:
-              document.getElementById("packageQuantity").value,
-
-            type:
-              document.getElementById("packageType").value
-
-          },
-
-
-          shipping: {
-
-            pickupAddress:
-              document.getElementById("pickupAddress").value,
-
-            deliveryAddress:
-              document.getElementById("deliveryAddress").value,
-
-            method:
-              document.getElementById("shippingMethod").value,
-
-            specialInstructions:
-              document.getElementById("specialInstructions").value
-
-          },
-
-
-          origin: {
-
-            label:
-              document.getElementById("originLabel").value,
-
-            location:
-              document.getElementById("origin").value,
-
-            latitude:
-              document.getElementById("originLatitude").value,
-
-            longitude:
-              document.getElementById("originLongitude").value
-
-          },
-
-
-          destination: {
-
-            label:
-              document.getElementById("destinationLabel").value,
-
-            location:
-              document.getElementById("destination").value,
-
-            latitude:
-              document.getElementById("destinationLatitude").value,
-
-            longitude:
-              document.getElementById("destinationLongitude").value
-
-          },
-
-
-          estimatedDelivery: {
-
-            time:
-              document.getElementById("estimatedDeliveryTime").value,
-
-            date:
-              document.getElementById("estimatedDeliveryDate").value
-
-          },
-
-
-          /*
-            New shipment starts at 0%.
-            The admin system will later be able
-            to change this from 0 to 100.
-          */
-
-          progress: 0,
-
-
-          /*
-            Transit history will be managed
-            from the administrative shipment system.
-          */
-
-          transitHistory: [],
-
-
-          /*
-            Uploaded image of the actual shipment.
-          */
-
-          shipmentImage:
-            reader.result,
-
-
-          status:
-            "Shipment Request Received"
-
-        };
-
-
-        /*
-          GET EXISTING SHIPMENTS
-        */
-
-        let shipments = [];
-
-        try {
-
-          shipments =
-            JSON.parse(
-              localStorage.getItem("expresslineShipments")
-            ) || [];
-
-        } catch (error) {
-
-          shipments = [];
-
+        if (!saved) {
+          return [];
         }
 
 
-        /*
-          ADD NEW SHIPMENT
-        */
+        const parsed =
+          JSON.parse(
+            saved
+          );
 
-        shipments.push(shipment);
+
+        return Array.isArray(
+          parsed
+        )
+          ? parsed
+          : [];
 
 
-        /*
-          SAVE SHIPMENT
-        */
+      } catch (error) {
 
-        localStorage.setItem(
-          "expresslineShipments",
-          JSON.stringify(shipments)
+        return [];
+
+      }
+
+    }
+
+
+    /*
+      ==========================================
+      SAVE REQUESTS
+      ==========================================
+    */
+
+    function saveRequests(
+      requests
+    ) {
+
+      localStorage.setItem(
+        REQUEST_STORAGE_KEY,
+        JSON.stringify(
+          requests
+        )
+      );
+
+    }
+
+
+    /*
+      ==========================================
+      SHOW SUCCESS
+      ==========================================
+    */
+
+    function showSuccess(
+      text
+    ) {
+
+      const box =
+        document.getElementById(
+          "requestMessage"
         );
 
 
+      const errorBox =
+        document.getElementById(
+          "requestError"
+        );
+
+
+      errorBox.style.display =
+        "none";
+
+      errorBox.textContent =
+        "";
+
+
+      box.textContent =
+        text;
+
+      box.style.display =
+        "block";
+
+    }
+
+
+    /*
+      ==========================================
+      SHOW ERROR
+      ==========================================
+    */
+
+    function showError(
+      text
+    ) {
+
+      const box =
+        document.getElementById(
+          "requestError"
+        );
+
+
+      const successBox =
+        document.getElementById(
+          "requestMessage"
+        );
+
+
+      successBox.style.display =
+        "none";
+
+      successBox.textContent =
+        "";
+
+
+      box.textContent =
+        text;
+
+      box.style.display =
+        "block";
+
+    }
+
+
+    /*
+      ==========================================
+      SUBMIT REQUEST
+      ==========================================
+    */
+
+    shipmentForm.addEventListener(
+      "submit",
+      function (event) {
+
+        event.preventDefault();
+
+
+        const requestId =
+          createRequestId();
+
+
         /*
-          SHOW SUCCESS MESSAGE
+          OPTIONAL IMAGE
+
+          If the customer does not upload
+          an image, the request still submits.
         */
 
-        message.textContent =
-          "Shipment request submitted successfully.";
-
-        message.style.display =
-          "block";
+        const imageFile =
+          imageInput.files[0];
 
 
-        trackingNumberDisplay.textContent =
-          trackingNumber;
+        if (imageFile) {
 
-        trackingCreated.style.display =
-          "block";
+          if (
+            !imageFile.type.startsWith(
+              "image/"
+            )
+          ) {
+
+            showError(
+              "Please select a valid image file."
+            );
+
+            return;
+
+          }
 
 
-        /*
-          SCROLL TO TRACKING NUMBER
-        */
-
-        trackingCreated.scrollIntoView({
-          behavior: "smooth",
-          block: "center"
-        });
+          const reader =
+            new FileReader();
 
 
-        /*
-          RESET FORM AFTER SUCCESS
-        */
+          reader.onload =
+            function () {
 
-        shipmentForm.reset();
+              createAndSaveRequest(
+                requestId,
+                reader.result
+              );
 
-        imagePreviewBox.style.display =
-          "none";
+            };
 
-        imagePreview.src = "";
+
+          reader.onerror =
+            function () {
+
+              showError(
+                "The shipment image could not be read. Please try again."
+              );
+
+            };
+
+
+          reader.readAsDataURL(
+            imageFile
+          );
+
+
+        } else {
+
+          createAndSaveRequest(
+            requestId,
+            ""
+          );
+
+        }
+
+      }
+    );
+
+
+    /*
+      ==========================================
+      CREATE AND SAVE REQUEST
+      ==========================================
+    */
+
+    function createAndSaveRequest(
+      requestId,
+      shipmentImage
+    ) {
+
+
+      const request = {
+
+        id:
+          requestId,
+
+
+        requestId:
+          requestId,
+
+
+        status:
+          "Pending",
+
+
+        createdAt:
+          new Date().toISOString(),
+
+
+        date:
+          new Date().toISOString(),
+
+
+        customerName:
+          document
+            .getElementById(
+              "requestName"
+            )
+            .value
+            .trim(),
+
+
+        customerPhone:
+          document
+            .getElementById(
+              "requestPhone"
+            )
+            .value
+            .trim(),
+
+
+        customerEmail:
+          document
+            .getElementById(
+              "requestEmail"
+            )
+            .value
+            .trim(),
+
+
+        sender: {
+
+          name:
+            document
+              .getElementById(
+                "senderName"
+              )
+              .value
+              .trim(),
+
+          phone:
+            document
+              .getElementById(
+                "senderPhone"
+              )
+              .value
+              .trim(),
+
+          address:
+            document
+              .getElementById(
+                "senderAddress"
+              )
+              .value
+              .trim()
+
+        },
+
+
+        receiver: {
+
+          name:
+            document
+              .getElementById(
+                "receiverName"
+              )
+              .value
+              .trim(),
+
+          phone:
+            document
+              .getElementById(
+                "receiverPhone"
+              )
+              .value
+              .trim(),
+
+          address:
+            document
+              .getElementById(
+                "receiverAddress"
+              )
+              .value
+              .trim()
+
+        },
+
+
+        package: {
+
+          description:
+            document
+              .getElementById(
+                "packageDescription"
+              )
+              .value
+              .trim(),
+
+          weight:
+            document
+              .getElementById(
+                "packageWeight"
+              )
+              .value
+              .trim(),
+
+          quantity:
+            document
+              .getElementById(
+                "packageQuantity"
+              )
+              .value
+              .trim(),
+
+          type:
+            document
+              .getElementById(
+                "packageType"
+              )
+              .value
+
+        },
+
+
+        shipping: {
+
+          pickupAddress:
+            document
+              .getElementById(
+                "pickupAddress"
+              )
+              .value
+              .trim(),
+
+          deliveryAddress:
+            document
+              .getElementById(
+                "deliveryAddress"
+              )
+              .value
+              .trim(),
+
+          method:
+            document
+              .getElementById(
+                "shippingMethod"
+              )
+              .value,
+
+          specialInstructions:
+            document
+              .getElementById(
+                "specialInstructions"
+              )
+              .value
+              .trim()
+
+        },
+
+
+        origin: {
+
+          label:
+            document
+              .getElementById(
+                "originLabel"
+              )
+              .value
+              .trim(),
+
+          location:
+            document
+              .getElementById(
+                "origin"
+              )
+              .value
+              .trim(),
+
+          latitude:
+            document
+              .getElementById(
+                "originLatitude"
+              )
+              .value
+              .trim(),
+
+          longitude:
+            document
+              .getElementById(
+                "originLongitude"
+              )
+              .value
+              .trim()
+
+        },
+
+
+        destination: {
+
+          label:
+            document
+              .getElementById(
+                "destinationLabel"
+              )
+              .value
+              .trim(),
+
+          location:
+            document
+              .getElementById(
+                "destination"
+              )
+              .value
+              .trim(),
+
+          latitude:
+            document
+              .getElementById(
+                "destinationLatitude"
+              )
+              .value
+              .trim(),
+
+          longitude:
+            document
+              .getElementById(
+                "destinationLongitude"
+              )
+              .value
+              .trim()
+
+        },
+
+
+        estimatedDelivery: {
+
+          time:
+            document
+              .getElementById(
+                "estimatedDeliveryTime"
+              )
+              .value,
+
+          date:
+            document
+              .getElementById(
+                "estimatedDeliveryDate"
+              )
+              .value
+
+        },
+
+
+        shipmentImage:
+          shipmentImage || "",
+
+
+        message:
+          document
+            .getElementById(
+              "specialInstructions"
+            )
+            .value
+            .trim()
 
       };
 
 
-      reader.readAsDataURL(imageFile);
+      /*
+        LOAD EXISTING REQUESTS
+      */
 
-    });
+      const requests =
+        loadRequests();
+
+
+      /*
+        ADD NEW CUSTOMER REQUEST
+      */
+
+      requests.unshift(
+        request
+      );
+
+
+      /*
+        SAVE ONLY TO REQUEST STORAGE
+      */
+
+      saveRequests(
+        requests
+      );
+
+
+      /*
+        SHOW SUCCESS
+      */
+
+      showSuccess(
+        "Your shipment request has been submitted successfully. Our team can now review your request."
+      );
+
+
+      /*
+        RESET FORM
+      */
+
+      shipmentForm.reset();
+
+
+      imagePreviewBox.style.display =
+        "none";
+
+      imagePreview.src =
+        "";
+
+
+      /*
+        SCROLL TO SUCCESS MESSAGE
+      */
+
+      document
+        .getElementById(
+          "requestMessage"
+        )
+        .scrollIntoView({
+          behavior: "smooth",
+          block: "center"
+        });
+
+    }
 
   </script>
 
