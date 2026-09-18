@@ -1,361 +1,1061 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Contact Us | ExpressLine Delivery Services</title>
+
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1.0"
+>
+
+<title id="pageTitle">
+  Contact Us | ExpressLine Delivery Services
+</title>
+
+<meta
+  id="pageDescription"
+  name="description"
+  content="Contact ExpressLine Delivery Services for shipment, delivery and logistics support."
+>
+
+<meta
+  id="pageKeywords"
+  name="keywords"
+  content="ExpressLine, contact, logistics, delivery, courier, shipping"
+>
+
+<link rel="stylesheet" href="style.css">
 
 <style>
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+
+.contact-hero {
+  min-height: 360px;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
-body {
-    font-family: Arial, Helvetica, sans-serif;
-    background: #f5f7fa;
-    color: #172033;
-    line-height: 1.6;
+.contact-image {
+  width: 100%;
+  max-width: 100%;
+  height: 280px;
+  object-fit: cover;
+  border-radius: 16px;
+  margin-top: 25px;
+  display: none;
 }
 
-header {
-    background: #ffffff;
-    border-bottom: 1px solid #e5e7eb;
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 30px;
 }
 
-.topbar {
-    background: #111827;
-    color: #ffffff;
-    padding: 10px 6%;
-    text-align: right;
-    font-size: 13px;
+.contact-card {
+  background: #ffffff;
+  padding: 30px;
+  border-radius: 16px;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.07);
 }
 
-.navbar {
-    padding: 18px 6%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 20px;
+.contact-info {
+  margin-bottom: 22px;
 }
 
-.logo {
-    font-size: 25px;
-    font-weight: 800;
-    color: #c8102e;
+.contact-info strong {
+  display: block;
+  margin-bottom: 5px;
 }
 
-.logo span {
-    color: #172033;
+.contact-form {
+  display: grid;
+  gap: 15px;
 }
 
-nav {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 16px;
+.contact-form label {
+  font-weight: 600;
+  font-size: 14px;
 }
 
-nav a {
-    color: #172033;
-    text-decoration: none;
-    font-size: 14px;
-    font-weight: 600;
+.contact-form input,
+.contact-form select,
+.contact-form textarea {
+  width: 100%;
+  padding: 13px;
+  margin-top: 6px;
+  border: 1px solid #d1d5db;
+  border-radius: 7px;
+  font-size: 15px;
+  font-family: inherit;
 }
 
-nav a:hover {
-    color: #c8102e;
+.contact-form textarea {
+  min-height: 150px;
+  resize: vertical;
 }
 
-.hero {
-    background: #172033;
-    color: #ffffff;
-    padding: 70px 6%;
-}
-
-.hero h1 {
-    font-size: 46px;
-    margin-bottom: 15px;
-}
-
-.hero p {
-    max-width: 700px;
-    font-size: 18px;
-    color: #dbe2ea;
-}
-
-.container {
-    width: 88%;
-    max-width: 1150px;
-    margin: 50px auto;
-}
-
-.grid {
-    display: grid;
-    grid-template-columns: 1fr 1.2fr;
-    gap: 30px;
-}
-
-.card {
-    background: #ffffff;
-    padding: 30px;
-    border-radius: 12px;
-    box-shadow: 0 8px 25px rgba(0,0,0,0.07);
-}
-
-.card h2 {
-    margin-bottom: 20px;
-}
-
-.info {
-    margin-bottom: 22px;
-}
-
-.info strong {
-    display: block;
-    color: #c8102e;
-    margin-bottom: 5px;
-}
-
-form {
-    display: grid;
-    gap: 15px;
-}
-
-label {
-    font-weight: 600;
-    font-size: 14px;
-}
-
-input,
-select,
-textarea {
-    width: 100%;
-    padding: 13px;
-    margin-top: 6px;
-    border: 1px solid #d1d5db;
-    border-radius: 7px;
-    font-size: 15px;
-}
-
-textarea {
-    min-height: 150px;
-    resize: vertical;
-}
-
-button {
-    border: none;
-    padding: 14px 20px;
-    border-radius: 7px;
-    background: #c8102e;
-    color: #ffffff;
-    font-size: 16px;
-    font-weight: 700;
-    cursor: pointer;
-}
-
-button:hover {
-    background: #a90d27;
-}
-
-.message {
-    display: none;
-    background: #ecfdf5;
-    color: #065f46;
-    padding: 12px;
-    border-radius: 6px;
-}
-
-footer {
-    background: #111827;
-    color: #d1d5db;
-    padding: 35px 6%;
-    margin-top: 60px;
-}
-
-.footer-content {
-    max-width: 1150px;
-    margin: auto;
-    display: flex;
-    justify-content: space-between;
-    gap: 20px;
-    flex-wrap: wrap;
-}
-
-footer a {
-    color: #ffffff;
-    text-decoration: none;
+.contact-message {
+  display: none;
+  padding: 12px;
+  border-radius: 6px;
+  background: #ecfdf5;
+  color: #065f46;
 }
 
 @media (max-width: 800px) {
-    .navbar {
-        flex-direction: column;
-        align-items: flex-start;
-    }
 
-    .grid {
-        grid-template-columns: 1fr;
-    }
+  .contact-grid {
+    grid-template-columns: 1fr;
+  }
 
-    .hero h1 {
-        font-size: 36px;
-    }
 }
+
 </style>
+
 </head>
 
 <body>
 
-<header>
 
-<div class="topbar">
-ExpressLine Delivery Services | Reliable Logistics Solutions
-</div>
+<!-- HEADER -->
 
-<div class="navbar">
+<header class="site-header">
 
-<div class="logo">
-Express<span>Line</span>
-</div>
+  <div class="container navbar">
 
-<nav>
-<a href="index.html">Home</a>
-<a href="services.html">Services</a>
-<a href="track.html">Track Shipment</a>
-<a href="request.html">Request a Shipment</a>
-<a href="about.html">About Us</a>
-<a href="Contact.html">Contact</a>
-<a href="Customer Support.html">Customer Support</a>
-<a href="login.html">Login</a>
-</nav>
+    <a
+      href="index.html"
+      class="logo"
+    >
 
-</div>
+      <span class="logo-mark">
+        EL
+      </span>
+
+      <span id="siteShortName">
+        ExpressLine
+      </span>
+
+    </a>
+
+
+    <button
+      class="menu-toggle"
+      type="button"
+      aria-label="Open navigation menu"
+    >
+      ☰
+    </button>
+
+
+    <nav class="nav-links">
+
+      <a
+        id="navHome"
+        href="index.html"
+      >
+        Home
+      </a>
+
+      <a
+        id="navTrack"
+        href="track.html"
+      >
+        Track Shipment
+      </a>
+
+      <a
+        id="navServices"
+        href="services.html"
+      >
+        Services
+      </a>
+
+      <a
+        id="navAbout"
+        href="about.html"
+      >
+        About Us
+      </a>
+
+      <a
+        id="navContact"
+        href="contact.html"
+      >
+        Contact Us
+      </a>
+
+      <a
+        id="navRequest"
+        href="request.html"
+      >
+        Request Shipment
+      </a>
+
+      <a
+        id="navLogin"
+        href="login.html"
+        class="nav-button"
+      >
+        Customer Login
+      </a>
+
+    </nav>
+
+  </div>
+
 </header>
 
-<section class="hero">
 
-<h1>Contact Us</h1>
+<!-- HERO -->
 
-<p>
-Have a question about your shipment, delivery, account, or logistics services?
-Our team is ready to assist you.
-</p>
+<section
+  id="contactHero"
+  class="hero contact-hero"
+>
+
+  <div class="container hero-content">
+
+    <span class="hero-badge">
+      CONTACT EXPRESSLINE
+    </span>
+
+    <h1>
+      Contact Us
+    </h1>
+
+    <p>
+      Have a question about your shipment, delivery, account,
+      or logistics services? Our team is ready to assist you.
+    </p>
+
+  </div>
 
 </section>
 
-<main class="container">
 
-<div class="grid">
+<!-- MAIN -->
 
-<div class="card">
+<main class="section section-light">
 
-<h2>Get in Touch</h2>
+  <div class="container">
 
-<div class="info">
-<strong>Customer Service</strong>
-Our customer service team is available to help with your questions.
-</div>
+    <div class="section-heading">
 
-<div class="info">
-<strong>Email</strong>
-support@expressline.com
-</div>
+      <p class="section-label">
+        GET IN TOUCH
+      </p>
 
-<div class="info">
-<strong>Phone</strong>
-+1 (800) 555-0199
-</div>
+      <h2>
+        We are here to help.
+      </h2>
 
-<div class="info">
-<strong>Business Hours</strong>
-Monday – Friday: 8:00 AM – 6:00 PM
-</div>
+      <p>
+        Contact ExpressLine Delivery Services for assistance
+        with shipments, deliveries, tracking and logistics services.
+      </p>
 
-<div class="info">
-<strong>Shipping & Delivery</strong>
-Reliable shipment handling, tracking, and delivery solutions.
-</div>
+    </div>
 
-</div>
 
-<div class="card">
+    <div class="contact-grid">
 
-<h2>Send Us a Message</h2>
 
-<form onsubmit="sendMessage(event)">
+      <!-- CONTACT INFORMATION -->
 
-<div>
-<label>Full Name</label>
-<input type="text" required placeholder="Enter your full name">
-</div>
+      <div class="contact-card">
 
-<div>
-<label>Email Address</label>
-<input type="email" required placeholder="Enter your email">
-</div>
+        <h2>
+          Contact Information
+        </h2>
 
-<div>
-<label>Subject</label>
 
-<select required>
-<option value="">Select a subject</option>
-<option>Shipment Inquiry</option>
-<option>Tracking Help</option>
-<option>Delivery Question</option>
-<option>Account Help</option>
-<option>Business Services</option>
-<option>Other</option>
-</select>
+        <div class="contact-info">
 
-</div>
+          <strong>
+            Customer Service
+          </strong>
 
-<div>
-<label>Message</label>
-<textarea required placeholder="How can we help you?"></textarea>
-</div>
+          <span id="contactSupportMessage">
+            Our customer service team is available to help
+            with your questions.
+          </span>
 
-<button type="submit">Send Message</button>
+        </div>
 
-<div id="message" class="message">
-Thank you. Your message has been received.
-</div>
 
-</form>
+        <div class="contact-info">
 
-</div>
+          <strong>
+            Email
+          </strong>
 
-</div>
+          <span id="contactEmail">
+            support@expressline.com
+          </span>
+
+        </div>
+
+
+        <div class="contact-info">
+
+          <strong>
+            Phone
+          </strong>
+
+          <span id="contactPhone">
+            +1 (800) 555-0199
+          </span>
+
+        </div>
+
+
+        <div class="contact-info">
+
+          <strong>
+            Business Address
+          </strong>
+
+          <span id="contactAddress">
+            Contact us for our business address.
+          </span>
+
+        </div>
+
+
+        <div class="contact-info">
+
+          <strong>
+            Business Hours
+          </strong>
+
+          <span id="contactHours">
+            Monday – Friday: 8:00 AM – 6:00 PM
+          </span>
+
+        </div>
+
+
+        <div class="contact-info">
+
+          <strong>
+            Shipping & Delivery
+          </strong>
+
+          <span>
+            Reliable shipment handling, tracking,
+            and delivery solutions.
+          </span>
+
+        </div>
+
+
+        <img
+          id="contactImage"
+          class="contact-image"
+          src=""
+          alt="ExpressLine Delivery Services"
+        >
+
+      </div>
+
+
+      <!-- MESSAGE FORM -->
+
+      <div class="contact-card">
+
+        <h2>
+          Send Us a Message
+        </h2>
+
+
+        <form
+          class="contact-form"
+          onsubmit="sendMessage(event)"
+        >
+
+          <div>
+
+            <label for="contactName">
+              Full Name
+            </label>
+
+            <input
+              id="contactName"
+              type="text"
+              required
+              placeholder="Enter your full name"
+            >
+
+          </div>
+
+
+          <div>
+
+            <label for="contactEmailInput">
+              Email Address
+            </label>
+
+            <input
+              id="contactEmailInput"
+              type="email"
+              required
+              placeholder="Enter your email"
+            >
+
+          </div>
+
+
+          <div>
+
+            <label for="contactSubject">
+              Subject
+            </label>
+
+            <select
+              id="contactSubject"
+              required
+            >
+
+              <option value="">
+                Select a subject
+              </option>
+
+              <option>
+                Shipment Inquiry
+              </option>
+
+              <option>
+                Tracking Help
+              </option>
+
+              <option>
+                Delivery Question
+              </option>
+
+              <option>
+                Account Help
+              </option>
+
+              <option>
+                Business Services
+              </option>
+
+              <option>
+                Other
+              </option>
+
+            </select>
+
+          </div>
+
+
+          <div>
+
+            <label for="contactMessageInput">
+              Message
+            </label>
+
+            <textarea
+              id="contactMessageInput"
+              required
+              placeholder="How can we help you?"
+            ></textarea>
+
+          </div>
+
+
+          <button
+            type="submit"
+            class="btn btn-primary"
+          >
+            Send Message
+          </button>
+
+
+          <div
+            id="message"
+            class="contact-message"
+          >
+            Thank you. Your message has been received.
+          </div>
+
+        </form>
+
+      </div>
+
+    </div>
+
+  </div>
 
 </main>
 
-<footer>
 
-<div class="footer-content">
+<!-- FOOTER -->
 
-<div>
-<strong>ExpressLine Delivery Services</strong>
-<p>Reliable logistics and delivery solutions.</p>
-</div>
+<footer class="site-footer">
 
-<div>
-<a href="index.html">Home</a> |
-<a href="services.html">Services</a> |
-<a href="Contact.html">Contact</a> |
-<a href="Customer Support.html">Customer Support</a>
-</div>
+  <div class="container">
 
-</div>
+    <div class="footer-grid">
+
+
+      <div>
+
+        <div class="logo">
+
+          <span class="logo-mark">
+            EL
+          </span>
+
+          <span id="footerCompanyName">
+            ExpressLine
+          </span>
+
+        </div>
+
+        <p id="footerText">
+          Professional courier and logistics solutions
+          designed around reliable service, shipment
+          visibility and customer convenience.
+        </p>
+
+      </div>
+
+
+      <div>
+
+        <h3>
+          Quick Links
+        </h3>
+
+        <p>
+          <a href="index.html">
+            Home
+          </a>
+        </p>
+
+        <p>
+          <a href="services.html">
+            Services
+          </a>
+        </p>
+
+        <p>
+          <a href="track.html">
+            Track Shipment
+          </a>
+        </p>
+
+        <p>
+          <a href="request.html">
+            Request Shipment
+          </a>
+        </p>
+
+      </div>
+
+
+      <div>
+
+        <h3>
+          Contact
+        </h3>
+
+        <p id="footerContactEmail">
+          support@expressline.com
+        </p>
+
+        <p id="footerContactPhone">
+          +1 (800) 555-0199
+        </p>
+
+      </div>
+
+    </div>
+
+
+    <div class="footer-bottom">
+
+      <p id="copyrightText">
+        © 2026 ExpressLine Delivery Services.
+        All rights reserved.
+      </p>
+
+    </div>
+
+  </div>
 
 </footer>
 
+
+<!-- WEBSITE SETTINGS -->
+
 <script>
-function sendMessage(event) {
-    event.preventDefault();
 
-    document.getElementById("message").style.display = "block";
+const WEBSITE_SETTINGS_KEY =
+  "expresslineWebsiteSettings";
 
-    event.target.reset();
+
+function getWebsiteSettings() {
+
+  try {
+
+    const saved =
+      localStorage.getItem(
+        WEBSITE_SETTINGS_KEY
+      );
+
+    return saved
+      ? JSON.parse(saved)
+      : {};
+
+  } catch (error) {
+
+    console.error(
+      "Unable to load website settings:",
+      error
+    );
+
+    return {};
+
+  }
+
 }
+
+
+function setText(id, value) {
+
+  const element =
+    document.getElementById(id);
+
+  if (
+    element &&
+    value !== undefined &&
+    value !== null &&
+    String(value).trim() !== ""
+  ) {
+
+    element.textContent =
+      value;
+
+  }
+
+}
+
+
+function applyWebsiteSettings() {
+
+  const settings =
+    getWebsiteSettings();
+
+
+  /* COMPANY */
+
+  setText(
+    "siteShortName",
+    settings.shortName ||
+    settings.companyName
+  );
+
+  setText(
+    "footerCompanyName",
+    settings.companyName ||
+    settings.shortName
+  );
+
+
+  /* NAVIGATION */
+
+  setText(
+    "navHome",
+    settings.navHome
+  );
+
+  setText(
+    "navTrack",
+    settings.navTrack
+  );
+
+  setText(
+    "navServices",
+    settings.navServices
+  );
+
+  setText(
+    "navAbout",
+    settings.navAbout
+  );
+
+  setText(
+    "navContact",
+    settings.navContact
+  );
+
+  setText(
+    "navRequest",
+    settings.navRequest
+  );
+
+  setText(
+    "navLogin",
+    settings.navLogin
+  );
+
+
+  /* CONTACT INFORMATION */
+
+  setText(
+    "contactEmail",
+    settings.contactEmail
+  );
+
+  setText(
+    "contactPhone",
+    settings.contactPhone
+  );
+
+  setText(
+    "contactAddress",
+    settings.businessAddress
+  );
+
+  setText(
+    "contactHours",
+    settings.businessHours
+  );
+
+
+  /* SUPPORT */
+
+  setText(
+    "contactSupportMessage",
+    settings.supportMessage
+  );
+
+
+  /* FOOTER */
+
+  setText(
+    "footerText",
+    settings.footerText
+  );
+
+  setText(
+    "copyrightText",
+    settings.copyrightText
+  );
+
+
+  if (
+    settings.contactEmail &&
+    String(settings.contactEmail).trim() !== ""
+  ) {
+
+    setText(
+      "footerContactEmail",
+      settings.contactEmail
+    );
+
+  }
+
+
+  if (
+    settings.contactPhone &&
+    String(settings.contactPhone).trim() !== ""
+  ) {
+
+    setText(
+      "footerContactPhone",
+      settings.contactPhone
+    );
+
+  }
+
+
+  /* CONTACT IMAGE */
+
+  const contactImage =
+    document.getElementById(
+      "contactImage"
+    );
+
+  if (
+    contactImage &&
+    settings.contactImage &&
+    String(settings.contactImage).trim() !== ""
+  ) {
+
+    contactImage.src =
+      settings.contactImage;
+
+    contactImage.style.display =
+      "block";
+
+  }
+
+
+  /* WEBSITE TITLE */
+
+  if (
+    settings.websiteTitle &&
+    String(settings.websiteTitle).trim() !== ""
+  ) {
+
+    document.title =
+      settings.websiteTitle;
+
+  }
+
+
+  /* SEO DESCRIPTION */
+
+  const description =
+    document.getElementById(
+      "pageDescription"
+    );
+
+  if (
+    description &&
+    settings.seoDescription
+  ) {
+
+    description.setAttribute(
+      "content",
+      settings.seoDescription
+    );
+
+  }
+
+
+  /* SEO KEYWORDS */
+
+  const keywords =
+    document.getElementById(
+      "pageKeywords"
+    );
+
+  if (
+    keywords &&
+    settings.seoKeywords
+  ) {
+
+    keywords.setAttribute(
+      "content",
+      settings.seoKeywords
+    );
+
+  }
+
+
+  /* COLORS */
+
+  if (settings.primaryColor) {
+
+    document.documentElement.style.setProperty(
+      "--primary-color",
+      settings.primaryColor
+    );
+
+  }
+
+  if (settings.primaryColorText) {
+
+    document.documentElement.style.setProperty(
+      "--primary-text",
+      settings.primaryColorText
+    );
+
+  }
+
+  if (settings.secondaryColor) {
+
+    document.documentElement.style.setProperty(
+      "--secondary-color",
+      settings.secondaryColor
+    );
+
+  }
+
+  if (settings.secondaryColorText) {
+
+    document.documentElement.style.setProperty(
+      "--secondary-text",
+      settings.secondaryColorText
+    );
+
+  }
+
+  if (settings.accentColor) {
+
+    document.documentElement.style.setProperty(
+      "--accent-color",
+      settings.accentColor
+    );
+
+  }
+
+  if (settings.accentColorText) {
+
+    document.documentElement.style.setProperty(
+      "--accent-text",
+      settings.accentColorText
+    );
+
+  }
+
+  if (settings.textColor) {
+
+    document.documentElement.style.setProperty(
+      "--text-color",
+      settings.textColor
+    );
+
+  }
+
+  if (settings.textColorText) {
+
+    document.documentElement.style.setProperty(
+      "--text-color-text",
+      settings.textColorText
+    );
+
+  }
+
+
+  /* TYPOGRAPHY */
+
+  if (settings.fontFamily) {
+
+    document.documentElement.style.setProperty(
+      "--font-family",
+      settings.fontFamily
+    );
+
+  }
+
+  if (settings.fontSize) {
+
+    document.documentElement.style.setProperty(
+      "--font-size",
+      settings.fontSize
+    );
+
+  }
+
+
+  /* FAVICON */
+
+  if (
+    settings.faviconUrl &&
+    String(settings.faviconUrl).trim() !== ""
+  ) {
+
+    let favicon =
+      document.querySelector(
+        'link[rel="icon"]'
+      );
+
+    if (!favicon) {
+
+      favicon =
+        document.createElement(
+          "link"
+        );
+
+      favicon.rel =
+        "icon";
+
+      document.head.appendChild(
+        favicon
+      );
+
+    }
+
+    favicon.href =
+      settings.faviconUrl;
+
+  }
+
+}
+
+
+/* MOBILE MENU */
+
+const menuToggle =
+  document.querySelector(
+    ".menu-toggle"
+  );
+
+const navLinks =
+  document.querySelector(
+    ".nav-links"
+  );
+
+
+if (
+  menuToggle &&
+  navLinks
+) {
+
+  menuToggle.addEventListener(
+    "click",
+    function () {
+
+      navLinks.classList.toggle(
+        "active"
+      );
+
+    }
+  );
+
+
+  navLinks
+    .querySelectorAll("a")
+    .forEach(function(link) {
+
+      link.addEventListener(
+        "click",
+        function() {
+
+          navLinks.classList.remove(
+            "active"
+          );
+
+        }
+      );
+
+    });
+
+}
+
+
+/* CONTACT FORM */
+
+function sendMessage(event) {
+
+  event.preventDefault();
+
+  const message =
+    document.getElementById(
+      "message"
+    );
+
+  if (message) {
+
+    message.style.display =
+      "block";
+
+  }
+
+  event.target.reset();
+
+}
+
+
+applyWebsiteSettings();
+
 </script>
 
 </body>
