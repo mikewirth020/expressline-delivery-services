@@ -3,7 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Shipment Requests</title>
+
+  <title>Shipment Requests | ExpressLine Admin</title>
+
+  <meta name="robots" content="noindex, nofollow">
 
   <style>
     * {
@@ -13,90 +16,152 @@
     }
 
     body {
-      font-family: Arial, sans-serif;
+      font-family: Arial, Helvetica, sans-serif;
       background: #f4f7fb;
-      color: #222;
+      color: #1f2937;
     }
 
     header {
       background: #0b1f3a;
       color: white;
-      padding: 20px;
-      text-align: center;
+      padding: 18px 20px;
+    }
+
+    .header-inner {
+      max-width: 1200px;
+      margin: auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
     }
 
     header h1 {
-      margin-bottom: 8px;
+      font-size: 24px;
+      margin-bottom: 5px;
+    }
+
+    header p {
+      color: #cbd5e1;
+      font-size: 14px;
+    }
+
+    nav {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      padding: 9px 12px;
+      border-radius: 6px;
+      font-size: 14px;
+    }
+
+    nav a:hover,
+    nav a.active {
+      background: #163b68;
     }
 
     .container {
-      width: 90%;
-      max-width: 1100px;
-      margin: 30px auto;
+      width: 94%;
+      max-width: 1200px;
+      margin: 30px auto 60px;
     }
 
-    .top-bar {
+    .top {
       display: flex;
       justify-content: space-between;
       align-items: center;
+      gap: 15px;
+      flex-wrap: wrap;
       margin-bottom: 20px;
+    }
+
+    .top h2 {
+      color: #0b1f3a;
+      font-size: 25px;
+    }
+
+    .top p {
+      color: #64748b;
+      margin-top: 5px;
+    }
+
+    .primary-btn {
+      display: inline-block;
+      background: #0b1f3a;
+      color: white;
+      border: none;
+      border-radius: 7px;
+      padding: 12px 18px;
+      font-weight: bold;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    .primary-btn:hover {
+      background: #163b68;
+    }
+
+    .search-box {
+      background: white;
+      padding: 16px;
+      border-radius: 10px;
+      box-shadow: 0 3px 12px rgba(0,0,0,.07);
+      margin-bottom: 20px;
+    }
+
+    .search-box input {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #cbd5e1;
+      border-radius: 7px;
+      font-size: 15px;
+      outline: none;
+    }
+
+    .request-list {
+      display: grid;
+      gap: 16px;
+    }
+
+    .request-card {
+      background: white;
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 0 3px 12px rgba(0,0,0,.07);
+      border: 1px solid #e5e7eb;
+    }
+
+    .request-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
       gap: 15px;
       flex-wrap: wrap;
     }
 
-    .top-bar h2 {
+    .request-id {
+      font-size: 20px;
+      font-weight: bold;
       color: #0b1f3a;
     }
 
-    .add-btn {
-      background: #0b1f3a;
-      color: white;
-      padding: 12px 18px;
-      border-radius: 6px;
-      text-decoration: none;
-      font-weight: bold;
-    }
-
-    .add-btn:hover {
-      background: #163b68;
-    }
-
-    .requests-box {
-      background: white;
-      border-radius: 10px;
-      padding: 20px;
-      box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
-      overflow-x: auto;
-    }
-
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      min-width: 750px;
-    }
-
-    th,
-    td {
-      padding: 14px;
-      border-bottom: 1px solid #ddd;
-      text-align: left;
-    }
-
-    th {
-      background: #0b1f3a;
-      color: white;
-    }
-
-    tr:hover {
-      background: #f7f9fc;
+    .request-name {
+      color: #64748b;
+      margin-top: 5px;
     }
 
     .status {
-      padding: 6px 10px;
-      border-radius: 20px;
-      font-size: 13px;
-      font-weight: bold;
       display: inline-block;
+      padding: 6px 11px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: bold;
     }
 
     .pending {
@@ -104,47 +169,152 @@
       color: #856404;
     }
 
-    .approved {
-      background: #d4edda;
-      color: #155724;
+    .processed {
+      background: #dcfce7;
+      color: #166534;
     }
 
     .rejected {
-      background: #f8d7da;
-      color: #721c24;
+      background: #fee2e2;
+      color: #991b1b;
+    }
+
+    .request-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .info {
+      background: #f8fafc;
+      padding: 12px;
+      border-radius: 8px;
+    }
+
+    .info small {
+      display: block;
+      color: #64748b;
+      margin-bottom: 5px;
+    }
+
+    .info strong {
+      word-break: break-word;
+    }
+
+    .actions {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 18px;
+    }
+
+    .action-btn {
+      border: none;
+      border-radius: 7px;
+      padding: 10px 14px;
+      font-weight: bold;
+      cursor: pointer;
     }
 
     .view-btn {
-      background: #e9eef5;
+      background: #e5edf7;
       color: #0b1f3a;
-      border: none;
-      padding: 8px 12px;
-      border-radius: 5px;
-      cursor: pointer;
-      font-weight: bold;
     }
 
-    .view-btn:hover {
-      background: #d5deea;
+    .create-btn {
+      background: #0b1f3a;
+      color: white;
     }
 
-    .empty-message {
+    .delete-btn {
+      background: #dc3545;
+      color: white;
+    }
+
+    .details {
+      display: none;
+      margin-top: 18px;
+      padding-top: 18px;
+      border-top: 1px solid #e5e7eb;
+    }
+
+    .details.show {
+      display: block;
+    }
+
+    .details-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+    }
+
+    .details-box {
+      background: #f8fafc;
+      padding: 14px;
+      border-radius: 8px;
+    }
+
+    .details-box.full {
+      grid-column: 1 / -1;
+    }
+
+    .details-box strong {
+      display: block;
+      color: #0b1f3a;
+      margin-bottom: 5px;
+    }
+
+    .empty {
+      background: white;
+      padding: 45px 20px;
+      border-radius: 12px;
       text-align: center;
-      padding: 30px;
-      color: #777;
+      color: #64748b;
+    }
+
+    .empty h3 {
+      color: #0b1f3a;
+      margin-bottom: 8px;
+    }
+
+    .notice {
+      background: #eff6ff;
+      border: 1px solid #bfdbfe;
+      color: #1e40af;
+      padding: 14px;
+      border-radius: 8px;
+      margin-bottom: 20px;
+      line-height: 1.5;
+      font-size: 14px;
+    }
+
+    @media (max-width: 800px) {
+      .request-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
     }
 
     @media (max-width: 600px) {
+      .request-grid,
+      .details-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .details-box.full {
+        grid-column: auto;
+      }
+
       .container {
-        width: 95%;
+        width: 94%;
       }
 
       header h1 {
-        font-size: 24px;
+        font-size: 20px;
       }
 
-      .requests-box {
-        padding: 10px;
+      .top h2 {
+        font-size: 22px;
       }
     }
   </style>
@@ -152,97 +322,687 @@
 
 <body>
 
-  <header>
-    <h1>Shipment Requests</h1>
-    <p>Manage and track shipment requests</p>
-  </header>
+<header>
 
-  <div class="container">
+  <div class="header-inner">
 
-    <div class="top-bar">
-      <h2>All Shipment Requests</h2>
-
-      <a href="add-shipment.html" class="add-btn">
-        + Add Shipment Request
-      </a>
+    <div>
+      <h1>ExpressLine Admin</h1>
+      <p>Shipment Requests</p>
     </div>
 
-    <div class="requests-box">
+    <nav>
+      <a href="admin.html">Dashboard</a>
+      <a href="admin-shipments.html">Shipments</a>
+      <a href="admin-requests.html" class="active">Requests</a>
+      <a href="index.html">Website</a>
+      <a href="admin-login.html">Logout</a>
+    </nav>
 
-      <table>
-        <thead>
-          <tr>
-            <th>Request ID</th>
-            <th>Customer</th>
-            <th>Pickup</th>
-            <th>Destination</th>
-            <th>Date</th>
-            <th>Status</th>
-            <th>Action</th>
-          </tr>
-        </thead>
-
-        <tbody id="requestsTable">
-
-          <tr>
-            <td>SR-1001</td>
-            <td>John Smith</td>
-            <td>Newark, NJ</td>
-            <td>New York, NY</td>
-            <td>09/18/2026</td>
-            <td>
-              <span class="status pending">Pending</span>
-            </td>
-            <td>
-              <button class="view-btn" onclick="viewRequest('SR-1001')">
-                View
-              </button>
-            </td>
-          </tr>
-
-          <tr>
-            <td>SR-1002</td>
-            <td>Michael Brown</td>
-            <td>Boston, MA</td>
-            <td>Newark, NJ</td>
-            <td>09/19/2026</td>
-            <td>
-              <span class="status approved">Approved</span>
-            </td>
-            <td>
-              <button class="view-btn" onclick="viewRequest('SR-1002')">
-                View
-              </button>
-            </td>
-          </tr>
-
-          <tr>
-            <td>SR-1003</td>
-            <td>Sarah Johnson</td>
-            <td>Philadelphia, PA</td>
-            <td>Washington, DC</td>
-            <td>09/20/2026</td>
-            <td>
-              <span class="status rejected">Rejected</span>
-            </td>
-            <td>
-              <button class="view-btn" onclick="viewRequest('SR-1003')">
-                View
-              </button>
-            </td>
-          </tr>
-
-        </tbody>
-      </table>
-
-    </div>
   </div>
 
-  <script>
-    function viewRequest(requestId) {
-      alert("Opening shipment request: " + requestId);
+</header>
+
+<main class="container">
+
+  <div class="top">
+
+    <div>
+      <h2>Shipment Requests</h2>
+
+      <p>
+        Review customer requests and convert them into Admin-managed shipments.
+      </p>
+    </div>
+
+    <!--
+      IMPORTANT:
+      This link goes ONLY to admin-shipments.html.
+      It does NOT go to request.html.
+      It does NOT use add-shipment.html.
+    -->
+
+    <a
+      href="admin-shipments.html"
+      class="primary-btn"
+    >
+      + Create Shipment
+    </a>
+
+  </div>
+
+  <div class="notice">
+
+    <strong>Admin workflow:</strong>
+    Review a customer request here, then use
+    <strong>Create Shipment</strong> to open the Admin shipment manager.
+    The customer request page is separate from the Admin shipment system.
+
+  </div>
+
+  <div class="search-box">
+
+    <input
+      type="search"
+      id="searchInput"
+      placeholder="Search by request number, customer, phone, origin or destination..."
+      oninput="renderRequests()"
+    >
+
+  </div>
+
+  <div
+    id="requestList"
+    class="request-list"
+  ></div>
+
+</main>
+
+<script>
+
+const REQUEST_STORAGE_KEY =
+  "expresslineShipmentRequests";
+
+let requests = [];
+
+function loadRequests() {
+
+  try {
+
+    const saved =
+      localStorage.getItem(
+        REQUEST_STORAGE_KEY
+      );
+
+    if (!saved) {
+      return [];
     }
-  </script>
+
+    const parsed =
+      JSON.parse(saved);
+
+    return Array.isArray(parsed)
+      ? parsed
+      : [];
+
+  } catch (error) {
+
+    console.error(
+      "Unable to load shipment requests:",
+      error
+    );
+
+    return [];
+
+  }
+}
+
+function escapeHTML(value) {
+
+  return String(value ?? "")
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
+
+}
+
+function textValue(value) {
+
+  if (
+    value === null ||
+    value === undefined
+  ) {
+    return "";
+  }
+
+  if (
+    typeof value === "object"
+  ) {
+    return "";
+  }
+
+  return String(value);
+
+}
+
+function locationValue(value) {
+
+  if (!value) {
+    return "";
+  }
+
+  if (
+    typeof value === "string"
+  ) {
+    return value;
+  }
+
+  if (
+    typeof value === "object"
+  ) {
+
+    return (
+      value.location ||
+      value.address ||
+      value.city ||
+      value.name ||
+      ""
+    );
+
+  }
+
+  return "";
+
+}
+
+function normalizeRequest(request) {
+
+  const sender =
+    request.sender &&
+    typeof request.sender === "object"
+      ? request.sender
+      : {};
+
+  const receiver =
+    request.receiver &&
+    typeof request.receiver === "object"
+      ? request.receiver
+      : {};
+
+  return {
+
+    id:
+      textValue(request.id) ||
+      textValue(request.requestId) ||
+      textValue(request.reference) ||
+      "Request",
+
+    name:
+      textValue(request.customerName) ||
+      textValue(request.name) ||
+      textValue(request.fullName) ||
+      textValue(receiver.name),
+
+    phone:
+      textValue(request.customerPhone) ||
+      textValue(request.phone) ||
+      textValue(receiver.phone),
+
+    email:
+      textValue(request.customerEmail) ||
+      textValue(request.email),
+
+    origin:
+      locationValue(request.origin) ||
+      textValue(request.pickup) ||
+      textValue(request.pickupLocation) ||
+      textValue(sender.address),
+
+    destination:
+      locationValue(request.destination) ||
+      textValue(request.deliveryAddress) ||
+      textValue(request.destinationAddress) ||
+      textValue(receiver.address),
+
+    shipmentType:
+      textValue(request.shipmentType) ||
+      textValue(request.packageType) ||
+      textValue(
+        request.package &&
+        request.package.type
+      ),
+
+    weight:
+      textValue(request.weight) ||
+      textValue(
+        request.package &&
+        request.package.weight
+      ),
+
+    message:
+      textValue(request.message) ||
+      textValue(request.notes) ||
+      textValue(request.description),
+
+    status:
+      textValue(request.status) ||
+      "Pending",
+
+    date:
+      textValue(request.date) ||
+      textValue(request.createdDate) ||
+      textValue(request.createdAt)
+
+  };
+
+}
+
+function formatDate(value) {
+
+  if (!value) {
+    return "Not provided";
+  }
+
+  const date =
+    new Date(value);
+
+  if (
+    Number.isNaN(
+      date.getTime()
+    )
+  ) {
+    return value;
+  }
+
+  return date.toLocaleDateString(
+    "en-US",
+    {
+      year: "numeric",
+      month: "short",
+      day: "numeric"
+    }
+  );
+
+}
+
+function getStatusClass(status) {
+
+  const value =
+    String(status || "")
+      .toLowerCase();
+
+  if (
+    value.includes("reject")
+  ) {
+    return "rejected";
+  }
+
+  if (
+    value.includes("process") ||
+    value.includes("complete")
+  ) {
+    return "processed";
+  }
+
+  return "pending";
+
+}
+
+function renderRequests() {
+
+  requests =
+    loadRequests();
+
+  const list =
+    document.getElementById(
+      "requestList"
+    );
+
+  const search =
+    document.getElementById(
+      "searchInput"
+    )
+      .value
+      .trim()
+      .toLowerCase();
+
+  const filtered =
+    requests
+      .map(
+        (request, index) => ({
+          request:
+            normalizeRequest(
+              request
+            ),
+          index
+        })
+      )
+      .filter(item => {
+
+        if (!search) {
+          return true;
+        }
+
+        const r =
+          item.request;
+
+        const searchable =
+          [
+            r.id,
+            r.name,
+            r.phone,
+            r.email,
+            r.origin,
+            r.destination,
+            r.shipmentType,
+            r.status
+          ]
+            .join(" ")
+            .toLowerCase();
+
+        return searchable.includes(
+          search
+        );
+
+      });
+
+  if (!filtered.length) {
+
+    list.innerHTML = `
+      <div class="empty">
+
+        <h3>No shipment requests found</h3>
+
+        <p>
+          Customer requests submitted through the website will appear here.
+        </p>
+
+      </div>
+    `;
+
+    return;
+  }
+
+  list.innerHTML =
+    filtered
+      .map(item => {
+
+        const r =
+          item.request;
+
+        return `
+
+          <article class="request-card">
+
+            <div class="request-top">
+
+              <div>
+
+                <div class="request-id">
+                  ${escapeHTML(r.id)}
+                </div>
+
+                <div class="request-name">
+                  ${escapeHTML(
+                    r.name ||
+                    "Customer name not provided"
+                  )}
+                </div>
+
+              </div>
+
+              <span
+                class="status ${getStatusClass(r.status)}"
+              >
+                ${escapeHTML(r.status)}
+              </span>
+
+            </div>
+
+            <div class="request-grid">
+
+              <div class="info">
+                <small>Phone</small>
+                <strong>
+                  ${escapeHTML(
+                    r.phone ||
+                    "Not provided"
+                  )}
+                </strong>
+              </div>
+
+              <div class="info">
+                <small>Email</small>
+                <strong>
+                  ${escapeHTML(
+                    r.email ||
+                    "Not provided"
+                  )}
+                </strong>
+              </div>
+
+              <div class="info">
+                <small>Origin</small>
+                <strong>
+                  ${escapeHTML(
+                    r.origin ||
+                    "Not provided"
+                  )}
+                </strong>
+              </div>
+
+              <div class="info">
+                <small>Destination</small>
+                <strong>
+                  ${escapeHTML(
+                    r.destination ||
+                    "Not provided"
+                  )}
+                </strong>
+              </div>
+
+              <div class="info">
+                <small>Shipment Type</small>
+                <strong>
+                  ${escapeHTML(
+                    r.shipmentType ||
+                    "Not provided"
+                  )}
+                </strong>
+              </div>
+
+              <div class="info">
+                <small>Request Date</small>
+                <strong>
+                  ${escapeHTML(
+                    formatDate(r.date)
+                  )}
+                </strong>
+              </div>
+
+            </div>
+
+            <div class="actions">
+
+              <button
+                type="button"
+                class="action-btn view-btn"
+                onclick="toggleDetails(${item.index})"
+              >
+                View Details
+              </button>
+
+              <button
+                type="button"
+                class="action-btn create-btn"
+                onclick="openAdminShipments()"
+              >
+                Create Shipment
+              </button>
+
+              <button
+                type="button"
+                class="action-btn delete-btn"
+                onclick="deleteRequest(${item.index})"
+              >
+                Delete Request
+              </button>
+
+            </div>
+
+            <div
+              id="details-${item.index}"
+              class="details"
+            >
+
+              <div class="details-grid">
+
+                <div class="details-box">
+                  <strong>Customer</strong>
+                  ${escapeHTML(
+                    r.name ||
+                    "Not provided"
+                  )}
+                </div>
+
+                <div class="details-box">
+                  <strong>Phone</strong>
+                  ${escapeHTML(
+                    r.phone ||
+                    "Not provided"
+                  )}
+                </div>
+
+                <div class="details-box">
+                  <strong>Email</strong>
+                  ${escapeHTML(
+                    r.email ||
+                    "Not provided"
+                  )}
+                </div>
+
+                <div class="details-box">
+                  <strong>Weight</strong>
+                  ${escapeHTML(
+                    r.weight ||
+                    "Not provided"
+                  )}
+                </div>
+
+                <div class="details-box">
+                  <strong>Origin</strong>
+                  ${escapeHTML(
+                    r.origin ||
+                    "Not provided"
+                  )}
+                </div>
+
+                <div class="details-box">
+                  <strong>Destination</strong>
+                  ${escapeHTML(
+                    r.destination ||
+                    "Not provided"
+                  )}
+                </div>
+
+                <div class="details-box">
+                  <strong>Shipment Type</strong>
+                  ${escapeHTML(
+                    r.shipmentType ||
+                    "Not provided"
+                  )}
+                </div>
+
+                <div class="details-box">
+                  <strong>Status</strong>
+                  ${escapeHTML(
+                    r.status
+                  )}
+                </div>
+
+                <div class="details-box full">
+                  <strong>Customer Message</strong>
+                  ${escapeHTML(
+                    r.message ||
+                    "No additional message."
+                  )}
+                </div>
+
+              </div>
+
+            </div>
+
+          </article>
+
+        `;
+
+      })
+      .join("");
+
+}
+
+function toggleDetails(index) {
+
+  const box =
+    document.getElementById(
+      "details-" + index
+    );
+
+  if (!box) {
+    return;
+  }
+
+  box.classList.toggle(
+    "show"
+  );
+
+}
+
+function openAdminShipments() {
+
+  /*
+    IMPORTANT:
+    Admin requests never open request.html.
+    Admin requests never open add-shipment.html.
+    They always open the Admin shipment manager.
+  */
+
+  window.location.href =
+    "admin-shipments.html";
+
+}
+
+function deleteRequest(index) {
+
+  requests =
+    loadRequests();
+
+  if (!requests[index]) {
+    return;
+  }
+
+  const request =
+    normalizeRequest(
+      requests[index]
+    );
+
+  const confirmed =
+    confirm(
+      "Delete request " +
+      request.id +
+      "?"
+    );
+
+  if (!confirmed) {
+    return;
+  }
+
+  requests.splice(
+    index,
+    1
+  );
+
+  localStorage.setItem(
+    REQUEST_STORAGE_KEY,
+    JSON.stringify(requests)
+  );
+
+  renderRequests();
+
+}
+
+document.addEventListener(
+  "DOMContentLoaded",
+  function() {
+
+    renderRequests();
+
+  }
+);
+
+</script>
 
 </body>
 </html>
