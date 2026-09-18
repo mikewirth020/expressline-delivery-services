@@ -4,7 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title id="pageTitle">About Us | ExpressLine Delivery Services</title>
+  <title id="pageTitle">
+    About Us | ExpressLine Delivery Services
+  </title>
 
   <meta
     id="pageDescription"
@@ -12,44 +14,684 @@
     content="Learn about ExpressLine Delivery Services and our approach to professional courier and logistics solutions."
   >
 
-  <meta id="pageKeywords" name="keywords" content="ExpressLine, logistics, delivery, courier, shipping">
+  <meta
+    id="pageKeywords"
+    name="keywords"
+    content="ExpressLine, logistics, delivery, courier, shipping"
+  >
 
   <link rel="stylesheet" href="style.css">
 
   <style>
+    :root {
+      --about-orange: #F97316;
+      --about-black: #111111;
+      --about-gray: #4b5563;
+      --about-light: #f8fafc;
+      --about-border: #e5e7eb;
+      --about-white: #ffffff;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: #ffffff;
+      color: var(--about-black);
+      overflow-x: hidden;
+    }
+
+    /* =========================
+       HEADER
+    ========================= */
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      width: 100%;
+      background: #ffffff;
+      border-bottom: 1px solid #e5e7eb;
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+    }
+
+    .about-navbar {
+      width: 100%;
+      max-width: 1200px;
+      min-height: 76px;
+      margin: 0 auto;
+      padding: 0 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .about-logo {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      color: #111111;
+      text-decoration: none;
+      font-size: 20px;
+      font-weight: 800;
+      white-space: nowrap;
+    }
+
+    .about-logo-mark {
+      width: 40px;
+      height: 40px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 10px;
+      background: var(--about-orange);
+      color: #ffffff;
+      font-size: 15px;
+      font-weight: 900;
+    }
+
+    .about-nav-links {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 6px;
+    }
+
+    .about-nav-links a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 42px;
+      padding: 9px 12px;
+      border-radius: 8px;
+      color: #111111;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 700;
+      line-height: 1.2;
+      white-space: nowrap;
+      transition: 0.2s ease;
+    }
+
+    .about-nav-links a:hover {
+      background: #fff1e8;
+      color: var(--about-orange);
+    }
+
+    .about-nav-links .nav-button {
+      margin-left: 4px;
+      background: var(--about-orange);
+      color: #ffffff;
+    }
+
+    .about-nav-links .nav-button:hover {
+      background: #ea580c;
+      color: #ffffff;
+    }
+
+    .about-menu-toggle {
+      display: none;
+      width: 44px;
+      height: 44px;
+      border: 0;
+      border-radius: 8px;
+      background: #111111;
+      color: #ffffff;
+      font-size: 22px;
+      cursor: pointer;
+    }
+
+    /* =========================
+       HERO
+    ========================= */
+
     .about-hero {
-      min-height: 430px;
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
+      min-height: 470px;
+      position: relative;
+      display: flex;
+      align-items: center;
+      background:
+        linear-gradient(
+          90deg,
+          rgba(17, 17, 17, 0.90),
+          rgba(17, 17, 17, 0.72)
+        ),
+        url("https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=1800&q=80")
+        center/cover no-repeat;
+      color: #ffffff;
+    }
+
+    .about-hero.has-custom-image {
+      background:
+        linear-gradient(
+          90deg,
+          rgba(17, 17, 17, 0.90),
+          rgba(17, 17, 17, 0.72)
+        ),
+        var(--about-hero-image)
+        center/cover no-repeat;
+    }
+
+    .about-hero-content {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 80px 24px;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      min-height: 34px;
+      padding: 7px 13px;
+      margin-bottom: 20px;
+      border-radius: 999px;
+      background: var(--about-orange);
+      color: #ffffff;
+      font-size: 12px;
+      font-weight: 900;
+      letter-spacing: 0.08em;
+    }
+
+    .about-hero h1 {
+      max-width: 780px;
+      margin: 0 0 20px;
+      color: #ffffff;
+      font-size: clamp(36px, 6vw, 62px);
+      line-height: 1.08;
+      font-weight: 900;
+      letter-spacing: -0.03em;
+    }
+
+    .about-hero p {
+      max-width: 760px;
+      margin: 0;
+      color: #ffffff;
+      font-size: 18px;
+      line-height: 1.75;
+    }
+
+    /* =========================
+       SECTIONS
+    ========================= */
+
+    .about-section {
+      padding: 80px 24px;
+    }
+
+    .about-section-light {
+      background: #ffffff;
+    }
+
+    .about-section-gray {
+      background: #f8fafc;
+    }
+
+    .about-container {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .about-heading {
+      max-width: 800px;
+      margin: 0 auto 48px;
+      text-align: center;
+    }
+
+    .section-label {
+      margin: 0 0 10px;
+      color: var(--about-orange);
+      font-size: 13px;
+      font-weight: 900;
+      letter-spacing: 0.12em;
+    }
+
+    .about-heading h2 {
+      margin: 0 0 16px;
+      color: #111111;
+      font-size: clamp(30px, 4vw, 46px);
+      line-height: 1.15;
+      font-weight: 900;
+    }
+
+    .about-heading p {
+      margin: 0 0 14px;
+      color: var(--about-gray);
+      font-size: 16px;
+      line-height: 1.75;
+    }
+
+    /* =========================
+       ABOUT IMAGE
+    ========================= */
+
+    .about-image-wrapper {
+      margin: 0 auto 50px;
     }
 
     .about-image {
       width: 100%;
-      max-width: 900px;
-      height: 320px;
+      max-width: 950px;
+      height: 360px;
+      margin: 0 auto;
+      display: block;
       object-fit: cover;
       border-radius: 18px;
-      display: block;
-      margin: 30px auto 0;
+      box-shadow: 0 12px 35px rgba(17, 17, 17, 0.10);
     }
 
-    .about-image-wrapper {
-      margin-top: 30px;
+    /* =========================
+       CARDS
+    ========================= */
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 24px;
+    }
+
+    .about-card {
+      height: 100%;
+      padding: 30px;
+      background: #ffffff;
+      border: 1px solid var(--about-border);
+      border-radius: 16px;
+      box-shadow: 0 8px 30px rgba(17, 17, 17, 0.06);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .about-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 14px 35px rgba(17, 17, 17, 0.10);
+    }
+
+    .about-card-icon {
+      width: 52px;
+      height: 52px;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 14px;
+      background: #fff1e8;
+      color: var(--about-orange);
+      font-size: 25px;
+    }
+
+    .about-card h3 {
+      margin: 0 0 12px;
+      color: #111111;
+      font-size: 21px;
+      line-height: 1.3;
+      font-weight: 850;
+    }
+
+    .about-card p {
+      margin: 0;
+      color: var(--about-gray);
+      font-size: 15px;
+      line-height: 1.75;
+    }
+
+    /* =========================
+       MISSION
+    ========================= */
+
+    .mission-box {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 45px;
+      background: #ffffff;
+      border: 1px solid var(--about-border);
+      border-radius: 18px;
+      text-align: center;
+      box-shadow: 0 8px 30px rgba(17, 17, 17, 0.05);
+    }
+
+    .mission-box h2 {
+      margin: 0 0 16px;
+      color: #111111;
+      font-size: clamp(30px, 4vw, 44px);
+      line-height: 1.15;
+    }
+
+    .mission-box p {
+      margin: 0;
+      color: var(--about-gray);
+      font-size: 16px;
+      line-height: 1.8;
+    }
+
+    /* =========================
+       CTA
+    ========================= */
+
+    .about-cta {
+      padding: 80px 24px;
+      background: #111111;
+      color: #ffffff;
+      text-align: center;
+    }
+
+    .about-cta-inner {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .about-cta h2 {
+      margin: 0 0 16px;
+      color: #ffffff;
+      font-size: clamp(30px, 4vw, 44px);
+      line-height: 1.15;
+    }
+
+    .about-cta p {
+      max-width: 650px;
+      margin: 0 auto 28px;
+      color: #e5e7eb;
+      font-size: 16px;
+      line-height: 1.7;
+    }
+
+    .about-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 50px;
+      margin: 5px;
+      padding: 13px 24px;
+      border-radius: 9px;
+      text-decoration: none;
+      font-size: 15px;
+      font-weight: 800;
+      transition: 0.2s ease;
+    }
+
+    .about-btn-primary {
+      background: var(--about-orange);
+      color: #ffffff;
+    }
+
+    .about-btn-primary:hover {
+      background: #ea580c;
+      color: #ffffff;
+      transform: translateY(-1px);
+    }
+
+    .about-btn-secondary {
+      background: #ffffff;
+      color: #111111;
+      border: 1px solid #ffffff;
+    }
+
+    .about-btn-secondary:hover {
+      background: #f3f4f6;
+      color: #111111;
+      transform: translateY(-1px);
+    }
+
+    /* =========================
+       FOOTER
+    ========================= */
+
+    .about-footer {
+      padding: 65px 24px 25px;
+      background: #0b0b0b;
+      color: #ffffff;
+    }
+
+    .about-footer-grid {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1.2fr 1.2fr;
+      gap: 45px;
+    }
+
+    .footer-brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 18px;
+      color: #ffffff;
+      font-size: 20px;
+      font-weight: 800;
+    }
+
+    .about-footer h3 {
+      margin: 0 0 16px;
+      color: #ffffff;
+      font-size: 16px;
+      font-weight: 800;
+    }
+
+    .about-footer p {
+      margin: 0 0 10px;
+      color: #cbd5e1;
+      font-size: 14px;
+      line-height: 1.75;
+    }
+
+    .about-footer a {
+      color: #cbd5e1;
+      text-decoration: none;
+    }
+
+    .about-footer a:hover {
+      color: #ffffff;
+    }
+
+    .footer-bottom {
+      max-width: 1200px;
+      margin: 45px auto 0;
+      padding-top: 22px;
+      border-top: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    .footer-bottom p {
+      color: #94a3b8;
+      font-size: 13px;
+    }
+
+    /* =========================
+       SMART SUPPORT
+    ========================= */
+
+    .support-button {
+      position: fixed;
+      right: 20px;
+      bottom: 20px;
+      z-index: 900;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 50px;
+      padding: 13px 18px;
+      border-radius: 999px;
+      background: var(--about-orange);
+      color: #ffffff !important;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 800;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.20);
+      transition: 0.2s ease;
+    }
+
+    .support-button:hover {
+      background: #ea580c;
+      color: #ffffff !important;
+      transform: translateY(-2px);
+    }
+
+    /* =========================
+       MOBILE
+    ========================= */
+
+    @media (max-width: 980px) {
+
+      .about-menu-toggle {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .about-nav-links {
+        position: absolute;
+        top: 76px;
+        left: 0;
+        right: 0;
+        display: none;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 4px;
+        padding: 14px 20px 20px;
+        background: #ffffff;
+        border-bottom: 1px solid #e5e7eb;
+        box-shadow: 0 12px 25px rgba(0, 0, 0, 0.08);
+      }
+
+      .about-nav-links.open {
+        display: flex;
+      }
+
+      .about-nav-links a {
+        width: 100%;
+        justify-content: flex-start;
+        padding: 13px 14px;
+        min-height: 44px;
+      }
+
+      .about-nav-links .nav-button {
+        justify-content: center;
+        margin: 5px 0 0;
+      }
+
+      .about-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .about-footer-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 680px) {
+
+      .about-navbar {
+        min-height: 68px;
+        padding: 0 16px;
+      }
+
+      .about-logo {
+        font-size: 18px;
+      }
+
+      .about-logo-mark {
+        width: 36px;
+        height: 36px;
+      }
+
+      .about-nav-links {
+        top: 68px;
+      }
+
+      .about-hero {
+        min-height: 430px;
+      }
+
+      .about-hero-content {
+        padding: 65px 20px;
+      }
+
+      .about-hero h1 {
+        font-size: 38px;
+      }
+
+      .about-hero p {
+        font-size: 16px;
+        line-height: 1.65;
+      }
+
+      .about-section {
+        padding: 60px 20px;
+      }
+
+      .about-grid {
+        grid-template-columns: 1fr;
+        gap: 18px;
+      }
+
+      .about-card {
+        padding: 25px;
+      }
+
+      .about-image {
+        height: 260px;
+      }
+
+      .mission-box {
+        padding: 30px 22px;
+      }
+
+      .about-cta {
+        padding: 60px 20px;
+      }
+
+      .about-btn {
+        width: 100%;
+        margin: 5px 0;
+      }
+
+      .about-footer {
+        padding: 55px 20px 20px;
+      }
+
+      .about-footer-grid {
+        grid-template-columns: 1fr;
+        gap: 32px;
+      }
+
+      .support-button {
+        right: 14px;
+        bottom: 14px;
+        min-height: 46px;
+        padding: 11px 15px;
+        font-size: 13px;
+      }
+    }
+
+    /* =========================
+       MAINTENANCE MODE
+    ========================= */
+
+    body.website-maintenance-active > header,
+    body.website-maintenance-active > main,
+    body.website-maintenance-active > footer,
+    body.website-maintenance-active > a.support-button {
+      display: none !important;
     }
   </style>
 </head>
 
 <body>
 
-  <!-- HEADER -->
+  <!-- =========================
+       HEADER
+  ========================= -->
+
   <header class="site-header">
 
-    <div class="container navbar">
+    <div class="about-navbar">
 
-      <a href="index.html" class="logo">
+      <a href="index.html" class="about-logo">
 
-        <span class="logo-mark">EL</span>
+        <span class="about-logo-mark">
+          EL
+        </span>
 
         <span id="siteShortName">
           ExpressLine
@@ -57,26 +699,37 @@
 
       </a>
 
+
       <button
-        class="menu-toggle"
+        class="about-menu-toggle"
+        id="aboutMenuToggle"
         type="button"
         aria-label="Open navigation menu"
+        aria-expanded="false"
       >
         ☰
       </button>
 
-      <nav class="nav-links">
+
+      <nav
+        class="about-nav-links"
+        id="aboutNavLinks"
+      >
 
         <a id="navHome" href="index.html">
           Home
+        </a>
+
+        <a id="navServices" href="services.html">
+          Services
         </a>
 
         <a id="navTrack" href="track.html">
           Track Shipment
         </a>
 
-        <a id="navServices" href="services.html">
-          Services
+        <a id="navRequest" href="request.html">
+          Request a Shipment
         </a>
 
         <a id="navAbout" href="about.html">
@@ -84,11 +737,7 @@
         </a>
 
         <a id="navContact" href="contact.html">
-          Contact Us
-        </a>
-
-        <a id="navRequest" href="request.html">
-          Request Shipment
+          Support
         </a>
 
         <a
@@ -106,16 +755,20 @@
   </header>
 
 
-  <!-- MAIN CONTENT -->
+  <!-- =========================
+       MAIN
+  ========================= -->
+
   <main>
 
     <!-- HERO -->
+
     <section
       id="aboutHero"
-      class="hero about-hero"
+      class="about-hero"
     >
 
-      <div class="container hero-content">
+      <div class="about-hero-content">
 
         <span class="hero-badge">
           ABOUT EXPRESSLINE
@@ -126,9 +779,9 @@
         </h1>
 
         <p>
-          ExpressLine Delivery Services is being built around
-          dependable transportation, shipment visibility and
-          professional customer service.
+          ExpressLine Delivery Services is built around
+          dependable transportation, shipment visibility
+          and professional customer service.
         </p>
 
       </div>
@@ -137,11 +790,12 @@
 
 
     <!-- COMPANY INTRODUCTION -->
-    <section class="section section-light">
 
-      <div class="container">
+    <section class="about-section about-section-light">
 
-        <div class="section-heading">
+      <div class="about-container">
+
+        <div class="about-heading">
 
           <p class="section-label">
             WHO WE ARE
@@ -152,9 +806,9 @@
           </h2>
 
           <p>
-            ExpressLine Delivery Services is designed to provide
-            customers with a straightforward way to request,
-            manage and track shipments.
+            ExpressLine Delivery Services provides customers
+            with a straightforward way to request, manage
+            and track shipments.
           </p>
 
           <p>
@@ -167,6 +821,7 @@
 
 
         <div class="about-image-wrapper">
+
           <img
             id="aboutImage"
             class="about-image"
@@ -174,14 +829,15 @@
             alt="ExpressLine Delivery Services"
             style="display: none;"
           >
+
         </div>
 
 
-        <div class="cards">
+        <div class="about-grid">
 
-          <article class="card">
+          <article class="about-card">
 
-            <div class="card-icon">
+            <div class="about-card-icon">
               🚚
             </div>
 
@@ -197,9 +853,9 @@
           </article>
 
 
-          <article class="card">
+          <article class="about-card">
 
-            <div class="card-icon">
+            <div class="about-card-icon">
               📍
             </div>
 
@@ -215,9 +871,9 @@
           </article>
 
 
-          <article class="card">
+          <article class="about-card">
 
-            <div class="card-icon">
+            <div class="about-card-icon">
               🔒
             </div>
 
@@ -226,7 +882,7 @@
             </h3>
 
             <p>
-              Customer and shipment information will be protected
+              Customer and shipment information is protected
               through authenticated access and secure system design.
             </p>
 
@@ -240,11 +896,12 @@
 
 
     <!-- OUR APPROACH -->
-    <section class="section">
 
-      <div class="container">
+    <section class="about-section about-section-gray">
 
-        <div class="section-heading">
+      <div class="about-container">
+
+        <div class="about-heading">
 
           <p class="section-label">
             OUR APPROACH
@@ -255,31 +912,31 @@
           </h2>
 
           <p>
-            We are developing ExpressLine with a focus on making
+            ExpressLine is designed with a focus on making
             the shipping process easier to understand and manage.
           </p>
 
         </div>
 
 
-        <div class="cards">
+        <div class="about-grid">
 
-          <article class="card">
+          <article class="about-card">
 
             <h3>
               Clear Communication
             </h3>
 
             <p>
-              Shipment information and updates are presented in a
-              clear format so customers can understand the current
+              Shipment information and updates are presented
+              clearly so customers can understand the current
               status of their shipment.
             </p>
 
           </article>
 
 
-          <article class="card">
+          <article class="about-card">
 
             <h3>
               Professional Service
@@ -293,16 +950,15 @@
           </article>
 
 
-          <article class="card">
+          <article class="about-card">
 
             <h3>
               Technology Driven
             </h3>
 
             <p>
-              The ExpressLine platform is designed to connect
-              customers with modern shipment management and
-              tracking tools.
+              The ExpressLine platform connects customers with
+              modern shipment management and tracking tools.
             </p>
 
           </article>
@@ -315,11 +971,12 @@
 
 
     <!-- MISSION -->
-    <section class="section section-light">
 
-      <div class="container">
+    <section class="about-section about-section-light">
 
-        <div class="section-heading">
+      <div class="about-container">
+
+        <div class="mission-box">
 
           <p class="section-label">
             OUR MISSION
@@ -344,9 +1001,10 @@
 
 
     <!-- CTA -->
-    <section class="cta">
 
-      <div class="container">
+    <section class="about-cta">
+
+      <div class="about-cta-inner">
 
         <h2>
           Ready to move your shipment?
@@ -360,7 +1018,7 @@
         <a
           id="aboutRequestButton"
           href="request.html"
-          class="btn btn-primary"
+          class="about-btn about-btn-primary"
         >
           Request a Shipment
         </a>
@@ -368,7 +1026,7 @@
         <a
           id="aboutTrackButton"
           href="track.html"
-          class="btn btn-secondary"
+          class="about-btn about-btn-secondary"
         >
           Track Shipment
         </a>
@@ -380,107 +1038,169 @@
   </main>
 
 
-  <!-- FOOTER -->
-  <footer class="site-footer">
+  <!-- =========================
+       FOOTER
+  ========================= -->
 
-    <div class="container">
+  <footer class="about-footer">
 
-      <div class="footer-grid">
+    <div class="about-footer-grid">
 
-        <div>
+      <div>
 
-          <div class="logo">
+        <div class="footer-brand">
 
-            <span class="logo-mark">
-              EL
-            </span>
+          <span class="about-logo-mark">
+            EL
+          </span>
 
-            <span id="footerCompanyName">
-              ExpressLine
-            </span>
-
-          </div>
-
-          <p id="footerText">
-            Professional courier and logistics solutions
-            designed around reliable service, shipment
-            visibility and customer convenience.
-          </p>
+          <span id="footerCompanyName">
+            ExpressLine Delivery Services
+          </span>
 
         </div>
 
-
-        <div>
-
-          <h3>
-            Quick Links
-          </h3>
-
-          <p>
-            <a href="index.html">
-              Home
-            </a>
-          </p>
-
-          <p>
-            <a href="services.html">
-              Services
-            </a>
-          </p>
-
-          <p>
-            <a href="track.html">
-              Track Shipment
-            </a>
-          </p>
-
-          <p>
-            <a href="request.html">
-              Request Shipment
-            </a>
-          </p>
-
-        </div>
-
-
-        <div>
-
-          <h3>
-            Contact
-          </h3>
-
-          <p id="footerContactEmail">
-            Contact us for more information.
-          </p>
-
-          <p id="footerContactPhone">
-          </p>
-
-        </div>
-
-      </div>
-
-
-      <div class="footer-bottom">
-
-        <p id="copyrightText">
-          © 2026 ExpressLine Delivery Services. All rights reserved.
+        <p id="footerText">
+          Reliable logistics and delivery solutions for
+          individuals and businesses.
         </p>
 
       </div>
+
+
+      <div>
+
+        <h3>
+          Quick Links
+        </h3>
+
+        <p>
+          <a href="index.html">
+            Home
+          </a>
+        </p>
+
+        <p>
+          <a href="services.html">
+            Services
+          </a>
+        </p>
+
+        <p>
+          <a href="track.html">
+            Track Shipment
+          </a>
+        </p>
+
+        <p>
+          <a href="request.html">
+            Request a Shipment
+          </a>
+        </p>
+
+      </div>
+
+
+      <div>
+
+        <h3>
+          Customer
+        </h3>
+
+        <p>
+          <a href="login.html">
+            Customer Login
+          </a>
+        </p>
+
+        <p>
+          <a href="Customer Support.html">
+            Smart Support
+          </a>
+        </p>
+
+        <p>
+          <a href="contact.html">
+            Contact Us
+          </a>
+        </p>
+
+      </div>
+
+
+      <div>
+
+        <h3>
+          Contact
+        </h3>
+
+        <p id="footerContactEmail">
+          Contact us for more information.
+        </p>
+
+        <p id="footerContactPhone">
+        </p>
+
+        <br>
+
+        <a
+          href="Customer Support.html"
+          style="
+            display:inline-flex;
+            align-items:center;
+            justify-content:center;
+            min-height:42px;
+            padding:10px 16px;
+            background:#F97316;
+            color:#ffffff;
+            border-radius:8px;
+            text-decoration:none;
+            font-weight:800;
+            font-size:14px;
+          "
+        >
+          Smart Support
+        </a>
+
+      </div>
+
+    </div>
+
+
+    <div class="footer-bottom">
+
+      <p id="copyrightText">
+        © 2026 ExpressLine Delivery Services.
+        All rights reserved.
+      </p>
 
     </div>
 
   </footer>
 
 
-  <!-- SUPABASE -->
+  <!-- =========================
+       SMART SUPPORT
+  ========================= -->
+
+  <a
+    href="Customer Support.html"
+    class="support-button"
+    aria-label="Open Smart Support"
+  >
+    💬 Smart Support
+  </a>
+
+
+  <!-- =========================
+       SUPABASE
+  ========================= -->
+
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
   <script src="script.js"></script>
 
 
-  <!-- WEBSITE SETTINGS CONNECTION -->
   <script>
 
     /* =========================
@@ -596,13 +1316,17 @@
 
       setText(
         "siteShortName",
-        settings.shortName || settings.companyName
+        settings.shortName ||
+        settings.companyName ||
+        "ExpressLine"
       );
 
 
       setText(
         "footerCompanyName",
-        settings.companyName || settings.shortName
+        settings.companyName ||
+        settings.shortName ||
+        "ExpressLine Delivery Services"
       );
 
 
@@ -666,20 +1390,24 @@
          CONTACT
       ========================= */
 
-      setText(
-        "footerContactEmail",
-        settings.contactEmail
-          ? "Email: " + settings.contactEmail
-          : ""
-      );
+      if (settings.contactEmail) {
+
+        setText(
+          "footerContactEmail",
+          "Email: " + settings.contactEmail
+        );
+
+      }
 
 
-      setText(
-        "footerContactPhone",
-        settings.contactPhone
-          ? "Phone: " + settings.contactPhone
-          : ""
-      );
+      if (settings.contactPhone) {
+
+        setText(
+          "footerContactPhone",
+          "Phone: " + settings.contactPhone
+        );
+
+      }
 
 
       /* =========================
@@ -708,6 +1436,33 @@
 
 
       /* =========================
+         ABOUT HERO IMAGE
+      ========================= */
+
+      const aboutHero =
+        document.getElementById(
+          "aboutHero"
+        );
+
+
+      if (
+        aboutHero &&
+        settings.aboutHeroImage
+      ) {
+
+        aboutHero.style.setProperty(
+          "--about-hero-image",
+          `url("${settings.aboutHeroImage}")`
+        );
+
+        aboutHero.classList.add(
+          "has-custom-image"
+        );
+
+      }
+
+
+      /* =========================
          WEBSITE TITLE
       ========================= */
 
@@ -723,7 +1478,7 @@
 
 
       /* =========================
-         SEO
+         SEO DESCRIPTION
       ========================= */
 
       const description =
@@ -745,6 +1500,10 @@
       }
 
 
+      /* =========================
+         SEO KEYWORDS
+      ========================= */
+
       const keywords =
         document.getElementById(
           "pageKeywords"
@@ -765,7 +1524,7 @@
 
 
       /* =========================
-         COLORS
+         BRAND COLORS
       ========================= */
 
       if (settings.primaryColor) {
@@ -864,68 +1623,139 @@
 
       }
 
+
+      /* =========================
+         MAINTENANCE MODE
+      ========================= */
+
+      if (
+        settings.maintenanceMode === true
+      ) {
+
+        document.body.classList.add(
+          "website-maintenance-active"
+        );
+
+      }
+
     }
 
 
     /* =========================
-       MOBILE MENU
+       MOBILE NAVIGATION
     ========================= */
 
-    const menuToggle =
-      document.querySelector(
-        ".menu-toggle"
-      );
+    function setupMobileNavigation() {
+
+      const menuButton =
+        document.getElementById(
+          "aboutMenuToggle"
+        );
+
+      const nav =
+        document.getElementById(
+          "aboutNavLinks"
+        );
 
 
-    const navLinks =
-      document.querySelector(
-        ".nav-links"
-      );
+      if (
+        !menuButton ||
+        !nav
+      ) {
+
+        return;
+
+      }
 
 
-    if (
-      menuToggle &&
-      navLinks
-    ) {
-
-      menuToggle.addEventListener(
+      menuButton.addEventListener(
         "click",
-        function () {
+        function(event) {
 
-          navLinks.classList.toggle(
-            "active"
-          );
+          event.stopPropagation();
 
-          menuToggle.setAttribute(
+          const isOpen =
+            nav.classList.toggle("open");
+
+          menuButton.setAttribute(
             "aria-expanded",
-            navLinks.classList.contains("active")
+            isOpen ? "true" : "false"
           );
+
+          menuButton.setAttribute(
+            "aria-label",
+            isOpen
+              ? "Close navigation menu"
+              : "Open navigation menu"
+          );
+
+          menuButton.textContent =
+            isOpen ? "✕" : "☰";
 
         }
       );
 
 
-      navLinks
-        .querySelectorAll("a")
-        .forEach(function (link) {
+      nav.querySelectorAll("a")
+        .forEach(function(link) {
 
           link.addEventListener(
             "click",
-            function () {
+            function() {
 
-              navLinks.classList.remove(
-                "active"
+              nav.classList.remove(
+                "open"
               );
 
-              menuToggle.setAttribute(
+              menuButton.setAttribute(
                 "aria-expanded",
                 "false"
               );
+
+              menuButton.setAttribute(
+                "aria-label",
+                "Open navigation menu"
+              );
+
+              menuButton.textContent =
+                "☰";
 
             }
           );
 
         });
+
+
+      document.addEventListener(
+        "click",
+        function(event) {
+
+          if (
+            !nav.contains(event.target) &&
+            !menuButton.contains(event.target)
+          ) {
+
+            nav.classList.remove(
+              "open"
+            );
+
+            menuButton.setAttribute(
+              "aria-expanded",
+              "false"
+            );
+
+            menuButton.setAttribute(
+              "aria-label",
+              "Open navigation menu"
+            );
+
+            menuButton.textContent =
+              "☰";
+
+          }
+
+        }
+      );
 
     }
 
@@ -936,9 +1766,11 @@
 
     document.addEventListener(
       "DOMContentLoaded",
-      function () {
+      function() {
 
         applyWebsiteSettings();
+
+        setupMobileNavigation();
 
       }
     );
