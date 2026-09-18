@@ -1,754 +1,1662 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1.0"
+>
+
 <title>ExpressLine Admin Panel</title>
 
+<meta
+  name="robots"
+  content="noindex, nofollow"
+>
+
 <style>
+
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 body {
-    font-family: Arial, Helvetica, sans-serif;
-    background: #f4f6f9;
-    color: #1f2937;
+  font-family: Arial, Helvetica, sans-serif;
+  background: #f4f6f9;
+  color: #1f2937;
 }
 
-/* SIDEBAR */
+/* =========================
+   SIDEBAR
+========================= */
+
 .sidebar {
-    position: fixed;
-    left: 0;
-    top: 0;
-    width: 250px;
-    height: 100vh;
-    background: #111827;
-    color: white;
-    padding: 22px 15px;
-    overflow-y: auto;
-    z-index: 1000;
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 250px;
+  height: 100vh;
+  background: #111827;
+  color: white;
+  padding: 22px 15px;
+  overflow-y: auto;
+  z-index: 1000;
 }
 
 .logo {
-    font-size: 23px;
-    font-weight: bold;
-    padding: 0 12px 25px;
-    border-bottom: 1px solid #374151;
-    margin-bottom: 18px;
+  font-size: 23px;
+  font-weight: bold;
+  padding: 0 12px 25px;
+  border-bottom: 1px solid #374151;
+  margin-bottom: 18px;
 }
 
 .logo span {
-    color: #e30613;
+  color: #e30613;
 }
 
 .menu-title {
-    font-size: 11px;
-    color: #9ca3af;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    padding: 12px;
+  font-size: 11px;
+  color: #9ca3af;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  padding: 12px;
 }
 
 .sidebar a {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    color: #d1d5db;
-    text-decoration: none;
-    padding: 12px;
-    border-radius: 8px;
-    margin-bottom: 4px;
-    font-size: 14px;
-    transition: 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: #d1d5db;
+  text-decoration: none;
+  padding: 12px;
+  border-radius: 8px;
+  margin-bottom: 4px;
+  font-size: 14px;
+  transition: 0.2s;
 }
 
 .sidebar a:hover,
 .sidebar a.active {
-    background: #e30613;
-    color: white;
+  background: #e30613;
+  color: white;
 }
 
 .sidebar .icon {
-    width: 20px;
-    text-align: center;
-    font-size: 16px;
+  width: 20px;
+  text-align: center;
+  font-size: 16px;
 }
 
-/* MAIN */
+/* =========================
+   MAIN
+========================= */
+
 .main {
-    margin-left: 250px;
-    min-height: 100vh;
+  margin-left: 250px;
+  min-height: 100vh;
 }
 
-/* TOP BAR */
+/* =========================
+   TOP BAR
+========================= */
+
 .topbar {
-    height: 72px;
-    background: white;
-    border-bottom: 1px solid #e5e7eb;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 30px;
-    position: sticky;
-    top: 0;
-    z-index: 900;
+  height: 72px;
+  background: white;
+  border-bottom: 1px solid #e5e7eb;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 30px;
+  position: sticky;
+  top: 0;
+  z-index: 900;
 }
 
 .page-title h1 {
-    font-size: 22px;
+  font-size: 22px;
 }
 
 .page-title p {
-    color: #6b7280;
-    font-size: 13px;
-    margin-top: 4px;
+  color: #6b7280;
+  font-size: 13px;
+  margin-top: 4px;
 }
 
 .admin-user {
-    display: flex;
-    align-items: center;
-    gap: 12px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
 }
 
 .admin-avatar {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    background: #e30613;
-    color: white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: bold;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #e30613;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
 }
 
 .admin-user small {
-    display: block;
-    color: #6b7280;
-    margin-top: 3px;
+  display: block;
+  color: #6b7280;
+  margin-top: 3px;
 }
 
-/* CONTENT */
+/* =========================
+   CONTENT
+========================= */
+
 .content {
-    padding: 30px;
+  padding: 30px;
 }
 
-/* QUICK ACTIONS */
+/* =========================
+   QUICK ACTIONS
+========================= */
+
 .quick-actions {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 15px;
-    margin-bottom: 25px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+  margin-bottom: 25px;
 }
 
 .action {
-    background: white;
-    border: 1px solid #e5e7eb;
-    border-radius: 12px;
-    padding: 18px;
-    text-decoration: none;
-    color: #111827;
-    transition: 0.2s;
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 18px;
+  text-decoration: none;
+  color: #111827;
+  transition: 0.2s;
 }
 
 .action:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 20px rgba(0,0,0,0.06);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.06);
 }
 
 .action-icon {
-    font-size: 25px;
-    margin-bottom: 10px;
+  font-size: 25px;
+  margin-bottom: 10px;
 }
 
 .action strong {
-    display: block;
-    margin-bottom: 5px;
+  display: block;
+  margin-bottom: 5px;
 }
 
 .action span {
-    color: #6b7280;
-    font-size: 12px;
+  color: #6b7280;
+  font-size: 12px;
 }
 
-/* STATS */
+/* =========================
+   STATISTICS
+========================= */
+
 .stats {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 18px;
-    margin-bottom: 25px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+  margin-bottom: 25px;
 }
 
 .stat-card {
-    background: white;
-    border-radius: 12px;
-    padding: 22px;
-    border: 1px solid #e5e7eb;
+  background: white;
+  border-radius: 12px;
+  padding: 22px;
+  border: 1px solid #e5e7eb;
 }
 
 .stat-top {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .stat-label {
-    color: #6b7280;
-    font-size: 13px;
+  color: #6b7280;
+  font-size: 13px;
 }
 
 .stat-icon {
-    width: 38px;
-    height: 38px;
-    background: #fef2f2;
-    color: #e30613;
-    border-radius: 9px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  width: 38px;
+  height: 38px;
+  background: #fef2f2;
+  color: #e30613;
+  border-radius: 9px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .stat-number {
-    font-size: 28px;
-    font-weight: bold;
-    margin-top: 12px;
+  font-size: 28px;
+  font-weight: bold;
+  margin-top: 12px;
 }
 
 .stat-change {
-    font-size: 12px;
-    color: #16a34a;
-    margin-top: 7px;
+  font-size: 12px;
+  color: #16a34a;
+  margin-top: 7px;
 }
 
-/* GRID */
+/* =========================
+   DASHBOARD GRID
+========================= */
+
 .dashboard-grid {
-    display: grid;
-    grid-template-columns: 2fr 1fr;
-    gap: 20px;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 20px;
 }
 
 .panel {
-    background: white;
-    border: 1px solid #e5e7eb;
-    border-radius: 12px;
-    overflow: hidden;
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  overflow: hidden;
 }
 
 .panel-header {
-    padding: 18px 20px;
-    border-bottom: 1px solid #e5e7eb;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  padding: 18px 20px;
+  border-bottom: 1px solid #e5e7eb;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .panel-header h2 {
-    font-size: 16px;
+  font-size: 16px;
 }
 
 .panel-header a {
-    color: #e30613;
-    font-size: 12px;
-    text-decoration: none;
+  color: #e30613;
+  font-size: 12px;
+  text-decoration: none;
+}
+
+.panel-header a:hover {
+  text-decoration: underline;
+}
+
+/* =========================
+   TABLE
+========================= */
+
+.table-wrap {
+  overflow-x: auto;
 }
 
 table {
-    width: 100%;
-    border-collapse: collapse;
+  width: 100%;
+  border-collapse: collapse;
 }
 
 th,
 td {
-    text-align: left;
-    padding: 14px 20px;
-    border-bottom: 1px solid #f0f0f0;
-    font-size: 13px;
+  text-align: left;
+  padding: 14px 20px;
+  border-bottom: 1px solid #f0f0f0;
+  font-size: 13px;
 }
 
 th {
-    color: #6b7280;
-    font-size: 11px;
-    text-transform: uppercase;
+  color: #6b7280;
+  font-size: 11px;
+  text-transform: uppercase;
 }
 
+td {
+  color: #374151;
+}
+
+.empty-table {
+  text-align: center;
+  padding: 35px 20px;
+  color: #6b7280;
+}
+
+/* =========================
+   STATUS
+========================= */
+
 .status {
-    display: inline-block;
-    padding: 5px 9px;
-    border-radius: 20px;
-    font-size: 11px;
-    font-weight: bold;
+  display: inline-block;
+  padding: 5px 9px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: bold;
 }
 
 .pending {
-    background: #fff7ed;
-    color: #c2410c;
+  background: #fff7ed;
+  color: #c2410c;
 }
 
 .transit {
-    background: #eff6ff;
-    color: #2563eb;
+  background: #eff6ff;
+  color: #2563eb;
 }
 
 .delivered {
-    background: #f0fdf4;
-    color: #15803d;
+  background: #f0fdf4;
+  color: #15803d;
 }
 
-/* ACTIVITY */
+.created {
+  background: #eef2ff;
+  color: #4338ca;
+}
+
+.cancelled {
+  background: #fee2e2;
+  color: #991b1b;
+}
+
+/* =========================
+   ACTIVITY
+========================= */
+
 .activity {
-    padding: 5px 20px 15px;
+  padding: 5px 20px 15px;
 }
 
 .activity-item {
-    display: flex;
-    gap: 12px;
-    padding: 15px 0;
-    border-bottom: 1px solid #f0f0f0;
+  display: flex;
+  gap: 12px;
+  padding: 15px 0;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.activity-item:last-child {
+  border-bottom: none;
 }
 
 .activity-dot {
-    width: 9px;
-    height: 9px;
-    background: #e30613;
-    border-radius: 50%;
-    margin-top: 5px;
-    flex-shrink: 0;
+  width: 9px;
+  height: 9px;
+  background: #e30613;
+  border-radius: 50%;
+  margin-top: 5px;
+  flex-shrink: 0;
 }
 
 .activity-item strong {
-    font-size: 13px;
+  font-size: 13px;
 }
 
 .activity-item p {
-    color: #6b7280;
-    font-size: 12px;
-    margin-top: 4px;
+  color: #6b7280;
+  font-size: 12px;
+  margin-top: 4px;
 }
 
 .activity-item time {
-    display: block;
-    color: #9ca3af;
-    font-size: 11px;
-    margin-top: 5px;
+  display: block;
+  color: #9ca3af;
+  font-size: 11px;
+  margin-top: 5px;
 }
 
-/* MOBILE BUTTON */
+/* =========================
+   MOBILE BUTTON
+========================= */
+
 .mobile-menu {
-    display: none;
-    border: none;
-    background: none;
-    font-size: 25px;
-    cursor: pointer;
+  display: none;
+  border: none;
+  background: none;
+  font-size: 25px;
+  cursor: pointer;
 }
 
-/* MOBILE */
+/* =========================
+   MOBILE
+========================= */
+
 @media (max-width: 1100px) {
-    .quick-actions,
-    .stats {
-        grid-template-columns: repeat(2, 1fr);
-    }
+
+  .stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .quick-actions {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
 }
 
 @media (max-width: 850px) {
-    .sidebar {
-        transform: translateX(-100%);
-        transition: 0.25s;
-    }
 
-    .sidebar.open {
-        transform: translateX(0);
-    }
+  .sidebar {
+    transform: translateX(-100%);
+    transition: 0.25s;
+  }
 
-    .main {
-        margin-left: 0;
-    }
+  .sidebar.open {
+    transform: translateX(0);
+  }
 
-    .mobile-menu {
-        display: block;
-    }
+  .main {
+    margin-left: 0;
+  }
 
-    .topbar {
-        padding: 0 18px;
-    }
+  .mobile-menu {
+    display: block;
+  }
 
-    .content {
-        padding: 20px;
-    }
+  .topbar {
+    padding: 0 18px;
+  }
 
-    .dashboard-grid {
-        grid-template-columns: 1fr;
-    }
+  .content {
+    padding: 20px;
+  }
+
+  .dashboard-grid {
+    grid-template-columns: 1fr;
+  }
+
 }
 
 @media (max-width: 600px) {
-    .quick-actions,
-    .stats {
-        grid-template-columns: 1fr;
-    }
 
-    .admin-user div:not(.admin-avatar) {
-        display: none;
-    }
+  .quick-actions,
+  .stats {
+    grid-template-columns: 1fr;
+  }
 
-    .page-title h1 {
-        font-size: 18px;
-    }
+  .admin-user div:not(.admin-avatar) {
+    display: none;
+  }
 
-    table {
-        min-width: 650px;
-    }
+  .page-title h1 {
+    font-size: 18px;
+  }
 
-    .panel {
-        overflow-x: auto;
-    }
+  table {
+    min-width: 650px;
+  }
+
+  .panel {
+    overflow-x: auto;
+  }
+
 }
+
 </style>
+
 </head>
 
 <body>
 
-<!-- SIDEBAR -->
-<aside class="sidebar" id="sidebar">
+<!-- =========================
+     SIDEBAR
+========================= -->
 
-    <div class="logo">
-        Express<span>Line</span>
-    </div>
+<aside
+  class="sidebar"
+  id="sidebar"
+>
 
-    <div class="menu-title">Overview</div>
+  <div class="logo">
+    Express<span>Line</span>
+  </div>
 
-    <a href="admin.html" class="active">
-        <span class="icon">▣</span>
-        Dashboard
-    </a>
+  <div class="menu-title">
+    Overview
+  </div>
 
-    <div class="menu-title">Operations</div>
+  <a
+    href="admin.html"
+    class="active"
+  >
+    <span class="icon">▣</span>
+    Dashboard
+  </a>
 
-    <a href="admin-requests.html">
-        <span class="icon">📥</span>
-        Shipment Requests
-    </a>
+  <div class="menu-title">
+    Operations
+  </div>
 
-    <a href="request.html">
-        <span class="icon">＋</span>
-        Create Shipment
-    </a>
+  <a href="admin-requests.html">
+    <span class="icon">📥</span>
+    Shipment Requests
+  </a>
 
-    <a href="admin-shipments.html">
-        <span class="icon">📦</span>
-        All Shipments
-    </a>
+  <!--
+    IMPORTANT:
+    Admin creates shipments through
+    admin-shipments.html.
+    The customer request.html is NOT used here.
+  -->
 
-    <a href="admin-request-details.html">
-        <span class="icon">🔎</span>
-        Request Details
-    </a>
+  <a href="admin-shipments.html">
+    <span class="icon">＋</span>
+    Create Shipment
+  </a>
 
-    <div class="menu-title">Management</div>
+  <a href="admin-shipments.html">
+    <span class="icon">📦</span>
+    All Shipments
+  </a>
 
-    <a href="admin-customers.html">
-        <span class="icon">👥</span>
-        Customers
-    </a>
+  <div class="menu-title">
+    Website
+  </div>
 
-    <a href="admin-drivers.html">
-        <span class="icon">🚚</span>
-        Drivers
-    </a>
+  <a href="index.html">
+    <span class="icon">🌐</span>
+    View Website
+  </a>
 
-    <a href="admin-payments.html">
-        <span class="icon">💳</span>
-        Payments
-    </a>
+  <div class="menu-title">
+    Account
+  </div>
 
-    <a href="admin-reports.html">
-        <span class="icon">📊</span>
-        Reports
-    </a>
-
-    <div class="menu-title">Communication</div>
-
-    <a href="admin-messages.html">
-        <span class="icon">💬</span>
-        Messages
-    </a>
-
-    <a href="admin-notifications.html">
-        <span class="icon">🔔</span>
-        Notifications
-    </a>
-
-    <a href="admin-support.html">
-        <span class="icon">🎧</span>
-        Customer Support
-    </a>
-
-    <div class="menu-title">Website</div>
-
-    <a href="admin-contacts.html">
-        <span class="icon">📞</span>
-        Contacts
-    </a>
-
-    <a href="admin-settings.html">
-        <span class="icon">⚙</span>
-        Website Settings
-    </a>
-
-    <a href="admin-activity.html">
-        <span class="icon">🕒</span>
-        Activity Log
-    </a>
-
-    <div class="menu-title">Account</div>
-
-    <a href="admin-login.html" onclick="logoutAdmin()">
-        <span class="icon">↪</span>
-        Logout
-    </a>
+  <a
+    href="admin-login.html"
+    onclick="logoutAdmin()"
+  >
+    <span class="icon">↪</span>
+    Logout
+  </a>
 
 </aside>
 
 
-<!-- MAIN -->
+<!-- =========================
+     MAIN
+========================= -->
+
 <main class="main">
 
-    <!-- TOP BAR -->
-    <header class="topbar">
+  <!-- TOP BAR -->
 
-        <div style="display:flex;align-items:center;gap:15px;">
-            <button class="mobile-menu" onclick="toggleSidebar()">☰</button>
+  <header class="topbar">
 
-            <div class="page-title">
-                <h1>Admin Dashboard</h1>
-                <p>Manage your ExpressLine logistics operations</p>
-            </div>
+    <div
+      style="
+        display:flex;
+        align-items:center;
+        gap:15px;
+      "
+    >
+
+      <button
+        class="mobile-menu"
+        type="button"
+        onclick="toggleSidebar()"
+      >
+        ☰
+      </button>
+
+      <div class="page-title">
+
+        <h1>
+          Admin Dashboard
+        </h1>
+
+        <p>
+          Manage your ExpressLine logistics operations
+        </p>
+
+      </div>
+
+    </div>
+
+    <div class="admin-user">
+
+      <div>
+
+        <strong>
+          Administrator
+        </strong>
+
+        <small>
+          System Admin
+        </small>
+
+      </div>
+
+      <div class="admin-avatar">
+        A
+      </div>
+
+    </div>
+
+  </header>
+
+
+  <!-- =========================
+       CONTENT
+  ========================= -->
+
+  <section class="content">
+
+
+    <!-- QUICK ACTIONS -->
+
+    <div class="quick-actions">
+
+      <a
+        href="admin-shipments.html"
+        class="action"
+      >
+
+        <div class="action-icon">
+          📦
         </div>
 
-        <div class="admin-user">
+        <strong>
+          Create Shipment
+        </strong>
+
+        <span>
+          Create and manage a shipment directly from Admin
+        </span>
+
+      </a>
+
+
+      <a
+        href="admin-requests.html"
+        class="action"
+      >
+
+        <div class="action-icon">
+          📥
+        </div>
+
+        <strong>
+          Shipment Requests
+        </strong>
+
+        <span>
+          Review incoming customer requests
+        </span>
+
+      </a>
+
+
+      <a
+        href="admin-shipments.html"
+        class="action"
+      >
+
+        <div class="action-icon">
+          🚚
+        </div>
+
+        <strong>
+          All Shipments
+        </strong>
+
+        <span>
+          View, edit and manage shipments
+        </span>
+
+      </a>
+
+    </div>
+
+
+    <!-- =========================
+         STATISTICS
+    ========================= -->
+
+    <div class="stats">
+
+
+      <div class="stat-card">
+
+        <div class="stat-top">
+
+          <span class="stat-label">
+            Total Shipments
+          </span>
+
+          <span class="stat-icon">
+            📦
+          </span>
+
+        </div>
+
+        <div
+          id="totalShipments"
+          class="stat-number"
+        >
+          0
+        </div>
+
+        <div class="stat-change">
+          Saved shipments
+        </div>
+
+      </div>
+
+
+      <div class="stat-card">
+
+        <div class="stat-top">
+
+          <span class="stat-label">
+            Pending Requests
+          </span>
+
+          <span class="stat-icon">
+            📥
+          </span>
+
+        </div>
+
+        <div
+          id="pendingRequests"
+          class="stat-number"
+        >
+          0
+        </div>
+
+        <div class="stat-change">
+          Customer requests
+        </div>
+
+      </div>
+
+
+      <div class="stat-card">
+
+        <div class="stat-top">
+
+          <span class="stat-label">
+            Active Deliveries
+          </span>
+
+          <span class="stat-icon">
+            🚚
+          </span>
+
+        </div>
+
+        <div
+          id="activeDeliveries"
+          class="stat-number"
+        >
+          0
+        </div>
+
+        <div class="stat-change">
+          Shipments in transit
+        </div>
+
+      </div>
+
+
+      <div class="stat-card">
+
+        <div class="stat-top">
+
+          <span class="stat-label">
+            Delivered
+          </span>
+
+          <span class="stat-icon">
+            ✓
+          </span>
+
+        </div>
+
+        <div
+          id="deliveredShipments"
+          class="stat-number"
+        >
+          0
+        </div>
+
+        <div class="stat-change">
+          Completed shipments
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <!-- =========================
+         DASHBOARD GRID
+    ========================= -->
+
+    <div class="dashboard-grid">
+
+
+      <!-- RECENT SHIPMENTS -->
+
+      <div class="panel">
+
+        <div class="panel-header">
+
+          <h2>
+            Recent Shipments
+          </h2>
+
+          <a
+            href="admin-shipments.html"
+          >
+            View All
+          </a>
+
+        </div>
+
+        <div class="table-wrap">
+
+          <table>
+
+            <thead>
+
+              <tr>
+
+                <th>
+                  Tracking ID
+                </th>
+
+                <th>
+                  Customer
+                </th>
+
+                <th>
+                  Destination
+                </th>
+
+                <th>
+                  Status
+                </th>
+
+              </tr>
+
+            </thead>
+
+            <tbody
+              id="recentShipments"
+            >
+
+              <tr>
+
+                <td
+                  colspan="4"
+                  class="empty-table"
+                >
+                  No shipments created yet.
+                </td>
+
+              </tr>
+
+            </tbody>
+
+          </table>
+
+        </div>
+
+      </div>
+
+
+      <!-- ACTIVITY -->
+
+      <div class="panel">
+
+        <div class="panel-header">
+
+          <h2>
+            Recent Activity
+          </h2>
+
+          <a
+            href="admin-shipments.html"
+          >
+            View Shipments
+          </a>
+
+        </div>
+
+        <div
+          id="activity"
+          class="activity"
+        >
+
+          <div class="activity-item">
+
+            <div class="activity-dot"></div>
+
             <div>
-                <strong>Administrator</strong>
-                <small>System Admin</small>
+
+              <strong>
+                Admin system ready
+              </strong>
+
+              <p>
+                Shipment management is connected.
+              </p>
+
+              <time>
+                Current session
+              </time>
+
             </div>
 
-            <div class="admin-avatar">
-                A
-            </div>
-        </div>
-
-    </header>
-
-
-    <!-- CONTENT -->
-    <section class="content">
-
-        <!-- QUICK ACTIONS -->
-        <div class="quick-actions">
-
-            <a href="request.html" class="action">
-                <div class="action-icon">📦</div>
-                <strong>Create Shipment</strong>
-                <span>Create a new shipment request</span>
-            </a>
-
-            <a href="admin-requests.html" class="action">
-                <div class="action-icon">📥</div>
-                <strong>Shipment Requests</strong>
-                <span>Review incoming requests</span>
-            </a>
-
-            <a href="admin-customers.html" class="action">
-                <div class="action-icon">👥</div>
-                <strong>Manage Customers</strong>
-                <span>View and manage customers</span>
-            </a>
-
-            <a href="admin-settings.html" class="action">
-                <div class="action-icon">⚙️</div>
-                <strong>Edit Website</strong>
-                <span>Manage website settings</span>
-            </a>
+          </div>
 
         </div>
 
-
-        <!-- STATISTICS -->
-        <div class="stats">
-
-            <div class="stat-card">
-                <div class="stat-top">
-                    <span class="stat-label">Total Shipments</span>
-                    <span class="stat-icon">📦</span>
-                </div>
-                <div class="stat-number">1,248</div>
-                <div class="stat-change">↑ 12.5% this month</div>
-            </div>
-
-            <div class="stat-card">
-                <div class="stat-top">
-                    <span class="stat-label">Pending Requests</span>
-                    <span class="stat-icon">📥</span>
-                </div>
-                <div class="stat-number">36</div>
-                <div class="stat-change">Requires attention</div>
-            </div>
-
-            <div class="stat-card">
-                <div class="stat-top">
-                    <span class="stat-label">Active Deliveries</span>
-                    <span class="stat-icon">🚚</span>
-                </div>
-                <div class="stat-number">184</div>
-                <div class="stat-change">Currently in transit</div>
-            </div>
-
-            <div class="stat-card">
-                <div class="stat-top">
-                    <span class="stat-label">Customers</span>
-                    <span class="stat-icon">👥</span>
-                </div>
-                <div class="stat-number">642</div>
-                <div class="stat-change">Registered customers</div>
-            </div>
-
-        </div>
+      </div>
 
 
-        <!-- DASHBOARD GRID -->
-        <div class="dashboard-grid">
+    </div>
 
-            <!-- RECENT SHIPMENTS -->
-            <div class="panel">
-
-                <div class="panel-header">
-                    <h2>Recent Shipments</h2>
-                    <a href="Admin Shipment.html">View All</a>
-                </div>
-
-                <table>
-
-                    <thead>
-                        <tr>
-                            <th>Tracking ID</th>
-                            <th>Customer</th>
-                            <th>Destination</th>
-                            <th>Status</th>
-                        </tr>
-                    </thead>
-
-                    <tbody>
-
-                        <tr>
-                            <td>EXP-10284</td>
-                            <td>Michael Johnson</td>
-                            <td>Lagos</td>
-                            <td>
-                                <span class="status transit">In Transit</span>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td>EXP-10283</td>
-                            <td>Sarah Williams</td>
-                            <td>Abuja</td>
-                            <td>
-                                <span class="status delivered">Delivered</span>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td>EXP-10282</td>
-                            <td>Daniel Smith</td>
-                            <td>Port Harcourt</td>
-                            <td>
-                                <span class="status pending">Pending</span>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td>EXP-10281</td>
-                            <td>Grace Brown</td>
-                            <td>Kano</td>
-                            <td>
-                                <span class="status transit">In Transit</span>
-                            </td>
-                        </tr>
-
-                    </tbody>
-
-                </table>
-
-            </div>
-
-
-            <!-- ACTIVITY -->
-            <div class="panel">
-
-                <div class="panel-header">
-                    <h2>Recent Activity</h2>
-                    <a href="Admin Activity.html">View All</a>
-                </div>
-
-                <div class="activity">
-
-                    <div class="activity-item">
-                        <div class="activity-dot"></div>
-                        <div>
-                            <strong>New shipment request</strong>
-                            <p>EXP-10284 was submitted.</p>
-                            <time>10 minutes ago</time>
-                        </div>
-                    </div>
-
-                    <div class="activity-item">
-                        <div class="activity-dot"></div>
-                        <div>
-                            <strong>Shipment delivered</strong>
-                            <p>EXP-10283 was marked delivered.</p>
-                            <time>35 minutes ago</time>
-                        </div>
-                    </div>
-
-                    <div class="activity-item">
-                        <div class="activity-dot"></div>
-                        <div>
-                            <strong>New customer registered</strong>
-                            <p>A new customer joined ExpressLine.</p>
-                            <time>1 hour ago</time>
-                        </div>
-                    </div>
-
-                    <div class="activity-item">
-                        <div class="activity-dot"></div>
-                        <div>
-                            <strong>Payment received</strong>
-                            <p>A shipment payment was recorded.</p>
-                            <time>2 hours ago</time>
-                        </div>
-                    </div>
-
-                </div>
-
-            </div>
-
-        </div>
-
-    </section>
+  </section>
 
 </main>
 
 
 <script>
 
+/* =========================
+   STORAGE KEYS
+========================= */
+
+const SHIPMENT_KEY =
+  "expresslineShipments";
+
+const REQUEST_KEY =
+  "expresslineShipmentRequests";
+
+
+/* =========================
+   SIDEBAR
+========================= */
+
 function toggleSidebar() {
-    document.getElementById("sidebar").classList.toggle("open");
+
+  document
+    .getElementById("sidebar")
+    .classList
+    .toggle("open");
+
 }
 
-function logoutAdmin() {
-    localStorage.removeItem("adminLoggedIn");
+
+/* =========================
+   LOAD SHIPMENTS
+========================= */
+
+function loadShipments() {
+
+  try {
+
+    const data =
+      JSON.parse(
+        localStorage.getItem(
+          SHIPMENT_KEY
+        ) || "[]"
+      );
+
+    return Array.isArray(data)
+      ? data
+      : [];
+
+  } catch (error) {
+
+    return [];
+
+  }
+
 }
+
+
+/* =========================
+   LOAD REQUESTS
+========================= */
+
+function loadRequests() {
+
+  try {
+
+    const data =
+      JSON.parse(
+        localStorage.getItem(
+          REQUEST_KEY
+        ) || "[]"
+      );
+
+    return Array.isArray(data)
+      ? data
+      : [];
+
+  } catch (error) {
+
+    return [];
+
+  }
+
+}
+
+
+/* =========================
+   TEXT NORMALIZATION
+========================= */
+
+function getText(value) {
+
+  if (
+    value === null ||
+    value === undefined
+  ) {
+    return "";
+  }
+
+  if (
+    typeof value === "object"
+  ) {
+    return "";
+  }
+
+  return String(value);
+
+}
+
+
+function getLocation(value) {
+
+  if (!value) {
+    return "";
+  }
+
+  if (
+    typeof value === "string"
+  ) {
+    return value;
+  }
+
+  if (
+    typeof value === "object"
+  ) {
+
+    return (
+      value.location ||
+      value.address ||
+      value.city ||
+      value.name ||
+      ""
+    );
+
+  }
+
+  return "";
+
+}
+
+
+/* =========================
+   NORMALIZE SHIPMENT
+========================= */
+
+function normalizeShipment(
+  shipment
+) {
+
+  const receiver =
+    shipment.receiver &&
+    typeof shipment.receiver === "object"
+      ? shipment.receiver
+      : {};
+
+  return {
+
+    trackingNumber:
+      getText(
+        shipment.trackingNumber
+      ) ||
+      getText(
+        shipment.tracking
+      ),
+
+    status:
+      getText(
+        shipment.status
+      ) ||
+      "Shipment Created",
+
+    customerName:
+      getText(
+        shipment.customerName
+      ) ||
+      getText(
+        shipment.customer
+      ) ||
+      getText(
+        receiver.name
+      ),
+
+    destination:
+      getLocation(
+        shipment.destination
+      ) ||
+      getText(
+        shipment.destinationLabel
+      ),
+
+    progress:
+      Math.max(
+        0,
+        Math.min(
+          100,
+          Number(
+            shipment.progress
+          ) || 0
+        )
+      )
+
+  };
+
+}
+
+
+/* =========================
+   STATUS CLASS
+========================= */
+
+function getStatusClass(
+  status
+) {
+
+  const value =
+    String(status || "")
+      .toLowerCase();
+
+  if (
+    value === "delivered"
+  ) {
+    return "delivered";
+  }
+
+  if (
+    value.includes("transit") ||
+    value.includes("processing") ||
+    value.includes("pickup") ||
+    value.includes("packaged") ||
+    value.includes("customs")
+  ) {
+    return "transit";
+  }
+
+  if (
+    value.includes("cancel")
+  ) {
+    return "cancelled";
+  }
+
+  return "created";
+
+}
+
+
+/* =========================
+   UPDATE STATISTICS
+========================= */
+
+function updateStatistics() {
+
+  const shipments =
+    loadShipments();
+
+  const requests =
+    loadRequests();
+
+  let active = 0;
+
+  let delivered = 0;
+
+  shipments.forEach(
+    shipment => {
+
+      const s =
+        normalizeShipment(
+          shipment
+        );
+
+      if (
+        s.status === "Delivered"
+      ) {
+
+        delivered++;
+
+      } else if (
+        s.status !== "Cancelled"
+      ) {
+
+        active++;
+
+      }
+
+    }
+  );
+
+  document.getElementById(
+    "totalShipments"
+  ).textContent =
+    shipments.length;
+
+  document.getElementById(
+    "pendingRequests"
+  ).textContent =
+    requests.filter(
+      request =>
+        String(
+          request.status ||
+          "Pending"
+        )
+          .toLowerCase()
+          .includes("pending")
+    ).length;
+
+  document.getElementById(
+    "activeDeliveries"
+  ).textContent =
+    active;
+
+  document.getElementById(
+    "deliveredShipments"
+  ).textContent =
+    delivered;
+
+}
+
+
+/* =========================
+   RECENT SHIPMENTS
+========================= */
+
+function renderRecentShipments() {
+
+  const shipments =
+    loadShipments();
+
+  const table =
+    document.getElementById(
+      "recentShipments"
+    );
+
+  if (!shipments.length) {
+
+    table.innerHTML = `
+
+      <tr>
+
+        <td
+          colspan="4"
+          class="empty-table"
+        >
+          No shipments created yet.
+        </td>
+
+      </tr>
+
+    `;
+
+    return;
+
+  }
+
+  const recent =
+    shipments
+      .slice(0, 5)
+      .map(
+        shipment =>
+          normalizeShipment(
+            shipment
+          )
+      );
+
+  table.innerHTML =
+    recent
+      .map(
+        shipment => {
+
+          const tracking =
+            shipment.trackingNumber ||
+            "No tracking number";
+
+          const customer =
+            shipment.customerName ||
+            "Not provided";
+
+          const destination =
+            shipment.destination ||
+            "Not provided";
+
+          return `
+
+            <tr>
+
+              <td>
+                ${escapeHTML(
+                  tracking
+                )}
+              </td>
+
+              <td>
+                ${escapeHTML(
+                  customer
+                )}
+              </td>
+
+              <td>
+                ${escapeHTML(
+                  destination
+                )}
+              </td>
+
+              <td>
+
+                <span
+                  class="status ${getStatusClass(
+                    shipment.status
+                  )}"
+                >
+                  ${escapeHTML(
+                    shipment.status
+                  )}
+                </span>
+
+              </td>
+
+            </tr>
+
+          `;
+
+        }
+      )
+      .join("");
+
+}
+
+
+/* =========================
+   ACTIVITY
+========================= */
+
+function renderActivity() {
+
+  const shipments =
+    loadShipments();
+
+  const activity =
+    document.getElementById(
+      "activity"
+    );
+
+  if (!shipments.length) {
+
+    activity.innerHTML = `
+
+      <div class="activity-item">
+
+        <div class="activity-dot"></div>
+
+        <div>
+
+          <strong>
+            No shipment activity yet
+          </strong>
+
+          <p>
+            Create a shipment to begin tracking activity.
+          </p>
+
+          <time>
+            Waiting for activity
+          </time>
+
+        </div>
+
+      </div>
+
+    `;
+
+    return;
+
+  }
+
+  const items = [];
+
+  shipments
+    .slice(0, 5)
+    .forEach(
+      shipment => {
+
+        const s =
+          normalizeShipment(
+            shipment
+          );
+
+        items.push({
+
+          title:
+            "Shipment " +
+            (
+              s.trackingNumber ||
+              "created"
+            ),
+
+          text:
+            s.status +
+            " • " +
+            (
+              s.destination ||
+              "Destination not provided"
+            ),
+
+          time:
+            shipment.updatedAt
+              ? formatDateTime(
+                  shipment.updatedAt
+                )
+              : "Recently"
+
+        });
+
+        if (
+          Array.isArray(
+            shipment.transitHistory
+          )
+        ) {
+
+          shipment.transitHistory
+            .slice(-2)
+            .forEach(
+              update => {
+
+                items.push({
+
+                  title:
+                    "Tracking update",
+
+                  text:
+                    (
+                      getText(
+                        update.status
+                      ) ||
+                      "Shipment update"
+                    ) +
+                    (
+                      update.location
+                        ? " • " +
+                          getLocation(
+                            update.location
+                          )
+                        : ""
+                    ),
+
+                  time:
+                    update.date ||
+                    "Recently"
+
+                });
+
+              }
+            );
+
+        }
+
+      }
+    );
+
+  activity.innerHTML =
+    items
+      .slice(0, 6)
+      .map(
+        item => `
+
+          <div class="activity-item">
+
+            <div class="activity-dot"></div>
+
+            <div>
+
+              <strong>
+                ${escapeHTML(
+                  item.title
+                )}
+              </strong>
+
+              <p>
+                ${escapeHTML(
+                  item.text
+                )}
+              </p>
+
+              <time>
+                ${escapeHTML(
+                  String(
+                    item.time
+                  )
+                )}
+              </time>
+
+            </div>
+
+          </div>
+
+        `
+      )
+      .join("");
+
+}
+
+
+/* =========================
+   DATE/TIME
+========================= */
+
+function formatDateTime(
+  value
+) {
+
+  const date =
+    new Date(value);
+
+  if (
+    Number.isNaN(
+      date.getTime()
+    )
+  ) {
+    return "Recently";
+  }
+
+  return date.toLocaleString(
+    "en-US",
+    {
+      dateStyle: "medium",
+      timeStyle: "short"
+    }
+  );
+
+}
+
+
+/* =========================
+   ESCAPE HTML
+========================= */
+
+function escapeHTML(
+  value
+) {
+
+  return String(value ?? "")
+    .replace(
+      /&/g,
+      "&amp;"
+    )
+    .replace(
+      /</g,
+      "&lt;"
+    )
+    .replace(
+      />/g,
+      "&gt;"
+    )
+    .replace(
+      /"/g,
+      "&quot;"
+    )
+    .replace(
+      /'/g,
+      "&#039;"
+    );
+
+}
+
+
+/* =========================
+   LOGOUT
+========================= */
+
+function logoutAdmin() {
+
+  localStorage.removeItem(
+    "adminLoggedIn"
+  );
+
+}
+
+
+/* =========================
+   INITIALIZE
+========================= */
+
+document.addEventListener(
+  "DOMContentLoaded",
+  function() {
+
+    updateStatistics();
+
+    renderRecentShipments();
+
+    renderActivity();
+
+  }
+);
 
 </script>
 
