@@ -1,1449 +1,1052 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Website Control Center | ExpressLine Admin</title>
 
   <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
+    name="description"
+    content="Manage ExpressLine website content, images, branding, colors and contact information."
   >
 
-  <title>Website CMS - ExpressLine Admin</title>
-
-  <link rel="stylesheet" href="style.css">
-
   <style>
+    * {
+      box-sizing: border-box;
+    }
+
     body {
-      background: #f5f7fb;
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: #f4f7fb;
+      color: #172033;
     }
 
-    .cms-page {
-      min-height: 100vh;
-    }
-
-    .cms-header {
+    header {
       background: #172033;
-      color: #ffffff;
-      padding: 24px 20px;
+      color: white;
+      padding: 22px 20px;
     }
 
-    .cms-header-inner {
-      max-width: 1100px;
-      margin: 0 auto;
+    header .header-inner {
+      max-width: 1200px;
+      margin: auto;
       display: flex;
-      align-items: center;
       justify-content: space-between;
+      align-items: center;
       gap: 20px;
     }
 
-    .cms-header h1 {
-      margin: 0 0 6px;
-      font-size: 26px;
+    header h1 {
+      margin: 0 0 5px;
+      font-size: 25px;
     }
 
-    .cms-header p {
+    header p {
       margin: 0;
-      opacity: 0.8;
+      color: #d7deea;
+      font-size: 14px;
     }
 
-    .cms-back {
-      color: #ffffff;
+    .back-link {
+      color: white;
       text-decoration: none;
-      border: 1px solid rgba(255,255,255,0.3);
-      padding: 10px 16px;
+      background: #e30613;
+      padding: 11px 16px;
       border-radius: 8px;
+      font-weight: 700;
       white-space: nowrap;
     }
 
-    .cms-container {
-      max-width: 1100px;
-      margin: 30px auto;
-      padding: 0 20px 50px;
+    main {
+      max-width: 1200px;
+      margin: 25px auto 50px;
+      padding: 0 16px;
     }
 
-    .cms-notice {
+    .notice {
       background: #fff8e6;
-      border: 1px solid #f3d58a;
-      color: #6b4e00;
+      border: 1px solid #f2d38a;
+      color: #6c5100;
       border-radius: 10px;
-      padding: 16px;
-      margin-bottom: 24px;
+      padding: 15px;
+      margin-bottom: 20px;
       line-height: 1.6;
+      font-size: 14px;
     }
 
-    .cms-section {
-      background: #ffffff;
-      border-radius: 14px;
-      padding: 24px;
-      margin-bottom: 24px;
-      box-shadow: 0 4px 18px rgba(0,0,0,0.05);
-    }
-
-    .cms-section h2 {
-      margin-top: 0;
+    .section {
+      background: white;
+      border-radius: 12px;
+      padding: 22px;
       margin-bottom: 20px;
-      color: #172033;
+      box-shadow: 0 3px 15px rgba(0,0,0,.06);
+    }
+
+    .section h2 {
+      margin: 0 0 5px;
       font-size: 20px;
+      color: #172033;
     }
 
-    .cms-section-description {
-      color: #6b7280;
-      margin-top: -10px;
-      margin-bottom: 20px;
+    .section-description {
+      margin: 0 0 20px;
+      color: #697386;
+      font-size: 14px;
       line-height: 1.5;
     }
 
-    .cms-grid {
+    .grid {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 18px;
+      gap: 17px;
     }
 
-    .cms-field {
-      display: flex;
-      flex-direction: column;
-      gap: 7px;
-    }
-
-    .cms-field.full {
+    .full {
       grid-column: 1 / -1;
     }
 
-    .cms-field label {
-      font-weight: 600;
-      color: #172033;
+    label {
+      display: block;
+      margin-bottom: 7px;
+      font-weight: 700;
+      font-size: 14px;
     }
 
-    .cms-field input,
-    .cms-field textarea,
-    .cms-field select {
+    input,
+    textarea,
+    select {
       width: 100%;
-      box-sizing: border-box;
-      padding: 12px 13px;
-      border: 1px solid #d9dee8;
+      border: 1px solid #d5dbe5;
       border-radius: 8px;
-      background: #ffffff;
+      padding: 12px;
+      font-size: 14px;
+      background: white;
       color: #172033;
-      font: inherit;
+      outline: none;
     }
 
-    .cms-field textarea {
-      min-height: 100px;
+    input:focus,
+    textarea:focus,
+    select:focus {
+      border-color: #e30613;
+      box-shadow: 0 0 0 3px rgba(227,6,19,.08);
+    }
+
+    textarea {
+      min-height: 105px;
       resize: vertical;
     }
 
-    .cms-field input:focus,
-    .cms-field textarea:focus,
-    .cms-field select:focus {
-      outline: none;
-      border-color: #e30613;
-      box-shadow: 0 0 0 3px rgba(227,6,19,0.08);
+    input[type="color"] {
+      height: 45px;
+      padding: 4px;
+      cursor: pointer;
     }
 
-    .image-upload-box {
-      border: 2px dashed #d9dee8;
-      border-radius: 12px;
-      padding: 18px;
-      background: #fafbfc;
+    input[type="checkbox"] {
+      width: auto;
+      margin-right: 8px;
+      transform: scale(1.15);
     }
 
-    .image-upload-box input[type="file"] {
-      padding: 10px;
-      background: #ffffff;
+    .checkbox-row {
+      display: flex;
+      align-items: center;
+      min-height: 45px;
+    }
+
+    .image-box {
+      border: 1px solid #d5dbe5;
+      border-radius: 10px;
+      padding: 14px;
+      background: #fafbfd;
+    }
+
+    .image-box input[type="file"] {
+      background: white;
       cursor: pointer;
     }
 
     .image-help {
-      display: block;
-      margin-top: 8px;
-      color: #6b7280;
-      font-size: 13px;
+      margin: 8px 0 0;
+      font-size: 12px;
+      color: #697386;
       line-height: 1.5;
     }
 
-    .image-preview {
+    .preview {
       display: none;
-      margin-top: 15px;
-    }
-
-    .image-preview img {
-      display: block;
-      width: 100%;
-      max-width: 360px;
-      max-height: 220px;
+      margin-top: 12px;
+      max-width: 100%;
+      max-height: 180px;
+      border-radius: 8px;
+      border: 1px solid #d5dbe5;
       object-fit: contain;
-      background: #ffffff;
-      border: 1px solid #d9dee8;
-      border-radius: 10px;
-      padding: 8px;
-      box-sizing: border-box;
+      background: white;
+      padding: 5px;
     }
 
-    .image-preview-actions {
-      margin-top: 10px;
+    .preview.show {
+      display: block;
+    }
+
+    .image-actions {
+      margin-top: 8px;
       display: flex;
       gap: 8px;
       flex-wrap: wrap;
     }
 
     .small-button {
-      border: none;
+      border: 0;
+      background: #eef1f6;
+      color: #172033;
+      padding: 8px 11px;
       border-radius: 7px;
-      padding: 8px 12px;
       cursor: pointer;
-      font-weight: 600;
+      font-size: 12px;
+      font-weight: 700;
     }
 
-    .remove-image-button {
-      background: #fee2e2;
-      color: #991b1b;
+    .small-button:hover {
+      background: #e1e6ee;
     }
 
-    .color-row {
-      display: grid;
-      grid-template-columns: 70px 1fr;
-      gap: 10px;
-      align-items: center;
-    }
-
-    .color-row input[type="color"] {
-      width: 70px;
-      height: 45px;
-      padding: 3px;
-      cursor: pointer;
-    }
-
-    .cms-actions {
+    .actions {
       position: sticky;
       bottom: 0;
       z-index: 10;
-      background: rgba(245,247,251,0.96);
-      border-top: 1px solid #d9dee8;
-      padding: 15px 0;
-      margin-top: 10px;
+      background: rgba(244,247,251,.96);
       backdrop-filter: blur(8px);
-    }
-
-    .cms-actions-inner {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 0 20px;
+      padding: 15px 0;
       display: flex;
       gap: 10px;
       flex-wrap: wrap;
     }
 
-    .cms-button {
-      border: none;
+    .btn {
+      border: 0;
       border-radius: 8px;
-      padding: 13px 20px;
-      font-weight: 700;
+      padding: 13px 18px;
       cursor: pointer;
-      font-size: 15px;
+      font-size: 14px;
+      font-weight: 700;
     }
 
-    .save-button {
+    .btn-primary {
       background: #e30613;
-      color: #ffffff;
+      color: white;
     }
 
-    .reset-button {
+    .btn-secondary {
       background: #172033;
-      color: #ffffff;
+      color: white;
     }
 
-    .clear-button {
-      background: #fee2e2;
-      color: #991b1b;
+    .btn-danger {
+      background: #fff0f0;
+      color: #c00000;
+      border: 1px solid #f1b7b7;
     }
 
-    .cms-message {
+    .message {
       display: none;
-      max-width: 1100px;
-      margin: 20px auto 0;
-      padding: 14px 20px;
-      border-radius: 8px;
-      font-weight: 600;
+      margin-bottom: 20px;
+      border-radius: 9px;
+      padding: 13px 15px;
+      font-weight: 700;
+      line-height: 1.5;
     }
 
-    .cms-message.success {
+    .message.success {
       display: block;
-      background: #ecfdf3;
-      border: 1px solid #bbf7d0;
-      color: #166534;
+      background: #eaf8ef;
+      color: #16713b;
+      border: 1px solid #b9e3c7;
     }
 
-    .cms-message.error {
+    .message.error {
       display: block;
-      background: #fef2f2;
-      border: 1px solid #fecaca;
-      color: #991b1b;
+      background: #fff0f0;
+      color: #b00000;
+      border: 1px solid #efb8b8;
     }
 
-    @media (max-width: 700px) {
-      .cms-header-inner {
-        align-items: flex-start;
+    .current-image {
+      margin-top: 10px;
+      font-size: 12px;
+      color: #697386;
+    }
+
+    @media (max-width: 750px) {
+      header .header-inner {
         flex-direction: column;
+        align-items: flex-start;
       }
 
-      .cms-grid {
+      .back-link {
+        width: 100%;
+        text-align: center;
+      }
+
+      .grid {
         grid-template-columns: 1fr;
       }
 
-      .cms-field.full {
+      .full {
         grid-column: auto;
       }
 
-      .cms-section {
-        padding: 18px;
+      .section {
+        padding: 17px;
+      }
+
+      .actions {
+        flex-direction: column;
+      }
+
+      .btn {
+        width: 100%;
       }
     }
   </style>
-
 </head>
 
 <body>
 
-<div class="cms-page">
-
-  <header class="cms-header">
-    <div class="cms-header-inner">
-
-      <div>
-        <h1>Website Control Center</h1>
-        <p>ExpressLine Website Editor</p>
-      </div>
-
-      <a
-        href="admin.html"
-        class="cms-back"
-      >
-        ← Back to Admin
-      </a>
-
-    </div>
-  </header>
-
-  <div
-    id="cmsMessage"
-    class="cms-message"
-  ></div>
-
-  <main class="cms-container">
-
-    <div class="cms-notice">
-      <strong>Website Editor</strong><br>
-      Changes made here are saved in this browser and are used by the ExpressLine website pages connected to the Website Control Center.
-      Images can now be uploaded directly from your phone or computer. You do not need to paste image URLs.
+<header>
+  <div class="header-inner">
+    <div>
+      <h1>Website Control Center</h1>
+      <p>ExpressLine Website Editor</p>
     </div>
 
-    <!-- COMPANY IDENTITY -->
-    <section class="cms-section">
-
-      <h2>Company Identity</h2>
-
-      <div class="cms-grid">
-
-        <div class="cms-field">
-          <label for="companyName">
-            Company Name
-          </label>
-
-          <input
-            type="text"
-            id="companyName"
-            placeholder="ExpressLine"
-          >
-        </div>
-
-        <div class="cms-field">
-          <label for="shortName">
-            Short Name
-          </label>
-
-          <input
-            type="text"
-            id="shortName"
-            placeholder="ExpressLine"
-          >
-        </div>
-
-        <div class="cms-field full">
-          <label for="tagline">
-            Tagline
-          </label>
-
-          <input
-            type="text"
-            id="tagline"
-            placeholder="Fast, reliable delivery"
-          >
-        </div>
-
-        <div class="cms-field full">
-
-          <label>
-            Company Logo
-          </label>
-
-          <div class="image-upload-box">
-
-            <input
-              type="file"
-              id="logoFile"
-              accept="image/*"
-            >
-
-            <span class="image-help">
-              Select your company logo from your device.
-            </span>
-
-            <div
-              id="logoPreviewBox"
-              class="image-preview"
-            >
-              <img
-                id="logoPreview"
-                src=""
-                alt="Logo preview"
-              >
-
-              <div class="image-preview-actions">
-                <button
-                  type="button"
-                  class="small-button remove-image-button"
-                  onclick="removeImage('logo')"
-                >
-                  Remove Logo
-                </button>
-              </div>
-            </div>
-
-          </div>
-
-        </div>
-
-        <div class="cms-field full">
-
-          <label>
-            Favicon
-          </label>
-
-          <div class="image-upload-box">
-
-            <input
-              type="file"
-              id="faviconFile"
-              accept="image/*,.ico"
-            >
-
-            <span class="image-help">
-              Select the small icon that appears in the browser tab.
-            </span>
-
-            <div
-              id="faviconPreviewBox"
-              class="image-preview"
-            >
-              <img
-                id="faviconPreview"
-                src=""
-                alt="Favicon preview"
-              >
-
-              <div class="image-preview-actions">
-                <button
-                  type="button"
-                  class="small-button remove-image-button"
-                  onclick="removeImage('favicon')"
-                >
-                  Remove Favicon
-                </button>
-              </div>
-
-            </div>
-
-          </div>
-
-        </div>
-
-      </div>
-
-    </section>
-
-    <!-- WEBSITE GENERAL -->
-    <section class="cms-section">
-
-      <h2>Website General</h2>
-
-      <div class="cms-grid">
-
-        <div class="cms-field full">
-          <label for="websiteTitle">
-            Website Title
-          </label>
-
-          <input
-            type="text"
-            id="websiteTitle"
-            placeholder="ExpressLine Delivery Services"
-          >
-        </div>
-
-        <div class="cms-field">
-          <label for="websiteStatus">
-            Website Status
-          </label>
-
-          <select id="websiteStatus">
-            <option value="online">Online</option>
-            <option value="maintenance">Maintenance</option>
-          </select>
-        </div>
-
-        <div class="cms-field">
-          <label for="announcementEnabled">
-            Announcement
-          </label>
-
-          <select id="announcementEnabled">
-            <option value="false">Disabled</option>
-            <option value="true">Enabled</option>
-          </select>
-        </div>
-
-        <div class="cms-field full">
-          <label for="websiteDescription">
-            Website Description
-          </label>
-
-          <textarea
-            id="websiteDescription"
-            placeholder="Describe your company and services."
-          ></textarea>
-        </div>
-
-        <div class="cms-field full">
-          <label for="announcementText">
-            Announcement Text
-          </label>
-
-          <input
-            type="text"
-            id="announcementText"
-            placeholder="Important announcement"
-          >
-        </div>
-
-      </div>
-
-    </section>
-
-    <!-- HEADER -->
-    <section class="cms-section">
-
-      <h2>Header Navigation</h2>
-
-      <div class="cms-grid">
-
-        <div class="cms-field">
-          <label for="navHome">Home</label>
-          <input type="text" id="navHome">
-        </div>
-
-        <div class="cms-field">
-          <label for="navServices">Services</label>
-          <input type="text" id="navServices">
-        </div>
-
-        <div class="cms-field">
-          <label for="navTrack">Track Shipment</label>
-          <input type="text" id="navTrack">
-        </div>
-
-        <div class="cms-field">
-          <label for="navRequest">Request Shipment</label>
-          <input type="text" id="navRequest">
-        </div>
-
-        <div class="cms-field">
-          <label for="navAbout">About Us</label>
-          <input type="text" id="navAbout">
-        </div>
-
-        <div class="cms-field">
-          <label for="navContact">Contact Us</label>
-          <input type="text" id="navContact">
-        </div>
-
-        <div class="cms-field">
-          <label for="navLogin">Customer Login</label>
-          <input type="text" id="navLogin">
-        </div>
-
-        <div class="cms-field">
-          <label for="navRegister">Register</label>
-          <input type="text" id="navRegister">
-        </div>
-
-      </div>
-
-    </section>
-
-    <!-- HOMEPAGE -->
-    <section class="cms-section">
-
-      <h2>Homepage</h2>
-
-      <div class="cms-grid">
-
-        <div class="cms-field full">
-          <label for="heroHeading">
-            Hero Heading
-          </label>
-
-          <input
-            type="text"
-            id="heroHeading"
-            placeholder="Fast, reliable delivery"
-          >
-        </div>
-
-        <div class="cms-field full">
-          <label for="heroDescription">
-            Hero Description
-          </label>
-
-          <textarea
-            id="heroDescription"
-            placeholder="Your shipment is in safe hands."
-          ></textarea>
-        </div>
-
-        <div class="cms-field">
-          <label for="heroPrimaryButton">
-            Primary Button
-          </label>
-
-          <input
-            type="text"
-            id="heroPrimaryButton"
-            placeholder="Track Shipment"
-          >
-        </div>
-
-        <div class="cms-field">
-          <label for="heroSecondaryButton">
-            Secondary Button
-          </label>
-
-          <input
-            type="text"
-            id="heroSecondaryButton"
-            placeholder="Request Shipment"
-          >
-        </div>
-
-        <div class="cms-field full">
-
-          <label>
-            Homepage Hero Image
-          </label>
-
-          <div class="image-upload-box">
-
-            <input
-              type="file"
-              id="heroImageFile"
-              accept="image/*"
-            >
-
-            <span class="image-help">
-              Select the image displayed in the homepage hero section.
-            </span>
-
-            <div
-              id="heroImagePreviewBox"
-              class="image-preview"
-            >
-              <img
-                id="heroImagePreview"
-                src=""
-                alt="Hero image preview"
-              >
-
-              <div class="image-preview-actions">
-                <button
-                  type="button"
-                  class="small-button remove-image-button"
-                  onclick="removeImage('heroImage')"
-                >
-                  Remove Image
-                </button>
-              </div>
-
-            </div>
-
-          </div>
-
-        </div>
-
-      </div>
-
-    </section>
-
-    <!-- WEBSITE IMAGES -->
-    <section class="cms-section">
-
-      <h2>Website Images</h2>
-
-      <p class="cms-section-description">
-        Upload the images you want to use throughout the website.
-      </p>
-
-      <div class="cms-grid">
-
-        <!-- SERVICES IMAGE -->
-        <div class="cms-field">
-
-          <label>
-            Services Image
-          </label>
-
-          <div class="image-upload-box">
-
-            <input
-              type="file"
-              id="servicesImageFile"
-              accept="image/*"
-            >
-
-            <span class="image-help">
-              Image used on the Services page.
-            </span>
-
-            <div
-              id="servicesImagePreviewBox"
-              class="image-preview"
-            >
-              <img
-                id="servicesImagePreview"
-                src=""
-                alt="Services image preview"
-              >
-
-              <div class="image-preview-actions">
-                <button
-                  type="button"
-                  class="small-button remove-image-button"
-                  onclick="removeImage('servicesImage')"
-                >
-                  Remove
-                </button>
-              </div>
-
-            </div>
-
-          </div>
-
-        </div>
-
-        <!-- BUSINESS IMAGE -->
-        <div class="cms-field">
-
-          <label>
-            Business Image
-          </label>
-
-          <div class="image-upload-box">
-
-            <input
-              type="file"
-              id="businessImageFile"
-              accept="image/*"
-            >
-
-            <span class="image-help">
-              Image for your business/company section.
-            </span>
-
-            <div
-              id="businessImagePreviewBox"
-              class="image-preview"
-            >
-              <img
-                id="businessImagePreview"
-                src=""
-                alt="Business image preview"
-              >
-
-              <div class="image-preview-actions">
-                <button
-                  type="button"
-                  class="small-button remove-image-button"
-                  onclick="removeImage('businessImage')"
-                >
-                  Remove
-                </button>
-              </div>
-
-            </div>
-
-          </div>
-
-        </div>
-
-        <!-- ABOUT IMAGE -->
-        <div class="cms-field">
-
-          <label>
-            About Image
-          </label>
-
-          <div class="image-upload-box">
-
-            <input
-              type="file"
-              id="aboutImageFile"
-              accept="image/*"
-            >
-
-            <span class="image-help">
-              Image used on the About page.
-            </span>
-
-            <div
-              id="aboutImagePreviewBox"
-              class="image-preview"
-            >
-              <img
-                id="aboutImagePreview"
-                src=""
-                alt="About image preview"
-              >
-
-              <div class="image-preview-actions">
-                <button
-                  type="button"
-                  class="small-button remove-image-button"
-                  onclick="removeImage('aboutImage')"
-                >
-                  Remove
-                </button>
-              </div>
-
-            </div>
-
-          </div>
-
-        </div>
-
-        <!-- CONTACT IMAGE -->
-        <div class="cms-field">
-
-          <label>
-            Contact Image
-          </label>
-
-          <div class="image-upload-box">
-
-            <input
-              type="file"
-              id="contactImageFile"
-              accept="image/*"
-            >
-
-            <span class="image-help">
-              Image used on the Contact page.
-            </span>
-
-            <div
-              id="contactImagePreviewBox"
-              class="image-preview"
-            >
-              <img
-                id="contactImagePreview"
-                src=""
-                alt="Contact image preview"
-              >
-
-              <div class="image-preview-actions">
-                <button
-                  type="button"
-                  class="small-button remove-image-button"
-                  onclick="removeImage('contactImage')"
-                >
-                  Remove
-                </button>
-              </div>
-
-            </div>
-
-          </div>
-
-        </div>
-
-        <!-- BACKGROUND IMAGE -->
-        <div class="cms-field full">
-
-          <label>
-            Background Image
-          </label>
-
-          <div class="image-upload-box">
-
-            <input
-              type="file"
-              id="backgroundImageFile"
-              accept="image/*"
-            >
-
-            <span class="image-help">
-              Select a background image for the website.
-            </span>
-
-            <div
-              id="backgroundImagePreviewBox"
-              class="image-preview"
-            >
-              <img
-                id="backgroundImagePreview"
-                src=""
-                alt="Background image preview"
-              >
-
-              <div class="image-preview-actions">
-                <button
-                  type="button"
-                  class="small-button remove-image-button"
-                  onclick="removeImage('backgroundImage')"
-                >
-                  Remove
-                </button>
-              </div>
-
-            </div>
-
-          </div>
-
-        </div>
-
-      </div>
-
-    </section>
-
-    <!-- COLORS -->
-    <section class="cms-section">
-
-      <h2>Colors</h2>
-
-      <div class="cms-grid">
-
-        <div class="cms-field">
-          <label for="primaryColor">
-            Primary Color
-          </label>
-
-          <div class="color-row">
-            <input
-              type="color"
-              id="primaryColor"
-              value="#e30613"
-            >
-
-            <input
-              type="text"
-              id="primaryColorText"
-              value="#e30613"
-            >
-          </div>
-        </div>
-
-        <div class="cms-field">
-          <label for="secondaryColor">
-            Secondary Color
-          </label>
-
-          <div class="color-row">
-            <input
-              type="color"
-              id="secondaryColor"
-              value="#172033"
-            >
-
-            <input
-              type="text"
-              id="secondaryColorText"
-              value="#172033"
-            >
-          </div>
-        </div>
-
-        <div class="cms-field">
-          <label for="accentColor">
-            Accent Color
-          </label>
-
-          <div class="color-row">
-            <input
-              type="color"
-              id="accentColor"
-              value="#111827"
-            >
-
-            <input
-              type="text"
-              id="accentColorText"
-              value="#111827"
-            >
-          </div>
-        </div>
-
-        <div class="cms-field">
-          <label for="textColor">
-            Text Color
-          </label>
-
-          <div class="color-row">
-            <input
-              type="color"
-              id="textColor"
-              value="#172033"
-            >
-
-            <input
-              type="text"
-              id="textColorText"
-              value="#172033"
-            >
-          </div>
-        </div>
-
-      </div>
-
-    </section>
-
-    <!-- TYPOGRAPHY -->
-    <section class="cms-section">
-
-      <h2>Typography</h2>
-
-      <div class="cms-grid">
-
-        <div class="cms-field">
-          <label for="fontFamily">
-            Font Family
-          </label>
-
-          <select id="fontFamily">
-            <option value="Arial, Helvetica, sans-serif">
-              Arial
-            </option>
-
-            <option value="Inter, Arial, Helvetica, sans-serif">
-              Inter
-            </option>
-
-            <option value="Georgia, serif">
-              Georgia
-            </option>
-
-            <option value="Verdana, sans-serif">
-              Verdana
-            </option>
-
-            <option value="Tahoma, sans-serif">
-              Tahoma
-            </option>
-
-            <option value="Trebuchet MS, sans-serif">
-              Trebuchet MS
-            </option>
-          </select>
-        </div>
-
-        <div class="cms-field">
-          <label for="fontSize">
-            Font Size
-          </label>
-
-          <select id="fontSize">
-            <option value="14px">14px</option>
-            <option value="15px">15px</option>
-            <option value="16px">16px</option>
-            <option value="17px">17px</option>
-            <option value="18px">18px</option>
-          </select>
-        </div>
-
-      </div>
-
-    </section>
-
-    <!-- SERVICES -->
-    <section class="cms-section">
-
-      <h2>Services</h2>
-
-      <div class="cms-grid">
-
-        <div class="cms-field">
-          <label for="service1Name">
-            Service 1 Name
-          </label>
-
-          <input
-            type="text"
-            id="service1Name"
-          >
-        </div>
-
-        <div class="cms-field">
-          <label for="service1Description">
-            Service 1 Description
-          </label>
-
-          <textarea
-            id="service1Description"
-          ></textarea>
-        </div>
-
-        <div class="cms-field">
-          <label for="service2Name">
-            Service 2 Name
-          </label>
-
-          <input
-            type="text"
-            id="service2Name"
-          >
-        </div>
-
-        <div class="cms-field">
-          <label for="service2Description">
-            Service 2 Description
-          </label>
-
-          <textarea
-            id="service2Description"
-          ></textarea>
-        </div>
-
-        <div class="cms-field">
-          <label for="service3Name">
-            Service 3 Name
-          </label>
-
-          <input
-            type="text"
-            id="service3Name"
-          >
-        </div>
-
-        <div class="cms-field">
-          <label for="service3Description">
-            Service 3 Description
-          </label>
-
-          <textarea
-            id="service3Description"
-          ></textarea>
-        </div>
-
-      </div>
-
-    </section>
-
-    <!-- CONTACT -->
-    <section class="cms-section">
-
-      <h2>Contact</h2>
-
-      <div class="cms-grid">
-
-        <div class="cms-field">
-          <label for="contactEmail">
-            Contact Email
-          </label>
-
-          <input
-            type="email"
-            id="contactEmail"
-          >
-        </div>
-
-        <div class="cms-field">
-          <label for="contactPhone">
-            Contact Phone
-          </label>
-
-          <input
-            type="text"
-            id="contactPhone"
-          >
-        </div>
-
-        <div class="cms-field">
-          <label for="whatsappNumber">
-            WhatsApp Number
-          </label>
-
-          <input
-            type="text"
-            id="whatsappNumber"
-            placeholder="Include country code"
-          >
-        </div>
-
-        <div class="cms-field">
-          <label for="businessHours">
-            Business Hours
-          </label>
-
-          <input
-            type="text"
-            id="businessHours"
-            placeholder="Mon - Fri, 8AM - 6PM"
-          >
-        </div>
-
-        <div class="cms-field full">
-          <label for="businessAddress">
-            Business Address
-          </label>
-
-          <textarea
-            id="businessAddress"
-          ></textarea>
-        </div>
-
-      </div>
-
-    </section>
-
-    <!-- SUPPORT -->
-    <section class="cms-section">
-
-      <h2>Support</h2>
-
-      <div class="cms-grid">
-
-        <div class="cms-field">
-          <label for="supportEmail">
-            Support Email
-          </label>
-
-          <input
-            type="email"
-            id="supportEmail"
-          >
-        </div>
-
-        <div class="cms-field">
-          <label for="supportPhone">
-            Support Phone
-          </label>
-
-          <input
-            type="text"
-            id="supportPhone"
-          >
-        </div>
-
-        <div class="cms-field">
-          <label for="liveChat">
-            Live Chat
-          </label>
-
-          <select id="liveChat">
-            <option value="false">Disabled</option>
-            <option value="true">Enabled</option>
-          </select>
-        </div>
-
-        <div class="cms-field">
-          <label for="supportHours">
-            Support Hours
-          </label>
-
-          <input
-            type="text"
-            id="supportHours"
-          >
-        </div>
-
-        <div class="cms-field full">
-          <label for="supportMessage">
-            Support Message
-          </label>
-
-          <textarea
-            id="supportMessage"
-          ></textarea>
-        </div>
-
-      </div>
-
-    </section>
-
-    <!-- SEO -->
-    <section class="cms-section">
-
-      <h2>SEO</h2>
-
-      <div class="cms-grid">
-
-        <div class="cms-field full">
-          <label for="seoTitle">
-            SEO Title
-          </label>
-
-          <input
-            type="text"
-            id="seoTitle"
-          >
-        </div>
-
-        <div class="cms-field full">
-          <label for="seoDescription">
-            SEO Description
-          </label>
-
-          <textarea
-            id="seoDescription"
-          ></textarea>
-        </div>
-
-        <div class="cms-field full">
-          <label for="seoKeywords">
-            SEO Keywords
-          </label>
-
-          <input
-            type="text"
-            id="seoKeywords"
-          >
-        </div>
-
-      </div>
-
-    </section>
-
-    <!-- FOOTER -->
-    <section class="cms-section">
-
-      <h2>Footer</h2>
-
-      <div class="cms-grid">
-
-        <div class="cms-field full">
-          <label for="footerText">
-            Footer Text
-          </label>
-
-          <textarea
-            id="footerText"
-          ></textarea>
-        </div>
-
-        <div class="cms-field full">
-          <label for="copyrightText">
-            Copyright Text
-          </label>
-
-          <input
-            type="text"
-            id="copyrightText"
-          >
-        </div>
-
-        <div class="cms-field">
-          <label for="privacyUrl">
-            Privacy Policy Link
-          </label>
-
-          <input
-            type="text"
-            id="privacyUrl"
-          >
-        </div>
-
-        <div class="cms-field">
-          <label for="termsUrl">
-            Terms Link
-          </label>
-
-          <input
-            type="text"
-            id="termsUrl"
-          >
-        </div>
-
-      </div>
-
-    </section>
-
-  </main>
-
-  <div class="cms-actions">
-
-    <div class="cms-actions-inner">
-
-      <button
-        type="button"
-        class="cms-button save-button"
-        onclick="saveSettings()"
-      >
-        Save Website Settings
-      </button>
-
-      <button
-        type="button"
-        class="cms-button reset-button"
-        onclick="loadSettings()"
-      >
-        Reload Saved Settings
-      </button>
-
-      <button
-        type="button"
-        class="cms-button clear-button"
-        onclick="clearSettings()"
-      >
-        Clear Website Settings
-      </button>
-
-    </div>
-
+    <a href="admin.html" class="back-link">
+      ← Back to Admin
+    </a>
+  </div>
+</header>
+
+<main>
+
+  <div class="notice">
+    <strong>Website image management:</strong>
+    Choose your images directly from your phone or computer below.
+    You do not need to enter image URLs.
+    After saving, the public ExpressLine pages will use the saved images automatically.
   </div>
 
-</div>
+  <div id="message" class="message"></div>
+
+  <!-- COMPANY IDENTITY -->
+  <section class="section">
+    <h2>Company Identity</h2>
+    <p class="section-description">
+      Set the company name, short name, tagline and branding.
+    </p>
+
+    <div class="grid">
+
+      <div>
+        <label for="companyName">Company Name</label>
+        <input id="companyName" type="text">
+      </div>
+
+      <div>
+        <label for="shortName">Short Name</label>
+        <input id="shortName" type="text">
+      </div>
+
+      <div class="full">
+        <label for="tagline">Tagline</label>
+        <input id="tagline" type="text">
+      </div>
+
+    </div>
+  </section>
+
+  <!-- WEBSITE GENERAL -->
+  <section class="section">
+    <h2>Website General</h2>
+    <p class="section-description">
+      Control the website title, status, description and announcement.
+    </p>
+
+    <div class="grid">
+
+      <div>
+        <label for="websiteTitle">Website Title</label>
+        <input id="websiteTitle" type="text">
+      </div>
+
+      <div>
+        <label for="websiteStatus">Website Status</label>
+        <select id="websiteStatus">
+          <option value="online">Online</option>
+          <option value="maintenance">Maintenance</option>
+        </select>
+      </div>
+
+      <div class="full">
+        <label for="websiteDescription">Website Description</label>
+        <textarea id="websiteDescription"></textarea>
+      </div>
+
+      <div class="full">
+        <label for="announcementText">Announcement Text</label>
+        <textarea id="announcementText"></textarea>
+      </div>
+
+      <div>
+        <label>Announcement</label>
+
+        <div class="checkbox-row">
+          <input id="announcementEnabled" type="checkbox">
+          <span>Show announcement on website</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- WEBSITE IMAGES -->
+  <section class="section">
+    <h2>Website Images</h2>
+    <p class="section-description">
+      Upload images directly from your device. These images are connected to the public website automatically after you save.
+    </p>
+
+    <div class="grid">
+
+      <!-- LOGO -->
+      <div class="image-box">
+        <label for="logoFile">Company Logo</label>
+
+        <input
+          id="logoFile"
+          type="file"
+          accept="image/*"
+        >
+
+        <p class="image-help">
+          Choose the logo image that should appear in the website header.
+        </p>
+
+        <img id="logoPreview" class="preview" alt="Logo preview">
+
+        <div class="image-actions">
+          <button
+            type="button"
+            class="small-button"
+            onclick="removeImage('logo')"
+          >
+            Remove Logo
+          </button>
+        </div>
+      </div>
+
+      <!-- FAVICON -->
+      <div class="image-box">
+        <label for="faviconFile">Website Favicon</label>
+
+        <input
+          id="faviconFile"
+          type="file"
+          accept="image/png,image/jpeg,image/webp,image/x-icon,.ico"
+        >
+
+        <p class="image-help">
+          Choose the small icon used in the browser tab.
+        </p>
+
+        <img id="faviconPreview" class="preview" alt="Favicon preview">
+
+        <div class="image-actions">
+          <button
+            type="button"
+            class="small-button"
+            onclick="removeImage('favicon')"
+          >
+            Remove Favicon
+          </button>
+        </div>
+      </div>
+
+      <!-- HERO -->
+      <div class="image-box">
+        <label for="heroImageFile">Homepage Hero Image</label>
+
+        <input
+          id="heroImageFile"
+          type="file"
+          accept="image/*"
+        >
+
+        <p class="image-help">
+          This image is used by the homepage hero section.
+        </p>
+
+        <img id="heroImagePreview" class="preview" alt="Homepage hero preview">
+
+        <div class="image-actions">
+          <button
+            type="button"
+            class="small-button"
+            onclick="removeImage('heroImage')"
+          >
+            Remove Image
+          </button>
+        </div>
+      </div>
+
+      <!-- SERVICES -->
+      <div class="image-box">
+        <label for="servicesImageFile">Services Page Image</label>
+
+        <input
+          id="servicesImageFile"
+          type="file"
+          accept="image/*"
+        >
+
+        <p class="image-help">
+          This image is connected to the Services page.
+        </p>
+
+        <img id="servicesImagePreview" class="preview" alt="Services image preview">
+
+        <div class="image-actions">
+          <button
+            type="button"
+            class="small-button"
+            onclick="removeImage('servicesImage')"
+          >
+            Remove Image
+          </button>
+        </div>
+      </div>
+
+      <!-- BUSINESS -->
+      <div class="image-box">
+        <label for="businessImageFile">Business Image</label>
+
+        <input
+          id="businessImageFile"
+          type="file"
+          accept="image/*"
+        >
+
+        <p class="image-help">
+          Choose the image used for business/company sections.
+        </p>
+
+        <img id="businessImagePreview" class="preview" alt="Business image preview">
+
+        <div class="image-actions">
+          <button
+            type="button"
+            class="small-button"
+            onclick="removeImage('businessImage')"
+          >
+            Remove Image
+          </button>
+        </div>
+      </div>
+
+      <!-- ABOUT -->
+      <div class="image-box">
+        <label for="aboutImageFile">About Page Image</label>
+
+        <input
+          id="aboutImageFile"
+          type="file"
+          accept="image/*"
+        >
+
+        <p class="image-help">
+          This image is connected to the About page.
+        </p>
+
+        <img id="aboutImagePreview" class="preview" alt="About image preview">
+
+        <div class="image-actions">
+          <button
+            type="button"
+            class="small-button"
+            onclick="removeImage('aboutImage')"
+          >
+            Remove Image
+          </button>
+        </div>
+      </div>
+
+      <!-- CONTACT -->
+      <div class="image-box">
+        <label for="contactImageFile">Contact Page Image</label>
+
+        <input
+          id="contactImageFile"
+          type="file"
+          accept="image/*"
+        >
+
+        <p class="image-help">
+          This image is connected to the Contact page.
+        </p>
+
+        <img id="contactImagePreview" class="preview" alt="Contact image preview">
+
+        <div class="image-actions">
+          <button
+            type="button"
+            class="small-button"
+            onclick="removeImage('contactImage')"
+          >
+            Remove Image
+          </button>
+        </div>
+      </div>
+
+      <!-- BACKGROUND -->
+      <div class="image-box full">
+        <label for="backgroundImageFile">Website Background Image</label>
+
+        <input
+          id="backgroundImageFile"
+          type="file"
+          accept="image/*"
+        >
+
+        <p class="image-help">
+          Choose the background image for website sections that use a background image.
+        </p>
+
+        <img id="backgroundImagePreview" class="preview" alt="Background image preview">
+
+        <div class="image-actions">
+          <button
+            type="button"
+            class="small-button"
+            onclick="removeImage('backgroundImage')"
+          >
+            Remove Image
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- HEADER -->
+  <section class="section">
+    <h2>Header Navigation</h2>
+    <p class="section-description">
+      Change the text displayed in the website navigation.
+    </p>
+
+    <div class="grid">
+
+      <div>
+        <label for="navHome">Home</label>
+        <input id="navHome" type="text">
+      </div>
+
+      <div>
+        <label for="navServices">Services</label>
+        <input id="navServices" type="text">
+      </div>
+
+      <div>
+        <label for="navTrack">Track Shipment</label>
+        <input id="navTrack" type="text">
+      </div>
+
+      <div>
+        <label for="navRequest">Request Shipment</label>
+        <input id="navRequest" type="text">
+      </div>
+
+      <div>
+        <label for="navAbout">About Us</label>
+        <input id="navAbout" type="text">
+      </div>
+
+      <div>
+        <label for="navContact">Contact Us</label>
+        <input id="navContact" type="text">
+      </div>
+
+      <div>
+        <label for="navLogin">Customer Login</label>
+        <input id="navLogin" type="text">
+      </div>
+
+      <div>
+        <label for="navRegister">Register</label>
+        <input id="navRegister" type="text">
+      </div>
+
+    </div>
+  </section>
+
+  <!-- HOMEPAGE -->
+  <section class="section">
+    <h2>Homepage</h2>
+    <p class="section-description">
+      Control the main homepage heading, description and buttons.
+    </p>
+
+    <div class="grid">
+
+      <div class="full">
+        <label for="heroHeading">Hero Heading</label>
+        <input id="heroHeading" type="text">
+      </div>
+
+      <div class="full">
+        <label for="heroDescription">Hero Description</label>
+        <textarea id="heroDescription"></textarea>
+      </div>
+
+      <div>
+        <label for="heroPrimaryButton">Primary Button</label>
+        <input id="heroPrimaryButton" type="text">
+      </div>
+
+      <div>
+        <label for="heroSecondaryButton">Secondary Button</label>
+        <input id="heroSecondaryButton" type="text">
+      </div>
+
+    </div>
+  </section>
+
+  <!-- COLORS -->
+  <section class="section">
+    <h2>Website Colors</h2>
+    <p class="section-description">
+      Change the main colors used throughout the website.
+    </p>
+
+    <div class="grid">
+
+      <div>
+        <label for="primaryColor">Primary Color</label>
+        <input id="primaryColor" type="color" value="#e30613">
+        <input id="primaryColorText" type="text" value="#e30613">
+      </div>
+
+      <div>
+        <label for="secondaryColor">Secondary Color</label>
+        <input id="secondaryColor" type="color" value="#172033">
+        <input id="secondaryColorText" type="text" value="#172033">
+      </div>
+
+      <div>
+        <label for="accentColor">Accent Color</label>
+        <input id="accentColor" type="color" value="#111827">
+        <input id="accentColorText" type="text" value="#111827">
+      </div>
+
+      <div>
+        <label for="textColor">Text Color</label>
+        <input id="textColor" type="color" value="#172033">
+        <input id="textColorText" type="text" value="#172033">
+      </div>
+
+    </div>
+  </section>
+
+  <!-- TYPOGRAPHY -->
+  <section class="section">
+    <h2>Typography</h2>
+    <p class="section-description">
+      Control the website font family and base font size.
+    </p>
+
+    <div class="grid">
+
+      <div>
+        <label for="fontFamily">Font Family</label>
+        <select id="fontFamily">
+          <option value="Arial, Helvetica, sans-serif">Arial</option>
+          <option value="Inter, Arial, Helvetica, sans-serif">Inter</option>
+          <option value="Georgia, serif">Georgia</option>
+          <option value="Verdana, sans-serif">Verdana</option>
+          <option value="Tahoma, sans-serif">Tahoma</option>
+        </select>
+      </div>
+
+      <div>
+        <label for="fontSize">Base Font Size</label>
+        <input id="fontSize" type="text" placeholder="16px">
+      </div>
+
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section class="section">
+    <h2>Services</h2>
+    <p class="section-description">
+      Manage the first three service cards shown on the website.
+    </p>
+
+    <div class="grid">
+
+      <div>
+        <label for="service1Name">Service 1 Name</label>
+        <input id="service1Name" type="text">
+      </div>
+
+      <div>
+        <label for="service1Description">Service 1 Description</label>
+        <textarea id="service1Description"></textarea>
+      </div>
+
+      <div>
+        <label for="service2Name">Service 2 Name</label>
+        <input id="service2Name" type="text">
+      </div>
+
+      <div>
+        <label for="service2Description">Service 2 Description</label>
+        <textarea id="service2Description"></textarea>
+      </div>
+
+      <div>
+        <label for="service3Name">Service 3 Name</label>
+        <input id="service3Name" type="text">
+      </div>
+
+      <div>
+        <label for="service3Description">Service 3 Description</label>
+        <textarea id="service3Description"></textarea>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="section">
+    <h2>Contact Information</h2>
+    <p class="section-description">
+      These details can be displayed throughout the public website.
+    </p>
+
+    <div class="grid">
+
+      <div>
+        <label for="contactEmail">Contact Email</label>
+        <input id="contactEmail" type="email">
+      </div>
+
+      <div>
+        <label for="contactPhone">Contact Phone</label>
+        <input id="contactPhone" type="text">
+      </div>
+
+      <div>
+        <label for="whatsappNumber">WhatsApp Number</label>
+        <input id="whatsappNumber" type="text">
+      </div>
+
+      <div>
+        <label for="businessHours">Business Hours</label>
+        <input id="businessHours" type="text">
+      </div>
+
+      <div class="full">
+        <label for="businessAddress">Business Address</label>
+        <textarea id="businessAddress"></textarea>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- SUPPORT -->
+  <section class="section">
+    <h2>Customer Support</h2>
+
+    <div class="grid">
+
+      <div>
+        <label for="supportEmail">Support Email</label>
+        <input id="supportEmail" type="email">
+      </div>
+
+      <div>
+        <label for="supportPhone">Support Phone</label>
+        <input id="supportPhone" type="text">
+      </div>
+
+      <div>
+        <label for="supportHours">Support Hours</label>
+        <input id="supportHours" type="text">
+      </div>
+
+      <div>
+        <label>Live Chat</label>
+
+        <div class="checkbox-row">
+          <input id="liveChat" type="checkbox">
+          <span>Enable live chat</span>
+        </div>
+      </div>
+
+      <div class="full">
+        <label for="supportMessage">Support Message</label>
+        <textarea id="supportMessage"></textarea>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- SEO -->
+  <section class="section">
+    <h2>SEO</h2>
+
+    <div class="grid">
+
+      <div class="full">
+        <label for="seoTitle">SEO Title</label>
+        <input id="seoTitle" type="text">
+      </div>
+
+      <div class="full">
+        <label for="seoDescription">SEO Description</label>
+        <textarea id="seoDescription"></textarea>
+      </div>
+
+      <div class="full">
+        <label for="seoKeywords">SEO Keywords</label>
+        <input id="seoKeywords" type="text">
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <section class="section">
+    <h2>Footer</h2>
+
+    <div class="grid">
+
+      <div class="full">
+        <label for="footerText">Footer Text</label>
+        <textarea id="footerText"></textarea>
+      </div>
+
+      <div>
+        <label for="copyrightText">Copyright Text</label>
+        <input id="copyrightText" type="text">
+      </div>
+
+      <div>
+        <label for="privacyUrl">Privacy Page</label>
+        <input id="privacyUrl" type="text">
+      </div>
+
+      <div>
+        <label for="termsUrl">Terms Page</label>
+        <input id="termsUrl" type="text">
+      </div>
+
+    </div>
+  </section>
+
+  <div class="actions">
+    <button
+      type="button"
+      class="btn btn-primary"
+      onclick="saveSettings()"
+    >
+      Save Website Changes
+    </button>
+
+    <button
+      type="button"
+      class="btn btn-secondary"
+      onclick="loadSettings()"
+    >
+      Reload Saved Settings
+    </button>
+
+    <button
+      type="button"
+      class="btn btn-danger"
+      onclick="clearSettings()"
+    >
+      Clear Website Settings
+    </button>
+  </div>
+
+</main>
 
 <script>
+  const STORAGE_KEY = "expresslineWebsiteSettings";
 
   /*
-   * ADMIN ACCESS
-   */
-  if (
-    localStorage.getItem("adminLoggedIn") !== "true"
-  ) {
-    window.location.replace(
-      "admin-login.html"
-    );
-  }
+    IMPORTANT:
+    These are the INTERNAL setting names used by the public pages.
+    The user never types these as URLs.
 
+    Images selected from the device are converted to data URLs and
+    stored in these settings.
+  */
 
-  /*
-   * STORAGE
-   */
-  const STORAGE_KEY =
-    "expresslineWebsiteSettings";
+  const imageFields = {
+    logo: {
+      inputId: "logoFile",
+      previewId: "logoPreview",
+      settingKey: "logoUrl"
+    },
 
+    favicon: {
+      inputId: "faviconFile",
+      previewId: "faviconPreview",
+      settingKey: "faviconUrl"
+    },
 
-  /*
-   * ALL TEXT SETTINGS
-   */
+    heroImage: {
+      inputId: "heroImageFile",
+      previewId: "heroImagePreview",
+      settingKey: "heroImage"
+    },
+
+    servicesImage: {
+      inputId: "servicesImageFile",
+      previewId: "servicesImagePreview",
+      settingKey: "servicesImage"
+    },
+
+    businessImage: {
+      inputId: "businessImageFile",
+      previewId: "businessImagePreview",
+      settingKey: "businessImage"
+    },
+
+    aboutImage: {
+      inputId: "aboutImageFile",
+      previewId: "aboutImagePreview",
+      settingKey: "aboutImage"
+    },
+
+    contactImage: {
+      inputId: "contactImageFile",
+      previewId: "contactImagePreview",
+      settingKey: "contactImage"
+    },
+
+    backgroundImage: {
+      inputId: "backgroundImageFile",
+      previewId: "backgroundImagePreview",
+      settingKey: "backgroundImage"
+    }
+  };
+
   const fields = [
     "companyName",
     "shortName",
@@ -1510,451 +1113,196 @@
     "termsUrl"
   ];
 
-
-  /*
-   * IMAGE SETTINGS
-   *
-   * Images are stored as data URLs.
-   */
-  const imageFields = [
-    {
-      setting: "logoUrl",
-      fileId: "logoFile",
-      previewId: "logoPreview",
-      boxId: "logoPreviewBox"
-    },
-    {
-      setting: "faviconUrl",
-      fileId: "faviconFile",
-      previewId: "faviconPreview",
-      boxId: "faviconPreviewBox"
-    },
-    {
-      setting: "heroImage",
-      fileId: "heroImageFile",
-      previewId: "heroImagePreview",
-      boxId: "heroImagePreviewBox"
-    },
-    {
-      setting: "servicesImage",
-      fileId: "servicesImageFile",
-      previewId: "servicesImagePreview",
-      boxId: "servicesImagePreviewBox"
-    },
-    {
-      setting: "businessImage",
-      fileId: "businessImageFile",
-      previewId: "businessImagePreview",
-      boxId: "businessImagePreviewBox"
-    },
-    {
-      setting: "aboutImage",
-      fileId: "aboutImageFile",
-      previewId: "aboutImagePreview",
-      boxId: "aboutImagePreviewBox"
-    },
-    {
-      setting: "contactImage",
-      fileId: "contactImageFile",
-      previewId: "contactImagePreview",
-      boxId: "contactImagePreviewBox"
-    },
-    {
-      setting: "backgroundImage",
-      fileId: "backgroundImageFile",
-      previewId: "backgroundImagePreview",
-      boxId: "backgroundImagePreviewBox"
-    }
-  ];
-
-
   let uploadedImages = {};
 
-
-  /*
-   * MESSAGE
-   */
-  function showMessage(
-    message,
-    type
-  ) {
-    const box =
-      document.getElementById(
-        "cmsMessage"
-      );
+  function showMessage(message, type) {
+    const box = document.getElementById("message");
 
     box.textContent = message;
-
-    box.className =
-      "cms-message " + type;
+    box.className = "message " + type;
 
     window.scrollTo({
       top: 0,
       behavior: "smooth"
     });
+
+    setTimeout(() => {
+      box.className = "message";
+      box.textContent = "";
+    }, 5000);
   }
 
+  function readFileAsDataURL(file) {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
 
-  /*
-   * LOAD SAVED SETTINGS
-   */
-  function getSavedSettings() {
-    try {
-      const saved =
-        localStorage.getItem(
-          STORAGE_KEY
-        );
+      reader.onload = function () {
+        resolve(reader.result);
+      };
 
-      if (!saved) {
-        return {};
-      }
+      reader.onerror = function () {
+        reject(new Error("Unable to read image."));
+      };
 
-      const parsed =
-        JSON.parse(saved);
-
-      return parsed &&
-        typeof parsed === "object"
-        ? parsed
-        : {};
-
-    } catch (error) {
-      return {};
-    }
-  }
-
-
-  /*
-   * SET FIELD VALUE
-   */
-  function setFieldValue(
-    id,
-    value
-  ) {
-    const element =
-      document.getElementById(id);
-
-    if (!element) {
-      return;
-    }
-
-    if (
-      value !== undefined &&
-      value !== null
-    ) {
-      element.value = value;
-    }
-  }
-
-
-  /*
-   * LOAD SETTINGS INTO FORM
-   */
-  function loadSettings() {
-
-    const settings =
-      getSavedSettings();
-
-    fields.forEach(function (id) {
-
-      if (
-        Object.prototype.hasOwnProperty.call(
-          settings,
-          id
-        )
-      ) {
-        setFieldValue(
-          id,
-          settings[id]
-        );
-      }
-
+      reader.readAsDataURL(file);
     });
+  }
 
+  function setupImageUpload(imageName) {
+    const config = imageFields[imageName];
 
-    /*
-     * Load images.
-     */
-    imageFields.forEach(
-      function (image) {
+    if (!config) {
+      return;
+    }
 
-        const value =
-          settings[image.setting] || "";
+    const input = document.getElementById(config.inputId);
 
-        uploadedImages[
-          image.setting
-        ] = value;
+    input.addEventListener("change", async function () {
+      const file = input.files && input.files[0];
 
-        showImagePreview(
-          image,
-          value
-        );
+      if (!file) {
+        return;
       }
-    );
 
+      if (!file.type.startsWith("image/")) {
+        input.value = "";
+        showMessage("Please choose an image file.", "error");
+        return;
+      }
 
-    syncColorFields();
-  }
+      /*
+        Keep uploaded images reasonably small because browser localStorage
+        has limited storage space.
+      */
+      const maxSize = 1500 * 1024;
 
+      if (file.size > maxSize) {
+        input.value = "";
 
-  /*
-   * IMAGE PREVIEW
-   */
-  function showImagePreview(
-    image,
-    value
-  ) {
+        showMessage(
+          "That image is too large. Please choose an image smaller than 1.5 MB.",
+          "error"
+        );
 
-    const box =
-      document.getElementById(
-        image.boxId
-      );
+        return;
+      }
 
-    const preview =
-      document.getElementById(
-        image.previewId
-      );
+      try {
+        const dataUrl = await readFileAsDataURL(file);
 
-    if (
-      !box ||
-      !preview
-    ) {
-      return;
-    }
-
-    if (value) {
-
-      preview.src = value;
-
-      box.style.display =
-        "block";
-
-    } else {
-
-      preview.src = "";
-
-      box.style.display =
-        "none";
-    }
-  }
-
-
-  /*
-   * READ UPLOADED IMAGE
-   */
-  function handleImageUpload(
-    image
-  ) {
-
-    const input =
-      document.getElementById(
-        image.fileId
-      );
-
-    if (
-      !input ||
-      !input.files ||
-      !input.files[0]
-    ) {
-      return;
-    }
-
-    const file =
-      input.files[0];
-
-
-    if (
-      !file.type.startsWith(
-        "image/"
-      ) &&
-      file.type !== ""
-    ) {
-
-      input.value = "";
-
-      showMessage(
-        "Please select a valid image file.",
-        "error"
-      );
-
-      return;
-    }
-
-
-    /*
-     * Limit individual images
-     * to approximately 5 MB.
-     */
-    if (
-      file.size >
-      5 * 1024 * 1024
-    ) {
-
-      input.value = "";
-
-      showMessage(
-        "Please choose an image smaller than 5 MB.",
-        "error"
-      );
-
-      return;
-    }
-
-
-    const reader =
-      new FileReader();
-
-
-    reader.onload =
-      function (event) {
-
-        const dataUrl =
-          event.target.result;
-
-        uploadedImages[
-          image.setting
-        ] = dataUrl;
+        uploadedImages[imageName] = dataUrl;
 
         showImagePreview(
-          image,
+          config.previewId,
           dataUrl
         );
 
-      };
+        showMessage(
+          file.name + " selected. Click Save Website Changes to apply it.",
+          "success"
+        );
 
-
-    reader.onerror =
-      function () {
+      } catch (error) {
+        input.value = "";
 
         showMessage(
           "The image could not be loaded. Please try another image.",
           "error"
         );
-
-      };
-
-
-    reader.readAsDataURL(file);
+      }
+    });
   }
 
+  function showImagePreview(previewId, source) {
+    const preview = document.getElementById(previewId);
 
-  /*
-   * REMOVE IMAGE
-   */
-  function removeImage(
-    imageName
-  ) {
-
-    uploadedImages[
-      getImageSettingName(
-        imageName
-      )
-    ] = "";
-
-
-    const image =
-      imageFields.find(
-        function (item) {
-          return (
-            item.setting ===
-            getImageSettingName(
-              imageName
-            )
-          );
-        }
-      );
-
-
-    if (!image) {
+    if (!source) {
+      preview.removeAttribute("src");
+      preview.classList.remove("show");
       return;
     }
 
+    preview.src = source;
+    preview.classList.add("show");
+  }
 
-    const input =
-      document.getElementById(
-        image.fileId
-      );
+  function removeImage(imageName) {
+    const config = imageFields[imageName];
+
+    if (!config) {
+      return;
+    }
+
+    uploadedImages[imageName] = "";
+
+    const input = document.getElementById(config.inputId);
 
     if (input) {
       input.value = "";
     }
 
+    showImagePreview(config.previewId, "");
 
-    showImagePreview(
-      image,
-      ""
+    showMessage(
+      "Image removed. Click Save Website Changes to save the removal.",
+      "success"
     );
   }
 
+  function getFormValue(id) {
+    const element = document.getElementById(id);
 
-  /*
-   * IMAGE NAME MAPPING
-   */
-  function getImageSettingName(
-    imageName
-  ) {
+    if (!element) {
+      return "";
+    }
 
-    const mapping = {
-      logo: "logoUrl",
-      favicon: "faviconUrl",
-      heroImage: "heroImage",
-      servicesImage: "servicesImage",
-      businessImage: "businessImage",
-      aboutImage: "aboutImage",
-      contactImage: "contactImage",
-      backgroundImage: "backgroundImage"
-    };
+    if (element.type === "checkbox") {
+      return element.checked;
+    }
 
-    return (
-      mapping[imageName] ||
-      imageName
-    );
+    return element.value;
   }
 
+  function setFormValue(id, value) {
+    const element = document.getElementById(id);
 
-  /*
-   * SAVE SETTINGS
-   */
-  function saveSettings() {
+    if (!element) {
+      return;
+    }
 
+    if (element.type === "checkbox") {
+      element.checked = Boolean(value);
+      return;
+    }
+
+    element.value = value ?? "";
+  }
+
+  function collectSettings() {
     const settings = {};
 
-
-    /*
-     * Save text fields.
-     */
-    fields.forEach(function (id) {
-
-      const element =
-        document.getElementById(id);
-
-      if (!element) {
-        return;
-      }
-
-      settings[id] =
-        element.value;
-
+    fields.forEach(function (field) {
+      settings[field] = getFormValue(field);
     });
 
-
     /*
-     * Save uploaded images.
-     */
-    imageFields.forEach(
-      function (image) {
+      Preserve the same setting names already used by the public pages.
+      The values are image data, not typed URLs.
+    */
+    Object.keys(imageFields).forEach(function (imageName) {
+      const config = imageFields[imageName];
 
-        settings[
-          image.setting
-        ] =
-          uploadedImages[
-            image.setting
-          ] || "";
-
+      if (uploadedImages.hasOwnProperty(imageName)) {
+        settings[config.settingKey] = uploadedImages[imageName];
       }
-    );
+    });
 
+    return settings;
+  }
 
+  function saveSettings() {
     try {
+      const settings = collectSettings();
 
       localStorage.setItem(
         STORAGE_KEY,
@@ -1962,208 +1310,174 @@
       );
 
       showMessage(
-        "Website settings saved successfully.",
+        "Website settings saved successfully. Your public pages will use the saved content and images.",
         "success"
       );
 
     } catch (error) {
+      console.error(error);
 
       showMessage(
-        "The settings could not be saved. The uploaded images may be too large. Try smaller images.",
+        "The settings could not be saved. Your browser may be out of storage space. Try using smaller images.",
         "error"
       );
-
     }
-
   }
 
+  function loadSettings() {
+    const raw = localStorage.getItem(STORAGE_KEY);
 
-  /*
-   * CLEAR SETTINGS
-   */
-  function clearSettings() {
+    if (!raw) {
+      uploadedImages = {};
+      return;
+    }
 
-    const confirmed =
-      window.confirm(
-        "Are you sure you want to clear all saved website settings?"
+    try {
+      const settings = JSON.parse(raw);
+
+      fields.forEach(function (field) {
+        if (Object.prototype.hasOwnProperty.call(settings, field)) {
+          setFormValue(field, settings[field]);
+        }
+      });
+
+      uploadedImages = {};
+
+      Object.keys(imageFields).forEach(function (imageName) {
+        const config = imageFields[imageName];
+
+        const savedImage = settings[config.settingKey] || "";
+
+        uploadedImages[imageName] = savedImage;
+
+        showImagePreview(
+          config.previewId,
+          savedImage
+        );
+      });
+
+    } catch (error) {
+      console.error(error);
+
+      showMessage(
+        "Saved website settings could not be loaded.",
+        "error"
       );
+    }
+  }
+
+  function clearSettings() {
+    const confirmed = confirm(
+      "Clear all saved website settings and uploaded website images?"
+    );
 
     if (!confirmed) {
       return;
     }
 
-
-    localStorage.removeItem(
-      STORAGE_KEY
-    );
-
+    localStorage.removeItem(STORAGE_KEY);
 
     uploadedImages = {};
 
-
-    fields.forEach(function (id) {
-
-      const element =
-        document.getElementById(id);
+    fields.forEach(function (field) {
+      const element = document.getElementById(field);
 
       if (!element) {
         return;
       }
 
-      if (
-        element.tagName ===
-        "SELECT"
-      ) {
-        element.selectedIndex = 0;
+      if (element.type === "checkbox") {
+        element.checked = false;
       } else {
         element.value = "";
       }
-
     });
 
+    Object.keys(imageFields).forEach(function (imageName) {
+      const config = imageFields[imageName];
 
-    imageFields.forEach(
-      function (image) {
+      const input = document.getElementById(config.inputId);
 
-        const input =
-          document.getElementById(
-            image.fileId
-          );
-
-        if (input) {
-          input.value = "";
-        }
-
-        showImagePreview(
-          image,
-          ""
-        );
-
+      if (input) {
+        input.value = "";
       }
+
+      showImagePreview(config.previewId, "");
+    });
+
+    /*
+      Restore sensible defaults for color controls.
+    */
+    setFormValue("primaryColor", "#e30613");
+    setFormValue("primaryColorText", "#e30613");
+
+    setFormValue("secondaryColor", "#172033");
+    setFormValue("secondaryColorText", "#172033");
+
+    setFormValue("accentColor", "#111827");
+    setFormValue("accentColorText", "#111827");
+
+    setFormValue("textColor", "#172033");
+    setFormValue("textColorText", "#172033");
+
+    setFormValue(
+      "fontFamily",
+      "Arial, Helvetica, sans-serif"
     );
 
-
-    syncColorFields();
-
+    setFormValue("fontSize", "16px");
 
     showMessage(
       "Website settings have been cleared.",
       "success"
     );
-
   }
 
+  function connectColorPicker(colorId, textId) {
+    const color = document.getElementById(colorId);
+    const text = document.getElementById(textId);
 
-  /*
-   * COLOR SYNC
-   */
-  function syncColorFields() {
-
-    const pairs = [
-      [
-        "primaryColor",
-        "primaryColorText"
-      ],
-      [
-        "secondaryColor",
-        "secondaryColorText"
-      ],
-      [
-        "accentColor",
-        "accentColorText"
-      ],
-      [
-        "textColor",
-        "textColorText"
-      ]
-    ];
-
-
-    pairs.forEach(
-      function (pair) {
-
-        const color =
-          document.getElementById(
-            pair[0]
-          );
-
-        const text =
-          document.getElementById(
-            pair[1]
-          );
-
-
-        if (!color || !text) {
-          return;
-        }
-
-
-        color.addEventListener(
-          "input",
-          function () {
-            text.value =
-              color.value;
-          }
-        );
-
-
-        text.addEventListener(
-          "input",
-          function () {
-
-            if (
-              /^#[0-9A-Fa-f]{6}$/.test(
-                text.value
-              )
-            ) {
-              color.value =
-                text.value;
-            }
-
-          }
-        );
-
-      }
-    );
-
-  }
-
-
-  /*
-   * CONNECT IMAGE UPLOADS
-   */
-  imageFields.forEach(
-    function (image) {
-
-      const input =
-        document.getElementById(
-          image.fileId
-        );
-
-      if (input) {
-
-        input.addEventListener(
-          "change",
-          function () {
-            handleImageUpload(
-              image
-            );
-          }
-        );
-
-      }
-
+    if (!color || !text) {
+      return;
     }
-  );
 
+    color.addEventListener("input", function () {
+      text.value = color.value;
+    });
+
+    text.addEventListener("input", function () {
+      if (/^#[0-9A-Fa-f]{6}$/.test(text.value)) {
+        color.value = text.value;
+      }
+    });
+  }
 
   /*
-   * INITIAL LOAD
-   */
-  syncColorFields();
+    Protect the Website Editor.
+  */
+  if (localStorage.getItem("adminLoggedIn") !== "true") {
+    window.location.replace("admin-login.html");
+  }
 
+  /*
+    Connect all image upload controls.
+  */
+  Object.keys(imageFields).forEach(function (imageName) {
+    setupImageUpload(imageName);
+  });
+
+  /*
+    Connect color controls.
+  */
+  connectColorPicker("primaryColor", "primaryColorText");
+  connectColorPicker("secondaryColor", "secondaryColorText");
+  connectColorPicker("accentColor", "accentColorText");
+  connectColorPicker("textColor", "textColorText");
+
+  /*
+    Load the saved website settings when the editor opens.
+  */
   loadSettings();
-
 </script>
 
 </body>
