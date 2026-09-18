@@ -567,7 +567,7 @@ td {
 
   <a
     href="admin-login.html"
-    onclick="logoutAdmin()"
+    onclick="logoutAdmin(event)"
   >
     <span class="icon">↪</span>
     Logout
@@ -581,8 +581,6 @@ td {
 ========================= -->
 
 <main class="main">
-
-  <!-- TOP BAR -->
 
   <header class="topbar">
 
@@ -620,11 +618,11 @@ td {
 
       <div>
 
-        <strong>
+        <strong id="adminUserName">
           Administrator
         </strong>
 
-        <small>
+        <small id="adminUserEmail">
           System Admin
         </small>
 
@@ -638,10 +636,6 @@ td {
 
   </header>
 
-
-  <!-- =========================
-       CONTENT
-  ========================= -->
 
   <section class="content">
 
@@ -987,15 +981,100 @@ td {
 </main>
 
 
+<!-- =========================
+     SUPABASE
+========================= -->
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
 <script>
+
+/* =========================
+   SUPABASE CONFIGURATION
+========================= */
+
+const SUPABASE_URL =
+  "https://uhjgietvznkfzckmxqfz.supabase.co";
+
+const SUPABASE_PUBLISHABLE_KEY =
+  "sb_publishable_zZ0JiBW-2uarX2gnR5w9hQ_77RpB6SM";
+
+const supabaseClient =
+  supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_PUBLISHABLE_KEY
+  );
+
+
 /* =========================
    ADMIN ACCESS PROTECTION
 ========================= */
 
-if (
-  localStorage.getItem("adminLoggedIn") !== "true"
-) {
-  window.location.replace("admin-login.html");
+async function checkAdminSession() {
+
+  const {
+    data: { session },
+    error
+  } = await supabaseClient.auth.getSession();
+
+
+  if (error) {
+
+    console.error(
+      "Supabase session error:",
+      error
+    );
+
+    window.location.replace(
+      "admin-login.html"
+    );
+
+    return false;
+  }
+
+
+  if (!session) {
+
+    localStorage.removeItem(
+      "adminLoggedIn"
+    );
+
+    window.location.replace(
+      "admin-login.html"
+    );
+
+    return false;
+  }
+
+
+  /*
+    Keep the temporary local flag because
+    the remaining Admin pages are still
+    being migrated to Supabase.
+  */
+
+  localStorage.setItem(
+    "adminLoggedIn",
+    "true"
+  );
+
+
+  /* Show signed-in administrator email */
+
+  const email =
+    session.user.email || "Administrator";
+
+  const emailElement =
+    document.getElementById(
+      "adminUserEmail"
+    );
+
+  if (emailElement) {
+    emailElement.textContent = email;
+  }
+
+
+  return true;
 }
 
 
@@ -1660,10 +1739,34 @@ function escapeHTML(
    LOGOUT
 ========================= */
 
-function logoutAdmin() {
+async function logoutAdmin(event) {
+
+  if (event) {
+    event.preventDefault();
+  }
+
+
+  try {
+
+    await supabaseClient.auth.signOut();
+
+  } catch (error) {
+
+    console.error(
+      "Logout error:",
+      error
+    );
+
+  }
+
 
   localStorage.removeItem(
     "adminLoggedIn"
+  );
+
+
+  window.location.replace(
+    "admin-login.html"
   );
 
 }
@@ -1675,7 +1778,14 @@ function logoutAdmin() {
 
 document.addEventListener(
   "DOMContentLoaded",
-  function() {
+  async function() {
+
+    const authenticated =
+      await checkAdminSession();
+
+    if (!authenticated) {
+      return;
+    }
 
     updateStatistics();
 
