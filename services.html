@@ -466,46 +466,89 @@
   </footer>
 
 
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
   <script src="script.js"></script>
 
 
   <script>
 
     /* =========================
+       SUPABASE
+    ========================= */
+
+    const SUPABASE_URL =
+      "https://uhjgietvznkfzckmxqfz.supabase.co";
+
+    const SUPABASE_PUBLISHABLE_KEY =
+      "sb_publishable_zZ0JiBW-2uarX2gnR5w9hQ_77RpB6SM";
+
+    const supabaseClient =
+      window.supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_PUBLISHABLE_KEY
+      );
+
+
+    /* =========================
        WEBSITE SETTINGS
     ========================= */
 
-    const WEBSITE_SETTINGS_KEY =
-      "expresslineWebsiteSettings";
-
-    function getWebsiteSettings() {
-
-      const saved =
-        localStorage.getItem(
-          WEBSITE_SETTINGS_KEY
-        );
-
-      if (!saved) {
-        return {};
-      }
+    async function getWebsiteSettings() {
 
       try {
-        return JSON.parse(saved);
+
+        const { data, error } =
+          await supabaseClient
+            .from("website_settings")
+            .select("settings")
+            .eq("id", 1)
+            .maybeSingle();
+
+
+        if (error) {
+
+          console.error(
+            "Unable to load website settings:",
+            error
+          );
+
+          return {};
+
+        }
+
+
+        if (
+          data &&
+          data.settings &&
+          typeof data.settings === "object"
+        ) {
+
+          return data.settings;
+
+        }
+
+
+        return {};
+
       } catch (error) {
+
         console.error(
-          "Invalid website settings:",
+          "Website settings error:",
           error
         );
 
         return {};
+
       }
+
     }
 
 
-    function applyServicesSettings() {
+    async function applyServicesSettings() {
 
       const settings =
-        getWebsiteSettings();
+        await getWebsiteSettings();
 
 
       /* =========================
@@ -520,9 +563,12 @@
           );
 
         if (siteShortName) {
+
           siteShortName.textContent =
             settings.shortName;
+
         }
+
       }
 
 
@@ -550,6 +596,7 @@
             document.getElementById(
               navigationFields[settingId]
             );
+
 
           if (
             element &&
@@ -628,7 +675,7 @@
 
 
       /* =========================
-         SERVICES IMAGE
+         SERVICES HERO
       ========================= */
 
       const servicesHero =
@@ -656,6 +703,44 @@
 
 
       /* =========================
+         SERVICES HERO TEXT
+      ========================= */
+
+      const servicesHeroHeading =
+        document.getElementById(
+          "servicesHeroHeading"
+        );
+
+
+      if (
+        servicesHeroHeading &&
+        settings.servicesHeroHeading
+      ) {
+
+        servicesHeroHeading.textContent =
+          settings.servicesHeroHeading;
+
+      }
+
+
+      const servicesHeroDescription =
+        document.getElementById(
+          "servicesHeroDescription"
+        );
+
+
+      if (
+        servicesHeroDescription &&
+        settings.servicesHeroDescription
+      ) {
+
+        servicesHeroDescription.textContent =
+          settings.servicesHeroDescription;
+
+      }
+
+
+      /* =========================
          FOOTER
       ========================= */
 
@@ -663,6 +748,7 @@
         document.getElementById(
           "footerText"
         );
+
 
       if (
         footerText &&
@@ -680,6 +766,7 @@
           "footerCompanyName"
         );
 
+
       if (
         footerCompanyName &&
         settings.companyName
@@ -695,6 +782,7 @@
         document.getElementById(
           "copyrightText"
         );
+
 
       if (
         copyrightText &&
@@ -799,6 +887,7 @@
             'link[rel="icon"]'
           );
 
+
         if (!favicon) {
 
           favicon =
@@ -813,6 +902,7 @@
           );
 
         }
+
 
         favicon.href =
           settings.faviconUrl;
