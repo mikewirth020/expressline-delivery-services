@@ -787,9 +787,20 @@ function logoutAdmin() {
    ELEMENTS
 ========================= */
 
-const form = document.getElementById("shipmentForm");
-const message = document.getElementById("message");
-const shipmentsList = document.getElementById("shipmentsList");
+const form =
+  document.getElementById(
+    "shipmentForm"
+  );
+
+const message =
+  document.getElementById(
+    "message"
+  );
+
+const shipmentsList =
+  document.getElementById(
+    "shipmentsList"
+  );
 
 let editingTrackingNumber = null;
 
@@ -799,27 +810,45 @@ let editingTrackingNumber = null;
 ========================= */
 
 function getShipments() {
-  try {
-    const data = JSON.parse(
-      localStorage.getItem(STORAGE_KEY) || "[]"
-    );
 
-    return Array.isArray(data) ? data : [];
+  try {
+
+    const data =
+      JSON.parse(
+        localStorage.getItem(
+          STORAGE_KEY
+        ) || "[]"
+      );
+
+    return Array.isArray(data)
+      ? data
+      : [];
+
   } catch (error) {
+
     return [];
+
   }
+
 }
 
 
-function saveShipments(shipments) {
+function saveShipments(
+  shipments
+) {
+
   localStorage.setItem(
     STORAGE_KEY,
     JSON.stringify(shipments)
   );
+
 }
 
 
-function getText(value, fallback = "") {
+function getText(
+  value,
+  fallback = ""
+) {
 
   if (
     value === null ||
@@ -828,15 +857,21 @@ function getText(value, fallback = "") {
     return fallback;
   }
 
-  if (typeof value === "object") {
+  if (
+    typeof value === "object"
+  ) {
     return fallback;
   }
 
   return String(value).trim();
+
 }
 
 
-function getLocation(value, fallback = "") {
+function getLocation(
+  value,
+  fallback = ""
+) {
 
   if (
     value === null ||
@@ -845,11 +880,15 @@ function getLocation(value, fallback = "") {
     return fallback;
   }
 
-  if (typeof value === "string") {
+  if (
+    typeof value === "string"
+  ) {
     return value.trim();
   }
 
-  if (typeof value === "object") {
+  if (
+    typeof value === "object"
+  ) {
 
     return getText(
       value.location ||
@@ -862,24 +901,40 @@ function getLocation(value, fallback = "") {
   }
 
   return fallback;
+
 }
 
 
-function getNumber(value, fallback = 0) {
+function getNumber(
+  value,
+  fallback = 0
+) {
 
-  const number = Number(value);
+  const number =
+    Number(value);
 
-  if (Number.isFinite(number)) {
+  if (
+    Number.isFinite(number)
+  ) {
     return number;
   }
 
   return fallback;
+
 }
 
 
-function normalizeHistory(history) {
+/* =========================
+   NORMALIZE HISTORY
+========================= */
 
-  if (!Array.isArray(history)) {
+function normalizeHistory(
+  history
+) {
+
+  if (
+    !Array.isArray(history)
+  ) {
     return [];
   }
 
@@ -893,26 +948,56 @@ function normalizeHistory(history) {
         return null;
       }
 
-      return {
-        status: getText(
-          item.status,
-          ""
-        ),
+      /*
+        Keep BOTH "details" and "note"
+        compatible with track.html.
 
-        location: getLocation(
-          item.location,
-          ""
-        ),
+        Older records may have "note".
+        New records use "details".
+      */
 
-        note: getText(
+      const details =
+        getText(
+          item.details,
+          ""
+        ) ||
+        getText(
           item.note,
           ""
-        ),
+        );
 
-        date: getText(
-          item.date,
-          ""
-        )
+      return {
+
+        status:
+          getText(
+            item.status,
+            ""
+          ),
+
+        location:
+          getLocation(
+            item.location,
+            ""
+          ),
+
+        details:
+          details,
+
+        note:
+          details,
+
+        date:
+          getText(
+            item.date,
+            ""
+          ),
+
+        time:
+          getText(
+            item.time,
+            ""
+          )
+
       };
 
     })
@@ -921,7 +1006,13 @@ function normalizeHistory(history) {
 }
 
 
-function normalizeShipment(shipment) {
+/* =========================
+   NORMALIZE SHIPMENT
+========================= */
+
+function normalizeShipment(
+  shipment
+) {
 
   return {
 
@@ -1113,7 +1204,8 @@ function showMessage(
   type = "success"
 ) {
 
-  message.textContent = text;
+  message.textContent =
+    text;
 
   message.className =
     "message " + type;
@@ -1128,7 +1220,8 @@ function showMessage(
     message.className =
       "message";
 
-    message.textContent = "";
+    message.textContent =
+      "";
 
   }, 4000);
 
@@ -1141,7 +1234,8 @@ function showMessage(
 
 function todayDate() {
 
-  const now = new Date();
+  const now =
+    new Date();
 
   const year =
     now.getFullYear();
@@ -1149,12 +1243,18 @@ function todayDate() {
   const month =
     String(
       now.getMonth() + 1
-    ).padStart(2, "0");
+    ).padStart(
+      2,
+      "0"
+    );
 
   const day =
     String(
       now.getDate()
-    ).padStart(2, "0");
+    ).padStart(
+      2,
+      "0"
+    );
 
   return `${year}-${month}-${day}`;
 
@@ -1180,15 +1280,20 @@ function setSelectValue(
   }
 
   const stringValue =
-    getText(value, "");
+    getText(
+      value,
+      ""
+    );
 
   if (
     stringValue &&
-    !Array.from(select.options)
-      .some(
-        option =>
-          option.value === stringValue
-      )
+    !Array.from(
+      select.options
+    ).some(
+      option =>
+        option.value ===
+        stringValue
+    )
   ) {
 
     const option =
@@ -1422,7 +1527,9 @@ function editShipment(
   ).value =
     shipment.notes;
 
-  if (shipment.shipmentImage) {
+  if (
+    shipment.shipmentImage
+  ) {
 
     document.getElementById(
       "existingPhoto"
@@ -1570,10 +1677,12 @@ form.addEventListener(
       (
         !editingTrackingNumber ||
         getText(
-          shipments[existingIndex]
-            .trackingNumber ||
-          shipments[existingIndex]
-            .tracking
+          shipments[
+            existingIndex
+          ].trackingNumber ||
+          shipments[
+            existingIndex
+          ].tracking
         ).toUpperCase() !==
         editingTrackingNumber.toUpperCase()
       )
@@ -1590,7 +1699,9 @@ form.addEventListener(
     let existingShipment =
       existingIndex !== -1
         ? normalizeShipment(
-            shipments[existingIndex]
+            shipments[
+              existingIndex
+            ]
           )
         : null;
 
@@ -1620,14 +1731,20 @@ form.addEventListener(
 
             reader.onload =
               function() {
+
                 resolve(
                   reader.result
                 );
+
               };
 
             reader.onerror =
               function() {
-                resolve("");
+
+                resolve(
+                  ""
+                );
+
               };
 
             reader.readAsDataURL(
@@ -1683,11 +1800,29 @@ form.addEventListener(
         location:
           historyLocation,
 
+        /*
+          Save the update description
+          using "details" for track.html,
+          and "note" for backwards compatibility.
+        */
+
+        details:
+          historyNote,
+
         note:
           historyNote,
 
         date:
-          new Date().toISOString()
+          new Date().toISOString(),
+
+        time:
+          new Date().toLocaleTimeString(
+            "en-US",
+            {
+              hour: "2-digit",
+              minute: "2-digit"
+            }
+          )
 
       });
 
@@ -1701,29 +1836,24 @@ form.addEventListener(
     const shipment = {
 
       trackingNumber:
-
         trackingNumber,
 
       status:
-
         document.getElementById(
           "status"
         ).value,
 
       shipmentDate:
-
         document.getElementById(
           "shipmentDate"
         ).value,
 
       estimatedDelivery:
-
         document.getElementById(
           "estimatedDelivery"
         ).value,
 
       progress:
-
         Math.max(
           0,
           Math.min(
@@ -1737,101 +1867,84 @@ form.addEventListener(
         ),
 
       currentLocation:
-
         document.getElementById(
           "currentLocation"
         ).value.trim(),
 
       shipmentType:
-
         document.getElementById(
           "shipmentType"
         ).value.trim(),
 
       weight:
-
         document.getElementById(
           "weight"
         ).value.trim(),
 
       customerName:
-
         document.getElementById(
           "customerName"
         ).value.trim(),
 
       customerPhone:
-
         document.getElementById(
           "customerPhone"
         ).value.trim(),
 
       customerEmail:
-
         document.getElementById(
           "customerEmail"
         ).value.trim(),
 
       senderName:
-
         document.getElementById(
           "senderName"
         ).value.trim(),
 
       senderPhone:
-
         document.getElementById(
           "senderPhone"
         ).value.trim(),
 
       senderAddress:
-
         document.getElementById(
           "senderAddress"
         ).value.trim(),
 
       receiverName:
-
         document.getElementById(
           "receiverName"
         ).value.trim(),
 
       receiverPhone:
-
         document.getElementById(
           "receiverPhone"
         ).value.trim(),
 
       receiverAddress:
-
         document.getElementById(
           "receiverAddress"
         ).value.trim(),
 
       origin:
-
         document.getElementById(
           "origin"
         ).value.trim(),
 
       destination:
-
         document.getElementById(
           "destination"
         ).value.trim(),
 
       shipmentImage:
-
         shipmentImage,
 
       notes:
-
         document.getElementById(
           "notes"
         ).value.trim(),
 
       transitHistory:
-
         transitHistory
 
     };
@@ -1841,7 +1954,9 @@ form.addEventListener(
        SAVE
     ========================= */
 
-    if (existingIndex !== -1) {
+    if (
+      existingIndex !== -1
+    ) {
 
       shipments[
         existingIndex
@@ -1887,7 +2002,9 @@ function renderShipments() {
   const shipments =
     getShipments();
 
-  if (!shipments.length) {
+  if (
+    !shipments.length
+  ) {
 
     shipmentsList.innerHTML = `
       <div class="empty">
@@ -1949,15 +2066,15 @@ function renderShipments() {
               <div class="shipment-header">
 
                 <div>
+
                   <div class="tracking-number">
                     ${safeTracking}
                   </div>
 
-                  <div
-                    class="small-note"
-                  >
+                  <div class="small-note">
                     Shipment
                   </div>
+
                 </div>
 
                 <span class="status">
@@ -2100,17 +2217,13 @@ function renderShipments() {
               ${
                 shipment.transitHistory.length
                   ? `
-                    <div
-                      style="margin-top:18px;"
-                    >
+                    <div style="margin-top:18px;">
 
                       <strong>
                         Recent Tracking Updates
                       </strong>
 
-                      <div
-                        style="margin-top:10px;"
-                      >
+                      <div style="margin-top:10px;">
 
                         ${
                           shipment.transitHistory
@@ -2142,11 +2255,11 @@ function renderShipments() {
                                   }
 
                                   ${
-                                    history.note
+                                    history.details
                                       ? `
                                         <div>
                                           ${escapeHtml(
-                                            history.note
+                                            history.details
                                           )}
                                         </div>
                                       `
@@ -2196,7 +2309,9 @@ function renderShipments() {
    ESCAPE HTML
 ========================= */
 
-function escapeHtml(value) {
+function escapeHtml(
+  value
+) {
 
   return String(
     value ?? ""
@@ -2225,7 +2340,9 @@ function escapeHtml(value) {
 }
 
 
-function escapeJs(value) {
+function escapeJs(
+  value
+) {
 
   return String(
     value ?? ""
