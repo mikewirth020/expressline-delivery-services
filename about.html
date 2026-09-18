@@ -4,993 +4,556 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title id="pageTitle">
-    About Us | ExpressLine Delivery Services
-  </title>
+  <title>About Us | ExpressLine Delivery Services</title>
 
   <meta
-    id="pageDescription"
     name="description"
-    content="Learn about ExpressLine Delivery Services and our approach to professional courier and logistics solutions."
+    content="Learn about ExpressLine Delivery Services and our reliable logistics and delivery solutions."
   >
 
-  <meta
-    id="pageKeywords"
-    name="keywords"
-    content="ExpressLine, logistics, delivery, courier, shipping"
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
   >
 
-  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
   <style>
-    :root {
-      --about-orange: #F97316;
-      --about-black: #111111;
-      --about-gray: #4b5563;
-      --about-light: #f8fafc;
-      --about-border: #e5e7eb;
-      --about-white: #ffffff;
-    }
-
     * {
       box-sizing: border-box;
     }
 
-    body {
-      margin: 0;
-      background: #ffffff;
-      color: var(--about-black);
-      overflow-x: hidden;
+    html {
+      scroll-behavior: smooth;
     }
 
-    /* =========================
-       HEADER
-    ========================= */
+    body {
+      margin: 0;
+      font-family: Inter, sans-serif;
+      color: #111111;
+      background: #ffffff;
+      font-size: 16px;
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button {
+      font: inherit;
+    }
 
     .site-header {
       position: sticky;
       top: 0;
       z-index: 1000;
-      width: 100%;
       background: #ffffff;
-      border-bottom: 1px solid #e5e7eb;
-      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+      border-bottom: 1px solid #eeeeee;
+      box-shadow: 0 2px 12px rgba(0,0,0,.06);
     }
 
-    .about-navbar {
-      width: 100%;
+    .navbar {
       max-width: 1200px;
-      min-height: 76px;
       margin: 0 auto;
-      padding: 0 24px;
+      min-height: 78px;
+      padding: 12px 24px;
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 24px;
     }
 
-    .about-logo {
-      display: inline-flex;
+    .brand {
+      display: flex;
       align-items: center;
-      gap: 10px;
-      color: #111111;
-      text-decoration: none;
-      font-size: 20px;
+      gap: 12px;
+      min-width: 0;
+    }
+
+    .brand img {
+      width: 58px;
+      height: 58px;
+      object-fit: contain;
+      flex-shrink: 0;
+    }
+
+    .brand-name {
+      font-size: 18px;
       font-weight: 800;
-      white-space: nowrap;
+      line-height: 1.2;
     }
 
-    .about-logo-mark {
-      width: 40px;
-      height: 40px;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 10px;
-      background: var(--about-orange);
-      color: #ffffff;
-      font-size: 15px;
-      font-weight: 900;
-    }
-
-    .about-nav-links {
+    .nav-links {
       display: flex;
       align-items: center;
       justify-content: flex-end;
-      gap: 6px;
+      gap: 18px;
+      flex-wrap: wrap;
     }
 
-    .about-nav-links a {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 42px;
-      padding: 9px 12px;
-      border-radius: 8px;
-      color: #111111;
-      text-decoration: none;
+    .nav-links a {
       font-size: 14px;
-      font-weight: 700;
-      line-height: 1.2;
+      font-weight: 600;
       white-space: nowrap;
-      transition: 0.2s ease;
     }
 
-    .about-nav-links a:hover {
-      background: #fff1e8;
-      color: var(--about-orange);
+    .nav-links a:hover {
+      color: #f97316;
     }
 
-    .about-nav-links .nav-button {
-      margin-left: 4px;
-      background: var(--about-orange);
-      color: #ffffff;
-    }
-
-    .about-nav-links .nav-button:hover {
-      background: #ea580c;
-      color: #ffffff;
-    }
-
-    .about-menu-toggle {
+    .menu-toggle {
       display: none;
-      width: 44px;
-      height: 44px;
       border: 0;
-      border-radius: 8px;
       background: #111111;
       color: #ffffff;
+      width: 44px;
+      height: 42px;
+      border-radius: 8px;
       font-size: 22px;
       cursor: pointer;
     }
 
-    /* =========================
-       HERO
-    ========================= */
-
-    .about-hero {
-      min-height: 470px;
-      position: relative;
-      display: flex;
-      align-items: center;
+    .hero {
       background:
         linear-gradient(
-          90deg,
-          rgba(17, 17, 17, 0.90),
-          rgba(17, 17, 17, 0.72)
+          rgba(17,17,17,.78),
+          rgba(17,17,17,.78)
         ),
-        url("https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=1800&q=80")
-        center/cover no-repeat;
+        linear-gradient(135deg, #f97316, #111111);
       color: #ffffff;
+      padding: 90px 24px;
     }
 
-    .about-hero.has-custom-image {
-      background:
-        linear-gradient(
-          90deg,
-          rgba(17, 17, 17, 0.90),
-          rgba(17, 17, 17, 0.72)
-        ),
-        var(--about-hero-image)
-        center/cover no-repeat;
-    }
-
-    .about-hero-content {
-      width: 100%;
+    .hero-inner {
       max-width: 1200px;
       margin: 0 auto;
-      padding: 80px 24px;
+      text-align: center;
     }
 
-    .hero-badge {
-      display: inline-flex;
-      align-items: center;
-      min-height: 34px;
-      padding: 7px 13px;
-      margin-bottom: 20px;
-      border-radius: 999px;
-      background: var(--about-orange);
-      color: #ffffff;
-      font-size: 12px;
-      font-weight: 900;
-      letter-spacing: 0.08em;
-    }
-
-    .about-hero h1 {
-      max-width: 780px;
-      margin: 0 0 20px;
-      color: #ffffff;
-      font-size: clamp(36px, 6vw, 62px);
+    .hero h1 {
+      margin: 0 0 18px;
+      font-size: clamp(38px, 5vw, 60px);
       line-height: 1.08;
-      font-weight: 900;
-      letter-spacing: -0.03em;
+      font-weight: 800;
     }
 
-    .about-hero p {
-      max-width: 760px;
-      margin: 0;
-      color: #ffffff;
+    .hero p {
+      max-width: 780px;
+      margin: 0 auto;
+      color: #f5f5f5;
       font-size: 18px;
       line-height: 1.75;
     }
 
-    /* =========================
-       SECTIONS
-    ========================= */
-
-    .about-section {
+    .section {
       padding: 80px 24px;
     }
 
-    .about-section-light {
-      background: #ffffff;
-    }
-
-    .about-section-gray {
-      background: #f8fafc;
-    }
-
-    .about-container {
-      width: 100%;
+    .section-inner {
       max-width: 1200px;
       margin: 0 auto;
     }
 
-    .about-heading {
-      max-width: 800px;
-      margin: 0 auto 48px;
-      text-align: center;
+    .two-column {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 50px;
+      align-items: center;
     }
 
-    .section-label {
-      margin: 0 0 10px;
-      color: var(--about-orange);
-      font-size: 13px;
-      font-weight: 900;
-      letter-spacing: 0.12em;
-    }
-
-    .about-heading h2 {
-      margin: 0 0 16px;
-      color: #111111;
-      font-size: clamp(30px, 4vw, 46px);
+    .content h2 {
+      margin: 0 0 18px;
+      font-size: clamp(30px, 4vw, 44px);
       line-height: 1.15;
-      font-weight: 900;
     }
 
-    .about-heading p {
-      margin: 0 0 14px;
-      color: var(--about-gray);
-      font-size: 16px;
-      line-height: 1.75;
-    }
-
-    /* =========================
-       ABOUT IMAGE
-    ========================= */
-
-    .about-image-wrapper {
-      margin: 0 auto 50px;
+    .content p {
+      color: #555555;
+      margin: 0 0 18px;
     }
 
     .about-image {
       width: 100%;
-      max-width: 950px;
-      height: 360px;
-      margin: 0 auto;
-      display: block;
-      object-fit: cover;
-      border-radius: 18px;
-      box-shadow: 0 12px 35px rgba(17, 17, 17, 0.10);
-    }
-
-    /* =========================
-       CARDS
-    ========================= */
-
-    .about-grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 24px;
-    }
-
-    .about-card {
-      height: 100%;
-      padding: 30px;
-      background: #ffffff;
-      border: 1px solid var(--about-border);
+      min-height: 340px;
       border-radius: 16px;
-      box-shadow: 0 8px 30px rgba(17, 17, 17, 0.06);
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      object-fit: cover;
+      background: #eeeeee;
+      display: block;
     }
 
-    .about-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 14px 35px rgba(17, 17, 17, 0.10);
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-top: 45px;
     }
 
-    .about-card-icon {
-      width: 52px;
-      height: 52px;
-      margin-bottom: 20px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+    .card {
+      border: 1px solid #e7e7e7;
       border-radius: 14px;
-      background: #fff1e8;
-      color: var(--about-orange);
-      font-size: 25px;
+      padding: 28px;
+      background: #ffffff;
+      box-shadow: 0 8px 24px rgba(0,0,0,.05);
     }
 
-    .about-card h3 {
-      margin: 0 0 12px;
-      color: #111111;
+    .card h3 {
+      margin: 0 0 10px;
       font-size: 21px;
-      line-height: 1.3;
-      font-weight: 850;
     }
 
-    .about-card p {
+    .card p {
       margin: 0;
-      color: var(--about-gray);
-      font-size: 15px;
-      line-height: 1.75;
+      color: #555555;
     }
 
-    /* =========================
-       MISSION
-    ========================= */
+    .dark-section {
+      background: #111111;
+      color: #ffffff;
+    }
+
+    .dark-section .content p,
+    .dark-section .card p {
+      color: #dddddd;
+    }
+
+    .dark-section .card {
+      background: #181818;
+      border-color: #333333;
+    }
+
+    .mission {
+      background: #f7f7f7;
+    }
 
     .mission-box {
       max-width: 900px;
       margin: 0 auto;
-      padding: 45px;
-      background: #ffffff;
-      border: 1px solid var(--about-border);
-      border-radius: 18px;
       text-align: center;
-      box-shadow: 0 8px 30px rgba(17, 17, 17, 0.05);
     }
 
     .mission-box h2 {
-      margin: 0 0 16px;
-      color: #111111;
+      margin: 0 0 15px;
       font-size: clamp(30px, 4vw, 44px);
-      line-height: 1.15;
     }
 
     .mission-box p {
       margin: 0;
-      color: var(--about-gray);
-      font-size: 16px;
+      color: #555555;
+      font-size: 17px;
       line-height: 1.8;
     }
 
-    /* =========================
-       CTA
-    ========================= */
-
-    .about-cta {
-      padding: 80px 24px;
-      background: #111111;
-      color: #ffffff;
+    .cta {
       text-align: center;
-    }
-
-    .about-cta-inner {
-      max-width: 800px;
-      margin: 0 auto;
-    }
-
-    .about-cta h2 {
-      margin: 0 0 16px;
+      background: #f97316;
       color: #ffffff;
+    }
+
+    .cta h2 {
+      margin: 0 0 12px;
       font-size: clamp(30px, 4vw, 44px);
-      line-height: 1.15;
     }
 
-    .about-cta p {
-      max-width: 650px;
-      margin: 0 auto 28px;
-      color: #e5e7eb;
-      font-size: 16px;
-      line-height: 1.7;
+    .cta p {
+      max-width: 700px;
+      margin: 0 auto 25px;
+      color: #ffffff;
     }
 
-    .about-btn {
+    .btn {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      min-height: 50px;
-      margin: 5px;
-      padding: 13px 24px;
-      border-radius: 9px;
-      text-decoration: none;
-      font-size: 15px;
-      font-weight: 800;
-      transition: 0.2s ease;
-    }
-
-    .about-btn-primary {
-      background: var(--about-orange);
+      min-height: 48px;
+      padding: 12px 22px;
+      border-radius: 8px;
+      background: #111111;
       color: #ffffff;
+      font-weight: 700;
     }
 
-    .about-btn-primary:hover {
-      background: #ea580c;
-      color: #ffffff;
-      transform: translateY(-1px);
+    .btn:hover {
+      background: #333333;
     }
 
-    .about-btn-secondary {
-      background: #ffffff;
-      color: #111111;
-      border: 1px solid #ffffff;
-    }
-
-    .about-btn-secondary:hover {
-      background: #f3f4f6;
-      color: #111111;
-      transform: translateY(-1px);
-    }
-
-    /* =========================
-       FOOTER
-    ========================= */
-
-    .about-footer {
-      padding: 65px 24px 25px;
+    footer {
       background: #0b0b0b;
       color: #ffffff;
+      padding: 35px 24px;
     }
 
-    .about-footer-grid {
+    .footer-inner {
       max-width: 1200px;
       margin: 0 auto;
-      display: grid;
-      grid-template-columns: 1.5fr 1fr 1.2fr 1.2fr;
-      gap: 45px;
+      display: flex;
+      justify-content: space-between;
+      gap: 25px;
+      flex-wrap: wrap;
     }
 
-    .footer-brand {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      margin-bottom: 18px;
-      color: #ffffff;
-      font-size: 20px;
-      font-weight: 800;
+    .footer-inner p {
+      margin: 5px 0 0;
+      color: #cccccc;
     }
-
-    .about-footer h3 {
-      margin: 0 0 16px;
-      color: #ffffff;
-      font-size: 16px;
-      font-weight: 800;
-    }
-
-    .about-footer p {
-      margin: 0 0 10px;
-      color: #cbd5e1;
-      font-size: 14px;
-      line-height: 1.75;
-    }
-
-    .about-footer a {
-      color: #cbd5e1;
-      text-decoration: none;
-    }
-
-    .about-footer a:hover {
-      color: #ffffff;
-    }
-
-    .footer-bottom {
-      max-width: 1200px;
-      margin: 45px auto 0;
-      padding-top: 22px;
-      border-top: 1px solid rgba(255, 255, 255, 0.12);
-    }
-
-    .footer-bottom p {
-      color: #94a3b8;
-      font-size: 13px;
-    }
-
-    /* =========================
-       SMART SUPPORT
-    ========================= */
 
     .support-button {
       position: fixed;
       right: 20px;
       bottom: 20px;
-      z-index: 900;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 50px;
+      z-index: 999;
+      border: 0;
+      background: #f97316;
+      color: #ffffff;
       padding: 13px 18px;
       border-radius: 999px;
-      background: var(--about-orange);
-      color: #ffffff !important;
-      text-decoration: none;
-      font-size: 14px;
-      font-weight: 800;
-      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.20);
-      transition: 0.2s ease;
+      font-weight: 700;
+      box-shadow: 0 8px 25px rgba(0,0,0,.22);
+      cursor: pointer;
     }
 
     .support-button:hover {
-      background: #ea580c;
-      color: #ffffff !important;
-      transform: translateY(-2px);
+      background: #c2410c;
     }
 
-    /* =========================
-       MOBILE
-    ========================= */
+    .maintenance {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 99999;
+      background: #111111;
+      color: #ffffff;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 30px;
+    }
 
-    @media (max-width: 980px) {
+    .maintenance.active {
+      display: flex;
+    }
 
-      .about-menu-toggle {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
+    .maintenance-box {
+      max-width: 600px;
+    }
+
+    .maintenance-box h1 {
+      font-size: 42px;
+      margin-bottom: 15px;
+    }
+
+    @media (max-width: 900px) {
+      .two-column {
+        grid-template-columns: 1fr;
       }
 
-      .about-nav-links {
+      .cards {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .nav-links {
+        gap: 12px;
+      }
+    }
+
+    @media (max-width: 800px) {
+      .navbar {
+        min-height: 70px;
+      }
+
+      .menu-toggle {
+        display: block;
+      }
+
+      .nav-links {
+        display: none;
         position: absolute;
-        top: 76px;
         left: 0;
         right: 0;
-        display: none;
+        top: 70px;
+        background: #ffffff;
+        border-bottom: 1px solid #eeeeee;
+        box-shadow: 0 10px 20px rgba(0,0,0,.08);
+        padding: 18px 24px;
         flex-direction: column;
         align-items: stretch;
-        gap: 4px;
-        padding: 14px 20px 20px;
-        background: #ffffff;
-        border-bottom: 1px solid #e5e7eb;
-        box-shadow: 0 12px 25px rgba(0, 0, 0, 0.08);
       }
 
-      .about-nav-links.open {
+      .nav-links.open {
         display: flex;
       }
 
-      .about-nav-links a {
-        width: 100%;
-        justify-content: flex-start;
-        padding: 13px 14px;
-        min-height: 44px;
+      .nav-links a {
+        padding: 10px 0;
       }
 
-      .about-nav-links .nav-button {
-        justify-content: center;
-        margin: 5px 0 0;
+      .brand-name {
+        font-size: 16px;
       }
 
-      .about-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-
-      .about-footer-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-    }
-
-    @media (max-width: 680px) {
-
-      .about-navbar {
-        min-height: 68px;
-        padding: 0 16px;
-      }
-
-      .about-logo {
-        font-size: 18px;
-      }
-
-      .about-logo-mark {
-        width: 36px;
-        height: 36px;
-      }
-
-      .about-nav-links {
-        top: 68px;
-      }
-
-      .about-hero {
-        min-height: 430px;
-      }
-
-      .about-hero-content {
+      .hero {
         padding: 65px 20px;
       }
 
-      .about-hero h1 {
-        font-size: 38px;
-      }
-
-      .about-hero p {
-        font-size: 16px;
-        line-height: 1.65;
-      }
-
-      .about-section {
+      .section {
         padding: 60px 20px;
       }
+    }
 
-      .about-grid {
+    @media (max-width: 600px) {
+      .cards {
         grid-template-columns: 1fr;
-        gap: 18px;
       }
 
-      .about-card {
-        padding: 25px;
+      .hero h1 {
+        font-size: 40px;
+      }
+
+      .hero p {
+        font-size: 16px;
       }
 
       .about-image {
-        height: 260px;
-      }
-
-      .mission-box {
-        padding: 30px 22px;
-      }
-
-      .about-cta {
-        padding: 60px 20px;
-      }
-
-      .about-btn {
-        width: 100%;
-        margin: 5px 0;
-      }
-
-      .about-footer {
-        padding: 55px 20px 20px;
-      }
-
-      .about-footer-grid {
-        grid-template-columns: 1fr;
-        gap: 32px;
+        min-height: 240px;
       }
 
       .support-button {
         right: 14px;
         bottom: 14px;
-        min-height: 46px;
-        padding: 11px 15px;
-        font-size: 13px;
       }
-    }
-
-    /* =========================
-       MAINTENANCE MODE
-    ========================= */
-
-    body.website-maintenance-active > header,
-    body.website-maintenance-active > main,
-    body.website-maintenance-active > footer,
-    body.website-maintenance-active > a.support-button {
-      display: none !important;
     }
   </style>
 </head>
 
 <body>
 
-  <!-- =========================
-       HEADER
-  ========================= -->
+  <div class="maintenance" id="maintenanceScreen">
+    <div class="maintenance-box">
+      <h1>Website Maintenance</h1>
+      <p>We are currently updating our website. Please check back shortly.</p>
+    </div>
+  </div>
 
   <header class="site-header">
+    <nav class="navbar">
 
-    <div class="about-navbar">
+      <a href="index.html" class="brand">
+        <img
+          id="siteLogo"
+          src=""
+          alt="ExpressLine Delivery Services"
+        >
 
-      <a href="index.html" class="about-logo">
-
-        <span class="about-logo-mark">
-          EL
+        <span
+          class="brand-name"
+          id="companyName"
+        >
+          ExpressLine Delivery Services
         </span>
-
-        <span id="siteShortName">
-          ExpressLine
-        </span>
-
       </a>
 
-
       <button
-        class="about-menu-toggle"
-        id="aboutMenuToggle"
+        class="menu-toggle"
+        id="menuToggle"
         type="button"
         aria-label="Open navigation menu"
-        aria-expanded="false"
       >
         ☰
       </button>
 
+      <div class="nav-links" id="navLinks">
+        <a id="navHome" href="index.html">Home</a>
+        <a id="navServices" href="services.html">Services</a>
+        <a id="navTrack" href="track.html">Track Shipment</a>
+        <a id="navRequest" href="request.html">Request a Shipment</a>
+        <a id="navAbout" href="about.html">About Us</a>
+        <a id="navSupport" href="Customer Support.html">Support</a>
+        <a id="navContact" href="contact.html">Contact</a>
+        <a id="navLogin" href="login.html">Customer Login</a>
+      </div>
 
-      <nav
-        class="about-nav-links"
-        id="aboutNavLinks"
-      >
-
-        <a id="navHome" href="index.html">
-          Home
-        </a>
-
-        <a id="navServices" href="services.html">
-          Services
-        </a>
-
-        <a id="navTrack" href="track.html">
-          Track Shipment
-        </a>
-
-        <a id="navRequest" href="request.html">
-          Request a Shipment
-        </a>
-
-        <a id="navAbout" href="about.html">
-          About Us
-        </a>
-
-        <a id="navContact" href="contact.html">
-          Support
-        </a>
-
-        <a
-          id="navLogin"
-          href="login.html"
-          class="nav-button"
-        >
-          Customer Login
-        </a>
-
-      </nav>
-
-    </div>
-
+    </nav>
   </header>
-
-
-  <!-- =========================
-       MAIN
-  ========================= -->
 
   <main>
 
-    <!-- HERO -->
+    <section class="hero">
+      <div class="hero-inner">
 
-    <section
-      id="aboutHero"
-      class="about-hero"
-    >
-
-      <div class="about-hero-content">
-
-        <span class="hero-badge">
-          ABOUT EXPRESSLINE
-        </span>
-
-        <h1>
-          Moving shipments forward with confidence.
+        <h1 id="aboutHeroHeading">
+          About ExpressLine Delivery Services
         </h1>
 
-        <p>
-          ExpressLine Delivery Services is built around
-          dependable transportation, shipment visibility
-          and professional customer service.
+        <p id="aboutHeroDescription">
+          Reliable logistics and delivery solutions built around
+          dependable service, efficient shipment handling, and
+          clear communication.
         </p>
 
       </div>
-
     </section>
 
+    <section class="section">
+      <div class="section-inner">
 
-    <!-- COMPANY INTRODUCTION -->
+        <div class="two-column">
 
-    <section class="about-section about-section-light">
+          <div class="content">
 
-      <div class="about-container">
+            <h2 id="aboutTitle">
+              Moving What Matters
+            </h2>
 
-        <div class="about-heading">
-
-          <p class="section-label">
-            WHO WE ARE
-          </p>
-
-          <h2>
-            A modern approach to courier and logistics services.
-          </h2>
-
-          <p>
-            ExpressLine Delivery Services provides customers
-            with a straightforward way to request, manage
-            and track shipments.
-          </p>
-
-          <p>
-            Our platform brings shipment requests, tracking
-            information and customer access together in one
-            convenient system.
-          </p>
-
-        </div>
-
-
-        <div class="about-image-wrapper">
-
-          <img
-            id="aboutImage"
-            class="about-image"
-            src=""
-            alt="ExpressLine Delivery Services"
-            style="display: none;"
-          >
-
-        </div>
-
-
-        <div class="about-grid">
-
-          <article class="about-card">
-
-            <div class="about-card-icon">
-              🚚
-            </div>
-
-            <h3>
-              Reliable Transportation
-            </h3>
-
-            <p>
-              Supporting courier, freight and transportation
-              requirements with organized shipment management.
+            <p id="aboutParagraph1">
+              ExpressLine Delivery Services provides professional
+              logistics and delivery solutions for individuals
+              and businesses.
             </p>
 
-          </article>
-
-
-          <article class="about-card">
-
-            <div class="about-card-icon">
-              📍
-            </div>
-
-            <h3>
-              Shipment Visibility
-            </h3>
-
-            <p>
-              Customers can access available shipment information
-              and tracking updates through the ExpressLine platform.
+            <p id="aboutParagraph2">
+              From freight transportation and express courier
+              services to customs clearance, warehousing, and
+              distribution, our goal is to make shipment movement
+              simple, organized, and dependable.
             </p>
 
-          </article>
-
-
-          <article class="about-card">
-
-            <div class="about-card-icon">
-              🔒
-            </div>
-
-            <h3>
-              Secure Platform
-            </h3>
-
-            <p>
-              Customer and shipment information is protected
-              through authenticated access and secure system design.
+            <p id="aboutParagraph3">
+              We are committed to helping customers move their
+              shipments safely and efficiently from pickup to
+              final delivery.
             </p>
 
-          </article>
+          </div>
+
+          <div>
+            <img
+              id="aboutImage"
+              class="about-image"
+              src=""
+              alt="ExpressLine Delivery Services"
+            >
+          </div>
 
         </div>
 
       </div>
-
     </section>
 
+    <section class="section mission">
 
-    <!-- OUR APPROACH -->
-
-    <section class="about-section about-section-gray">
-
-      <div class="about-container">
-
-        <div class="about-heading">
-
-          <p class="section-label">
-            OUR APPROACH
-          </p>
-
-          <h2>
-            Built around the customer experience.
-          </h2>
-
-          <p>
-            ExpressLine is designed with a focus on making
-            the shipping process easier to understand and manage.
-          </p>
-
-        </div>
-
-
-        <div class="about-grid">
-
-          <article class="about-card">
-
-            <h3>
-              Clear Communication
-            </h3>
-
-            <p>
-              Shipment information and updates are presented
-              clearly so customers can understand the current
-              status of their shipment.
-            </p>
-
-          </article>
-
-
-          <article class="about-card">
-
-            <h3>
-              Professional Service
-            </h3>
-
-            <p>
-              Our goal is to provide an organized and professional
-              experience from shipment request through delivery.
-            </p>
-
-          </article>
-
-
-          <article class="about-card">
-
-            <h3>
-              Technology Driven
-            </h3>
-
-            <p>
-              The ExpressLine platform connects customers with
-              modern shipment management and tracking tools.
-            </p>
-
-          </article>
-
-        </div>
-
-      </div>
-
-    </section>
-
-
-    <!-- MISSION -->
-
-    <section class="about-section about-section-light">
-
-      <div class="about-container">
+      <div class="section-inner">
 
         <div class="mission-box">
 
-          <p class="section-label">
-            OUR MISSION
-          </p>
-
-          <h2>
-            Make logistics easier to manage.
+          <h2 id="missionTitle">
+            Our Mission
           </h2>
 
-          <p>
-            ExpressLine aims to create a dependable digital
-            experience where customers can request shipments,
-            access their accounts and follow shipment progress
-            without unnecessary complexity.
+          <p id="missionText">
+            To provide dependable logistics and delivery services
+            that help individuals and businesses move goods with
+            confidence, efficiency, and clear communication.
           </p>
 
         </div>
@@ -999,36 +562,93 @@
 
     </section>
 
+    <section class="section">
 
-    <!-- CTA -->
+      <div class="section-inner">
 
-    <section class="about-cta">
+        <div class="cards">
 
-      <div class="about-cta-inner">
+          <article class="card">
+            <h3 id="value1Title">
+              Reliability
+            </h3>
 
-        <h2>
-          Ready to move your shipment?
+            <p id="value1Description">
+              We focus on dependable shipment handling and
+              consistent delivery service.
+            </p>
+          </article>
+
+          <article class="card">
+            <h3 id="value2Title">
+              Efficiency
+            </h3>
+
+            <p id="value2Description">
+              We work to keep logistics processes organized
+              and efficient.
+            </p>
+          </article>
+
+          <article class="card">
+            <h3 id="value3Title">
+              Communication
+            </h3>
+
+            <p id="value3Description">
+              We keep customers informed throughout the
+              shipment process.
+            </p>
+          </article>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <section class="section dark-section">
+
+      <div class="section-inner">
+
+        <div class="content">
+
+          <h2 id="approachTitle">
+            Our Approach
+          </h2>
+
+          <p id="approachText">
+            Every shipment deserves careful handling and
+            dependable service. We combine practical logistics
+            solutions with customer-focused communication to
+            make the delivery process easier.
+          </p>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <section class="section cta">
+
+      <div class="section-inner">
+
+        <h2 id="ctaHeading">
+          Ready to Move Your Shipment?
         </h2>
 
-        <p>
-          Request a shipment or track an existing shipment
-          through the ExpressLine platform.
+        <p id="ctaText">
+          Request a shipment today and let ExpressLine help
+          you with your delivery needs.
         </p>
 
         <a
-          id="aboutRequestButton"
+          id="ctaButton"
           href="request.html"
-          class="about-btn about-btn-primary"
+          class="btn"
         >
           Request a Shipment
-        </a>
-
-        <a
-          id="aboutTrackButton"
-          href="track.html"
-          class="about-btn about-btn-secondary"
-        >
-          Track Shipment
         </a>
 
       </div>
@@ -1037,28 +657,15 @@
 
   </main>
 
+  <footer>
 
-  <!-- =========================
-       FOOTER
-  ========================= -->
-
-  <footer class="about-footer">
-
-    <div class="about-footer-grid">
+    <div class="footer-inner">
 
       <div>
 
-        <div class="footer-brand">
-
-          <span class="about-logo-mark">
-            EL
-          </span>
-
-          <span id="footerCompanyName">
-            ExpressLine Delivery Services
-          </span>
-
-        </div>
+        <strong id="footerCompanyName">
+          ExpressLine Delivery Services
+        </strong>
 
         <p id="footerText">
           Reliable logistics and delivery solutions for
@@ -1067,152 +674,34 @@
 
       </div>
 
-
       <div>
 
-        <h3>
-          Quick Links
-        </h3>
-
-        <p>
-          <a href="index.html">
-            Home
-          </a>
-        </p>
-
-        <p>
-          <a href="services.html">
-            Services
-          </a>
-        </p>
-
-        <p>
-          <a href="track.html">
-            Track Shipment
-          </a>
-        </p>
-
-        <p>
-          <a href="request.html">
-            Request a Shipment
-          </a>
+        <p id="copyrightText">
+          © 2026 ExpressLine Delivery Services. All rights reserved.
         </p>
 
       </div>
-
-
-      <div>
-
-        <h3>
-          Customer
-        </h3>
-
-        <p>
-          <a href="login.html">
-            Customer Login
-          </a>
-        </p>
-
-        <p>
-          <a href="Customer Support.html">
-            Smart Support
-          </a>
-        </p>
-
-        <p>
-          <a href="contact.html">
-            Contact Us
-          </a>
-        </p>
-
-      </div>
-
-
-      <div>
-
-        <h3>
-          Contact
-        </h3>
-
-        <p id="footerContactEmail">
-          Contact us for more information.
-        </p>
-
-        <p id="footerContactPhone">
-        </p>
-
-        <br>
-
-        <a
-          href="Customer Support.html"
-          style="
-            display:inline-flex;
-            align-items:center;
-            justify-content:center;
-            min-height:42px;
-            padding:10px 16px;
-            background:#F97316;
-            color:#ffffff;
-            border-radius:8px;
-            text-decoration:none;
-            font-weight:800;
-            font-size:14px;
-          "
-        >
-          Smart Support
-        </a>
-
-      </div>
-
-    </div>
-
-
-    <div class="footer-bottom">
-
-      <p id="copyrightText">
-        © 2026 ExpressLine Delivery Services.
-        All rights reserved.
-      </p>
 
     </div>
 
   </footer>
 
-
-  <!-- =========================
-       SMART SUPPORT
-  ========================= -->
-
-  <a
-    href="Customer Support.html"
+  <button
     class="support-button"
-    aria-label="Open Smart Support"
+    id="supportButton"
+    type="button"
+    onclick="openSmartsupp()"
+    style="display:none;"
   >
-    💬 Smart Support
-  </a>
-
-
-  <!-- =========================
-       SUPABASE
-  ========================= -->
-
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
-  <script src="script.js"></script>
-
+    Live Support
+  </button>
 
   <script>
-
-    /* =========================
-       SUPABASE CONFIGURATION
-    ========================= */
-
     const SUPABASE_URL =
       "https://uhjgietvznkfzckmxqfz.supabase.co";
 
     const SUPABASE_PUBLISHABLE_KEY =
       "sb_publishable_zZ0JiBW-2uarX2gnR5w9hQ_77RpB6SM";
-
 
     const supabaseClient =
       window.supabase.createClient(
@@ -1220,561 +709,485 @@
         SUPABASE_PUBLISHABLE_KEY
       );
 
-
-    /* =========================
-       LOAD WEBSITE SETTINGS
-    ========================= */
-
-    async function getWebsiteSettings() {
-
-      try {
-
-        const { data, error } =
-          await supabaseClient
-            .from("website_settings")
-            .select("settings")
-            .eq("id", 1)
-            .maybeSingle();
-
-
-        if (error) {
-
-          console.error(
-            "Unable to load website settings:",
-            error
-          );
-
-          return {};
-
-        }
-
-
-        if (
-          data &&
-          data.settings &&
-          typeof data.settings === "object"
-        ) {
-
-          return data.settings;
-
-        }
-
-
-        return {};
-
-      } catch (error) {
-
-        console.error(
-          "Website settings error:",
-          error
-        );
-
-        return {};
-
-      }
-
-    }
-
-
-    /* =========================
-       SET TEXT
-    ========================= */
+    let websiteSettings = {};
 
     function setText(id, value) {
-
       const element =
         document.getElementById(id);
-
 
       if (
         element &&
         value !== undefined &&
-        value !== null &&
-        String(value).trim() !== ""
+        value !== null
       ) {
-
         element.textContent = value;
-
       }
-
     }
 
+    function applyLogoSize(size) {
+      const logo =
+        document.getElementById("siteLogo");
 
-    /* =========================
-       APPLY WEBSITE SETTINGS
-    ========================= */
+      if (!logo) return;
 
-    async function applyWebsiteSettings() {
-
-      const settings =
-        await getWebsiteSettings();
-
-
-      /* =========================
-         COMPANY
-      ========================= */
-
-      setText(
-        "siteShortName",
-        settings.shortName ||
-        settings.companyName ||
-        "ExpressLine"
-      );
-
-
-      setText(
-        "footerCompanyName",
-        settings.companyName ||
-        settings.shortName ||
-        "ExpressLine Delivery Services"
-      );
-
-
-      /* =========================
-         NAVIGATION
-      ========================= */
-
-      setText(
-        "navHome",
-        settings.navHome
-      );
-
-      setText(
-        "navServices",
-        settings.navServices
-      );
-
-      setText(
-        "navTrack",
-        settings.navTrack
-      );
-
-      setText(
-        "navAbout",
-        settings.navAbout
-      );
-
-      setText(
-        "navContact",
-        settings.navContact
-      );
-
-      setText(
-        "navRequest",
-        settings.navRequest
-      );
-
-      setText(
-        "navLogin",
-        settings.navLogin
-      );
-
-
-      /* =========================
-         FOOTER
-      ========================= */
-
-      setText(
-        "footerText",
-        settings.footerText
-      );
-
-
-      setText(
-        "copyrightText",
-        settings.copyrightText
-      );
-
-
-      /* =========================
-         CONTACT
-      ========================= */
-
-      if (settings.contactEmail) {
-
-        setText(
-          "footerContactEmail",
-          "Email: " + settings.contactEmail
-        );
-
+      if (size === "small") {
+        logo.style.width = "42px";
+        logo.style.height = "42px";
+      } else if (size === "large") {
+        logo.style.width = "78px";
+        logo.style.height = "78px";
+      } else {
+        logo.style.width = "58px";
+        logo.style.height = "58px";
       }
+    }
 
+    function loadSmartsupp(settings) {
 
-      if (settings.contactPhone) {
+      const enabled =
+        settings.smartsuppEnabled === true;
 
-        setText(
-          "footerContactPhone",
-          "Phone: " + settings.contactPhone
-        );
+      const key =
+        String(
+          settings.smartsuppKey || ""
+        ).trim();
 
-      }
-
-
-      /* =========================
-         ABOUT IMAGE
-      ========================= */
-
-      const aboutImage =
+      const button =
         document.getElementById(
-          "aboutImage"
+          "supportButton"
         );
 
+      if (!enabled || !key) {
 
-      if (
-        aboutImage &&
-        settings.aboutImage &&
-        String(settings.aboutImage).trim() !== ""
-      ) {
-
-        aboutImage.src =
-          settings.aboutImage;
-
-        aboutImage.style.display =
-          "block";
-
-      }
-
-
-      /* =========================
-         ABOUT HERO IMAGE
-      ========================= */
-
-      const aboutHero =
-        document.getElementById(
-          "aboutHero"
-        );
-
-
-      if (
-        aboutHero &&
-        settings.aboutHeroImage
-      ) {
-
-        aboutHero.style.setProperty(
-          "--about-hero-image",
-          `url("${settings.aboutHeroImage}")`
-        );
-
-        aboutHero.classList.add(
-          "has-custom-image"
-        );
-
-      }
-
-
-      /* =========================
-         WEBSITE TITLE
-      ========================= */
-
-      if (
-        settings.websiteTitle &&
-        String(settings.websiteTitle).trim() !== ""
-      ) {
-
-        document.title =
-          settings.websiteTitle;
-
-      }
-
-
-      /* =========================
-         SEO DESCRIPTION
-      ========================= */
-
-      const description =
-        document.getElementById(
-          "pageDescription"
-        );
-
-
-      if (
-        description &&
-        settings.seoDescription
-      ) {
-
-        description.setAttribute(
-          "content",
-          settings.seoDescription
-        );
-
-      }
-
-
-      /* =========================
-         SEO KEYWORDS
-      ========================= */
-
-      const keywords =
-        document.getElementById(
-          "pageKeywords"
-        );
-
-
-      if (
-        keywords &&
-        settings.seoKeywords
-      ) {
-
-        keywords.setAttribute(
-          "content",
-          settings.seoKeywords
-        );
-
-      }
-
-
-      /* =========================
-         BRAND COLORS
-      ========================= */
-
-      if (settings.primaryColor) {
-
-        document.documentElement.style.setProperty(
-          "--navy",
-          settings.primaryColor
-        );
-
-      }
-
-
-      if (settings.secondaryColor) {
-
-        document.documentElement.style.setProperty(
-          "--navy-dark",
-          settings.secondaryColor
-        );
-
-      }
-
-
-      if (settings.accentColor) {
-
-        document.documentElement.style.setProperty(
-          "--orange",
-          settings.accentColor
-        );
-
-      }
-
-
-      if (settings.textColor) {
-
-        document.documentElement.style.setProperty(
-          "--text",
-          settings.textColor
-        );
-
-      }
-
-
-      /* =========================
-         TYPOGRAPHY
-      ========================= */
-
-      if (settings.fontFamily) {
-
-        document.body.style.fontFamily =
-          settings.fontFamily;
-
-      }
-
-
-      if (settings.fontSize) {
-
-        document.documentElement.style.fontSize =
-          settings.fontSize;
-
-      }
-
-
-      /* =========================
-         FAVICON
-      ========================= */
-
-      if (
-        settings.faviconUrl &&
-        String(settings.faviconUrl).trim() !== ""
-      ) {
-
-        let favicon =
-          document.querySelector(
-            'link[rel="icon"]'
-          );
-
-
-        if (!favicon) {
-
-          favicon =
-            document.createElement(
-              "link"
-            );
-
-          favicon.rel = "icon";
-
-          document.head.appendChild(
-            favicon
-          );
-
+        if (button) {
+          button.style.display = "none";
         }
-
-
-        favicon.href =
-          settings.faviconUrl;
-
-      }
-
-
-      /* =========================
-         MAINTENANCE MODE
-      ========================= */
-
-      if (
-        settings.maintenanceMode === true
-      ) {
-
-        document.body.classList.add(
-          "website-maintenance-active"
-        );
-
-      }
-
-    }
-
-
-    /* =========================
-       MOBILE NAVIGATION
-    ========================= */
-
-    function setupMobileNavigation() {
-
-      const menuButton =
-        document.getElementById(
-          "aboutMenuToggle"
-        );
-
-      const nav =
-        document.getElementById(
-          "aboutNavLinks"
-        );
-
-
-      if (
-        !menuButton ||
-        !nav
-      ) {
 
         return;
-
       }
 
+      if (button) {
 
-      menuButton.addEventListener(
+        button.style.display = "block";
+
+        button.textContent =
+          settings.smartsuppButtonText ||
+          "Live Support";
+      }
+
+      if (window.smartsupp) {
+        return;
+      }
+
+      window._smartsupp =
+        window._smartsupp || {};
+
+      window._smartsupp.key = key;
+
+      window.smartsupp ||
+        (function(d) {
+
+          var s,
+              c,
+              o = window.smartsupp =
+                function() {
+                  o._.push(arguments);
+                };
+
+          o._ = [];
+
+          s =
+            d.getElementsByTagName(
+              "script"
+            )[0];
+
+          c =
+            d.createElement(
+              "script"
+            );
+
+          c.type =
+            "text/javascript";
+
+          c.charset =
+            "utf-8";
+
+          c.async = true;
+
+          c.src =
+            "//www.smartsuppchat.com/loader.js?";
+
+          s.parentNode.insertBefore(
+            c,
+            s
+          );
+
+        })(document);
+    }
+
+    function openSmartsupp() {
+
+      if (
+        typeof window.smartsupp ===
+        "function"
+      ) {
+
+        window.smartsupp(
+          "chat:open"
+        );
+
+      } else {
+
+        alert(
+          "Live Support is loading. Please try again in a moment."
+        );
+
+      }
+    }
+
+    async function loadWebsiteSettings() {
+
+      try {
+
+        const {
+          data,
+          error
+        } =
+          await supabaseClient
+            .from(
+              "website_settings"
+            )
+            .select(
+              "settings"
+            )
+            .eq(
+              "id",
+              1
+            )
+            .maybeSingle();
+
+        if (error) {
+
+          console.error(
+            "Website settings error:",
+            error
+          );
+
+          return;
+        }
+
+        websiteSettings =
+          data?.settings || {};
+
+        const settings =
+          websiteSettings;
+
+        setText(
+          "companyName",
+          settings.companyName ||
+          "ExpressLine Delivery Services"
+        );
+
+        setText(
+          "footerCompanyName",
+          settings.companyName ||
+          "ExpressLine Delivery Services"
+        );
+
+        setText(
+          "footerText",
+          settings.footerText ||
+          "Reliable logistics and delivery solutions for individuals and businesses."
+        );
+
+        setText(
+          "copyrightText",
+          settings.copyright ||
+          "© 2026 ExpressLine Delivery Services. All rights reserved."
+        );
+
+        setText(
+          "aboutHeroHeading",
+          settings.aboutHeroHeading ||
+          "About ExpressLine Delivery Services"
+        );
+
+        setText(
+          "aboutHeroDescription",
+          settings.aboutHeroDescription ||
+          "Reliable logistics and delivery solutions built around dependable service, efficient shipment handling, and clear communication."
+        );
+
+        setText(
+          "aboutTitle",
+          settings.aboutTitle ||
+          "Moving What Matters"
+        );
+
+        setText(
+          "aboutParagraph1",
+          settings.aboutParagraph1 ||
+          "ExpressLine Delivery Services provides professional logistics and delivery solutions for individuals and businesses."
+        );
+
+        setText(
+          "aboutParagraph2",
+          settings.aboutParagraph2 ||
+          "From freight transportation and express courier services to customs clearance, warehousing, and distribution, our goal is to make shipment movement simple, organized, and dependable."
+        );
+
+        setText(
+          "aboutParagraph3",
+          settings.aboutParagraph3 ||
+          "We are committed to helping customers move their shipments safely and efficiently from pickup to final delivery."
+        );
+
+        setText(
+          "missionTitle",
+          settings.missionTitle ||
+          "Our Mission"
+        );
+
+        setText(
+          "missionText",
+          settings.missionText ||
+          "To provide dependable logistics and delivery services that help individuals and businesses move goods with confidence, efficiency, and clear communication."
+        );
+
+        setText(
+          "value1Title",
+          settings.value1Title ||
+          "Reliability"
+        );
+
+        setText(
+          "value1Description",
+          settings.value1Description ||
+          "We focus on dependable shipment handling and consistent delivery service."
+        );
+
+        setText(
+          "value2Title",
+          settings.value2Title ||
+          "Efficiency"
+        );
+
+        setText(
+          "value2Description",
+          settings.value2Description ||
+          "We work to keep logistics processes organized and efficient."
+        );
+
+        setText(
+          "value3Title",
+          settings.value3Title ||
+          "Communication"
+        );
+
+        setText(
+          "value3Description",
+          settings.value3Description ||
+          "We keep customers informed throughout the shipment process."
+        );
+
+        setText(
+          "approachTitle",
+          settings.approachTitle ||
+          "Our Approach"
+        );
+
+        setText(
+          "approachText",
+          settings.approachText ||
+          "Every shipment deserves careful handling and dependable service. We combine practical logistics solutions with customer-focused communication to make the delivery process easier."
+        );
+
+        setText(
+          "ctaHeading",
+          settings.aboutCtaHeading ||
+          "Ready to Move Your Shipment?"
+        );
+
+        setText(
+          "ctaText",
+          settings.aboutCtaText ||
+          "Request a shipment today and let ExpressLine help you with your delivery needs."
+        );
+
+        if (settings.primaryButtonText) {
+          setText(
+            "ctaButton",
+            settings.primaryButtonText
+          );
+        }
+
+        if (settings.logoUrl) {
+          document.getElementById(
+            "siteLogo"
+          ).src =
+            settings.logoUrl;
+        }
+
+        if (settings.aboutImageUrl) {
+          document.getElementById(
+            "aboutImage"
+          ).src =
+            settings.aboutImageUrl;
+        }
+
+        applyLogoSize(
+          settings.logoSize ||
+          "medium"
+        );
+
+        if (settings.fontFamily) {
+          document.body.style.fontFamily =
+            settings.fontFamily;
+        }
+
+        if (settings.baseFontSize) {
+          document.body.style.fontSize =
+            settings.baseFontSize +
+            "px";
+        }
+
+        if (settings.siteTitle) {
+          document.title =
+            settings.siteTitle;
+        }
+
+        if (settings.faviconUrl) {
+
+          let favicon =
+            document.querySelector(
+              'link[rel="icon"]'
+            );
+
+          if (!favicon) {
+
+            favicon =
+              document.createElement(
+                "link"
+              );
+
+            favicon.rel =
+              "icon";
+
+            document.head.appendChild(
+              favicon
+            );
+          }
+
+          favicon.href =
+            settings.faviconUrl;
+        }
+
+        const navItems = {
+          navHome: "navHome",
+          navServices: "navServices",
+          navTrack: "navTrack",
+          navRequest: "navRequest",
+          navAbout: "navAbout",
+          navSupport: "navSupport",
+          navContact: "navContact",
+          navLogin: "navLogin"
+        };
+
+        Object.keys(
+          navItems
+        ).forEach(
+          function(id) {
+
+            const settingKey =
+              navItems[id];
+
+            if (
+              settings[settingKey]
+            ) {
+
+              setText(
+                id,
+                settings[settingKey]
+              );
+
+            }
+
+          }
+        );
+
+        loadSmartsupp(
+          settings
+        );
+
+        if (
+          settings.maintenanceMode ===
+          true
+        ) {
+
+          document
+            .getElementById(
+              "maintenanceScreen"
+            )
+            .classList.add(
+              "active"
+            );
+        }
+
+      } catch (error) {
+
+        console.error(
+          "Settings loading failed:",
+          error
+        );
+
+      }
+    }
+
+    document
+      .getElementById(
+        "menuToggle"
+      )
+      .addEventListener(
         "click",
-        function(event) {
+        function() {
 
-          event.stopPropagation();
-
-          const isOpen =
-            nav.classList.toggle("open");
-
-          menuButton.setAttribute(
-            "aria-expanded",
-            isOpen ? "true" : "false"
-          );
-
-          menuButton.setAttribute(
-            "aria-label",
-            isOpen
-              ? "Close navigation menu"
-              : "Open navigation menu"
-          );
-
-          menuButton.textContent =
-            isOpen ? "✕" : "☰";
+          document
+            .getElementById(
+              "navLinks"
+            )
+            .classList.toggle(
+              "open"
+            );
 
         }
       );
 
-
-      nav.querySelectorAll("a")
-        .forEach(function(link) {
+    document
+      .querySelectorAll(
+        "#navLinks a"
+      )
+      .forEach(
+        function(link) {
 
           link.addEventListener(
             "click",
             function() {
 
-              nav.classList.remove(
-                "open"
-              );
-
-              menuButton.setAttribute(
-                "aria-expanded",
-                "false"
-              );
-
-              menuButton.setAttribute(
-                "aria-label",
-                "Open navigation menu"
-              );
-
-              menuButton.textContent =
-                "☰";
+              document
+                .getElementById(
+                  "navLinks"
+                )
+                .classList.remove(
+                  "open"
+                );
 
             }
           );
 
-        });
-
-
-      document.addEventListener(
-        "click",
-        function(event) {
-
-          if (
-            !nav.contains(event.target) &&
-            !menuButton.contains(event.target)
-          ) {
-
-            nav.classList.remove(
-              "open"
-            );
-
-            menuButton.setAttribute(
-              "aria-expanded",
-              "false"
-            );
-
-            menuButton.setAttribute(
-              "aria-label",
-              "Open navigation menu"
-            );
-
-            menuButton.textContent =
-              "☰";
-
-          }
-
         }
       );
 
-    }
-
-
-    /* =========================
-       START
-    ========================= */
-
-    document.addEventListener(
-      "DOMContentLoaded",
-      function() {
-
-        applyWebsiteSettings();
-
-        setupMobileNavigation();
-
-      }
-    );
-
+    loadWebsiteSettings();
   </script>
 
 </body>
