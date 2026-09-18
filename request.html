@@ -606,21 +606,42 @@ const supabaseClient =
    WEBSITE SETTINGS
    ========================================================= */
 
-const WEBSITE_SETTINGS_KEY =
-  "expresslineWebsiteSettings";
-
-
-function getWebsiteSettings() {
+async function getWebsiteSettings() {
 
   try {
 
-    return JSON.parse(
-      localStorage.getItem(
-        WEBSITE_SETTINGS_KEY
-      )
-    ) || {};
+    const {
+      data,
+      error
+    } =
+      await supabaseClient
+        .from("website_settings")
+        .select("settings")
+        .eq("id", 1)
+        .maybeSingle();
+
+    if (error) {
+
+      console.error(
+        "Unable to load website settings:",
+        error
+      );
+
+      return {};
+
+    }
+
+    return data &&
+      data.settings
+      ? data.settings
+      : {};
 
   } catch (error) {
+
+    console.error(
+      "Unable to load website settings:",
+      error
+    );
 
     return {};
 
@@ -648,10 +669,10 @@ function setText(id, value) {
 }
 
 
-function applyWebsiteSettings() {
+async function applyWebsiteSettings() {
 
   const settings =
-    getWebsiteSettings();
+    await getWebsiteSettings();
 
   if (settings.websiteTitle) {
 
