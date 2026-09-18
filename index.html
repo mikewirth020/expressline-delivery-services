@@ -6,6 +6,8 @@
 
 <title>ExpressLine Delivery Services</title>
 
+<meta name="description" content="ExpressLine Delivery Services provides reliable logistics, freight, courier, shipping, tracking and delivery solutions.">
+
 <style>
 
 * {
@@ -15,16 +17,24 @@
 }
 
 :root {
-    --primary-color: #e30613;
-    --primary-text: #ffffff;
-    --secondary-color: #172033;
-    --secondary-text: #ffffff;
-    --accent-color: #111827;
-    --accent-text: #ffffff;
-    --text-color: #172033;
-    --text-color-text: #ffffff;
-    --font-family: Arial, Helvetica, sans-serif;
+    --primary-color: #F97316;
+    --primary-text: #000000;
+
+    --secondary-color: #111111;
+    --secondary-text: #FFFFFF;
+
+    --accent-color: #C2410C;
+    --accent-text: #FFFFFF;
+
+    --text-color: #111111;
+
+    --font-family: Inter, Arial, Helvetica, sans-serif;
     --font-size: 16px;
+
+    --white: #FFFFFF;
+    --light: #F8FAFC;
+    --border: #E5E7EB;
+    --muted: #64748B;
 }
 
 html {
@@ -35,31 +45,68 @@ body {
     font-family: var(--font-family);
     font-size: var(--font-size);
     color: var(--text-color);
-    background: #ffffff;
+    background: #FFFFFF;
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+button,
+input,
+textarea,
+select {
+    font: inherit;
+}
+
+button {
+    cursor: pointer;
 }
 
 /* =========================
-   HEADER
+   HEADER / NAVIGATION
 ========================= */
 
 .header {
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     z-index: 1000;
-    padding: 22px 5%;
+    background: rgba(255,255,255,0.97);
+    border-bottom: 1px solid #E5E7EB;
+    box-shadow: 0 4px 18px rgba(0,0,0,0.06);
+}
+
+.header-inner {
+    width: min(1200px, 92%);
+    min-height: 76px;
+    margin: auto;
     display: flex;
     align-items: center;
     justify-content: space-between;
+    gap: 25px;
 }
 
 .logo {
-    color: #ffffff;
-    font-size: 27px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #111111;
+    font-size: 23px;
     font-weight: 800;
-    text-decoration: none;
     letter-spacing: -0.5px;
+    white-space: nowrap;
+}
+
+.logo-image {
+    width: 42px;
+    height: 42px;
+    object-fit: contain;
+    display: none;
 }
 
 .logo span {
@@ -69,58 +116,60 @@ body {
 .nav-area {
     display: flex;
     align-items: center;
-    gap: 18px;
 }
 
 .nav-menu {
     display: flex;
     align-items: center;
-    gap: 4px;
-    background: rgba(15, 23, 42, 0.88);
-    padding: 6px;
-    border-radius: 40px;
-    backdrop-filter: blur(10px);
+    gap: 3px;
 }
 
 .nav-menu a {
-    color: #ffffff;
-    text-decoration: none;
-    font-size: 13px;
+    color: #111111;
+    font-size: 14px;
     font-weight: 700;
-    padding: 11px 14px;
-    border-radius: 30px;
-    transition: 0.2s;
+    padding: 10px 13px;
+    border-radius: 7px;
+    transition: all 0.2s ease;
+    white-space: nowrap;
 }
 
 .nav-menu a:hover {
-    background: #ffffff;
-    color: var(--secondary-color);
+    color: var(--primary-color);
+    background: #FFF7ED;
+}
+
+.nav-menu a.active {
+    color: var(--primary-color);
+    background: #FFF7ED;
 }
 
 .nav-menu .ship-button {
     background: var(--primary-color);
-    color: var(--primary-text);
+    color: #000000 !important;
+    padding: 11px 17px;
+    margin-left: 5px;
 }
 
 .nav-menu .ship-button:hover {
-    background: var(--primary-color);
-    color: var(--primary-text);
+    background: #EA580C;
+    color: #FFFFFF !important;
 }
 
 .menu-button {
     display: none;
-    border: none;
-    background: var(--accent-color);
-    color: var(--accent-text);
-    width: 45px;
-    height: 45px;
-    border-radius: 50%;
+    width: 44px;
+    height: 44px;
+    border: 1px solid #D1D5DB;
+    border-radius: 8px;
+    background: #FFFFFF;
+    color: #111111;
     font-size: 22px;
-    cursor: pointer;
+    line-height: 1;
 }
 
 /* =========================
-   ANNOUNCEMENT BAR
+   ANNOUNCEMENT
 ========================= */
 
 #announcementBar {
@@ -141,36 +190,37 @@ body {
 
 .hero {
     min-height: 720px;
-    background:
-        linear-gradient(
-            90deg,
-            rgba(5, 15, 30, 0.95),
-            rgba(5, 15, 30, 0.72),
-            rgba(5, 15, 30, 0.40)
-        ),
-        linear-gradient(135deg, #172033, #334155);
-
-    color: #ffffff;
+    padding: 155px 7% 100px;
 
     display: flex;
     align-items: center;
 
-    padding: 120px 7% 80px;
+    color: #FFFFFF;
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(5,15,30,0.96),
+            rgba(5,15,30,0.82),
+            rgba(5,15,30,0.55)
+        ),
+        linear-gradient(135deg, #172033, #334155);
 
     background-size: cover;
     background-position: center;
 }
 
 .hero-content {
-    max-width: 760px;
+    width: 100%;
+    max-width: 790px;
 }
 
 .hero-label {
     display: inline-block;
     background: var(--primary-color);
-    color: var(--primary-text);
+    color: #000000;
     padding: 8px 15px;
-    border-radius: 4px;
+    border-radius: 5px;
     font-size: 12px;
     font-weight: 800;
     letter-spacing: 1px;
@@ -178,50 +228,64 @@ body {
 }
 
 .hero h1 {
-    font-size: 62px;
-    line-height: 1.05;
+    max-width: 780px;
+    font-size: clamp(42px, 6vw, 68px);
+    line-height: 1.08;
+    letter-spacing: -1.8px;
     margin-bottom: 22px;
+    color: #FFFFFF;
+    overflow-wrap: break-word;
 }
 
 .hero p {
-    color: #dbe2ea;
-    font-size: 19px;
-    line-height: 1.7;
-    max-width: 650px;
-    margin-bottom: 30px;
+    max-width: 680px;
+    color: #F1F5F9;
+    font-size: 18px;
+    line-height: 1.75;
+    margin-bottom: 32px;
 }
 
 .hero-buttons {
     display: flex;
-    gap: 12px;
+    align-items: center;
+    gap: 13px;
     flex-wrap: wrap;
 }
 
 .button {
-    display: inline-block;
-    padding: 14px 23px;
-    border-radius: 5px;
-    text-decoration: none;
+    min-height: 50px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 23px;
+    border-radius: 7px;
+    border: 2px solid transparent;
     font-size: 14px;
     font-weight: 800;
+    line-height: 1.2;
+    transition: all 0.2s ease;
+    text-align: center;
 }
 
 .button-red {
     background: var(--primary-color);
-    color: var(--primary-text);
+    color: #000000;
 }
 
 .button-red:hover {
-    opacity: 0.9;
+    background: #EA580C;
+    color: #FFFFFF;
+    transform: translateY(-2px);
 }
 
 .button-white {
-    background: #ffffff;
-    color: var(--secondary-color);
+    background: #FFFFFF;
+    color: #111111;
 }
 
 .button-white:hover {
-    background: #e5e7eb;
+    background: #F1F5F9;
+    transform: translateY(-2px);
 }
 
 /* =========================
@@ -229,7 +293,7 @@ body {
 ========================= */
 
 .quick-actions {
-    margin-top: -70px;
+    margin-top: -65px;
     position: relative;
     z-index: 10;
     padding: 0 6%;
@@ -238,19 +302,18 @@ body {
 .quick-box {
     max-width: 1150px;
     margin: auto;
-    background: #ffffff;
-    border-radius: 8px;
-    box-shadow: 0 15px 40px rgba(0,0,0,0.15);
-
+    background: #FFFFFF;
+    border-radius: 10px;
+    box-shadow: 0 18px 45px rgba(0,0,0,0.13);
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-
     overflow: hidden;
+    border: 1px solid #E5E7EB;
 }
 
 .quick-item {
     padding: 30px;
-    border-right: 1px solid #e5e7eb;
+    border-right: 1px solid #E5E7EB;
 }
 
 .quick-item:last-child {
@@ -258,21 +321,25 @@ body {
 }
 
 .quick-item h3 {
+    color: #111111;
     font-size: 19px;
     margin-bottom: 7px;
 }
 
 .quick-item p {
-    color: #64748b;
+    color: #64748B;
     font-size: 14px;
     margin-bottom: 15px;
 }
 
 .quick-item a {
-    color: var(--primary-color);
-    text-decoration: none;
+    color: #C2410C;
     font-weight: 800;
     font-size: 14px;
+}
+
+.quick-item a:hover {
+    color: #9A3412;
 }
 
 /* =========================
@@ -280,7 +347,7 @@ body {
 ========================= */
 
 .track-section {
-    padding: 85px 6%;
+    padding: 90px 6%;
 }
 
 .track-container {
@@ -294,26 +361,29 @@ body {
 }
 
 .section-title small {
-    color: var(--primary-color);
+    color: #C2410C;
     font-weight: 800;
     text-transform: uppercase;
     letter-spacing: 1px;
 }
 
 .section-title h2 {
-    font-size: 38px;
+    color: #111111;
+    font-size: clamp(30px, 4vw, 40px);
+    line-height: 1.2;
     margin-top: 8px;
 }
 
 .section-title p {
-    color: #64748b;
+    color: #64748B;
     margin-top: 10px;
 }
 
 .track-box {
-    background: var(--secondary-color);
+    background: #111111;
     padding: 35px;
-    border-radius: 8px;
+    border-radius: 10px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.12);
 }
 
 .track-form {
@@ -323,20 +393,39 @@ body {
 
 .track-form input {
     flex: 1;
-    padding: 16px;
-    border: none;
-    border-radius: 5px;
+    min-width: 0;
+    min-height: 54px;
+    padding: 0 16px;
+    border: 2px solid #FFFFFF;
+    border-radius: 7px;
+    background: #FFFFFF;
+    color: #111111;
     font-size: 15px;
+    outline: none;
+}
+
+.track-form input::placeholder {
+    color: #6B7280;
+}
+
+.track-form input:focus {
+    border-color: var(--primary-color);
 }
 
 .track-form button {
+    min-height: 54px;
     border: none;
     background: var(--primary-color);
-    color: var(--primary-text);
-    padding: 16px 25px;
-    border-radius: 5px;
+    color: #000000;
+    padding: 0 26px;
+    border-radius: 7px;
     font-weight: 800;
-    cursor: pointer;
+    white-space: nowrap;
+}
+
+.track-form button:hover {
+    background: #EA580C;
+    color: #FFFFFF;
 }
 
 /* =========================
@@ -344,54 +433,58 @@ body {
 ========================= */
 
 .services {
-    background: #f8fafc;
-    padding: 85px 6%;
+    background: #F8FAFC;
+    padding: 90px 6%;
 }
 
 .service-grid {
     max-width: 1150px;
     margin: auto;
-
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 22px;
 }
 
 .service {
-    background: #ffffff;
+    background: #FFFFFF;
     padding: 30px;
-    border-radius: 8px;
-    border: 1px solid #e5e7eb;
-    transition: 0.2s;
+    border-radius: 10px;
+    border: 1px solid #E5E7EB;
+    transition: all 0.2s ease;
 }
 
 .service:hover {
     transform: translateY(-5px);
-    box-shadow: 0 12px 30px rgba(0,0,0,0.08);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.08);
 }
 
 .service-number {
-    color: var(--primary-color);
+    color: #C2410C;
     font-size: 13px;
     font-weight: 900;
-    margin-bottom: 20px;
+    margin-bottom: 18px;
 }
 
 .service h3 {
+    color: #111111;
     font-size: 21px;
+    line-height: 1.3;
     margin-bottom: 10px;
 }
 
 .service p {
-    color: #64748b;
+    color: #4B5563;
     line-height: 1.7;
     margin-bottom: 18px;
 }
 
 .service a {
-    color: var(--primary-color);
-    text-decoration: none;
+    color: #C2410C;
     font-weight: 800;
+}
+
+.service a:hover {
+    color: #9A3412;
 }
 
 /* =========================
@@ -399,26 +492,31 @@ body {
 ========================= */
 
 .business {
-    padding: 90px 6%;
+    padding: 95px 6%;
 }
 
 .business-container {
     max-width: 1150px;
     margin: auto;
-
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 50px;
+    gap: 55px;
     align-items: center;
 }
 
+.business small {
+    color: #C2410C !important;
+}
+
 .business h2 {
-    font-size: 40px;
+    color: #111111;
+    font-size: clamp(30px, 4vw, 42px);
+    line-height: 1.2;
     margin: 10px 0 18px;
 }
 
 .business p {
-    color: #64748b;
+    color: #4B5563;
     line-height: 1.8;
     margin-bottom: 20px;
 }
@@ -431,17 +529,18 @@ body {
 .business li {
     margin-bottom: 10px;
     font-weight: 700;
+    color: #111111;
 }
 
 .business li::before {
     content: "✓";
-    color: var(--primary-color);
+    color: #C2410C;
     margin-right: 10px;
 }
 
 .business-card {
-    background: var(--secondary-color);
-    color: var(--secondary-text);
+    background: #111111;
+    color: #FFFFFF;
     padding: 45px;
     border-radius: 10px;
 }
@@ -452,7 +551,7 @@ body {
 }
 
 .business-card p {
-    color: #dbe2ea;
+    color: #E5E7EB;
 }
 
 /* =========================
@@ -460,15 +559,14 @@ body {
 ========================= */
 
 .stats {
-    background: var(--accent-color);
-    color: var(--accent-text);
-    padding: 55px 6%;
+    background: #111111;
+    color: #FFFFFF;
+    padding: 60px 6%;
 }
 
 .stats-grid {
     max-width: 1100px;
     margin: auto;
-
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     text-align: center;
@@ -476,12 +574,13 @@ body {
 }
 
 .stat h3 {
+    color: #FFFFFF;
     font-size: 35px;
     margin-bottom: 5px;
 }
 
 .stat p {
-    color: #94a3b8;
+    color: #D1D5DB;
 }
 
 /* =========================
@@ -490,17 +589,19 @@ body {
 
 .cta {
     background: var(--primary-color);
-    color: var(--primary-text);
+    color: #000000;
     text-align: center;
-    padding: 70px 6%;
+    padding: 75px 6%;
 }
 
 .cta h2 {
-    font-size: 40px;
+    font-size: clamp(30px, 4vw, 42px);
+    line-height: 1.2;
     margin-bottom: 12px;
 }
 
 .cta p {
+    color: #111111;
     margin-bottom: 25px;
 }
 
@@ -509,47 +610,45 @@ body {
 ========================= */
 
 footer {
-    background: #080d18;
-    color: #cbd5e1;
-    padding: 55px 6% 25px;
+    background: #080D18;
+    color: #CBD5E1;
+    padding: 60px 6% 25px;
 }
 
 .footer-grid {
     max-width: 1150px;
     margin: auto;
-
     display: grid;
     grid-template-columns: 2fr 1fr 1fr 1fr;
     gap: 35px;
 }
 
 .footer-column h3 {
-    color: #ffffff;
+    color: #FFFFFF;
     margin-bottom: 16px;
 }
 
 .footer-column p {
-    color: #94a3b8;
+    color: #CBD5E1;
 }
 
 .footer-column a {
     display: block;
-    color: #cbd5e1;
-    text-decoration: none;
-    margin-bottom: 9px;
+    color: #CBD5E1;
+    margin-bottom: 10px;
     font-size: 14px;
 }
 
 .footer-column a:hover {
-    color: #ffffff;
+    color: var(--primary-color);
 }
 
 .copyright {
     max-width: 1150px;
     margin: 35px auto 0;
     padding-top: 20px;
-    border-top: 1px solid #1e293b;
-    color: #64748b;
+    border-top: 1px solid #1E293B;
+    color: #94A3B8;
     font-size: 13px;
 }
 
@@ -560,8 +659,8 @@ footer {
 #maintenanceMessage {
     display: none;
     min-height: 100vh;
-    background: var(--secondary-color);
-    color: var(--secondary-text);
+    background: #111111;
+    color: #FFFFFF;
     align-items: center;
     justify-content: center;
     text-align: center;
@@ -578,26 +677,55 @@ footer {
 }
 
 #maintenanceMessage p {
-    color: #cbd5e1;
+    color: #CBD5E1;
     line-height: 1.7;
+}
+
+/* =========================
+   SUPPORT BUTTON
+========================= */
+
+.support-button {
+    position: fixed;
+    right: 22px;
+    bottom: 22px;
+    z-index: 999;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: #111111;
+    color: #FFFFFF;
+    padding: 13px 17px;
+    border-radius: 8px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+    font-size: 14px;
+    font-weight: 800;
+}
+
+.support-button:hover {
+    background: #C2410C;
 }
 
 /* =========================
    MOBILE
 ========================= */
 
-@media (max-width: 950px) {
+@media (max-width: 1050px) {
 
     .nav-menu {
         display: none;
         position: absolute;
-        top: 75px;
-        right: 5%;
-        width: 230px;
+        top: 76px;
+        left: 4%;
+        right: 4%;
+        width: auto;
+        background: #FFFFFF;
+        border: 1px solid #E5E7EB;
+        box-shadow: 0 15px 35px rgba(0,0,0,0.12);
+        border-radius: 10px;
+        padding: 10px;
         flex-direction: column;
         align-items: stretch;
-        border-radius: 12px;
-        padding: 10px;
     }
 
     .nav-menu.active {
@@ -605,19 +733,23 @@ footer {
     }
 
     .nav-menu a {
+        width: 100%;
         padding: 13px 15px;
+        border-radius: 6px;
+    }
+
+    .nav-menu .ship-button {
+        margin-left: 0;
+        margin-top: 5px;
+        text-align: center;
     }
 
     .menu-button {
         display: block;
     }
 
-    .hero h1 {
-        font-size: 46px;
-    }
-
     .service-grid {
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: repeat(2, 1fr);
     }
 
     .quick-box {
@@ -626,7 +758,11 @@ footer {
 
     .quick-item {
         border-right: none;
-        border-bottom: 1px solid #e5e7eb;
+        border-bottom: 1px solid #E5E7EB;
+    }
+
+    .quick-item:last-child {
+        border-bottom: none;
     }
 
     .business-container {
@@ -634,35 +770,66 @@ footer {
     }
 
     .stats-grid {
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: repeat(2, 1fr);
     }
 
     .footer-grid {
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: repeat(2, 1fr);
     }
 }
 
 @media (max-width: 600px) {
 
-    .header {
-        padding: 18px 5%;
+    .header-inner {
+        min-height: 68px;
     }
 
     .logo {
-        font-size: 22px;
+        font-size: 20px;
+    }
+
+    .logo-image {
+        width: 38px;
+        height: 38px;
+    }
+
+    .nav-menu {
+        top: 68px;
     }
 
     .hero {
-        min-height: 650px;
-        padding: 120px 7% 70px;
+        min-height: 690px;
+        padding: 135px 7% 80px;
     }
 
     .hero h1 {
         font-size: 38px;
+        letter-spacing: -1px;
     }
 
     .hero p {
         font-size: 16px;
+    }
+
+    .hero-buttons {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .hero-buttons .button {
+        width: 100%;
+    }
+
+    .quick-actions {
+        margin-top: -45px;
+    }
+
+    .track-form {
+        flex-direction: column;
+    }
+
+    .track-form button {
+        width: 100%;
     }
 
     .service-grid,
@@ -671,16 +838,18 @@ footer {
         grid-template-columns: 1fr;
     }
 
-    .track-form {
-        flex-direction: column;
+    .track-box {
+        padding: 22px;
     }
 
     .business-card {
         padding: 30px;
     }
 
-    .cta h2 {
-        font-size: 30px;
+    .support-button {
+        right: 15px;
+        bottom: 15px;
+        padding: 12px 14px;
     }
 }
 
@@ -693,47 +862,69 @@ footer {
 
 <header class="header">
 
-    <a href="index.html" class="logo" id="siteLogo">
-        Express<span>Line</span>
-    </a>
+    <div class="header-inner">
 
-    <div class="nav-area">
+        <a href="index.html" class="logo" id="siteLogo">
+            <img id="siteLogoImage" class="logo-image" alt="ExpressLine logo">
+            <span id="siteLogoText">
+                Express<span>Line</span>
+            </span>
+        </a>
 
-        <nav class="nav-menu" id="navMenu">
+        <div class="nav-area">
 
-            <a href="index.html" id="navHome">Home</a>
+            <nav class="nav-menu" id="navMenu">
 
-            <a href="services.html" id="navServices">Services</a>
+                <a href="index.html" id="navHome">
+                    Home
+                </a>
 
-            <a href="track.html" id="navTrack">Track</a>
+                <a href="services.html" id="navServices">
+                    Services
+                </a>
 
-            <a href="request.html" class="ship-button" id="navRequest">
-                Ship Now
-            </a>
+                <a href="track.html" id="navTrack">
+                    Track Shipment
+                </a>
 
-            <a href="about.html" id="navAbout">About</a>
+                <a href="request.html" class="ship-button" id="navRequest">
+                    Request a Shipment
+                </a>
 
-            <a href="Customer Support.html" id="navContact">
-                Support
-            </a>
+                <a href="about.html" id="navAbout">
+                    About
+                </a>
 
-            <a href="Contact.html" id="navContactPage">
-                Contact
-            </a>
+                <a href="Customer Support.html" id="navContact">
+                    Support
+                </a>
 
-            <a href="login.html" id="navLogin">
-                Login
-            </a>
+                <a href="Contact.html" id="navContactPage">
+                    Contact
+                </a>
 
-        </nav>
+                <a href="login.html" id="navLogin">
+                    Login
+                </a>
 
-        <button class="menu-button" onclick="toggleMenu()">
-            ☰
-        </button>
+            </nav>
+
+            <button
+                class="menu-button"
+                id="menuButton"
+                onclick="toggleMenu()"
+                aria-label="Open navigation menu"
+                aria-expanded="false"
+            >
+                ☰
+            </button>
+
+        </div>
 
     </div>
 
 </header>
+
 
 <section class="hero" id="heroSection">
 
@@ -744,23 +935,32 @@ footer {
         </div>
 
         <h1 id="heroHeading">
-            Your shipment.<br>
-            Our responsibility.
+            Reliable Delivery,
+            Wherever You Need It
         </h1>
 
         <p id="heroDescription">
-            Reliable logistics and delivery services for individuals
-            and businesses. Ship with confidence, track your delivery,
-            and stay connected every step of the way.
+            Professional logistics and delivery solutions designed
+            to move your shipments safely, efficiently, and on time—
+            serving individuals and businesses with dependable service
+            from pickup to final delivery.
         </p>
 
         <div class="hero-buttons">
 
-            <a href="request.html" class="button button-red" id="heroPrimaryButton">
-                Ship Now
+            <a
+                href="request.html"
+                class="button button-red"
+                id="heroPrimaryButton"
+            >
+                Request a Shipment
             </a>
 
-            <a href="track.html" class="button button-white" id="heroSecondaryButton">
+            <a
+                href="track.html"
+                class="button button-white"
+                id="heroSecondaryButton"
+            >
                 Track Shipment
             </a>
 
@@ -769,6 +969,7 @@ footer {
     </div>
 
 </section>
+
 
 <section class="quick-actions">
 
@@ -779,39 +980,39 @@ footer {
             <h3>Track a Shipment</h3>
 
             <p>
-                Check the latest status of your shipment.
+                Check the latest status and location of your shipment.
             </p>
 
             <a href="track.html">
-                Track Now →
+                Track Shipment →
             </a>
 
         </div>
 
         <div class="quick-item">
 
-            <h3>Ship With Us</h3>
+            <h3>Request a Shipment</h3>
 
             <p>
-                Start a new shipment request online.
+                Submit your shipment information and get started.
             </p>
 
             <a href="request.html">
-                Start Shipping →
+                Request Shipment →
             </a>
 
         </div>
 
         <div class="quick-item">
 
-            <h3>Need Help?</h3>
+            <h3>Need Support?</h3>
 
             <p>
-                Get assistance with your shipment or account.
+                Get assistance with tracking, delivery, or your account.
             </p>
 
             <a href="Customer Support.html">
-                Customer Support →
+                Contact Support →
             </a>
 
         </div>
@@ -819,6 +1020,7 @@ footer {
     </div>
 
 </section>
+
 
 <section class="track-section">
 
@@ -833,7 +1035,7 @@ footer {
             </h2>
 
             <p>
-                Enter your tracking number to continue.
+                Enter your tracking number to view your shipment status.
             </p>
 
         </div>
@@ -848,7 +1050,8 @@ footer {
                 <input
                     type="text"
                     id="trackingNumber"
-                    placeholder="Enter tracking number"
+                    placeholder="Enter your tracking number"
+                    autocomplete="off"
                     required
                 >
 
@@ -864,6 +1067,7 @@ footer {
 
 </section>
 
+
 <section class="services">
 
     <div class="section-title">
@@ -875,8 +1079,8 @@ footer {
         </h2>
 
         <p>
-            Flexible services designed for everyday shipments
-            and business logistics needs.
+            Professional logistics services for individuals,
+            businesses, and commercial shipments.
         </p>
 
     </div>
@@ -887,11 +1091,13 @@ footer {
 
             <div class="service-number">01</div>
 
-            <h3 id="service1Name">Express Delivery</h3>
+            <h3 id="service1Name">
+                Air Freight
+            </h3>
 
             <p id="service1Description">
-                Reliable delivery solutions for packages,
-                documents, and shipments.
+                Fast and efficient air cargo solutions for
+                time-sensitive international shipments.
             </p>
 
             <a href="services.html">
@@ -900,49 +1106,58 @@ footer {
 
         </div>
 
+
         <div class="service">
 
             <div class="service-number">02</div>
 
-            <h3 id="service2Name">Shipment Tracking</h3>
+            <h3 id="service2Name">
+                Sea Freight
+            </h3>
 
             <p id="service2Description">
-                Stay informed about your shipment throughout
-                its delivery journey.
+                Cost-effective ocean freight solutions for
+                large, heavy, and commercial shipments.
             </p>
 
-            <a href="track.html">
-                Track Shipment →
+            <a href="services.html">
+                Learn More →
             </a>
 
         </div>
+
 
         <div class="service">
 
             <div class="service-number">03</div>
 
-            <h3 id="service3Name">Business Logistics</h3>
+            <h3 id="service3Name">
+                Road Freight
+            </h3>
 
             <p id="service3Description">
-                Organized logistics support for businesses
-                and regular shipping needs.
+                Reliable road transportation for domestic
+                and regional cargo movement.
             </p>
 
             <a href="services.html">
-                Explore Services →
+                Learn More →
             </a>
 
         </div>
+
 
         <div class="service">
 
             <div class="service-number">04</div>
 
-            <h3>Shipment Requests</h3>
+            <h3>
+                Express Courier
+            </h3>
 
             <p>
-                Submit your shipment information and begin
-                your delivery request.
+                Fast door-to-door courier delivery for
+                documents, parcels, and time-sensitive shipments.
             </p>
 
             <a href="request.html">
@@ -951,36 +1166,42 @@ footer {
 
         </div>
 
+
         <div class="service">
 
             <div class="service-number">05</div>
 
-            <h3>Customer Support</h3>
+            <h3>
+                Customs Clearance
+            </h3>
 
             <p>
-                Get help with tracking, deliveries, accounts,
-                and general service questions.
+                Professional customs clearance support to help
+                shipments move smoothly through border procedures.
             </p>
 
-            <a href="Customer Support.html">
-                Get Support →
+            <a href="services.html">
+                Learn More →
             </a>
 
         </div>
+
 
         <div class="service">
 
             <div class="service-number">06</div>
 
-            <h3>Account Management</h3>
+            <h3>
+                Warehousing & Distribution
+            </h3>
 
             <p>
-                Manage your account and access your
-                shipment information.
+                Secure storage and organized distribution solutions
+                to keep your goods moving efficiently.
             </p>
 
-            <a href="login.html">
-                Login →
+            <a href="services.html">
+                Explore Services →
             </a>
 
         </div>
@@ -989,13 +1210,14 @@ footer {
 
 </section>
 
+
 <section class="business">
 
     <div class="business-container">
 
         <div>
 
-            <small style="color:var(--primary-color);font-weight:800;">
+            <small style="font-weight:800;">
                 BUSINESS LOGISTICS
             </small>
 
@@ -1004,20 +1226,20 @@ footer {
             </h2>
 
             <p>
-                ExpressLine brings shipment requests, tracking,
-                delivery coordination, and customer support together
-                in one convenient platform.
+                ExpressLine provides professional logistics,
+                shipment coordination, tracking, and delivery
+                support through one connected platform.
             </p>
 
             <ul>
 
-                <li>✓ Shipment management</li>
+                <li>Shipment management</li>
 
-                <li>✓ Delivery coordination</li>
+                <li>Delivery coordination</li>
 
-                <li>✓ Shipment tracking</li>
+                <li>Shipment tracking</li>
 
-                <li>✓ Customer support</li>
+                <li>Customer support</li>
 
             </ul>
 
@@ -1027,6 +1249,7 @@ footer {
 
         </div>
 
+
         <div class="business-card">
 
             <h3>
@@ -1035,11 +1258,13 @@ footer {
 
             <p>
                 Create your shipment request and provide the
-                information needed to get started.
+                information needed to get your delivery started.
             </p>
 
+            <br>
+
             <a href="request.html" class="button button-white">
-                Start a Shipment
+                Request a Shipment
             </a>
 
         </div>
@@ -1047,6 +1272,7 @@ footer {
     </div>
 
 </section>
+
 
 <section class="stats">
 
@@ -1076,6 +1302,7 @@ footer {
 
 </section>
 
+
 <section class="cta">
 
     <h2>
@@ -1086,10 +1313,13 @@ footer {
         Request a shipment or contact our team for assistance.
     </p>
 
-    <div class="hero-buttons" style="justify-content:center;">
+    <div
+        class="hero-buttons"
+        style="justify-content:center;"
+    >
 
         <a href="request.html" class="button button-white">
-            Ship Now
+            Request a Shipment
         </a>
 
         <a href="Contact.html" class="button button-white">
@@ -1099,6 +1329,7 @@ footer {
     </div>
 
 </section>
+
 
 <footer>
 
@@ -1111,37 +1342,54 @@ footer {
             </h3>
 
             <p id="footerText">
-                Professional logistics and delivery solutions
+                Reliable logistics and delivery solutions
                 for individuals and businesses.
             </p>
 
         </div>
 
+
         <div class="footer-column">
 
             <h3>Company</h3>
 
-            <a href="index.html">Home</a>
+            <a href="index.html">
+                Home
+            </a>
 
-            <a href="about.html">About Us</a>
+            <a href="about.html">
+                About Us
+            </a>
 
-            <a href="services.html">Services</a>
+            <a href="services.html">
+                Services
+            </a>
 
-            <a href="Contact.html">Contact</a>
+            <a href="Contact.html">
+                Contact
+            </a>
 
         </div>
+
 
         <div class="footer-column">
 
             <h3>Shipping</h3>
 
-            <a href="request.html">Ship Now</a>
+            <a href="request.html">
+                Request a Shipment
+            </a>
 
-            <a href="track.html">Track Shipment</a>
+            <a href="track.html">
+                Track Shipment
+            </a>
 
-            <a href="Shipment History.html">Shipment History</a>
+            <a href="Shipment History.html">
+                Shipment History
+            </a>
 
         </div>
+
 
         <div class="footer-column">
 
@@ -1163,6 +1411,7 @@ footer {
 
     </div>
 
+
     <div class="copyright" id="copyrightText">
 
         © 2026 ExpressLine Delivery Services. All rights reserved.
@@ -1170,6 +1419,16 @@ footer {
     </div>
 
 </footer>
+
+
+<a
+    href="Customer Support.html"
+    class="support-button"
+    aria-label="Open customer support"
+>
+    💬 Support
+</a>
+
 
 <div id="maintenanceMessage">
 
@@ -1187,7 +1446,9 @@ footer {
 
 </div>
 
+
 <!-- SUPABASE -->
+
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <script>
@@ -1326,6 +1587,7 @@ async function applyWebsiteSettings() {
     const settings =
         await getWebsiteSettings();
 
+
     /* =========================
        COMPANY IDENTITY
     ========================= */
@@ -1359,16 +1621,57 @@ async function applyWebsiteSettings() {
         );
 
 
-    const logo =
-        document.getElementById("siteLogo");
+    /* =========================
+       LOGO
+    ========================= */
 
-    if (logo) {
+    const logoText =
+        document.getElementById(
+            "siteLogoText"
+        );
+
+    const logoImage =
+        document.getElementById(
+            "siteLogoImage"
+        );
+
+
+    const logoUrl =
+        getSetting(
+            settings,
+            "logoUrl",
+            ""
+        );
+
+
+    if (
+        logoImage &&
+        logoUrl
+    ) {
+
+        logoImage.src =
+            logoUrl;
+
+        logoImage.style.display =
+            "block";
+
+        if (logoText) {
+
+            logoText.style.display =
+                "none";
+
+        }
+
+    } else if (logoText) {
 
         const safeShortName =
             shortName || "ExpressLine";
 
         const lineIndex =
-            safeShortName.toLowerCase().indexOf("line");
+            safeShortName
+                .toLowerCase()
+                .indexOf("line");
+
 
         if (lineIndex !== -1) {
 
@@ -1389,7 +1692,7 @@ async function applyWebsiteSettings() {
                     lineIndex + 4
                 );
 
-            logo.innerHTML =
+            logoText.innerHTML =
                 before +
                 "<span>" +
                 line +
@@ -1398,7 +1701,7 @@ async function applyWebsiteSettings() {
 
         } else {
 
-            logo.textContent =
+            logoText.textContent =
                 safeShortName;
 
         }
@@ -1406,8 +1709,14 @@ async function applyWebsiteSettings() {
     }
 
 
+    /* =========================
+       HERO LABEL
+    ========================= */
+
     const heroLabel =
-        document.getElementById("heroLabel");
+        document.getElementById(
+            "heroLabel"
+        );
 
     if (heroLabel && tagline) {
 
@@ -1422,11 +1731,19 @@ async function applyWebsiteSettings() {
     ========================= */
 
     setLinkText(settings, "navHome", "navHome");
+
     setLinkText(settings, "navServices", "navServices");
+
     setLinkText(settings, "navTrack", "navTrack");
+
     setLinkText(settings, "navRequest", "navRequest");
+
     setLinkText(settings, "navAbout", "navAbout");
+
     setLinkText(settings, "navContact", "navContact");
+
+    setLinkText(settings, "navContactPage", "navContactPage");
+
     setLinkText(settings, "navLogin", "navLogin");
 
 
@@ -1471,7 +1788,10 @@ async function applyWebsiteSettings() {
         );
 
     const heroSection =
-        document.getElementById("heroSection");
+        document.getElementById(
+            "heroSection"
+        );
+
 
     if (
         heroSection &&
@@ -1479,7 +1799,7 @@ async function applyWebsiteSettings() {
     ) {
 
         heroSection.style.backgroundImage =
-            "linear-gradient(90deg, rgba(5, 15, 30, 0.95), rgba(5, 15, 30, 0.72), rgba(5, 15, 30, 0.40)), url('" +
+            "linear-gradient(90deg, rgba(5,15,30,0.96), rgba(5,15,30,0.82), rgba(5,15,30,0.55)), url('" +
             heroImage.replace(/'/g, "\\'") +
             "')";
 
@@ -1557,60 +1877,61 @@ async function applyWebsiteSettings() {
     const root =
         document.documentElement;
 
+
     const primaryColor =
         getSetting(
             settings,
             "primaryColor",
-            "#e30613"
+            "#F97316"
         );
 
     const primaryColorText =
         getSetting(
             settings,
             "primaryColorText",
-            "#ffffff"
+            "#000000"
         );
 
     const secondaryColor =
         getSetting(
             settings,
             "secondaryColor",
-            "#172033"
+            "#111111"
         );
 
     const secondaryColorText =
         getSetting(
             settings,
             "secondaryColorText",
-            "#ffffff"
+            "#FFFFFF"
         );
 
     const accentColor =
         getSetting(
             settings,
             "accentColor",
-            "#111827"
+            "#C2410C"
         );
 
     const accentColorText =
         getSetting(
             settings,
             "accentColorText",
-            "#ffffff"
+            "#FFFFFF"
         );
 
     const textColor =
         getSetting(
             settings,
             "textColor",
-            "#172033"
+            "#111111"
         );
 
     const fontFamily =
         getSetting(
             settings,
             "fontFamily",
-            "Arial, Helvetica, sans-serif"
+            "Inter, Arial, Helvetica, sans-serif"
         );
 
     const fontSize =
@@ -1687,10 +2008,12 @@ async function applyWebsiteSettings() {
             settings.announcementEnabled
         ).toLowerCase() === "yes";
 
+
     const announcementBar =
         document.getElementById(
             "announcementBar"
         );
+
 
     if (
         announcementBar &&
@@ -1718,32 +2041,42 @@ async function applyWebsiteSettings() {
             "Live"
         ).toLowerCase();
 
+
     const maintenance =
         websiteStatus === "maintenance" ||
         websiteStatus === "offline" ||
         websiteStatus === "disabled";
 
+
     const mainContent =
         document.querySelectorAll(
-            "body > header, body > section, body > footer"
+            "body > header, body > section, body > footer, body > a.support-button"
         );
+
 
     const maintenanceMessage =
         document.getElementById(
             "maintenanceMessage"
         );
 
+
     if (maintenance) {
 
         mainContent.forEach(function(element) {
 
-            element.style.display = "none";
+            element.style.display =
+                "none";
 
         });
 
+
         if (announcementBar) {
-            announcementBar.style.display = "none";
+
+            announcementBar.style.display =
+                "none";
+
         }
+
 
         if (maintenanceMessage) {
 
@@ -1766,12 +2099,14 @@ async function applyWebsiteSettings() {
             ""
         );
 
+
     if (websiteDescription) {
 
         let descriptionMeta =
             document.querySelector(
                 'meta[name="description"]'
             );
+
 
         if (!descriptionMeta) {
 
@@ -1786,6 +2121,7 @@ async function applyWebsiteSettings() {
             );
 
         }
+
 
         descriptionMeta.content =
             websiteDescription;
@@ -1803,6 +2139,7 @@ async function applyWebsiteSettings() {
             "seoTitle",
             ""
         );
+
 
     if (seoTitle) {
 
@@ -1823,12 +2160,14 @@ async function applyWebsiteSettings() {
             ""
         );
 
+
     if (seoDescription) {
 
         let seoMeta =
             document.querySelector(
                 'meta[name="description"]'
             );
+
 
         if (!seoMeta) {
 
@@ -1843,6 +2182,7 @@ async function applyWebsiteSettings() {
             );
 
         }
+
 
         seoMeta.content =
             seoDescription;
@@ -1861,12 +2201,14 @@ async function applyWebsiteSettings() {
             ""
         );
 
+
     if (seoKeywords) {
 
         let keywordMeta =
             document.querySelector(
                 'meta[name="keywords"]'
             );
+
 
         if (!keywordMeta) {
 
@@ -1881,6 +2223,7 @@ async function applyWebsiteSettings() {
             );
 
         }
+
 
         keywordMeta.content =
             seoKeywords;
@@ -1899,12 +2242,14 @@ async function applyWebsiteSettings() {
             ""
         );
 
+
     if (faviconUrl) {
 
         let favicon =
             document.querySelector(
                 'link[rel="icon"]'
             );
+
 
         if (!favicon) {
 
@@ -1919,6 +2264,7 @@ async function applyWebsiteSettings() {
             );
 
         }
+
 
         favicon.href =
             faviconUrl;
@@ -1939,9 +2285,131 @@ function toggleMenu() {
             "navMenu"
         );
 
-    menu.classList.toggle("active");
+    const button =
+        document.getElementById(
+            "menuButton"
+        );
+
+
+    menu.classList.toggle(
+        "active"
+    );
+
+
+    const isOpen =
+        menu.classList.contains(
+            "active"
+        );
+
+
+    if (button) {
+
+        button.setAttribute(
+            "aria-expanded",
+            isOpen ? "true" : "false"
+        );
+
+        button.textContent =
+            isOpen ? "✕" : "☰";
+
+    }
 
 }
+
+
+/* =========================
+   CLOSE MOBILE MENU
+========================= */
+
+document.addEventListener(
+    "click",
+    function(event) {
+
+        const menu =
+            document.getElementById(
+                "navMenu"
+            );
+
+        const button =
+            document.getElementById(
+                "menuButton"
+            );
+
+
+        if (
+            window.innerWidth <= 1050 &&
+            menu &&
+            menu.classList.contains("active") &&
+            !menu.contains(event.target) &&
+            !button.contains(event.target)
+        ) {
+
+            menu.classList.remove(
+                "active"
+            );
+
+            button.textContent =
+                "☰";
+
+            button.setAttribute(
+                "aria-expanded",
+                "false"
+            );
+
+        }
+
+    }
+);
+
+
+/* =========================
+   CLOSE MENU AFTER LINK
+========================= */
+
+document.querySelectorAll(
+    "#navMenu a"
+).forEach(function(link) {
+
+    link.addEventListener(
+        "click",
+        function() {
+
+            const menu =
+                document.getElementById(
+                    "navMenu"
+                );
+
+            const button =
+                document.getElementById(
+                    "menuButton"
+                );
+
+
+            if (menu) {
+
+                menu.classList.remove(
+                    "active"
+                );
+
+            }
+
+
+            if (button) {
+
+                button.textContent =
+                    "☰";
+
+                button.setAttribute(
+                    "aria-expanded",
+                    "false"
+                );
+
+            }
+
+        }
+    );
+
+});
 
 
 /* =========================
@@ -1952,19 +2420,29 @@ function trackShipment(event) {
 
     event.preventDefault();
 
+
+    const input =
+        document.getElementById(
+            "trackingNumber"
+        );
+
+
+    if (!input) {
+        return;
+    }
+
+
     const number =
-        document
-            .getElementById(
-                "trackingNumber"
-            )
-            .value
-            .trim();
+        input.value.trim();
+
 
     if (number) {
 
         window.location.href =
             "track.html?tracking=" +
-            encodeURIComponent(number);
+            encodeURIComponent(
+                number
+            );
 
     }
 
