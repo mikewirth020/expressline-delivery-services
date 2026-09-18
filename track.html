@@ -1,381 +1,1237 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Track Shipment | ExpressLine Delivery Services</title>
+<title>Track Your Shipment | ExpressLine</title>
 
-    <meta
-        name="description"
-        content="Track your ExpressLine Delivery Services shipment."
-    >
+<style>
 
-    <link rel="stylesheet" href="style.css">
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f5f7fa;
+    color: #18202a;
+    line-height: 1.6;
+}
+
+/* =========================
+   HEADER
+========================= */
+
+header {
+    background: #ffffff;
+    border-bottom: 1px solid #e5e7eb;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.navbar {
+    max-width: 1200px;
+    margin: auto;
+    min-height: 76px;
+    padding: 0 24px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 25px;
+}
+
+.logo {
+    text-decoration: none;
+    font-size: 24px;
+    font-weight: 800;
+    color: #111827;
+    white-space: nowrap;
+}
+
+.logo span {
+    color: #e30613;
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #374151;
+    font-size: 14px;
+    font-weight: 600;
+    padding: 10px 13px;
+    border-radius: 7px;
+    transition: 0.2s;
+}
+
+.nav-links a:hover {
+    background: #f3f4f6;
+    color: #e30613;
+}
+
+.nav-links .active {
+    color: #e30613;
+}
+
+.ship-button {
+    background: #e30613 !important;
+    color: #ffffff !important;
+    padding: 11px 17px !important;
+}
+
+.ship-button:hover {
+    background: #c9000b !important;
+}
+
+.menu-button {
+    display: none;
+    border: none;
+    background: transparent;
+    font-size: 27px;
+    cursor: pointer;
+}
+
+/* =========================
+   HERO
+========================= */
+
+.hero {
+    background:
+        linear-gradient(135deg, #111827 0%, #1f2937 55%, #111827 100%);
+    color: white;
+    padding: 75px 24px 90px;
+}
+
+.hero-content {
+    max-width: 900px;
+    margin: auto;
+    text-align: center;
+}
+
+.eyebrow {
+    color: #fca5a5;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 12px;
+    font-weight: 700;
+    margin-bottom: 18px;
+}
+
+.hero h1 {
+    font-size: clamp(36px, 6vw, 58px);
+    line-height: 1.1;
+    margin-bottom: 22px;
+    font-weight: 800;
+}
+
+.hero h1 span {
+    color: #e30613;
+}
+
+.hero-description {
+    max-width: 680px;
+    margin: 0 auto;
+    color: #d1d5db;
+    font-size: 17px;
+}
+
+/* =========================
+   TRACKING CARD
+========================= */
+
+.tracking-wrapper {
+    max-width: 900px;
+    margin: -48px auto 0;
+    padding: 0 20px;
+    position: relative;
+    z-index: 5;
+}
+
+.tracking-card {
+    background: white;
+    border-radius: 16px;
+    padding: 34px;
+    box-shadow: 0 15px 45px rgba(0,0,0,0.12);
+    border: 1px solid #e5e7eb;
+}
+
+.tracking-card h2 {
+    font-size: 23px;
+    margin-bottom: 8px;
+}
+
+.tracking-card-description {
+    color: #6b7280;
+    font-size: 14px;
+    margin-bottom: 24px;
+}
+
+.form-row {
+    display: flex;
+    gap: 12px;
+}
+
+.input-wrapper {
+    flex: 1;
+}
+
+.tracking-input {
+    width: 100%;
+    height: 54px;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    padding: 0 16px;
+    font-size: 15px;
+    outline: none;
+    transition: 0.2s;
+}
+
+.tracking-input:focus {
+    border-color: #e30613;
+    box-shadow: 0 0 0 3px rgba(227,6,19,0.08);
+}
+
+.track-button {
+    height: 54px;
+    border: none;
+    border-radius: 8px;
+    background: #e30613;
+    color: white;
+    padding: 0 27px;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.track-button:hover {
+    background: #c9000b;
+}
+
+.example {
+    margin-top: 12px;
+    font-size: 12px;
+    color: #9ca3af;
+}
+
+/* =========================
+   RESULT
+========================= */
+
+.result {
+    display: none;
+    margin-top: 25px;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.result.show {
+    display: block;
+}
+
+.result.error {
+    background: #fff1f2;
+    border: 1px solid #fecdd3;
+    color: #9f1239;
+    padding: 18px;
+}
+
+.result.success {
+    background: #f0fdf4;
+    border: 1px solid #bbf7d0;
+}
+
+.result-header {
+    padding: 20px;
+    background: #f8fafc;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.result-header h3 {
+    font-size: 17px;
+    margin-bottom: 5px;
+}
+
+.result-header p {
+    color: #6b7280;
+    font-size: 13px;
+}
+
+.shipment-info {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: #e5e7eb;
+}
+
+.info-box {
+    background: white;
+    padding: 18px;
+}
+
+.info-label {
+    display: block;
+    color: #6b7280;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 6px;
+}
+
+.info-value {
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.status-badge {
+    display: inline-block;
+    padding: 5px 10px;
+    background: #eff6ff;
+    color: #2563eb;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 700;
+}
+
+/* =========================
+   TIMELINE
+========================= */
+
+.timeline {
+    background: white;
+    padding: 25px;
+}
+
+.timeline h3 {
+    margin-bottom: 20px;
+    font-size: 16px;
+}
+
+.timeline-item {
+    position: relative;
+    padding-left: 30px;
+    padding-bottom: 22px;
+    border-left: 2px solid #e5e7eb;
+}
+
+.timeline-item:last-child {
+    border-left: 2px solid transparent;
+    padding-bottom: 0;
+}
+
+.timeline-dot {
+    position: absolute;
+    left: -7px;
+    top: 0;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #e30613;
+    border: 3px solid white;
+    box-shadow: 0 0 0 1px #e30613;
+}
+
+.timeline-item strong {
+    font-size: 13px;
+}
+
+.timeline-item p {
+    color: #6b7280;
+    font-size: 12px;
+    margin-top: 3px;
+}
+
+.timeline-item time {
+    color: #9ca3af;
+    font-size: 11px;
+}
+
+/* =========================
+   INFORMATION SECTIONS
+========================= */
+
+.main-content {
+    max-width: 1100px;
+    margin: 70px auto;
+    padding: 0 24px;
+}
+
+.section-heading {
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto 40px;
+}
+
+.section-heading h2 {
+    font-size: 30px;
+    margin-bottom: 12px;
+}
+
+.section-heading p {
+    color: #6b7280;
+    font-size: 15px;
+}
+
+.features {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.feature {
+    background: white;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    padding: 28px;
+}
+
+.feature-icon {
+    width: 45px;
+    height: 45px;
+    border-radius: 10px;
+    background: #fff1f2;
+    color: #e30613;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 21px;
+    margin-bottom: 18px;
+}
+
+.feature h3 {
+    font-size: 17px;
+    margin-bottom: 9px;
+}
+
+.feature p {
+    color: #6b7280;
+    font-size: 13px;
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+footer {
+    background: #111827;
+    color: #d1d5db;
+    margin-top: 70px;
+    padding: 45px 24px 25px;
+}
+
+.footer-inner {
+    max-width: 1100px;
+    margin: auto;
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 35px;
+    padding-bottom: 35px;
+}
+
+.footer-brand {
+    color: white;
+    font-size: 22px;
+    font-weight: 800;
+    margin-bottom: 12px;
+}
+
+.footer-brand span {
+    color: #e30613;
+}
+
+.footer-description {
+    max-width: 320px;
+    color: #9ca3af;
+    font-size: 13px;
+}
+
+footer h4 {
+    color: white;
+    margin-bottom: 14px;
+    font-size: 13px;
+}
+
+footer a {
+    display: block;
+    text-decoration: none;
+    color: #9ca3af;
+    font-size: 12px;
+    margin-bottom: 9px;
+}
+
+footer a:hover {
+    color: white;
+}
+
+.copyright {
+    border-top: 1px solid #374151;
+    padding-top: 20px;
+    color: #6b7280;
+    font-size: 11px;
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 850px) {
+
+    .nav-links {
+        display: none;
+        position: absolute;
+        top: 76px;
+        left: 0;
+        right: 0;
+        background: white;
+        border-bottom: 1px solid #e5e7eb;
+        padding: 12px 20px;
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .nav-links.open {
+        display: flex;
+    }
+
+    .nav-links a {
+        padding: 12px;
+    }
+
+    .menu-button {
+        display: block;
+    }
+
+    .form-row {
+        flex-direction: column;
+    }
+
+    .track-button {
+        width: 100%;
+    }
+
+    .shipment-info {
+        grid-template-columns: 1fr;
+    }
+
+    .features {
+        grid-template-columns: 1fr;
+    }
+
+    .footer-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (max-width: 500px) {
+
+    .hero {
+        padding: 55px 20px 75px;
+    }
+
+    .hero-description {
+        font-size: 15px;
+    }
+
+    .tracking-card {
+        padding: 24px 18px;
+    }
+
+    .tracking-wrapper {
+        padding: 0 14px;
+    }
+
+    .main-content {
+        margin-top: 50px;
+    }
+
+    .footer-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+</style>
 </head>
 
 <body>
 
-    <!-- HEADER -->
-    <header class="site-header">
+<!-- HEADER -->
 
-        <div class="container nav-container">
+<header>
 
-            <a href="index.html" class="logo">
-                <span class="logo-mark">EL</span>
-                <span>
-                    <strong>ExpressLine</strong>
-                    <small>Delivery Services</small>
-                </span>
+    <nav class="navbar">
+
+        <a href="Index.html" class="logo">
+            Express<span>Line</span>
+        </a>
+
+        <button class="menu-button" onclick="toggleMenu()">
+            ☰
+        </button>
+
+        <div class="nav-links" id="navLinks">
+
+            <a href="Index.html">Home</a>
+
+            <a href="Services.html">Services</a>
+
+            <a href="Track.html" class="active">Track</a>
+
+            <a href="Request.html" class="ship-button">
+                Ship Now
             </a>
 
-            <button
-                class="menu-toggle"
-                type="button"
-                aria-label="Open navigation menu"
-            >
-                ☰
-            </button>
+            <a href="About.html">About</a>
 
-            <nav class="nav-links">
+            <a href="Customer Support.html">
+                Support
+            </a>
 
-                <a href="index.html">Home</a>
+            <a href="Contact.html">
+                Contact
+            </a>
 
-                <a href="track.html" class="active">
-                    Track Shipment
-                </a>
-
-                <a href="services.html">
-                    Services
-                </a>
-
-                <a href="about.html">
-                    About Us
-                </a>
-
-                <a href="contact.html">
-                    Contact Us
-                </a>
-
-                <a href="request.html">
-                    Request Shipment
-                </a>
-
-                <a href="login.html" class="nav-login">
-                    Customer Login
-                </a>
-
-            </nav>
+            <a href="Login.html">
+                Login
+            </a>
 
         </div>
 
-    </header>
+    </nav>
+
+</header>
 
 
-    <!-- PAGE HERO -->
-    <section class="page-hero">
+<!-- HERO -->
 
-        <div class="container">
+<section class="hero">
 
-            <span class="eyebrow">
-                SHIPMENT TRACKING
-            </span>
+    <div class="hero-content">
 
-            <h1>
-                Track Your Shipment
-            </h1>
+        <div class="eyebrow">
+            Shipment Tracking
+        </div>
+
+        <h1>
+            Track your <span>shipment</span>
+        </h1>
+
+        <p class="hero-description">
+            Enter your tracking number to view the latest available shipment
+            information, delivery status, and tracking history.
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- TRACKING CARD -->
+
+<div class="tracking-wrapper">
+
+    <div class="tracking-card">
+
+        <h2>
+            Track your shipment
+        </h2>
+
+        <p class="tracking-card-description">
+            Enter your tracking number below to check your shipment status
+            and tracking history.
+        </p>
+
+        <form id="trackingForm">
+
+            <div class="form-row">
+
+                <div class="input-wrapper">
+
+                    <input
+                        type="text"
+                        id="trackingNumber"
+                        class="tracking-input"
+                        placeholder="Enter tracking number"
+                        autocomplete="off"
+                    >
+
+                </div>
+
+                <button
+                    type="submit"
+                    class="track-button"
+                >
+                    Track Shipment
+                </button>
+
+            </div>
+
+        </form>
+
+        <p class="example">
+            Example tracking number: EXP-10284
+        </p>
+
+
+        <!-- RESULT -->
+
+        <div id="result" class="result"></div>
+
+    </div>
+
+</div>
+
+
+<!-- INFORMATION -->
+
+<section class="main-content">
+
+    <div class="section-heading">
+
+        <h2>
+            Shipment tracking made simple
+        </h2>
+
+        <p>
+            Use your ExpressLine tracking number to quickly check the
+            current status of your shipment.
+        </p>
+
+    </div>
+
+
+    <div class="features">
+
+        <div class="feature">
+
+            <div class="feature-icon">
+                🔎
+            </div>
+
+            <h3>
+                Real-time visibility
+            </h3>
 
             <p>
-                Enter your tracking number to view the latest
-                available shipment information.
+                Check the latest available information about your shipment
+                from one convenient tracking page.
             </p>
 
         </div>
 
-    </section>
 
+        <div class="feature">
 
-    <!-- TRACKING SECTION -->
-    <main>
-
-        <section class="tracking-section">
-
-            <div class="container">
-
-                <div class="tracking-card">
-
-                    <div class="tracking-icon">
-                        📦
-                    </div>
-
-                    <h2>
-                        Track Your Shipment
-                    </h2>
-
-                    <p class="tracking-description">
-                        Enter your tracking number below to check
-                        your shipment status and tracking history.
-                    </p>
-
-
-                    <form
-                        id="trackingForm"
-                        class="tracking-form"
-                    >
-
-                        <label for="trackingNumber">
-                            Tracking Number
-                        </label>
-
-                        <div class="tracking-input-row">
-
-                            <input
-                                type="text"
-                                id="trackingNumber"
-                                name="trackingNumber"
-                                placeholder="Enter tracking number"
-                                autocomplete="off"
-                                required
-                            >
-
-                            <button
-                                type="submit"
-                                class="btn btn-primary"
-                            >
-                                Track Shipment
-                            </button>
-
-                        </div>
-
-                        <div
-                            id="trackingMessage"
-                            class="tracking-message"
-                            role="alert"
-                            aria-live="polite"
-                        ></div>
-
-                    </form>
-
-                </div>
-
-
-                <!-- TRACKING RESULT -->
-
-                <div
-                    id="trackingResult"
-                    class="tracking-result"
-                    style="display: none;"
-                >
-
-                    <div class="tracking-result-header">
-
-                        <div>
-                            <span class="result-label">
-                                Tracking Number
-                            </span>
-
-                            <h2 id="resultTrackingNumber">
-                            </h2>
-                        </div>
-
-                        <span
-                            id="resultStatus"
-                            class="status-badge"
-                        >
-                        </span>
-
-                    </div>
-
-
-                    <!-- SHIPMENT INFORMATION -->
-
-                    <div class="shipment-info-grid">
-
-                        <div class="info-box">
-                            <span>Origin</span>
-                            <strong id="resultOrigin"></strong>
-                        </div>
-
-                        <div class="info-box">
-                            <span>Destination</span>
-                            <strong id="resultDestination"></strong>
-                        </div>
-
-                        <div class="info-box">
-                            <span>Estimated Delivery</span>
-                            <strong id="resultDelivery"></strong>
-                        </div>
-
-                        <div class="info-box">
-                            <span>Shipping Method</span>
-                            <strong id="resultMethod"></strong>
-                        </div>
-
-                        <div class="info-box">
-                            <span>Package Description</span>
-                            <strong id="resultDescription"></strong>
-                        </div>
-
-                        <div class="info-box">
-                            <span>Weight</span>
-                            <strong id="resultWeight"></strong>
-                        </div>
-
-                        <div class="info-box">
-                            <span>Quantity</span>
-                            <strong id="resultQuantity"></strong>
-                        </div>
-
-                        <div class="info-box">
-                            <span>Progress</span>
-                            <strong id="resultProgress"></strong>
-                        </div>
-
-                    </div>
-
-
-                    <!-- PROGRESS -->
-
-                    <div class="shipment-progress">
-
-                        <div class="section-heading">
-
-                            <span class="eyebrow">
-                                SHIPMENT PROGRESS
-                            </span>
-
-                            <h2>
-                                Shipment Progress
-                            </h2>
-
-                        </div>
-
-                        <div class="progress-bar">
-
-                            <div
-                                id="progressFill"
-                                class="progress-fill"
-                                style="width: 0%;"
-                            ></div>
-
-                        </div>
-
-                    </div>
-
-
-                    <!-- TIMELINE -->
-
-                    <div class="tracking-timeline">
-
-                        <div class="section-heading">
-
-                            <span class="eyebrow">
-                                TRACKING HISTORY
-                            </span>
-
-                            <h2>
-                                Shipment Timeline
-                            </h2>
-
-                        </div>
-
-                        <div id="timelineContainer">
-                        </div>
-
-                    </div>
-
-                </div>
-
+            <div class="feature-icon">
+                📦
             </div>
 
-        </section>
+            <h3>
+                Shipment status
+            </h3>
 
-    </main>
+            <p>
+                See whether your shipment is pending, in transit,
+                out for delivery, or delivered.
+            </p>
+
+        </div>
 
 
-    <!-- FOOTER -->
+        <div class="feature">
 
-    <footer class="site-footer">
+            <div class="feature-icon">
+                🚚
+            </div>
 
-        <div class="container footer-content">
+            <h3>
+                Delivery updates
+            </h3>
+
+            <p>
+                Review the available shipment events and follow your
+                delivery progress.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- FOOTER -->
+
+<footer>
+
+    <div class="footer-inner">
+
+        <div class="footer-grid">
 
             <div>
 
-                <div class="logo footer-logo">
-
-                    <span class="logo-mark">
-                        EL
-                    </span>
-
-                    <span>
-                        <strong>ExpressLine</strong>
-                        <small>Delivery Services</small>
-                    </span>
-
+                <div class="footer-brand">
+                    Express<span>Line</span>
                 </div>
 
-                <p>
-                    Reliable courier and logistics solutions
-                    designed to keep your shipments moving
-                    with confidence.
+                <p class="footer-description">
+                    Reliable logistics and delivery services designed
+                    to keep your shipments moving.
                 </p>
 
             </div>
 
 
-            <div class="footer-links">
+            <div>
 
-                <h3>
-                    Quick Links
-                </h3>
+                <h4>
+                    Company
+                </h4>
 
-                <a href="index.html">
-                    Home
-                </a>
+                <a href="About.html">About Us</a>
 
-                <a href="track.html">
-                    Track Shipment
-                </a>
+                <a href="Services.html">Services</a>
 
-                <a href="services.html">
-                    Services
-                </a>
+                <a href="Contact.html">Contact</a>
 
-                <a href="contact.html">
-                    Contact Us
+            </div>
+
+
+            <div>
+
+                <h4>
+                    Shipping
+                </h4>
+
+                <a href="Track.html">Track Shipment</a>
+
+                <a href="Request.html">Ship Now</a>
+
+                <a href="Shipment History.html">
+                    Shipment History
                 </a>
 
             </div>
 
 
-            <div class="footer-contact">
+            <div>
 
-                <h3>
-                    Contact
-                </h3>
+                <h4>
+                    Support
+                </h4>
 
-                <p>
-                    Company information coming soon.
-                </p>
+                <a href="Customer Support.html">
+                    Customer Support
+                </a>
+
+                <a href="Login.html">
+                    Login
+                </a>
+
+                <a href="Register.html">
+                    Create Account
+                </a>
 
             </div>
 
         </div>
 
 
-        <div class="footer-bottom">
+        <div class="copyright">
+            © 2026 ExpressLine Delivery Services. All rights reserved.
+        </div>
+
+    </div>
+
+</footer>
+
+
+<script>
+
+/* =========================
+   MOBILE MENU
+========================= */
+
+function toggleMenu() {
+
+    document
+        .getElementById("navLinks")
+        .classList
+        .toggle("open");
+
+}
+
+
+/* =========================
+   TRACKING SYSTEM
+========================= */
+
+const trackingForm = document.getElementById("trackingForm");
+
+const trackingInput = document.getElementById("trackingNumber");
+
+const result = document.getElementById("result");
+
+
+/*
+   DEMO SHIPMENTS
+
+   These are sample tracking records for the
+   front-end demonstration.
+
+   You can later connect this to your
+   admin shipment system/database.
+*/
+
+const shipments = {
+
+    "EXP-10284": {
+
+        customer: "Michael Johnson",
+
+        origin: "Lagos",
+
+        destination: "Abuja",
+
+        status: "In Transit",
+
+        date: "September 18, 2026",
+
+        currentLocation: "Kaduna",
+
+        events: [
+
+            {
+                title: "Shipment picked up",
+                location: "Lagos",
+                time: "September 16, 2026"
+            },
+
+            {
+                title: "Shipment processed",
+                location: "Lagos Distribution Center",
+                time: "September 16, 2026"
+            },
+
+            {
+                title: "Shipment in transit",
+                location: "Kaduna",
+                time: "September 18, 2026"
+            }
+
+        ]
+
+    },
+
+
+    "EXP-10283": {
+
+        customer: "Sarah Williams",
+
+        origin: "Lagos",
+
+        destination: "Abuja",
+
+        status: "Delivered",
+
+        date: "September 17, 2026",
+
+        currentLocation: "Abuja",
+
+        events: [
+
+            {
+                title: "Shipment picked up",
+                location: "Lagos",
+                time: "September 15, 2026"
+            },
+
+            {
+                title: "Shipment in transit",
+                location: "Kaduna",
+                time: "September 16, 2026"
+            },
+
+            {
+                title: "Shipment delivered",
+                location: "Abuja",
+                time: "September 17, 2026"
+            }
+
+        ]
+
+    },
+
+
+    "EXP-10282": {
+
+        customer: "Daniel Smith",
+
+        origin: "Port Harcourt",
+
+        destination: "Lagos",
+
+        status: "Pending",
+
+        date: "September 18, 2026",
+
+        currentLocation: "Port Harcourt",
+
+        events: [
+
+            {
+                title: "Shipment request received",
+                location: "Port Harcourt",
+                time: "September 18, 2026"
+            }
+
+        ]
+
+    }
+
+};
+
+
+/* =========================
+   TRACK BUTTON
+========================= */
+
+trackingForm.addEventListener("submit", function(event) {
+
+    event.preventDefault();
+
+    const trackingNumber =
+        trackingInput.value.trim().toUpperCase();
+
+
+    /* EMPTY */
+
+    if (!trackingNumber) {
+
+        result.className = "result show error";
+
+        result.innerHTML = `
+            <strong>Tracking number required</strong>
+            <p style="margin-top:5px;">
+                Please enter a shipment tracking number before
+                clicking Track Shipment.
+            </p>
+        `;
+
+        return;
+    }
+
+
+    /* INVALID FORMAT */
+
+    if (!trackingNumber.startsWith("EXP-")) {
+
+        result.className = "result show error";
+
+        result.innerHTML = `
+            <strong>Invalid tracking number</strong>
+            <p style="margin-top:5px;">
+                Please check the tracking number and try again.
+                ExpressLine tracking numbers normally begin with
+                <strong>EXP-</strong>.
+            </p>
+        `;
+
+        return;
+    }
+
+
+    /* NOT FOUND */
+
+    const shipment = shipments[trackingNumber];
+
+    if (!shipment) {
+
+        result.className = "result show error";
+
+        result.innerHTML = `
+            <strong>Tracking not found</strong>
+            <p style="margin-top:5px;">
+                We could not find a shipment matching
+                <strong>${trackingNumber}</strong>.
+                Please check the number and try again.
+            </p>
+        `;
+
+        return;
+    }
+
+
+    /* FOUND */
+
+    let timelineHTML = "";
+
+    shipment.events.forEach(function(event) {
+
+        timelineHTML += `
+
+            <div class="timeline-item">
+
+                <div class="timeline-dot"></div>
+
+                <strong>
+                    ${event.title}
+                </strong>
+
+                <p>
+                    ${event.location}
+                </p>
+
+                <time>
+                    ${event.time}
+                </time>
+
+            </div>
+
+        `;
+
+    });
+
+
+    result.className = "result show success";
+
+    result.innerHTML = `
+
+        <div class="result-header">
+
+            <h3>
+                Shipment found
+            </h3>
 
             <p>
-                © 2026 ExpressLine Delivery Services.
-                All rights reserved.
+                Tracking number: ${trackingNumber}
             </p>
 
         </div>
 
-    </footer>
+
+        <div class="shipment-info">
+
+            <div class="info-box">
+
+                <span class="info-label">
+                    Status
+                </span>
+
+                <span class="status-badge">
+                    ${shipment.status}
+                </span>
+
+            </div>
 
 
-    <script src="script.js"></script>
+            <div class="info-box">
+
+                <span class="info-label">
+                    Current Location
+                </span>
+
+                <span class="info-value">
+                    ${shipment.currentLocation}
+                </span>
+
+            </div>
+
+
+            <div class="info-box">
+
+                <span class="info-label">
+                    Destination
+                </span>
+
+                <span class="info-value">
+                    ${shipment.destination}
+                </span>
+
+            </div>
+
+
+            <div class="info-box">
+
+                <span class="info-label">
+                    Customer
+                </span>
+
+                <span class="info-value">
+                    ${shipment.customer}
+                </span>
+
+            </div>
+
+
+            <div class="info-box">
+
+                <span class="info-label">
+                    Origin
+                </span>
+
+                <span class="info-value">
+                    ${shipment.origin}
+                </span>
+
+            </div>
+
+
+            <div class="info-box">
+
+                <span class="info-label">
+                    Shipment Date
+                </span>
+
+                <span class="info-value">
+                    ${shipment.date}
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <div class="timeline">
+
+            <h3>
+                Tracking History
+            </h3>
+
+            ${timelineHTML}
+
+        </div>
+
+    `;
+
+
+    /* Scroll result into view */
+
+    setTimeout(function() {
+
+        result.scrollIntoView({
+            behavior: "smooth",
+            block: "center"
+        });
+
+    }, 100);
+
+});
+
+</script>
 
 </body>
 </html>
