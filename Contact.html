@@ -1,1910 +1,1021 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
-<meta charset="UTF-8">
-
-<meta
-  name="viewport"
-  content="width=device-width, initial-scale=1.0"
->
-
-<title id="pageTitle">
-  Contact Us | ExpressLine Delivery Services
-</title>
-
-<meta
-  id="pageDescription"
-  name="description"
-  content="Contact ExpressLine Delivery Services for shipment, delivery and logistics support."
->
-
-<meta
-  id="pageKeywords"
-  name="keywords"
-  content="ExpressLine, contact, logistics, delivery, courier, shipping"
->
-
-<link rel="stylesheet" href="style.css">
-
-<style>
-
-:root {
-  --primary-color: #F97316;
-  --secondary-color: #111111;
-  --accent-color: #C2410C;
-  --text-color: #111111;
-  --font-family: Inter, sans-serif;
-  --font-size: 16px;
-}
-
-* {
-  box-sizing: border-box;
-}
-
-body {
-  margin: 0;
-  font-family: var(--font-family);
-  font-size: var(--font-size);
-  color: var(--text-color);
-  background: #ffffff;
-  line-height: 1.6;
-}
-
-/* =========================
-   HEADER
-========================= */
-
-.site-header {
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-  width: 100%;
-  background: #ffffff;
-  border-bottom: 1px solid #e5e7eb;
-  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
-}
-
-.contact-navbar {
-  width: 100%;
-}
-
-.contact-navbar-inner {
-  width: min(1200px, 92%);
-  min-height: 76px;
-  margin: 0 auto;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 25px;
-}
-
-.contact-logo {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  text-decoration: none;
-  color: #111111;
-  font-weight: 800;
-  font-size: 19px;
-  white-space: nowrap;
-}
-
-.logo-mark {
-  width: 42px;
-  height: 42px;
-  border-radius: 10px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  background: #F97316;
-  color: #ffffff;
-  font-weight: 900;
-  font-size: 15px;
-}
-
-.contact-nav-links {
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  gap: 5px;
-}
-
-.contact-nav-links a {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 42px;
-  padding: 9px 12px;
-  border-radius: 8px;
-  color: #111111;
-  text-decoration: none;
-  font-size: 14px;
-  font-weight: 650;
-  white-space: nowrap;
-  transition: 0.2s ease;
-}
-
-.contact-nav-links a:hover {
-  background: #fff7ed;
-  color: #C2410C;
-}
-
-.contact-nav-links .nav-button {
-  background: #111111;
-  color: #ffffff;
-  margin-left: 5px;
-}
-
-.contact-nav-links .nav-button:hover {
-  background: #F97316;
-  color: #ffffff;
-}
-
-.contact-menu-toggle {
-  display: none;
-  border: 0;
-  background: #111111;
-  color: #ffffff;
-  width: 44px;
-  height: 44px;
-  border-radius: 8px;
-  font-size: 24px;
-  cursor: pointer;
-}
-
-/* =========================
-   HERO
-========================= */
-
-.contact-hero {
-  min-height: 390px;
-  display: flex;
-  align-items: center;
-  position: relative;
-  overflow: hidden;
-  background:
-    linear-gradient(
-      110deg,
-      rgba(17,17,17,0.96),
-      rgba(17,17,17,0.82),
-      rgba(194,65,12,0.72)
-    );
-  color: #ffffff;
-}
-
-.contact-hero::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background:
-    radial-gradient(
-      circle at 85% 30%,
-      rgba(249,115,22,0.35),
-      transparent 35%
-    );
-  pointer-events: none;
-}
-
-.contact-hero-content {
-  position: relative;
-  z-index: 2;
-  width: min(1200px, 92%);
-  margin: 0 auto;
-  padding: 70px 0;
-}
-
-.hero-badge {
-  display: inline-flex;
-  align-items: center;
-  padding: 7px 13px;
-  border-radius: 999px;
-  background: rgba(249,115,22,0.18);
-  border: 1px solid rgba(249,115,22,0.55);
-  color: #fed7aa;
-  font-size: 12px;
-  font-weight: 800;
-  letter-spacing: 1px;
-  margin-bottom: 18px;
-}
-
-.contact-hero h1 {
-  margin: 0 0 18px;
-  max-width: 760px;
-  color: #ffffff;
-  font-size: clamp(38px, 6vw, 62px);
-  line-height: 1.08;
-  font-weight: 850;
-  letter-spacing: -1.5px;
-}
-
-.contact-hero p {
-  max-width: 720px;
-  margin: 0;
-  color: #f3f4f6;
-  font-size: 18px;
-  line-height: 1.75;
-}
-
-/* =========================
-   MAIN
-========================= */
-
-.contact-main {
-  background: #f8fafc;
-  padding: 75px 0;
-}
-
-.contact-container {
-  width: min(1200px, 92%);
-  margin: 0 auto;
-}
-
-.section-heading {
-  max-width: 760px;
-  margin: 0 auto 45px;
-  text-align: center;
-}
-
-.section-label {
-  margin: 0 0 8px;
-  color: #C2410C;
-  font-size: 13px;
-  font-weight: 800;
-  letter-spacing: 1.5px;
-}
-
-.section-heading h2 {
-  margin: 0 0 14px;
-  color: #111111;
-  font-size: clamp(30px, 4vw, 44px);
-  line-height: 1.15;
-}
-
-.section-heading p {
-  margin: 0;
-  color: #4b5563;
-  font-size: 16px;
-}
-
-/* =========================
-   CONTACT GRID
-========================= */
-
-.contact-grid {
-  display: grid;
-  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
-  gap: 30px;
-  align-items: start;
-}
-
-.contact-card {
-  background: #ffffff;
-  border: 1px solid #e5e7eb;
-  border-radius: 18px;
-  padding: 32px;
-  box-shadow: 0 10px 30px rgba(15,23,42,0.07);
-}
-
-.contact-card h2 {
-  margin: 0 0 25px;
-  color: #111111;
-  font-size: 25px;
-  line-height: 1.25;
-}
-
-.contact-info {
-  padding: 0 0 19px;
-  margin: 0 0 19px;
-  border-bottom: 1px solid #edf0f3;
-}
-
-.contact-info:last-of-type {
-  margin-bottom: 0;
-}
-
-.contact-info strong {
-  display: block;
-  margin-bottom: 5px;
-  color: #111111;
-  font-size: 14px;
-  font-weight: 800;
-}
-
-.contact-info span {
-  display: block;
-  color: #4b5563;
-  font-size: 15px;
-  line-height: 1.6;
-  overflow-wrap: anywhere;
-}
-
-.contact-image {
-  width: 100%;
-  height: 250px;
-  object-fit: cover;
-  border-radius: 14px;
-  margin-top: 25px;
-  display: none;
-}
-
-/* =========================
-   FORM
-========================= */
-
-.contact-form {
-  display: grid;
-  gap: 18px;
-}
-
-.form-group {
-  width: 100%;
-}
-
-.contact-form label {
-  display: block;
-  margin-bottom: 7px;
-  color: #111111;
-  font-size: 14px;
-  font-weight: 750;
-}
-
-.contact-form input,
-.contact-form select,
-.contact-form textarea {
-  display: block;
-  width: 100%;
-  max-width: 100%;
-  border: 1px solid #d1d5db;
-  border-radius: 9px;
-  background: #ffffff;
-  color: #111111;
-  padding: 13px 14px;
-  font-family: inherit;
-  font-size: 15px;
-  outline: none;
-  transition: 0.2s ease;
-}
-
-.contact-form input,
-.contact-form select {
-  min-height: 48px;
-}
-
-.contact-form textarea {
-  min-height: 155px;
-  resize: vertical;
-}
-
-.contact-form input::placeholder,
-.contact-form textarea::placeholder {
-  color: #9ca3af;
-}
-
-.contact-form input:focus,
-.contact-form select:focus,
-.contact-form textarea:focus {
-  border-color: #F97316;
-  box-shadow: 0 0 0 3px rgba(249,115,22,0.12);
-}
-
-.contact-submit {
-  width: 100%;
-  min-height: 50px;
-  border: 0;
-  border-radius: 9px;
-  background: #F97316;
-  color: #ffffff;
-  font-family: inherit;
-  font-size: 15px;
-  font-weight: 800;
-  cursor: pointer;
-  transition: 0.2s ease;
-}
-
-.contact-submit:hover {
-  background: #C2410C;
-}
-
-.contact-message {
-  display: none;
-  padding: 13px 15px;
-  border-radius: 9px;
-  background: #ecfdf5;
-  border: 1px solid #a7f3d0;
-  color: #065f46;
-  font-size: 14px;
-  font-weight: 600;
-}
-
-/* =========================
-   SUPPORT SECTION
-========================= */
-
-.support-panel {
-  margin-top: 30px;
-  padding: 30px;
-  border-radius: 18px;
-  background: #111111;
-  color: #ffffff;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 25px;
-}
-
-.support-panel h3 {
-  margin: 0 0 6px;
-  color: #ffffff;
-  font-size: 23px;
-}
-
-.support-panel p {
-  margin: 0;
-  color: #d1d5db;
-}
-
-.support-button {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 48px;
-  padding: 12px 20px;
-  border-radius: 9px;
-  background: #F97316;
-  color: #ffffff;
-  text-decoration: none;
-  font-weight: 800;
-  white-space: nowrap;
-  transition: 0.2s ease;
-}
-
-.support-button:hover {
-  background: #C2410C;
-}
-
-/* =========================
-   FOOTER
-========================= */
-
-.site-footer {
-  background: #111111;
-  color: #ffffff;
-  padding: 55px 0 0;
-}
-
-.footer-container {
-  width: min(1200px, 92%);
-  margin: 0 auto;
-}
-
-.footer-grid {
-  display: grid;
-  grid-template-columns: 1.4fr 1fr 1fr;
-  gap: 45px;
-  padding-bottom: 40px;
-}
-
-.footer-brand {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  margin-bottom: 15px;
-}
-
-.footer-brand .logo-mark {
-  background: #F97316;
-}
-
-.footer-brand-name {
-  color: #ffffff;
-  font-size: 19px;
-  font-weight: 800;
-}
-
-.footer-description {
-  max-width: 430px;
-  margin: 0;
-  color: #cbd5e1;
-  line-height: 1.7;
-}
-
-.site-footer h3 {
-  margin: 0 0 15px;
-  color: #ffffff;
-  font-size: 17px;
-}
-
-.site-footer p {
-  color: #cbd5e1;
-}
-
-.footer-links {
-  display: grid;
-  gap: 9px;
-}
-
-.footer-links a {
-  color: #cbd5e1;
-  text-decoration: none;
-  font-size: 14px;
-}
-
-.footer-links a:hover {
-  color: #F97316;
-}
-
-.footer-contact p {
-  margin: 0 0 9px;
-  overflow-wrap: anywhere;
-}
-
-.footer-bottom {
-  border-top: 1px solid #292929;
-  padding: 20px 0;
-}
-
-.footer-bottom p {
-  margin: 0;
-  color: #9ca3af;
-  font-size: 13px;
-}
-
-/* =========================
-   FLOATING SMART SUPPORT
-========================= */
-
-.smart-support {
-  position: fixed;
-  right: 20px;
-  bottom: 20px;
-  z-index: 900;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 48px;
-  padding: 12px 18px;
-  border-radius: 999px;
-  background: #F97316;
-  color: #ffffff;
-  text-decoration: none;
-  font-size: 14px;
-  font-weight: 800;
-  box-shadow: 0 8px 25px rgba(0,0,0,0.18);
-  transition: 0.2s ease;
-}
-
-.smart-support:hover {
-  background: #C2410C;
-  transform: translateY(-2px);
-}
-
-/* =========================
-   MOBILE
-========================= */
-
-@media (max-width: 1050px) {
-
-  .contact-nav-links {
-    gap: 2px;
-  }
-
-  .contact-nav-links a {
-    padding-left: 9px;
-    padding-right: 9px;
-    font-size: 13px;
-  }
-
-}
-
-@media (max-width: 900px) {
-
-  .contact-menu-toggle {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .contact-nav-links {
-    display: none;
-    position: absolute;
-    top: 76px;
-    left: 0;
-    right: 0;
-    width: 100%;
-    padding: 12px 4%;
-    background: #ffffff;
-    border-bottom: 1px solid #e5e7eb;
-    box-shadow: 0 12px 20px rgba(0,0,0,0.08);
-    flex-direction: column;
-    align-items: stretch;
-    gap: 4px;
-  }
-
-  .contact-nav-links.active {
-    display: flex;
-  }
-
-  .contact-nav-links a {
-    width: 100%;
-    justify-content: flex-start;
-    padding: 13px 14px;
-    font-size: 15px;
-  }
-
-  .contact-nav-links .nav-button {
-    margin-left: 0;
-    justify-content: center;
-  }
-
-  .contact-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .footer-grid {
-    grid-template-columns: 1fr 1fr;
-  }
-
-}
-
-@media (max-width: 650px) {
-
-  .contact-navbar-inner {
-    min-height: 70px;
-  }
-
-  .contact-nav-links {
-    top: 70px;
-  }
-
-  .contact-hero {
-    min-height: 350px;
-  }
-
-  .contact-hero-content {
-    padding: 55px 0;
-  }
-
-  .contact-hero h1 {
-    font-size: 40px;
-  }
-
-  .contact-hero p {
-    font-size: 16px;
-  }
-
-  .contact-main {
-    padding: 55px 0;
-  }
-
-  .contact-card {
-    padding: 24px 20px;
-  }
-
-  .support-panel {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .support-button {
-    width: 100%;
-  }
-
-  .footer-grid {
-    grid-template-columns: 1fr;
-    gap: 30px;
-  }
-
-  .smart-support {
-    right: 14px;
-    bottom: 14px;
-    min-height: 45px;
-    padding: 10px 15px;
-  }
-
-}
-
-</style>
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Contact Us | ExpressLine Delivery Services</title>
+
+  <meta
+    name="description"
+    content="Contact ExpressLine Delivery Services for logistics, freight, courier, shipping, and delivery services."
+  >
+
+  <meta name="robots" content="index, follow">
+
+  <link rel="icon" id="siteFavicon" href="data:,">
+  <link rel="stylesheet" href="style.css">
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+  <style>
+    :root {
+      --primary: #F97316;
+      --secondary: #111111;
+      --accent: #C2410C;
+      --text: #111111;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Inter, sans-serif;
+      color: var(--text);
+      background: #ffffff;
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: #ffffff;
+      border-bottom: 1px solid #eeeeee;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    }
+
+    .navbar {
+      max-width: 1200px;
+      min-height: 76px;
+      margin: 0 auto;
+      padding: 12px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      font-weight: 800;
+      color: #111111;
+      min-width: 0;
+    }
+
+    .brand img {
+      width: 58px;
+      height: 58px;
+      object-fit: contain;
+      flex-shrink: 0;
+    }
+
+    .brand-text {
+      font-size: 1.05rem;
+      line-height: 1.2;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.92rem;
+      color: #222222;
+      white-space: nowrap;
+    }
+
+    .nav-links a:hover {
+      color: var(--primary);
+    }
+
+    .nav-button {
+      background: var(--primary) !important;
+      color: #ffffff !important;
+      padding: 10px 15px;
+      border-radius: 7px;
+    }
+
+    .nav-button:hover {
+      background: var(--accent) !important;
+    }
+
+    .menu-toggle {
+      display: none;
+      border: 0;
+      background: #111111;
+      color: #ffffff;
+      border-radius: 7px;
+      padding: 10px 13px;
+      font-size: 20px;
+      cursor: pointer;
+    }
+
+    .page-hero {
+      background:
+        linear-gradient(rgba(17,17,17,0.84), rgba(17,17,17,0.84)),
+        linear-gradient(135deg, #111111, #2a2a2a);
+      color: #ffffff;
+      padding: 80px 20px;
+      text-align: center;
+    }
+
+    .page-hero h1 {
+      margin: 0 0 14px;
+      font-size: clamp(2rem, 5vw, 3.3rem);
+      line-height: 1.1;
+    }
+
+    .page-hero p {
+      max-width: 760px;
+      margin: 0 auto;
+      color: #f1f1f1;
+      font-size: 1.08rem;
+    }
+
+    .contact-section {
+      padding: 60px 20px 80px;
+    }
+
+    .contact-container {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 30px;
+    }
+
+    .contact-card,
+    .form-card {
+      background: #ffffff;
+      border: 1px solid #e5e5e5;
+      border-radius: 14px;
+      padding: 30px;
+      box-shadow: 0 10px 35px rgba(0,0,0,0.07);
+    }
+
+    .contact-card h2,
+    .form-card h2 {
+      margin-top: 0;
+      margin-bottom: 10px;
+      font-size: 1.8rem;
+    }
+
+    .contact-card > p,
+    .form-card > p {
+      color: #555555;
+      margin-top: 0;
+    }
+
+    .contact-item {
+      padding: 17px 0;
+      border-bottom: 1px solid #eeeeee;
+    }
+
+    .contact-item:last-child {
+      border-bottom: 0;
+    }
+
+    .contact-item strong {
+      display: block;
+      margin-bottom: 5px;
+      color: #111111;
+    }
+
+    .contact-item a {
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 600;
+      word-break: break-word;
+    }
+
+    .contact-item a:hover {
+      color: var(--accent);
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+    }
+
+    .form-group.full {
+      grid-column: 1 / -1;
+    }
+
+    label {
+      font-weight: 700;
+    }
+
+    input,
+    textarea {
+      width: 100%;
+      padding: 13px 14px;
+      border: 1px solid #cccccc;
+      border-radius: 8px;
+      font: inherit;
+      color: #111111;
+      background: #ffffff;
+      outline: none;
+    }
+
+    input:focus,
+    textarea:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(249,115,22,0.12);
+    }
+
+    textarea {
+      min-height: 150px;
+      resize: vertical;
+    }
+
+    .submit-button {
+      margin-top: 20px;
+      border: 0;
+      background: var(--primary);
+      color: #ffffff;
+      padding: 14px 24px;
+      border-radius: 8px;
+      font-weight: 800;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+
+    .submit-button:hover {
+      background: var(--accent);
+    }
+
+    .submit-button:disabled {
+      opacity: 0.65;
+      cursor: not-allowed;
+    }
+
+    .message {
+      display: none;
+      margin-top: 18px;
+      padding: 13px 15px;
+      border-radius: 8px;
+      font-weight: 600;
+    }
+
+    .message.success {
+      display: block;
+      background: #ecfdf3;
+      color: #166534;
+      border: 1px solid #bbf7d0;
+    }
+
+    .message.error {
+      display: block;
+      background: #fef2f2;
+      color: #991b1b;
+      border: 1px solid #fecaca;
+    }
+
+    .site-footer {
+      background: #111111;
+      color: #ffffff;
+      padding: 40px 20px 25px;
+    }
+
+    .footer-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .footer-inner p {
+      margin: 7px 0;
+      color: #dddddd;
+    }
+
+    .footer-links {
+      margin: 18px 0;
+      display: flex;
+      justify-content: center;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a {
+      color: #ffffff;
+      text-decoration: none;
+    }
+
+    .footer-links a:hover {
+      color: var(--primary);
+    }
+
+    #smartSupportButton {
+      position: fixed;
+      right: 20px;
+      bottom: 20px;
+      z-index: 2000;
+      display: none;
+      border: 0;
+      background: var(--primary);
+      color: #ffffff;
+      padding: 13px 18px;
+      border-radius: 30px;
+      font-weight: 800;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+      cursor: pointer;
+    }
+
+    #smartSupportButton:hover {
+      background: var(--accent);
+    }
+
+    @media (max-width: 900px) {
+      .contact-container {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 800px) {
+      .menu-toggle {
+        display: block;
+      }
+
+      .nav-links {
+        display: none;
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 76px;
+        background: #ffffff;
+        border-bottom: 1px solid #eeeeee;
+        padding: 18px 20px;
+        box-shadow: 0 8px 18px rgba(0,0,0,0.08);
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+      }
+
+      .nav-links.open {
+        display: flex;
+      }
+
+      .nav-links a {
+        padding: 13px 5px;
+        border-bottom: 1px solid #eeeeee;
+      }
+
+      .nav-links a:last-child {
+        border-bottom: 0;
+      }
+
+      .nav-button {
+        text-align: center;
+        margin-top: 8px;
+      }
+
+      .brand-text {
+        font-size: 0.92rem;
+      }
+
+      .brand img {
+        width: 50px;
+        height: 50px;
+      }
+
+      .form-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .form-group.full {
+        grid-column: auto;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .navbar {
+        padding: 10px 14px;
+      }
+
+      .page-hero {
+        padding: 60px 18px;
+      }
+
+      .contact-section {
+        padding: 40px 14px 60px;
+      }
+
+      .contact-card,
+      .form-card {
+        padding: 22px 17px;
+      }
+
+      .submit-button {
+        width: 100%;
+      }
+
+      #smartSupportButton {
+        right: 14px;
+        bottom: 14px;
+      }
+    }
+  </style>
 </head>
 
 <body>
 
-<!-- =========================
-     HEADER
-========================= -->
-
 <header class="site-header">
+  <nav class="navbar">
 
-  <div class="contact-navbar">
+    <a href="index.html" class="brand">
+      <img id="siteLogo" src="" alt="ExpressLine Delivery Services">
+      <span class="brand-text" id="brandName">
+        ExpressLine Delivery Services
+      </span>
+    </a>
 
-    <div class="contact-navbar-inner">
+    <button
+      type="button"
+      class="menu-toggle"
+      id="menuToggle"
+      aria-label="Open menu"
+      aria-expanded="false"
+    >
+      ☰
+    </button>
 
-      <a
-        href="index.html"
-        class="contact-logo"
-      >
-
-        <span class="logo-mark">
-          EL
-        </span>
-
-        <span id="siteShortName">
-          ExpressLine
-        </span>
-
-      </a>
-
-
-      <button
-        class="contact-menu-toggle"
-        type="button"
-        aria-label="Open navigation menu"
-        aria-expanded="false"
-      >
-        ☰
-      </button>
-
-
-      <nav
-        class="contact-nav-links"
-        id="contactNavLinks"
-      >
-
-        <a
-          id="navHome"
-          href="index.html"
-        >
-          Home
-        </a>
-
-        <a
-          id="navServices"
-          href="services.html"
-        >
-          Services
-        </a>
-
-        <a
-          id="navTrack"
-          href="track.html"
-        >
-          Track Shipment
-        </a>
-
-        <a
-          id="navRequest"
-          href="request.html"
-        >
-          Request a Shipment
-        </a>
-
-        <a
-          id="navAbout"
-          href="about.html"
-        >
-          About Us
-        </a>
-
-        <a
-          id="navSupport"
-          href="Customer Support.html"
-        >
-          Support
-        </a>
-
-        <a
-          id="navContact"
-          href="contact.html"
-        >
-          Contact
-        </a>
-
-        <a
-          id="navLogin"
-          href="login.html"
-          class="nav-button"
-        >
-          Customer Login
-        </a>
-
-      </nav>
-
+    <div class="nav-links" id="navLinks">
+      <a href="index.html">Home</a>
+      <a href="services.html">Services</a>
+      <a href="track.html">Track Shipment</a>
+      <a href="request.html">Request a Shipment</a>
+      <a href="about.html">About Us</a>
+      <a href="Customer Support.html">Support</a>
+      <a href="contact.html">Contact</a>
+      <a href="login.html" class="nav-button">Customer Login</a>
     </div>
 
-  </div>
-
+  </nav>
 </header>
 
-
-<!-- =========================
-     HERO
-========================= -->
-
-<section
-  id="contactHero"
-  class="contact-hero"
->
-
-  <div class="contact-hero-content">
-
-    <span class="hero-badge">
-      CONTACT EXPRESSLINE
-    </span>
-
-    <h1>
-      We're Here to Help
-    </h1>
-
-    <p>
-      Have a question about your shipment, delivery, account,
-      or logistics services? Our team is ready to assist you.
-    </p>
-
-  </div>
-
+<section class="page-hero">
+  <h1>Contact Us</h1>
+  <p>
+    Have a question about a shipment, delivery, freight service, or request?
+    Our team is ready to help.
+  </p>
 </section>
 
-
-<!-- =========================
-     MAIN CONTENT
-========================= -->
-
-<main class="contact-main">
-
+<section class="contact-section">
   <div class="contact-container">
 
-    <div class="section-heading">
-
-      <p class="section-label">
-        GET IN TOUCH
-      </p>
-
-      <h2>
-        Contact ExpressLine
-      </h2>
+    <div class="contact-card">
+      <h2>Get in Touch</h2>
 
       <p>
-        Reach out to our team for help with shipments,
-        deliveries, tracking, accounts and logistics services.
+        Contact ExpressLine Delivery Services for information about our
+        logistics and delivery solutions.
       </p>
 
+      <div class="contact-item">
+        <strong>Company</strong>
+        <span id="contactCompany">
+          ExpressLine Delivery Services
+        </span>
+      </div>
+
+      <div class="contact-item">
+        <strong>Email</strong>
+        <a id="contactEmail" href="mailto:info@expressline.com">
+          info@expressline.com
+        </a>
+      </div>
+
+      <div class="contact-item">
+        <strong>Phone</strong>
+        <a id="contactPhone" href="tel:+2340000000000">
+          +234 000 000 0000
+        </a>
+      </div>
+
+      <div class="contact-item">
+        <strong>Address</strong>
+        <span id="contactAddress">
+          Contact us for our current office location.
+        </span>
+      </div>
     </div>
 
+    <div class="form-card">
+      <h2>Send Us a Message</h2>
 
-    <div class="contact-grid">
+      <p>
+        Complete the form below and our team will get back to you.
+      </p>
 
-      <!-- CONTACT INFORMATION -->
+      <form id="contactForm">
 
-      <section class="contact-card">
-
-        <h2>
-          Contact Information
-        </h2>
-
-
-        <div class="contact-info">
-
-          <strong>
-            Customer Service
-          </strong>
-
-          <span id="contactSupportMessage">
-            Our customer service team is available to help
-            with your questions.
-          </span>
-
-        </div>
-
-
-        <div class="contact-info">
-
-          <strong>
-            Email
-          </strong>
-
-          <span id="contactEmail">
-            support@expressline.com
-          </span>
-
-        </div>
-
-
-        <div class="contact-info">
-
-          <strong>
-            Phone
-          </strong>
-
-          <span id="contactPhone">
-            +1 (800) 555-0199
-          </span>
-
-        </div>
-
-
-        <div class="contact-info">
-
-          <strong>
-            Business Address
-          </strong>
-
-          <span id="contactAddress">
-            Contact us for our business address.
-          </span>
-
-        </div>
-
-
-        <div class="contact-info">
-
-          <strong>
-            Business Hours
-          </strong>
-
-          <span id="contactHours">
-            Monday – Friday: 8:00 AM – 6:00 PM
-          </span>
-
-        </div>
-
-
-        <div class="contact-info">
-
-          <strong>
-            Shipping & Delivery
-          </strong>
-
-          <span>
-            Reliable shipment handling, tracking,
-            and delivery solutions.
-          </span>
-
-        </div>
-
-
-        <img
-          id="contactImage"
-          class="contact-image"
-          src=""
-          alt="ExpressLine Delivery Services"
-        >
-
-      </section>
-
-
-      <!-- MESSAGE FORM -->
-
-      <section class="contact-card">
-
-        <h2>
-          Send Us a Message
-        </h2>
-
-
-        <form
-          class="contact-form"
-          id="contactForm"
-          onsubmit="sendMessage(event)"
-        >
+        <div class="form-grid">
 
           <div class="form-group">
-
-            <label for="contactName">
-              Full Name
-            </label>
-
+            <label for="name">Full Name</label>
             <input
-              id="contactName"
               type="text"
+              id="name"
+              required
               autocomplete="name"
-              required
-              placeholder="Enter your full name"
             >
-
           </div>
 
-
           <div class="form-group">
-
-            <label for="contactEmailInput">
-              Email Address
-            </label>
-
+            <label for="email">Email Address</label>
             <input
-              id="contactEmailInput"
               type="email"
+              id="email"
+              required
               autocomplete="email"
-              required
-              placeholder="Enter your email address"
             >
-
           </div>
 
-
-          <div class="form-group">
-
-            <label for="contactSubject">
-              Subject
-            </label>
-
-            <select
-              id="contactSubject"
-              required
+          <div class="form-group full">
+            <label for="phone">Phone Number</label>
+            <input
+              type="tel"
+              id="phone"
+              autocomplete="tel"
             >
-
-              <option value="">
-                Select a subject
-              </option>
-
-              <option value="Shipment Inquiry">
-                Shipment Inquiry
-              </option>
-
-              <option value="Tracking Help">
-                Tracking Help
-              </option>
-
-              <option value="Delivery Question">
-                Delivery Question
-              </option>
-
-              <option value="Account Help">
-                Account Help
-              </option>
-
-              <option value="Business Services">
-                Business Services
-              </option>
-
-              <option value="Other">
-                Other
-              </option>
-
-            </select>
-
           </div>
 
-
-          <div class="form-group">
-
-            <label for="contactMessageInput">
-              Message
-            </label>
-
+          <div class="form-group full">
+            <label for="message">Message</label>
             <textarea
-              id="contactMessageInput"
+              id="message"
               required
               placeholder="How can we help you?"
             ></textarea>
-
           </div>
 
+        </div>
 
-          <button
-            type="submit"
-            class="contact-submit"
-          >
-            Send Message
-          </button>
+        <button
+          type="submit"
+          class="submit-button"
+          id="submitButton"
+        >
+          Send Message
+        </button>
 
+        <div id="formMessage" class="message"></div>
 
-          <div
-            id="message"
-            class="contact-message"
-            role="status"
-          >
-            Thank you. Your message has been received.
-          </div>
-
-        </form>
-
-      </section>
-
-    </div>
-
-
-    <!-- SMART SUPPORT -->
-
-    <div class="support-panel">
-
-      <div>
-
-        <h3>
-          Need immediate assistance?
-        </h3>
-
-        <p>
-          Our Smart Support team can help with shipment,
-          tracking and delivery questions.
-        </p>
-
-      </div>
-
-      <a
-        href="Customer Support.html"
-        class="support-button"
-      >
-        Smart Support
-      </a>
-
+      </form>
     </div>
 
   </div>
-
-</main>
-
-
-<!-- =========================
-     FOOTER
-========================= -->
+</section>
 
 <footer class="site-footer">
+  <div class="footer-inner">
 
-  <div class="footer-container">
+    <p id="footerText">
+      Reliable logistics and delivery solutions for individuals and businesses.
+    </p>
 
-    <div class="footer-grid">
-
-
-      <div>
-
-        <div class="footer-brand">
-
-          <span class="logo-mark">
-            EL
-          </span>
-
-          <span
-            id="footerCompanyName"
-            class="footer-brand-name"
-          >
-            ExpressLine
-          </span>
-
-        </div>
-
-        <p
-          id="footerText"
-          class="footer-description"
-        >
-          Reliable logistics and delivery solutions
-          for individuals and businesses.
-        </p>
-
-      </div>
-
-
-      <div>
-
-        <h3>
-          Quick Links
-        </h3>
-
-        <div class="footer-links">
-
-          <a href="index.html">
-            Home
-          </a>
-
-          <a href="services.html">
-            Services
-          </a>
-
-          <a href="track.html">
-            Track Shipment
-          </a>
-
-          <a href="request.html">
-            Request a Shipment
-          </a>
-
-          <a href="about.html">
-            About Us
-          </a>
-
-          <a href="contact.html">
-            Contact
-          </a>
-
-        </div>
-
-      </div>
-
-
-      <div class="footer-contact">
-
-        <h3>
-          Contact
-        </h3>
-
-        <p id="footerContactEmail">
-          support@expressline.com
-        </p>
-
-        <p id="footerContactPhone">
-          +1 (800) 555-0199
-        </p>
-
-        <p>
-          <a
-            href="Customer Support.html"
-            class="footer-links"
-          >
-            Smart Support
-          </a>
-        </p>
-
-      </div>
-
+    <div class="footer-links">
+      <a href="contact.html">Contact</a>
+      <a href="Customer Support.html">Customer Support</a>
+      <a href="login.html">Customer Login</a>
     </div>
 
-
-    <div class="footer-bottom">
-
-      <p id="copyrightText">
-        © 2026 ExpressLine Delivery Services.
-        All rights reserved.
-      </p>
-
-    </div>
+    <p id="copyrightText">
+      © 2026 ExpressLine Delivery Services. All rights reserved.
+    </p>
 
   </div>
-
 </footer>
 
-
-<!-- FLOATING SMART SUPPORT -->
-
-<a
-  href="Customer Support.html"
-  class="smart-support"
-  aria-label="Open Smart Support"
->
-  Smart Support
-</a>
-
-
-<!-- =========================
-     SUPABASE
-========================= -->
-
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<button type="button" id="smartSupportButton">
+  Live Support
+</button>
 
 <script>
+  const SUPABASE_URL = "https://uhjgietvznkfzckmxqfz.supabase.co";
 
-const SUPABASE_URL =
-  "https://uhjgietvznkfzckmxqfz.supabase.co";
+  const SUPABASE_PUBLISHABLE_KEY =
+    "sb_publishable_zZ0JiBW-2uarX2gnR5w9hQ_77RpB6SM";
 
-const SUPABASE_PUBLISHABLE_KEY =
-  "sb_publishable_zZ0JiBW-2uarX2gnR5w9hQ_77RpB6SM";
-
-
-const supabaseClient =
-  window.supabase.createClient(
+  const supabaseClient = window.supabase.createClient(
     SUPABASE_URL,
     SUPABASE_PUBLISHABLE_KEY
   );
 
+  const defaultSettings = {
+    companyName: "ExpressLine Delivery Services",
+    logo: "",
+    logoSize: "medium",
 
-/* =========================
-   LOAD WEBSITE SETTINGS
-========================= */
+    primaryColor: "#F97316",
+    secondaryColor: "#111111",
+    accentColor: "#C2410C",
+    textColor: "#111111",
 
-async function getWebsiteSettings() {
+    fontFamily: "Inter, sans-serif",
+    baseFontSize: "16px",
 
-  try {
+    contactEmail: "",
+    contactPhone: "",
+    contactAddress: "",
 
-    const {
-      data,
-      error
-    } = await supabaseClient
-      .from("website_settings")
-      .select("settings")
-      .eq("id", 1)
-      .maybeSingle();
+    footerText:
+      "Reliable logistics and delivery solutions for individuals and businesses.",
 
+    copyright:
+      "© 2026 ExpressLine Delivery Services. All rights reserved.",
 
-    if (error) {
+    favicon: "",
 
-      console.error(
-        "Unable to load website settings:",
-        error
-      );
+    pageTitle:
+      "Contact Us | ExpressLine Delivery Services",
 
-      return {};
+    seoDescription:
+      "Contact ExpressLine Delivery Services for logistics, freight, courier, shipping, and delivery services.",
 
+    smartsuppEnabled: false,
+    smartsuppKey: "",
+    smartsuppButtonText: "Live Support"
+  };
+
+  let settings = { ...defaultSettings };
+
+  async function loadWebsiteSettings() {
+    try {
+      const { data, error } = await supabaseClient
+        .from("website_settings")
+        .select("settings")
+        .eq("id", 1)
+        .maybeSingle();
+
+      if (error) {
+        console.error("Website settings error:", error);
+        return;
+      }
+
+      if (data && data.settings) {
+        settings = {
+          ...defaultSettings,
+          ...data.settings
+        };
+      }
+
+      applyWebsiteSettings();
+
+    } catch (error) {
+      console.error("Settings loading error:", error);
+    }
+  }
+
+  function applyWebsiteSettings() {
+    const root = document.documentElement;
+
+    root.style.setProperty(
+      "--primary",
+      settings.primaryColor || "#F97316"
+    );
+
+    root.style.setProperty(
+      "--secondary",
+      settings.secondaryColor || "#111111"
+    );
+
+    root.style.setProperty(
+      "--accent",
+      settings.accentColor || "#C2410C"
+    );
+
+    root.style.setProperty(
+      "--text",
+      settings.textColor || "#111111"
+    );
+
+    document.body.style.fontFamily =
+      settings.fontFamily || "Inter, sans-serif";
+
+    if (settings.baseFontSize) {
+      document.body.style.fontSize = settings.baseFontSize;
     }
 
+    const brandName = document.getElementById("brandName");
 
-    return data?.settings || {};
+    if (brandName) {
+      brandName.textContent =
+        settings.companyName || defaultSettings.companyName;
+    }
 
-  } catch (error) {
+    const logo = document.getElementById("siteLogo");
 
-    console.error(
-      "Unable to load website settings:",
-      error
-    );
+    if (logo) {
+      if (settings.logo) {
+        logo.src = settings.logo;
+        logo.style.display = "block";
+      } else {
+        logo.style.display = "none";
+      }
 
-    return {};
+      const logoSizes = {
+        small: "44px",
+        medium: "58px",
+        large: "76px"
+      };
 
-  }
+      const selectedSize =
+        logoSizes[settings.logoSize] || logoSizes.medium;
 
-}
+      logo.style.width = selectedSize;
+      logo.style.height = selectedSize;
+    }
 
+    const company = document.getElementById("contactCompany");
 
-/* =========================
-   SET TEXT
-========================= */
+    if (company) {
+      company.textContent =
+        settings.companyName || defaultSettings.companyName;
+    }
 
-function setText(id, value) {
+    const email = document.getElementById("contactEmail");
 
-  const element =
-    document.getElementById(id);
+    if (email && settings.contactEmail) {
+      email.textContent = settings.contactEmail;
+      email.href = "mailto:" + settings.contactEmail;
+    }
 
+    const phone = document.getElementById("contactPhone");
 
-  if (
-    element &&
-    value !== undefined &&
-    value !== null &&
-    String(value).trim() !== ""
-  ) {
+    if (phone && settings.contactPhone) {
+      phone.textContent = settings.contactPhone;
+      phone.href =
+        "tel:" + settings.contactPhone.replace(/[^\d+]/g, "");
+    }
 
-    element.textContent =
-      value;
+    const address = document.getElementById("contactAddress");
 
-  }
+    if (address && settings.contactAddress) {
+      address.textContent = settings.contactAddress;
+    }
 
-}
+    const footerText = document.getElementById("footerText");
 
+    if (footerText) {
+      footerText.textContent =
+        settings.footerText || defaultSettings.footerText;
+    }
 
-/* =========================
-   APPLY WEBSITE SETTINGS
-========================= */
+    const copyrightText =
+      document.getElementById("copyrightText");
 
-async function applyWebsiteSettings() {
+    if (copyrightText) {
+      copyrightText.textContent =
+        settings.copyright || defaultSettings.copyright;
+    }
 
-  const settings =
-    await getWebsiteSettings();
+    if (settings.favicon) {
+      const favicon =
+        document.getElementById("siteFavicon");
 
+      if (favicon) {
+        favicon.href = settings.favicon;
+      }
+    }
 
-  /* COMPANY */
+    if (settings.pageTitle) {
+      document.title = settings.pageTitle;
+    }
 
-  setText(
-    "siteShortName",
-    settings.shortName ||
-    settings.companyName
-  );
-
-  setText(
-    "footerCompanyName",
-    settings.companyName ||
-    settings.shortName
-  );
-
-
-  /* NAVIGATION */
-
-  setText(
-    "navHome",
-    settings.navHome
-  );
-
-  setText(
-    "navServices",
-    settings.navServices
-  );
-
-  setText(
-    "navTrack",
-    settings.navTrack
-  );
-
-  setText(
-    "navRequest",
-    settings.navRequest
-  );
-
-  setText(
-    "navAbout",
-    settings.navAbout
-  );
-
-  setText(
-    "navSupport",
-    settings.navSupport
-  );
-
-  setText(
-    "navContact",
-    settings.navContact
-  );
-
-  setText(
-    "navLogin",
-    settings.navLogin
-  );
-
-
-  /* CONTACT INFORMATION */
-
-  setText(
-    "contactEmail",
-    settings.contactEmail
-  );
-
-  setText(
-    "contactPhone",
-    settings.contactPhone
-  );
-
-  setText(
-    "contactAddress",
-    settings.businessAddress
-  );
-
-  setText(
-    "contactHours",
-    settings.businessHours
-  );
-
-
-  /* SUPPORT */
-
-  setText(
-    "contactSupportMessage",
-    settings.supportMessage
-  );
-
-
-  /* FOOTER */
-
-  setText(
-    "footerText",
-    settings.footerText
-  );
-
-  setText(
-    "copyrightText",
-    settings.copyrightText
-  );
-
-
-  if (
-    settings.contactEmail &&
-    String(settings.contactEmail).trim() !== ""
-  ) {
-
-    setText(
-      "footerContactEmail",
-      settings.contactEmail
-    );
-
-  }
-
-
-  if (
-    settings.contactPhone &&
-    String(settings.contactPhone).trim() !== ""
-  ) {
-
-    setText(
-      "footerContactPhone",
-      settings.contactPhone
-    );
-
-  }
-
-
-  /* CONTACT IMAGE */
-
-  const contactImage =
-    document.getElementById(
-      "contactImage"
-    );
-
-
-  if (
-    contactImage &&
-    settings.contactImage &&
-    String(settings.contactImage).trim() !== ""
-  ) {
-
-    contactImage.src =
-      settings.contactImage;
-
-    contactImage.style.display =
-      "block";
-
-  }
-
-
-  /* WEBSITE TITLE */
-
-  if (
-    settings.websiteTitle &&
-    String(settings.websiteTitle).trim() !== ""
-  ) {
-
-    document.title =
-      settings.websiteTitle;
-
-  }
-
-
-  /* SEO DESCRIPTION */
-
-  const description =
-    document.getElementById(
-      "pageDescription"
-    );
-
-
-  if (
-    description &&
-    settings.seoDescription
-  ) {
-
-    description.setAttribute(
-      "content",
-      settings.seoDescription
-    );
-
-  }
-
-
-  /* SEO KEYWORDS */
-
-  const keywords =
-    document.getElementById(
-      "pageKeywords"
-    );
-
-
-  if (
-    keywords &&
-    settings.seoKeywords
-  ) {
-
-    keywords.setAttribute(
-      "content",
-      settings.seoKeywords
-    );
-
-  }
-
-
-  /* COLORS */
-
-  if (settings.primaryColor) {
-
-    document.documentElement.style.setProperty(
-      "--primary-color",
-      settings.primaryColor
-    );
-
-  }
-
-  if (settings.primaryColorText) {
-
-    document.documentElement.style.setProperty(
-      "--primary-text",
-      settings.primaryColorText
-    );
-
-  }
-
-  if (settings.secondaryColor) {
-
-    document.documentElement.style.setProperty(
-      "--secondary-color",
-      settings.secondaryColor
-    );
-
-  }
-
-  if (settings.secondaryColorText) {
-
-    document.documentElement.style.setProperty(
-      "--secondary-text",
-      settings.secondaryColorText
-    );
-
-  }
-
-  if (settings.accentColor) {
-
-    document.documentElement.style.setProperty(
-      "--accent-color",
-      settings.accentColor
-    );
-
-  }
-
-  if (settings.accentColorText) {
-
-    document.documentElement.style.setProperty(
-      "--accent-text",
-      settings.accentColorText
-    );
-
-  }
-
-  if (settings.textColor) {
-
-    document.documentElement.style.setProperty(
-      "--text-color",
-      settings.textColor
-    );
-
-  }
-
-  if (settings.textColorText) {
-
-    document.documentElement.style.setProperty(
-      "--text-color-text",
-      settings.textColorText
-    );
-
-  }
-
-
-  /* TYPOGRAPHY */
-
-  if (settings.fontFamily) {
-
-    document.documentElement.style.setProperty(
-      "--font-family",
-      settings.fontFamily
-    );
-
-  }
-
-  if (settings.fontSize) {
-
-    document.documentElement.style.setProperty(
-      "--font-size",
-      settings.fontSize
-    );
-
-  }
-
-
-  /* FAVICON */
-
-  if (
-    settings.faviconUrl &&
-    String(settings.faviconUrl).trim() !== ""
-  ) {
-
-    let favicon =
+    const metaDescription =
       document.querySelector(
-        'link[rel="icon"]'
+        'meta[name="description"]'
       );
 
+    if (metaDescription && settings.seoDescription) {
+      metaDescription.setAttribute(
+        "content",
+        settings.seoDescription
+      );
+    }
 
-    if (!favicon) {
+    setupSmartsupp();
+  }
 
-      favicon =
-        document.createElement(
-          "link"
+  function setupSmartsupp() {
+    const button =
+      document.getElementById("smartSupportButton");
+
+    if (
+      !settings.smartsuppEnabled ||
+      !settings.smartsuppKey
+    ) {
+      if (button) {
+        button.style.display = "none";
+      }
+
+      return;
+    }
+
+    if (button) {
+      button.textContent =
+        settings.smartsuppButtonText || "Live Support";
+
+      button.style.display = "block";
+
+      button.onclick = function () {
+        if (
+          typeof window.smartsupp === "function"
+        ) {
+          window.smartsupp("chat:open");
+        }
+      };
+    }
+
+    if (
+      typeof window.smartsupp === "function"
+    ) {
+      return;
+    }
+
+    window._smartsupp =
+      window._smartsupp || {};
+
+    window._smartsupp.key =
+      settings.smartsuppKey;
+
+    const script =
+      document.createElement("script");
+
+    script.src =
+      "https://www.smartsuppchat.com/loader.js?";
+
+    script.async = true;
+
+    document.head.appendChild(script);
+  }
+
+  const contactForm =
+    document.getElementById("contactForm");
+
+  const submitButton =
+    document.getElementById("submitButton");
+
+  const formMessage =
+    document.getElementById("formMessage");
+
+  contactForm.addEventListener(
+    "submit",
+    async function (event) {
+      event.preventDefault();
+
+      submitButton.disabled = true;
+      submitButton.textContent = "Sending...";
+
+      formMessage.className = "message";
+      formMessage.textContent = "";
+
+      const name =
+        document.getElementById("name").value.trim();
+
+      const email =
+        document.getElementById("email").value.trim();
+
+      const phone =
+        document.getElementById("phone").value.trim();
+
+      const message =
+        document.getElementById("message").value.trim();
+
+      try {
+        const contactRequestId =
+          "CONTACT-" +
+          Date.now() +
+          "-" +
+          Math.floor(
+            Math.random() * 10000
+          )
+            .toString()
+            .padStart(4, "0");
+
+        const contactData = {
+          requestId: contactRequestId,
+          type: "Contact Message",
+          name: name,
+          email: email,
+          phone: phone,
+          message: message,
+          status: "Pending",
+          createdAt: new Date().toISOString()
+        };
+
+        const { error } =
+          await supabaseClient
+            .from("shipment_requests")
+            .insert({
+              request_id: contactRequestId,
+              data: contactData
+            });
+
+        if (error) {
+          throw error;
+        }
+
+        formMessage.className =
+          "message success";
+
+        formMessage.textContent =
+          "Your message has been sent successfully. Our team will contact you shortly.";
+
+        contactForm.reset();
+
+      } catch (error) {
+        console.error(
+          "Contact form error:",
+          error
         );
 
-      favicon.rel =
-        "icon";
+        formMessage.className =
+          "message error";
 
-      document.head.appendChild(
-        favicon
-      );
+        formMessage.textContent =
+          "We could not send your message right now. Please try again.";
+      }
 
+      submitButton.disabled = false;
+      submitButton.textContent =
+        "Send Message";
     }
-
-
-    favicon.href =
-      settings.faviconUrl;
-
-  }
-
-
-  /* HERO IMAGE */
-
-  if (
-    settings.contactHeroImage &&
-    String(settings.contactHeroImage).trim() !== ""
-  ) {
-
-    const hero =
-      document.getElementById(
-        "contactHero"
-      );
-
-
-    if (hero) {
-
-      hero.style.backgroundImage =
-        "linear-gradient(rgba(17,17,17,0.78), rgba(17,17,17,0.78)), url('" +
-        settings.contactHeroImage +
-        "')";
-
-    }
-
-  }
-
-
-  /* MAINTENANCE MODE */
-
-  if (
-    settings.maintenanceMode === true ||
-    settings.maintenanceMode === "true"
-  ) {
-
-    document.body.innerHTML = `
-      <div style="
-        min-height:100vh;
-        display:flex;
-        align-items:center;
-        justify-content:center;
-        padding:30px;
-        background:#111111;
-        color:#ffffff;
-        text-align:center;
-        font-family:Inter,Arial,sans-serif;
-      ">
-        <div style="max-width:600px;">
-          <div style="
-            width:58px;
-            height:58px;
-            margin:0 auto 20px;
-            border-radius:14px;
-            background:#F97316;
-            display:flex;
-            align-items:center;
-            justify-content:center;
-            font-weight:900;
-          ">
-            EL
-          </div>
-
-          <h1 style="
-            margin:0 0 12px;
-            font-size:36px;
-          ">
-            Website Temporarily Unavailable
-          </h1>
-
-          <p style="
-            margin:0;
-            color:#d1d5db;
-            line-height:1.7;
-          ">
-            We are currently updating our website.
-            Please check back shortly.
-          </p>
-        </div>
-      </div>
-    `;
-
-    return;
-
-  }
-
-}
-
-
-/* =========================
-   MOBILE MENU
-========================= */
-
-const menuToggle =
-  document.querySelector(
-    ".contact-menu-toggle"
   );
 
-const navLinks =
-  document.getElementById(
-    "contactNavLinks"
-  );
+  const menuToggle =
+    document.getElementById("menuToggle");
 
-
-if (
-  menuToggle &&
-  navLinks
-) {
+  const navLinks =
+    document.getElementById("navLinks");
 
   menuToggle.addEventListener(
     "click",
-    function() {
-
+    function () {
       const isOpen =
-        navLinks.classList.toggle(
-          "active"
-        );
+        navLinks.classList.toggle("open");
 
       menuToggle.setAttribute(
         "aria-expanded",
         isOpen ? "true" : "false"
       );
 
-      menuToggle.innerHTML =
-        isOpen ? "✕" : "☰";
-
+      menuToggle.setAttribute(
+        "aria-label",
+        isOpen
+          ? "Close menu"
+          : "Open menu"
+      );
     }
   );
 
-
   navLinks
     .querySelectorAll("a")
-    .forEach(function(link) {
-
+    .forEach(function (link) {
       link.addEventListener(
         "click",
-        function() {
-
-          navLinks.classList.remove(
-            "active"
-          );
+        function () {
+          navLinks.classList.remove("open");
 
           menuToggle.setAttribute(
             "aria-expanded",
             "false"
           );
 
-          menuToggle.innerHTML =
-            "☰";
-
+          menuToggle.setAttribute(
+            "aria-label",
+            "Open menu"
+          );
         }
       );
-
     });
 
-}
-
-
-/* =========================
-   CONTACT FORM
-========================= */
-
-function sendMessage(event) {
-
-  event.preventDefault();
-
-
-  const message =
-    document.getElementById(
-      "message"
-    );
-
-
-  if (message) {
-
-    message.style.display =
-      "block";
-
-  }
-
-
-  event.target.reset();
-
-
-  setTimeout(function() {
-
-    if (message) {
-
-      message.style.display =
-        "none";
-
-    }
-
-  }, 6000);
-
-}
-
-
-/* =========================
-   START
-========================= */
-
-applyWebsiteSettings();
-
+  loadWebsiteSettings();
 </script>
 
 </body>
