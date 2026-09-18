@@ -8,46 +8,653 @@
 
   <meta
     name="description"
-    content="Explore courier, freight, transportation and logistics services from ExpressLine Delivery Services."
+    content="Explore reliable air freight, sea freight, road freight, express courier, customs clearance, warehousing and logistics services from ExpressLine Delivery Services."
   >
 
   <link rel="stylesheet" href="style.css">
 
   <style>
+    :root {
+      --services-orange: #F97316;
+      --services-black: #111111;
+      --services-dark: #1f2937;
+      --services-light: #f8fafc;
+      --services-border: #e5e7eb;
+      --services-white: #ffffff;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: #ffffff;
+      color: var(--services-black);
+      overflow-x: hidden;
+    }
+
+    /* =========================
+       HEADER
+    ========================= */
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      width: 100%;
+      background: #ffffff;
+      border-bottom: 1px solid #e5e7eb;
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+    }
+
+    .services-navbar {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      min-height: 76px;
+      padding: 0 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .services-logo {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      color: #111111;
+      font-weight: 800;
+      font-size: 20px;
+      white-space: nowrap;
+    }
+
+    .services-logo-mark {
+      width: 40px;
+      height: 40px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 10px;
+      background: var(--services-orange);
+      color: #ffffff;
+      font-size: 15px;
+      font-weight: 900;
+    }
+
+    .services-nav-links {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 6px;
+    }
+
+    .services-nav-links a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 42px;
+      padding: 9px 12px;
+      border-radius: 8px;
+      text-decoration: none;
+      color: #111111;
+      font-size: 14px;
+      font-weight: 700;
+      line-height: 1.2;
+      white-space: nowrap;
+      transition: 0.2s ease;
+    }
+
+    .services-nav-links a:hover {
+      background: #fff1e8;
+      color: var(--services-orange);
+    }
+
+    .services-nav-links .nav-button {
+      background: var(--services-orange);
+      color: #ffffff;
+      margin-left: 4px;
+    }
+
+    .services-nav-links .nav-button:hover {
+      background: #ea580c;
+      color: #ffffff;
+    }
+
+    .services-menu-toggle {
+      display: none;
+      border: 0;
+      background: #111111;
+      color: #ffffff;
+      width: 44px;
+      height: 44px;
+      border-radius: 8px;
+      font-size: 22px;
+      cursor: pointer;
+    }
+
+    /* =========================
+       HERO
+    ========================= */
+
     .services-hero {
-      min-height: 430px;
+      min-height: 470px;
       position: relative;
       display: flex;
       align-items: center;
-      color: var(--white);
+      color: #ffffff;
       background:
-        linear-gradient(rgba(7, 31, 74, 0.82), rgba(11, 46, 107, 0.86)),
+        linear-gradient(
+          90deg,
+          rgba(17, 17, 17, 0.90),
+          rgba(17, 17, 17, 0.72)
+        ),
         url('https://images.unsplash.com/photo-1494412651409-8963ce7935a7?auto=format&fit=crop&w=1800&q=80')
         center/cover no-repeat;
     }
 
     .services-hero.has-custom-image {
       background:
-        linear-gradient(rgba(7, 31, 74, 0.82), rgba(11, 46, 107, 0.86)),
+        linear-gradient(
+          90deg,
+          rgba(17, 17, 17, 0.90),
+          rgba(17, 17, 17, 0.72)
+        ),
         var(--services-hero-image)
         center/cover no-repeat;
+    }
+
+    .services-hero-content {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 80px 24px;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      min-height: 34px;
+      padding: 7px 13px;
+      border-radius: 999px;
+      background: var(--services-orange);
+      color: #ffffff;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      margin-bottom: 20px;
+    }
+
+    .services-hero h1 {
+      max-width: 780px;
+      margin: 0 0 20px;
+      color: #ffffff;
+      font-size: clamp(36px, 6vw, 64px);
+      line-height: 1.08;
+      font-weight: 900;
+      letter-spacing: -0.03em;
+    }
+
+    .services-hero p {
+      max-width: 760px;
+      margin: 0;
+      color: #ffffff;
+      font-size: 18px;
+      line-height: 1.75;
+    }
+
+    /* =========================
+       GENERAL SECTIONS
+    ========================= */
+
+    .services-section {
+      padding: 80px 24px;
+    }
+
+    .services-section-light {
+      background: #ffffff;
+    }
+
+    .services-section-gray {
+      background: #f8fafc;
+    }
+
+    .services-container {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .section-heading {
+      max-width: 780px;
+      margin: 0 auto 48px;
+      text-align: center;
+    }
+
+    .section-label {
+      margin: 0 0 10px;
+      color: var(--services-orange);
+      font-size: 13px;
+      font-weight: 900;
+      letter-spacing: 0.12em;
+    }
+
+    .section-heading h2 {
+      margin: 0 0 16px;
+      color: #111111;
+      font-size: clamp(30px, 4vw, 46px);
+      line-height: 1.15;
+      font-weight: 900;
+    }
+
+    .section-heading p {
+      margin: 0;
+      color: #4b5563;
+      font-size: 16px;
+      line-height: 1.75;
+    }
+
+    /* =========================
+       SERVICE CARDS
+    ========================= */
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 24px;
+    }
+
+    .service-card {
+      height: 100%;
+      padding: 30px;
+      background: #ffffff;
+      border: 1px solid var(--services-border);
+      border-radius: 16px;
+      box-shadow: 0 8px 30px rgba(17, 17, 17, 0.06);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .service-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 14px 35px rgba(17, 17, 17, 0.10);
+    }
+
+    .service-icon {
+      width: 52px;
+      height: 52px;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 14px;
+      background: #fff1e8;
+      color: var(--services-orange);
+      font-size: 25px;
+    }
+
+    .service-card h3 {
+      margin: 0 0 12px;
+      color: #111111;
+      font-size: 21px;
+      line-height: 1.3;
+      font-weight: 850;
+    }
+
+    .service-card p {
+      margin: 0;
+      color: #4b5563;
+      font-size: 15px;
+      line-height: 1.75;
+    }
+
+    /* =========================
+       FEATURE CARDS
+    ========================= */
+
+    .feature-card {
+      height: 100%;
+      padding: 28px;
+      border: 1px solid var(--services-border);
+      border-radius: 14px;
+      background: #ffffff;
+    }
+
+    .feature-card h3 {
+      margin: 0 0 12px;
+      color: #111111;
+      font-size: 20px;
+      line-height: 1.35;
+    }
+
+    .feature-card p {
+      margin: 0;
+      color: #4b5563;
+      font-size: 15px;
+      line-height: 1.75;
+    }
+
+    /* =========================
+       CTA
+    ========================= */
+
+    .services-cta {
+      padding: 80px 24px;
+      background: #111111;
+      color: #ffffff;
+      text-align: center;
+    }
+
+    .services-cta-inner {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .services-cta h2 {
+      margin: 0 0 16px;
+      color: #ffffff;
+      font-size: clamp(30px, 4vw, 44px);
+      line-height: 1.15;
+    }
+
+    .services-cta p {
+      margin: 0 auto 28px;
+      color: #e5e7eb;
+      font-size: 16px;
+      line-height: 1.7;
+      max-width: 650px;
+    }
+
+    .services-cta-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 50px;
+      padding: 13px 24px;
+      border-radius: 9px;
+      background: var(--services-orange);
+      color: #ffffff;
+      text-decoration: none;
+      font-size: 15px;
+      font-weight: 800;
+      transition: 0.2s ease;
+    }
+
+    .services-cta-button:hover {
+      background: #ea580c;
+      color: #ffffff;
+      transform: translateY(-1px);
+    }
+
+    /* =========================
+       FOOTER
+    ========================= */
+
+    .services-footer {
+      background: #0b0b0b;
+      color: #ffffff;
+      padding: 65px 24px 25px;
+    }
+
+    .services-footer-grid {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr 1.2fr;
+      gap: 45px;
+    }
+
+    .footer-brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 18px;
+      color: #ffffff;
+      font-weight: 800;
+      font-size: 20px;
+    }
+
+    .footer-brand .services-logo-mark {
+      flex-shrink: 0;
+    }
+
+    .services-footer h3 {
+      margin: 0 0 16px;
+      color: #ffffff;
+      font-size: 16px;
+      font-weight: 800;
+    }
+
+    .services-footer p {
+      margin: 0;
+      color: #cbd5e1;
+      font-size: 14px;
+      line-height: 1.75;
+    }
+
+    .footer-links {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .footer-links li {
+      margin-bottom: 10px;
+    }
+
+    .footer-links a {
+      color: #cbd5e1;
+      text-decoration: none;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    .footer-links a:hover {
+      color: #ffffff;
+    }
+
+    .footer-bottom {
+      max-width: 1200px;
+      margin: 45px auto 0;
+      padding-top: 22px;
+      border-top: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    .footer-bottom p {
+      color: #94a3b8;
+      font-size: 13px;
+    }
+
+    /* =========================
+       SMART SUPPORT
+    ========================= */
+
+    .support-button {
+      position: fixed;
+      right: 20px;
+      bottom: 20px;
+      z-index: 900;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 50px;
+      padding: 13px 18px;
+      border-radius: 999px;
+      background: var(--services-orange);
+      color: #ffffff;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 800;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.20);
+      transition: 0.2s ease;
+    }
+
+    .support-button:hover {
+      background: #ea580c;
+      color: #ffffff;
+      transform: translateY(-2px);
+    }
+
+    /* =========================
+       MOBILE
+    ========================= */
+
+    @media (max-width: 980px) {
+
+      .services-menu-toggle {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .services-nav-links {
+        position: absolute;
+        top: 76px;
+        left: 0;
+        right: 0;
+        display: none;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 4px;
+        padding: 14px 20px 20px;
+        background: #ffffff;
+        border-bottom: 1px solid #e5e7eb;
+        box-shadow: 0 12px 25px rgba(0, 0, 0, 0.08);
+      }
+
+      .services-nav-links.open {
+        display: flex;
+      }
+
+      .services-nav-links a {
+        width: 100%;
+        justify-content: flex-start;
+        padding: 13px 14px;
+        min-height: 44px;
+      }
+
+      .services-nav-links .nav-button {
+        justify-content: center;
+        margin: 5px 0 0;
+      }
+
+      .services-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .services-footer-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 680px) {
+
+      .services-navbar {
+        min-height: 68px;
+        padding: 0 16px;
+      }
+
+      .services-logo {
+        font-size: 18px;
+      }
+
+      .services-logo-mark {
+        width: 36px;
+        height: 36px;
+      }
+
+      .services-nav-links {
+        top: 68px;
+      }
+
+      .services-hero {
+        min-height: 430px;
+      }
+
+      .services-hero-content {
+        padding: 65px 20px;
+      }
+
+      .services-hero h1 {
+        font-size: 38px;
+      }
+
+      .services-hero p {
+        font-size: 16px;
+        line-height: 1.65;
+      }
+
+      .services-section {
+        padding: 60px 20px;
+      }
+
+      .services-grid {
+        grid-template-columns: 1fr;
+        gap: 18px;
+      }
+
+      .service-card {
+        padding: 25px;
+      }
+
+      .services-footer {
+        padding: 55px 20px 20px;
+      }
+
+      .services-footer-grid {
+        grid-template-columns: 1fr;
+        gap: 32px;
+      }
+
+      .support-button {
+        right: 14px;
+        bottom: 14px;
+        min-height: 46px;
+        padding: 11px 15px;
+        font-size: 13px;
+      }
+    }
+
+    /* =========================
+       WEBSITE MAINTENANCE
+    ========================= */
+
+    body.website-maintenance-active > header,
+    body.website-maintenance-active > main,
+    body.website-maintenance-active > footer,
+    body.website-maintenance-active > a.support-button {
+      display: none !important;
     }
   </style>
 </head>
 
 <body>
 
+  <!-- =========================
+       HEADER
+  ========================= -->
+
   <header class="site-header">
 
-    <div class="container navbar">
+    <div class="services-navbar">
 
-      <a href="index.html" class="logo">
-        <span class="logo-mark">EL</span>
-        <span id="siteShortName">ExpressLine</span>
+      <a href="index.html" class="services-logo">
+
+        <span class="services-logo-mark">
+          EL
+        </span>
+
+        <span id="siteShortName">
+          ExpressLine
+        </span>
+
       </a>
 
+
       <button
-        class="menu-toggle"
+        class="services-menu-toggle"
+        id="servicesMenuToggle"
         type="button"
         aria-label="Open navigation menu"
         aria-expanded="false"
@@ -55,16 +662,26 @@
         ☰
       </button>
 
-      <nav class="nav-links">
 
-        <a href="index.html" id="navHome">Home</a>
+      <nav
+        class="services-nav-links"
+        id="servicesNavLinks"
+      >
+
+        <a href="index.html" id="navHome">
+          Home
+        </a>
+
+        <a href="services.html" id="navServices">
+          Services
+        </a>
 
         <a href="track.html" id="navTrack">
           Track Shipment
         </a>
 
-        <a href="services.html" id="navServices">
-          Services
+        <a href="request.html" id="navRequest">
+          Request a Shipment
         </a>
 
         <a href="about.html" id="navAbout">
@@ -72,14 +689,14 @@
         </a>
 
         <a href="contact.html" id="navContact">
-          Contact Us
+          Support
         </a>
 
-        <a href="request.html" id="navRequest">
-          Request a Shipment
-        </a>
-
-        <a href="login.html" class="nav-button" id="navLogin">
+        <a
+          href="login.html"
+          class="nav-button"
+          id="navLogin"
+        >
           Customer Login
         </a>
 
@@ -90,11 +707,20 @@
   </header>
 
 
+  <!-- =========================
+       MAIN
+  ========================= -->
+
   <main>
 
-    <section class="services-hero" id="servicesHero">
+    <!-- HERO -->
 
-      <div class="container hero-content">
+    <section
+      class="services-hero"
+      id="servicesHero"
+    >
+
+      <div class="services-hero-content">
 
         <span class="hero-badge">
           COURIER & LOGISTICS
@@ -115,9 +741,11 @@
     </section>
 
 
-    <section class="section section-light">
+    <!-- SERVICES -->
 
-      <div class="container">
+    <section class="services-section services-section-light">
+
+      <div class="services-container">
 
         <div class="section-heading">
 
@@ -130,116 +758,118 @@
           </h2>
 
           <p>
-            Explore our range of delivery and logistics services.
-            Service availability and details can be managed by
-            authorized administrators through the website system.
+            Reliable transportation, delivery and logistics
+            solutions designed for individuals and businesses.
           </p>
 
         </div>
 
 
-        <div class="cards">
+        <div class="services-grid">
 
-          <article class="card">
+          <article class="service-card">
 
-            <div class="card-icon">
+            <div class="service-icon">
               ✈
             </div>
 
             <h3 id="service1Name">
-              Express Delivery
+              Air Freight
             </h3>
 
             <p id="service1Description">
-              Fast delivery for urgent shipments.
+              Fast and efficient air cargo solutions for
+              time-sensitive international shipments.
             </p>
 
           </article>
 
 
-          <article class="card">
+          <article class="service-card">
 
-            <div class="card-icon">
-              🚚
-            </div>
-
-            <h3 id="service2Name">
-              Business Logistics
-            </h3>
-
-            <p id="service2Description">
-              Reliable logistics solutions for businesses.
-            </p>
-
-          </article>
-
-
-          <article class="card">
-
-            <div class="card-icon">
-              📦
-            </div>
-
-            <h3 id="service3Name">
-              International Shipping
-            </h3>
-
-            <p id="service3Description">
-              Shipping solutions for destinations worldwide.
-            </p>
-
-          </article>
-
-
-          <article class="card">
-
-            <div class="card-icon">
+            <div class="service-icon">
               🚢
             </div>
 
-            <h3>
-              Ocean Freight
+            <h3 id="service2Name">
+              Sea Freight
             </h3>
 
-            <p>
-              Flexible ocean transportation solutions for larger
-              international cargo requirements.
+            <p id="service2Description">
+              Cost-effective ocean freight solutions for
+              large, heavy, and commercial shipments.
             </p>
 
           </article>
 
 
-          <article class="card">
+          <article class="service-card">
 
-            <div class="card-icon">
+            <div class="service-icon">
+              🚚
+            </div>
+
+            <h3 id="service3Name">
+              Road Freight
+            </h3>
+
+            <p id="service3Description">
+              Reliable road transportation for domestic
+              and regional cargo movement.
+            </p>
+
+          </article>
+
+
+          <article class="service-card">
+
+            <div class="service-icon">
+              📦
+            </div>
+
+            <h3 id="service4Name">
+              Express Courier
+            </h3>
+
+            <p id="service4Description">
+              Fast door-to-door courier delivery for
+              documents, parcels, and time-sensitive shipments.
+            </p>
+
+          </article>
+
+
+          <article class="service-card">
+
+            <div class="service-icon">
+              🛃
+            </div>
+
+            <h3 id="service5Name">
+              Customs Clearance
+            </h3>
+
+            <p id="service5Description">
+              Professional customs clearance support to help
+              shipments move smoothly through border procedures.
+            </p>
+
+          </article>
+
+
+          <article class="service-card">
+
+            <div class="service-icon">
               🏢
             </div>
 
-            <h3>
-              Warehousing
+            <h3 id="service6Name">
+              Warehousing & Distribution
             </h3>
 
-            <p>
-              Storage and distribution support for businesses
-              managing inventory and supply-chain requirements.
-            </p>
-
-          </article>
-
-
-          <article class="card">
-
-            <div class="card-icon">
-              🌎
-            </div>
-
-            <h3>
-              Global Logistics
-            </h3>
-
-            <p>
-              Coordinated logistics services supporting shipments
-              across international destinations.
+            <p id="service6Description">
+              Secure storage and organized distribution solutions
+              to keep your goods moving efficiently.
             </p>
 
           </article>
@@ -251,9 +881,11 @@
     </section>
 
 
-    <section class="section">
+    <!-- PROFESSIONAL SERVICE -->
 
-      <div class="container">
+    <section class="services-section services-section-gray">
+
+      <div class="services-container">
 
         <div class="section-heading">
 
@@ -266,52 +898,52 @@
           </h2>
 
           <p>
-            Our platform will provide shipment visibility,
-            tracking updates and customer access as the
-            ExpressLine system is connected to its secure backend.
+            ExpressLine combines shipment visibility, reliable
+            transportation and secure management to make delivery
+            easier for customers and businesses.
           </p>
 
         </div>
 
 
-        <div class="cards">
+        <div class="services-grid">
 
-          <article class="card">
+          <article class="feature-card">
 
             <h3>
               Shipment Visibility
             </h3>
 
             <p>
-              Customers can track authorized shipments and
-              review available shipment updates.
+              Track authorized shipments and view available
+              shipment information and delivery updates.
             </p>
 
           </article>
 
 
-          <article class="card">
+          <article class="feature-card">
 
             <h3>
               Flexible Shipping
             </h3>
 
             <p>
-              Shipping methods can be configured according to
-              the company's actual services.
+              Choose from available transportation and delivery
+              services according to your shipment requirements.
             </p>
 
           </article>
 
 
-          <article class="card">
+          <article class="feature-card">
 
             <h3>
               Secure Management
             </h3>
 
             <p>
-              Shipment information will be managed through
+              Shipment information is managed through secure
               authenticated administrative tools.
             </p>
 
@@ -324,9 +956,11 @@
     </section>
 
 
-    <section class="cta">
+    <!-- CTA -->
 
-      <div class="container">
+    <section class="services-cta">
+
+      <div class="services-cta-inner">
 
         <h2>
           Need to arrange a shipment?
@@ -334,12 +968,12 @@
 
         <p>
           Submit a shipment request and provide the details
-          needed to begin the delivery process.
+          needed to begin your delivery process.
         </p>
 
         <a
           href="request.html"
-          class="btn btn-primary"
+          class="services-cta-button"
         >
           Request a Shipment
         </a>
@@ -351,120 +985,163 @@
   </main>
 
 
-  <footer class="site-footer">
+  <!-- =========================
+       FOOTER
+  ========================= -->
 
-    <div class="container">
+  <footer class="services-footer">
 
-      <div class="footer-grid">
+    <div class="services-footer-grid">
 
-        <div>
+      <div>
 
-          <div class="logo">
-            <span class="logo-mark">EL</span>
-            <span id="footerCompanyName">
-              ExpressLine Delivery Services
-            </span>
-          </div>
+        <div class="footer-brand">
 
-          <p id="footerText">
-            Professional courier and logistics solutions
-            designed to keep shipments moving with confidence.
-          </p>
+          <span class="services-logo-mark">
+            EL
+          </span>
 
-        </div>
-
-
-        <div>
-
-          <h3>
-            Company
-          </h3>
-
-          <ul class="footer-links">
-
-            <li>
-              <a href="about.html">
-                About Us
-              </a>
-            </li>
-
-            <li>
-              <a href="services.html">
-                Services
-              </a>
-            </li>
-
-            <li>
-              <a href="contact.html">
-                Contact Us
-              </a>
-            </li>
-
-          </ul>
+          <span id="footerCompanyName">
+            ExpressLine Delivery Services
+          </span>
 
         </div>
 
-
-        <div>
-
-          <h3>
-            Customer
-          </h3>
-
-          <ul class="footer-links">
-
-            <li>
-              <a href="track.html">
-                Track Shipment
-              </a>
-            </li>
-
-            <li>
-              <a href="request.html">
-                Request Shipment
-              </a>
-            </li>
-
-            <li>
-              <a href="login.html">
-                Customer Login
-              </a>
-            </li>
-
-          </ul>
-
-        </div>
-
-
-        <div>
-
-          <h3>
-            Contact
-          </h3>
-
-          <p>
-            Company contact information will be configured
-            through the administrator settings.
-          </p>
-
-        </div>
+        <p id="footerText">
+          Reliable logistics and delivery solutions for
+          individuals and businesses.
+        </p>
 
       </div>
 
 
-      <div class="footer-bottom">
+      <div>
 
-        <p id="copyrightText">
-          © 2026 ExpressLine Delivery Services.
-          All rights reserved.
+        <h3>
+          Company
+        </h3>
+
+        <ul class="footer-links">
+
+          <li>
+            <a href="about.html">
+              About Us
+            </a>
+          </li>
+
+          <li>
+            <a href="services.html">
+              Services
+            </a>
+          </li>
+
+          <li>
+            <a href="contact.html">
+              Contact Us
+            </a>
+          </li>
+
+        </ul>
+
+      </div>
+
+
+      <div>
+
+        <h3>
+          Customer
+        </h3>
+
+        <ul class="footer-links">
+
+          <li>
+            <a href="track.html">
+              Track Shipment
+            </a>
+          </li>
+
+          <li>
+            <a href="request.html">
+              Request a Shipment
+            </a>
+          </li>
+
+          <li>
+            <a href="login.html">
+              Customer Login
+            </a>
+          </li>
+
+        </ul>
+
+      </div>
+
+
+      <div>
+
+        <h3>
+          Support
+        </h3>
+
+        <p>
+          Need help with a shipment or delivery request?
+          Contact our support team for assistance.
         </p>
+
+        <br>
+
+        <a
+          href="Customer Support.html"
+          style="
+            display:inline-flex;
+            align-items:center;
+            justify-content:center;
+            min-height:42px;
+            padding:10px 16px;
+            background:#F97316;
+            color:#ffffff;
+            border-radius:8px;
+            text-decoration:none;
+            font-weight:800;
+            font-size:14px;
+          "
+        >
+          Smart Support
+        </a>
 
       </div>
 
     </div>
 
+
+    <div class="footer-bottom">
+
+      <p id="copyrightText">
+        © 2026 ExpressLine Delivery Services.
+        All rights reserved.
+      </p>
+
+    </div>
+
   </footer>
 
+
+  <!-- =========================
+       SMART SUPPORT BUTTON
+  ========================= -->
+
+  <a
+    href="Customer Support.html"
+    class="support-button"
+    aria-label="Open Smart Support"
+  >
+    💬 Smart Support
+  </a>
+
+
+  <!-- =========================
+       SUPABASE
+  ========================= -->
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
@@ -474,7 +1151,7 @@
   <script>
 
     /* =========================
-       SUPABASE
+       SUPABASE CONFIGURATION
     ========================= */
 
     const SUPABASE_URL =
@@ -545,6 +1222,10 @@
     }
 
 
+    /* =========================
+       APPLY WEBSITE SETTINGS
+    ========================= */
+
     async function applyServicesSettings() {
 
       const settings =
@@ -612,7 +1293,7 @@
 
 
       /* =========================
-         SERVICES
+         SERVICES 1 - 6
       ========================= */
 
       const serviceFields = [
@@ -630,6 +1311,21 @@
         [
           "service3Name",
           "service3Description"
+        ],
+
+        [
+          "service4Name",
+          "service4Description"
+        ],
+
+        [
+          "service5Name",
+          "service5Description"
+        ],
+
+        [
+          "service6Name",
+          "service6Description"
         ]
 
       ];
@@ -675,7 +1371,7 @@
 
 
       /* =========================
-         SERVICES HERO
+         SERVICES HERO IMAGE
       ========================= */
 
       const servicesHero =
@@ -689,11 +1385,10 @@
         settings.servicesImage
       ) {
 
-        servicesHero.style
-          .setProperty(
-            "--services-hero-image",
-            `url("${settings.servicesImage}")`
-          );
+        servicesHero.style.setProperty(
+          "--services-hero-image",
+          `url("${settings.servicesImage}")`
+        );
 
         servicesHero.classList.add(
           "has-custom-image"
@@ -703,7 +1398,7 @@
 
 
       /* =========================
-         SERVICES HERO TEXT
+         SERVICES HERO HEADING
       ========================= */
 
       const servicesHeroHeading =
@@ -722,6 +1417,10 @@
 
       }
 
+
+      /* =========================
+         SERVICES HERO DESCRIPTION
+      ========================= */
 
       const servicesHeroDescription =
         document.getElementById(
@@ -821,8 +1520,7 @@
 
       if (settings.fontSize) {
 
-        document.documentElement.style
-          .fontSize =
+        document.documentElement.style.fontSize =
           settings.fontSize;
 
       }
@@ -834,44 +1532,40 @@
 
       if (settings.primaryColor) {
 
-        document.documentElement.style
-          .setProperty(
-            "--navy",
-            settings.primaryColor
-          );
+        document.documentElement.style.setProperty(
+          "--navy",
+          settings.primaryColor
+        );
 
       }
 
 
       if (settings.secondaryColor) {
 
-        document.documentElement.style
-          .setProperty(
-            "--navy-dark",
-            settings.secondaryColor
-          );
+        document.documentElement.style.setProperty(
+          "--navy-dark",
+          settings.secondaryColor
+        );
 
       }
 
 
       if (settings.accentColor) {
 
-        document.documentElement.style
-          .setProperty(
-            "--orange",
-            settings.accentColor
-          );
+        document.documentElement.style.setProperty(
+          "--orange",
+          settings.accentColor
+        );
 
       }
 
 
       if (settings.textColor) {
 
-        document.documentElement.style
-          .setProperty(
-            "--text",
-            settings.textColor
-          );
+        document.documentElement.style.setProperty(
+          "--text",
+          settings.textColor
+        );
 
       }
 
@@ -909,12 +1603,152 @@
 
       }
 
+
+      /* =========================
+         MAINTENANCE MODE
+      ========================= */
+
+      if (
+        settings.maintenanceMode === true
+      ) {
+
+        document.body.classList.add(
+          "website-maintenance-active"
+        );
+
+      }
+
     }
 
 
+    /* =========================
+       MOBILE NAVIGATION
+    ========================= */
+
+    function setupMobileNavigation() {
+
+      const menuButton =
+        document.getElementById(
+          "servicesMenuToggle"
+        );
+
+      const nav =
+        document.getElementById(
+          "servicesNavLinks"
+        );
+
+
+      if (
+        !menuButton ||
+        !nav
+      ) {
+
+        return;
+
+      }
+
+
+      menuButton.addEventListener(
+        "click",
+        function(event) {
+
+          event.stopPropagation();
+
+          const isOpen =
+            nav.classList.toggle("open");
+
+          menuButton.setAttribute(
+            "aria-expanded",
+            isOpen ? "true" : "false"
+          );
+
+          menuButton.setAttribute(
+            "aria-label",
+            isOpen
+              ? "Close navigation menu"
+              : "Open navigation menu"
+          );
+
+          menuButton.textContent =
+            isOpen ? "✕" : "☰";
+
+        }
+      );
+
+
+      nav.querySelectorAll("a")
+        .forEach((link) => {
+
+          link.addEventListener(
+            "click",
+            function() {
+
+              nav.classList.remove("open");
+
+              menuButton.setAttribute(
+                "aria-expanded",
+                "false"
+              );
+
+              menuButton.setAttribute(
+                "aria-label",
+                "Open navigation menu"
+              );
+
+              menuButton.textContent =
+                "☰";
+
+            }
+          );
+
+        });
+
+
+      document.addEventListener(
+        "click",
+        function(event) {
+
+          if (
+            !nav.contains(event.target) &&
+            !menuButton.contains(event.target)
+          ) {
+
+            nav.classList.remove("open");
+
+            menuButton.setAttribute(
+              "aria-expanded",
+              "false"
+            );
+
+            menuButton.setAttribute(
+              "aria-label",
+              "Open navigation menu"
+            );
+
+            menuButton.textContent =
+              "☰";
+
+          }
+
+        }
+      );
+
+    }
+
+
+    /* =========================
+       START
+    ========================= */
+
     document.addEventListener(
       "DOMContentLoaded",
-      applyServicesSettings
+      function() {
+
+        applyServicesSettings();
+
+        setupMobileNavigation();
+
+      }
     );
 
   </script>
