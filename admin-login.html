@@ -1,210 +1,426 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Admin Login - ExpressLine Delivery Services</title>
+  <title>Admin Login | ExpressLine</title>
 
-    <style>
-        * {
-            box-sizing: border-box;
-        }
+  <meta
+    name="description"
+    content="Secure admin login for ExpressLine Delivery Services."
+  >
 
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background: #f3f4f6;
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
+  <style>
+    * {
+      box-sizing: border-box;
+    }
 
-        .login-box {
-            width: 100%;
-            max-width: 420px;
-            background: white;
-            padding: 35px;
-            border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.10);
-        }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      font-family: Arial, Helvetica, sans-serif;
+      background: #172033;
+      color: #172033;
+    }
 
-        h1 {
-            text-align: center;
-            color: #111827;
-            margin: 0 0 10px;
-        }
+    .login-container {
+      width: 100%;
+      max-width: 430px;
+    }
 
-        .subtitle {
-            text-align: center;
-            color: #6b7280;
-            margin-bottom: 30px;
-        }
+    .login-card {
+      background: #ffffff;
+      border-radius: 18px;
+      padding: 35px;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25);
+    }
 
-        label {
-            display: block;
-            margin-bottom: 7px;
-            font-weight: bold;
-            color: #111827;
-        }
+    .logo {
+      width: 70px;
+      height: 70px;
+      margin: 0 auto 20px;
+      border-radius: 16px;
+      background: #e30613;
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 28px;
+      font-weight: 800;
+    }
 
-        input {
-            width: 100%;
-            padding: 13px;
-            margin-bottom: 18px;
-            border: 1px solid #d1d5db;
-            border-radius: 7px;
-            font-size: 15px;
-        }
+    h1 {
+      margin: 0;
+      text-align: center;
+      font-size: 28px;
+      color: #172033;
+    }
 
-        input:focus {
-            outline: none;
-            border-color: #2563eb;
-        }
+    .subtitle {
+      margin: 10px 0 28px;
+      text-align: center;
+      color: #667085;
+      font-size: 14px;
+      line-height: 1.5;
+    }
 
-        button {
-            width: 100%;
-            padding: 14px;
-            border: none;
-            border-radius: 7px;
-            background: #2563eb;
-            color: white;
-            font-size: 16px;
-            font-weight: bold;
-            cursor: pointer;
-        }
+    .form-group {
+      margin-bottom: 18px;
+    }
 
-        button:hover {
-            background: #1d4ed8;
-        }
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-size: 14px;
+      font-weight: 700;
+      color: #172033;
+    }
 
-        button:disabled {
-            background: #93c5fd;
-            cursor: not-allowed;
-        }
+    input {
+      width: 100%;
+      padding: 14px 15px;
+      border: 1px solid #d0d5dd;
+      border-radius: 10px;
+      font-size: 16px;
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
 
-        .error {
-            display: none;
-            background: #fee2e2;
-            color: #b91c1c;
-            padding: 12px;
-            margin-bottom: 18px;
-            border-radius: 7px;
-            text-align: center;
-        }
+    input:focus {
+      border-color: #e30613;
+      box-shadow: 0 0 0 3px rgba(227, 6, 19, 0.1);
+    }
 
-        .back {
-            display: block;
-            text-align: center;
-            margin-top: 20px;
-            color: #2563eb;
-            text-decoration: none;
-        }
+    button {
+      width: 100%;
+      border: none;
+      border-radius: 10px;
+      padding: 15px;
+      background: #e30613;
+      color: #ffffff;
+      font-size: 16px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: opacity 0.2s, transform 0.2s;
+    }
 
-        .back:hover {
-            text-decoration: underline;
-        }
-    </style>
+    button:hover {
+      opacity: 0.92;
+    }
+
+    button:active {
+      transform: scale(0.99);
+    }
+
+    button:disabled {
+      opacity: 0.65;
+      cursor: not-allowed;
+    }
+
+    .message {
+      display: none;
+      margin-top: 18px;
+      padding: 12px 14px;
+      border-radius: 9px;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    .message.error {
+      display: block;
+      background: #fff1f2;
+      color: #b42318;
+      border: 1px solid #fecdca;
+    }
+
+    .message.success {
+      display: block;
+      background: #ecfdf3;
+      color: #027a48;
+      border: 1px solid #abefc6;
+    }
+
+    .back-link {
+      display: block;
+      margin-top: 22px;
+      text-align: center;
+      color: #172033;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .back-link:hover {
+      text-decoration: underline;
+    }
+
+    .security-note {
+      margin-top: 20px;
+      text-align: center;
+      color: #98a2b3;
+      font-size: 12px;
+      line-height: 1.5;
+    }
+
+    @media (max-width: 480px) {
+      .login-card {
+        padding: 28px 22px;
+      }
+
+      h1 {
+        font-size: 24px;
+      }
+    }
+  </style>
 </head>
 
 <body>
 
-<div class="login-box">
+  <main class="login-container">
 
-    <h1>Admin Login</h1>
+    <section class="login-card">
 
-    <p class="subtitle">
-        ExpressLine Delivery Services
-    </p>
+      <div class="logo">EL</div>
 
-    <div id="errorMessage" class="error">
-        Incorrect admin email or password.
-    </div>
+      <h1>Admin Login</h1>
 
-    <form id="adminLoginForm">
+      <p class="subtitle">
+        Sign in to manage ExpressLine Delivery Services.
+      </p>
 
-        <label for="email">Admin Email</label>
+      <form id="adminLoginForm">
 
-        <input
+        <div class="form-group">
+          <label for="adminEmail">Email Address</label>
+
+          <input
             type="email"
-            id="email"
-            placeholder="Enter admin email"
+            id="adminEmail"
+            placeholder="Enter your admin email"
             autocomplete="username"
             required
-        >
+          >
+        </div>
 
-        <label for="password">Password</label>
+        <div class="form-group">
+          <label for="adminPassword">Password</label>
 
-        <input
+          <input
             type="password"
-            id="password"
-            placeholder="Enter admin password"
+            id="adminPassword"
+            placeholder="Enter your password"
             autocomplete="current-password"
             required
-        >
+          >
+        </div>
 
         <button type="submit" id="loginButton">
-            Login
+          Sign In
         </button>
 
-    </form>
+        <div id="loginMessage" class="message"></div>
 
-    <a href="index.html" class="back">
-        ← Back to Homepage
-    </a>
+      </form>
 
-</div>
+      <a href="index.html" class="back-link">
+        ← Back to Website
+      </a>
 
-<script>
-    const adminLoginForm = document.getElementById("adminLoginForm");
-    const errorMessage = document.getElementById("errorMessage");
+      <div class="security-note">
+        Secure administrator access powered by Supabase.
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <!-- Supabase JavaScript -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+  <script>
+
+    const SUPABASE_URL =
+      "https://uhjgietvznkfzckmxqfz.supabase.co";
+
+    const SUPABASE_PUBLISHABLE_KEY =
+      "sb_publishable_zZ0JiBW-2uarX2gnR5w9hQ_77RpB6SM";
+
+    const supabaseClient = supabase.createClient(
+      SUPABASE_URL,
+      SUPABASE_PUBLISHABLE_KEY
+    );
+
+
+    const loginForm = document.getElementById("adminLoginForm");
     const loginButton = document.getElementById("loginButton");
+    const loginMessage = document.getElementById("loginMessage");
 
-    /*
-        If the admin is already logged in,
-        do not show the login page again.
-    */
-    if (localStorage.getItem("adminLoggedIn") === "true") {
-        window.location.replace("admin.html");
+
+    function showMessage(message, type) {
+      loginMessage.textContent = message;
+      loginMessage.className = "message " + type;
     }
 
-    adminLoginForm.addEventListener("submit", function(event) {
 
-        event.preventDefault();
+    function clearMessage() {
+      loginMessage.textContent = "";
+      loginMessage.className = "message";
+    }
 
-        errorMessage.style.display = "none";
 
-        const email = document.getElementById("email").value.trim();
-        const password = document.getElementById("password").value;
+    async function checkExistingSession() {
 
-        /*
-            Current admin login credentials.
-            These can be changed later.
-        */
-        const adminEmail = "admin@logistics.com";
-        const adminPassword = "admin123";
+      const {
+        data: { session },
+        error
+      } = await supabaseClient.auth.getSession();
 
-        if (email === adminEmail && password === adminPassword) {
+      if (error) {
+        console.error("Session check error:", error);
+        return;
+      }
 
-            localStorage.setItem("adminLoggedIn", "true");
+      if (session) {
 
-            loginButton.disabled = true;
-            loginButton.textContent = "Logging in...";
+        localStorage.setItem(
+          "adminLoggedIn",
+          "true"
+        );
 
-            window.location.replace("admin.html");
+        window.location.replace("admin.html");
+      }
+    }
 
-        } else {
 
-            errorMessage.style.display = "block";
+    loginForm.addEventListener("submit", async function(event) {
 
-            document.getElementById("password").value = "";
-            document.getElementById("password").focus();
+      event.preventDefault();
 
+      clearMessage();
+
+      const email =
+        document.getElementById("adminEmail").value.trim();
+
+      const password =
+        document.getElementById("adminPassword").value;
+
+
+      if (!email || !password) {
+
+        showMessage(
+          "Please enter your email and password.",
+          "error"
+        );
+
+        return;
+      }
+
+
+      loginButton.disabled = true;
+      loginButton.textContent = "Signing In...";
+
+
+      try {
+
+        const {
+          data,
+          error
+        } = await supabaseClient.auth.signInWithPassword({
+          email: email,
+          password: password
+        });
+
+
+        if (error) {
+          throw error;
         }
 
+
+        if (!data || !data.session) {
+
+          throw new Error(
+            "Login was successful, but no secure session was created."
+          );
+        }
+
+
+        /*
+          Keep the old local flag temporarily so the existing
+          Admin pages can continue working while we migrate
+          the remaining Admin pages to Supabase.
+        */
+        localStorage.setItem(
+          "adminLoggedIn",
+          "true"
+        );
+
+
+        showMessage(
+          "Login successful. Opening Admin Dashboard...",
+          "success"
+        );
+
+
+        setTimeout(function() {
+
+          window.location.replace("admin.html");
+
+        }, 500);
+
+
+      } catch (error) {
+
+        console.error("Admin login error:", error);
+
+        let message =
+          "Unable to sign in. Please check your email and password.";
+
+        if (error && error.message) {
+
+          if (
+            error.message.toLowerCase().includes("email not confirmed")
+          ) {
+            message =
+              "Your Supabase email has not been confirmed yet.";
+          }
+
+          else if (
+            error.message.toLowerCase().includes("invalid login")
+          ) {
+            message =
+              "Invalid email or password.";
+          }
+
+          else {
+            message = error.message;
+          }
+        }
+
+        showMessage(
+          message,
+          "error"
+        );
+
+        loginButton.disabled = false;
+        loginButton.textContent = "Sign In";
+      }
+
     });
-</script>
+
+
+    /*
+      Check whether the administrator already has
+      an active Supabase session.
+    */
+    checkExistingSession();
+
+  </script>
 
 </body>
 </html>
