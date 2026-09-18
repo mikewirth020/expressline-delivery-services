@@ -290,6 +290,25 @@
       font-size: 14px;
     }
 
+    .error {
+      background: #fee2e2;
+      border: 1px solid #fecaca;
+      color: #991b1b;
+      padding: 14px;
+      border-radius: 8px;
+      margin-bottom: 20px;
+      line-height: 1.5;
+      font-size: 14px;
+    }
+
+    .loading {
+      background: white;
+      padding: 35px 20px;
+      border-radius: 12px;
+      text-align: center;
+      color: #64748b;
+    }
+
     @media (max-width: 800px) {
       .request-grid {
         grid-template-columns: repeat(2, 1fr);
@@ -374,6 +393,12 @@
 
   </div>
 
+  <div
+    id="errorBox"
+    class="error"
+    style="display:none;"
+  ></div>
+
   <div class="search-box">
 
     <input
@@ -392,59 +417,78 @@
 
 </main>
 
+<!-- SUPABASE -->
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
 <script>
 
 /* =========================================================
-   ADMIN ACCESS PROTECTION
+   SUPABASE CONFIGURATION
    ========================================================= */
 
-if (localStorage.getItem("adminLoggedIn") !== "true") {
-  window.location.replace("admin-login.html");
-}
+const SUPABASE_URL =
+  "https://uhjgietvznkfzckmxqfz.supabase.co";
+
+const SUPABASE_PUBLISHABLE_KEY =
+  "sb_publishable_zZ0JiBW-2uarX2gnR5w9hQ_77RpB6SM";
+
+const supabaseClient =
+  window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_PUBLISHABLE_KEY
+  );
 
 
 /* =========================================================
-   STORAGE
+   VARIABLES
    ========================================================= */
-
-const REQUEST_STORAGE_KEY =
-  "expresslineShipmentRequests";
 
 let requests = [];
 
 
 /* =========================================================
-   LOAD REQUESTS
+   ADMIN ACCESS PROTECTION
    ========================================================= */
 
-function loadRequests() {
+async function checkAdminAccess() {
 
   try {
 
-    const saved =
-      localStorage.getItem(
-        REQUEST_STORAGE_KEY
-      );
+    const {
+      data,
+      error
+    } =
+      await supabaseClient.auth.getSession();
 
-    if (!saved) {
-      return [];
+    if (error) {
+      console.error(error);
+      window.location.replace("admin-login.html");
+      return false;
     }
 
-    const parsed =
-      JSON.parse(saved);
+    const session =
+      data.session;
 
-    return Array.isArray(parsed)
-      ? parsed
-      : [];
+    if (!session) {
+      window.location.replace("admin-login.html");
+      return false;
+    }
+
+    return true;
 
   } catch (error) {
 
     console.error(
-      "Unable to load shipment requests:",
+      "Admin access check failed:",
       error
     );
 
-    return [];
+    window.location.replace(
+      "admin-login.html"
+    );
+
+    return false;
 
   }
 
@@ -512,6 +556,7 @@ function locationValue(value) {
   ) {
 
     return (
+      value.label ||
       value.location ||
       value.address ||
       value.city ||
@@ -577,12 +622,15 @@ function normalizeRequest(request) {
       locationValue(request.origin) ||
       textValue(request.pickup) ||
       textValue(request.pickupLocation) ||
+      textValue(request.pickupAddress) ||
+      textValue(request.shipping?.pickupAddress) ||
       textValue(sender.address),
 
     destination:
       locationValue(request.destination) ||
       textValue(request.deliveryAddress) ||
       textValue(request.destinationAddress) ||
+      textValue(request.shipping?.deliveryAddress) ||
       textValue(receiver.address),
 
     shipmentType:
@@ -597,7 +645,8 @@ function normalizeRequest(request) {
     message:
       textValue(request.message) ||
       textValue(request.notes) ||
-      textValue(request.description),
+      textValue(request.description) ||
+      textValue(request.shipping?.specialInstructions),
 
     status:
       textValue(request.status) ||
@@ -675,13 +724,167 @@ function getStatusClass(status) {
 
 
 /* =========================================================
+   SHOW ERROR
+   ========================================================= */
+
+function showError(message) {
+
+  const box =
+    document.getElementById(
+      "errorBox"
+    );
+
+  box.textContent =
+    message;
+
+  box.style.display =
+    "block";
+
+}
+
+
+/* =========================================================
+   HIDE ERROR
+   ========================================================= */
+
+function hideError() {
+
+  const box =
+    document.getElementById(
+      "errorBox"
+    );
+
+  box.style.display =
+    "none";
+
+  box.textContent =
+    "";
+
+}
+
+
+/* =========================================================
+   LOAD REQUESTS FROM SUPABASE
+   ========================================================= */
+
+async function loadRequests() {
+
+  hideError();
+
+  const list =
+    document.getElementById(
+      "requestList"
+    );
+
+  list.innerHTML = `
+    <div class="loading">
+      Loading shipment requests...
+    </div>
+  `;
+
+  try {
+
+    const {
+      data,
+      error
+    } =
+      await supabaseClient
+        .from("shipment_requests")
+        .select(
+          "id, request_id, data, created_at, updated_at"
+        )
+        .order(
+          "created_at",
+          {
+            ascending: false
+          }
+        );
+
+    if (error) {
+
+      console.error(
+        "Unable to load shipment requests:",
+        error
+      );
+
+      showError(
+        "Unable to load shipment requests. Please make sure the Supabase shipment_requests table is configured correctly."
+      );
+
+      list.innerHTML = `
+        <div class="empty">
+          <h3>Unable to load requests</h3>
+          <p>
+            The Admin could not retrieve shipment requests from the database.
+          </p>
+        </div>
+      `;
+
+      requests = [];
+
+      return;
+
+    }
+
+    requests =
+      Array.isArray(data)
+        ? data.map(row => {
+
+            const requestData =
+              row.data &&
+              typeof row.data === "object"
+                ? {
+                    ...row.data,
+                    id:
+                      row.request_id ||
+                      row.data.requestId ||
+                      row.data.id
+                  }
+                : {
+                    id:
+                      row.request_id ||
+                      row.id
+                  };
+
+            return requestData;
+
+          })
+        : [];
+
+    renderRequests();
+
+  } catch (error) {
+
+    console.error(
+      "Request loading error:",
+      error
+    );
+
+    showError(
+      "An unexpected error occurred while loading shipment requests."
+    );
+
+    requests = [];
+
+    list.innerHTML = `
+      <div class="empty">
+        <h3>Unable to load requests</h3>
+        <p>
+          Please try again later.
+        </p>
+      </div>
+    `;
+
+  }
+
+}
+
+
+/* =========================================================
    RENDER REQUESTS
    ========================================================= */
 
 function renderRequests() {
-
-  requests =
-    loadRequests();
 
   const list =
     document.getElementById(
@@ -888,6 +1091,14 @@ function renderRequests() {
               <div class="details-grid">
 
                 <div class="details-box">
+                  <strong>Request Number</strong>
+                  ${escapeHTML(
+                    r.id ||
+                    "Not provided"
+                  )}
+                </div>
+
+                <div class="details-box">
                   <strong>Customer</strong>
                   ${escapeHTML(
                     r.name ||
@@ -920,6 +1131,14 @@ function renderRequests() {
                 </div>
 
                 <div class="details-box">
+                  <strong>Shipment Type</strong>
+                  ${escapeHTML(
+                    r.shipmentType ||
+                    "Not provided"
+                  )}
+                </div>
+
+                <div class="details-box">
                   <strong>Origin</strong>
                   ${escapeHTML(
                     r.origin ||
@@ -936,17 +1155,16 @@ function renderRequests() {
                 </div>
 
                 <div class="details-box">
-                  <strong>Shipment Type</strong>
+                  <strong>Status</strong>
                   ${escapeHTML(
-                    r.shipmentType ||
-                    "Not provided"
+                    r.status
                   )}
                 </div>
 
                 <div class="details-box">
-                  <strong>Status</strong>
+                  <strong>Request Date</strong>
                   ${escapeHTML(
-                    r.status
+                    formatDate(r.date)
                   )}
                 </div>
 
@@ -1010,10 +1228,7 @@ function openAdminShipments() {
    DELETE REQUEST
    ========================================================= */
 
-function deleteRequest(index) {
-
-  requests =
-    loadRequests();
+async function deleteRequest(index) {
 
   if (!requests[index]) {
     return;
@@ -1035,17 +1250,62 @@ function deleteRequest(index) {
     return;
   }
 
-  requests.splice(
-    index,
-    1
-  );
+  hideError();
 
-  localStorage.setItem(
-    REQUEST_STORAGE_KEY,
-    JSON.stringify(requests)
-  );
+  try {
 
-  renderRequests();
+    const {
+      data,
+      error
+    } =
+      await supabaseClient
+        .from("shipment_requests")
+        .delete()
+        .eq(
+          "request_id",
+          request.id
+        )
+        .select();
+
+    if (error) {
+
+      console.error(
+        "Unable to delete request:",
+        error
+      );
+
+      showError(
+        "Unable to delete this request from the database."
+      );
+
+      return;
+
+    }
+
+    if (!data || !data.length) {
+
+      showError(
+        "The request could not be deleted. The database did not return the deleted request."
+      );
+
+      return;
+
+    }
+
+    await loadRequests();
+
+  } catch (error) {
+
+    console.error(
+      "Delete request error:",
+      error
+    );
+
+    showError(
+      "An unexpected error occurred while deleting the request."
+    );
+
+  }
 
 }
 
@@ -1056,22 +1316,16 @@ function deleteRequest(index) {
 
 document.addEventListener(
   "DOMContentLoaded",
-  function() {
+  async function() {
 
-    /*
-      The access check above runs first.
-      If the Admin is logged in, load requests normally.
-    */
+    const allowed =
+      await checkAdminAccess();
 
-    if (
-      localStorage.getItem(
-        "adminLoggedIn"
-      ) !== "true"
-    ) {
+    if (!allowed) {
       return;
     }
 
-    renderRequests();
+    await loadRequests();
 
   }
 );
