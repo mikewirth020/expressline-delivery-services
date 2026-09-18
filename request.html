@@ -12,13 +12,60 @@
   >
 
   <link rel="stylesheet" href="style.css">
+
+  <style>
+    .shipment-preview {
+      display: none;
+      margin-top: 15px;
+    }
+
+    .shipment-preview img {
+      width: 100%;
+      max-width: 350px;
+      max-height: 250px;
+      object-fit: cover;
+      border-radius: 12px;
+      border: 1px solid #ddd;
+    }
+
+    .upload-box {
+      border: 2px dashed #bbb;
+      border-radius: 12px;
+      padding: 25px;
+      text-align: center;
+      cursor: pointer;
+      background: #fafafa;
+    }
+
+    .upload-box:hover {
+      border-color: #555;
+    }
+
+    .coordinate-note {
+      font-size: 13px;
+      color: #777;
+      margin-top: 5px;
+    }
+
+    .tracking-created {
+      display: none;
+      margin-top: 20px;
+      padding: 18px;
+      border-radius: 12px;
+      background: #f1f7ff;
+      border: 1px solid #cfe2ff;
+    }
+
+    .tracking-created strong {
+      font-size: 20px;
+    }
+  </style>
 </head>
 
 <body>
 
   <!-- HEADER -->
   <header class="site-header">
-
     <div class="container navbar">
 
       <a href="index.html" class="logo">
@@ -44,7 +91,7 @@
 
         <a href="about.html">About Us</a>
 
-        <a href="contact.html">Contact Us</a>
+        <a href="Contact.html">Contact Us</a>
 
         <a href="request.html">Request Shipment</a>
 
@@ -55,7 +102,6 @@
       </nav>
 
     </div>
-
   </header>
 
 
@@ -76,8 +122,8 @@
         </h1>
 
         <p>
-          Provide the shipment details below so our team can
-          review your transportation requirements.
+          Provide the complete shipment details below so our team
+          can review and process your transportation requirements.
         </p>
 
       </div>
@@ -101,9 +147,8 @@
           </h2>
 
           <p>
-            Please provide accurate information about the sender,
-            recipient and package. Additional details can be
-            confirmed after your request is reviewed.
+            Enter accurate sender, receiver, package, origin,
+            destination and delivery information.
           </p>
 
         </div>
@@ -123,7 +168,6 @@
               <div class="form-grid">
 
                 <div class="form-group">
-
                   <label for="requestName">
                     Full Name
                   </label>
@@ -136,12 +180,10 @@
                     autocomplete="name"
                     required
                   >
-
                 </div>
 
 
                 <div class="form-group">
-
                   <label for="requestPhone">
                     Phone Number
                   </label>
@@ -154,12 +196,10 @@
                     autocomplete="tel"
                     required
                   >
-
                 </div>
 
 
                 <div class="form-group">
-
                   <label for="requestEmail">
                     Email Address
                   </label>
@@ -172,7 +212,6 @@
                     autocomplete="email"
                     required
                   >
-
                 </div>
 
               </div>
@@ -190,7 +229,6 @@
               <div class="form-grid">
 
                 <div class="form-group">
-
                   <label for="senderName">
                     Sender Name
                   </label>
@@ -202,24 +240,21 @@
                     placeholder="Enter sender name"
                     required
                   >
-
                 </div>
 
 
                 <div class="form-group">
-
                   <label for="senderPhone">
-                    Sender Phone
+                    Sender Phone Number
                   </label>
 
                   <input
                     type="tel"
                     id="senderPhone"
                     name="senderPhone"
-                    placeholder="Enter sender phone"
+                    placeholder="Enter sender phone number"
                     required
                   >
-
                 </div>
 
               </div>
@@ -228,14 +263,14 @@
               <div class="form-group">
 
                 <label for="senderAddress">
-                  Pickup Address
+                  Sender Address
                 </label>
 
                 <textarea
                   id="senderAddress"
                   name="senderAddress"
                   rows="4"
-                  placeholder="Enter the pickup address"
+                  placeholder="Enter the sender address"
                   required
                 ></textarea>
 
@@ -244,26 +279,26 @@
             </div>
 
 
-            <!-- RECIPIENT -->
+            <!-- RECEIVER -->
             <div class="form-section">
 
               <h3>
-                Recipient Information
+                Receiver Information
               </h3>
 
               <div class="form-grid">
 
                 <div class="form-group">
 
-                  <label for="recipientName">
-                    Recipient Name
+                  <label for="receiverName">
+                    Receiver Name
                   </label>
 
                   <input
                     type="text"
-                    id="recipientName"
-                    name="recipientName"
-                    placeholder="Enter recipient name"
+                    id="receiverName"
+                    name="receiverName"
+                    placeholder="Enter receiver name"
                     required
                   >
 
@@ -272,15 +307,15 @@
 
                 <div class="form-group">
 
-                  <label for="recipientPhone">
-                    Recipient Phone
+                  <label for="receiverPhone">
+                    Receiver Phone
                   </label>
 
                   <input
                     type="tel"
-                    id="recipientPhone"
-                    name="recipientPhone"
-                    placeholder="Enter recipient phone"
+                    id="receiverPhone"
+                    name="receiverPhone"
+                    placeholder="Enter receiver phone number"
                     required
                   >
 
@@ -291,15 +326,15 @@
 
               <div class="form-group">
 
-                <label for="recipientAddress">
-                  Delivery Address
+                <label for="receiverAddress">
+                  Receiver Address
                 </label>
 
                 <textarea
-                  id="recipientAddress"
-                  name="recipientAddress"
+                  id="receiverAddress"
+                  name="receiverAddress"
                   rows="4"
-                  placeholder="Enter the delivery address"
+                  placeholder="Enter the receiver address"
                   required
                 ></textarea>
 
@@ -308,52 +343,47 @@
             </div>
 
 
-            <!-- SHIPMENT DETAILS -->
+            <!-- PACKAGE -->
             <div class="form-section">
 
               <h3>
-                Shipment Details
+                Package Information
               </h3>
 
               <div class="form-grid">
 
                 <div class="form-group">
 
-                  <label for="shippingMethod">
-                    Preferred Shipping Method
+                  <label for="packageDescription">
+                    Package Description
                   </label>
 
-                  <select
-                    id="shippingMethod"
-                    name="shippingMethod"
+                  <input
+                    type="text"
+                    id="packageDescription"
+                    name="packageDescription"
+                    placeholder="Describe the item being shipped"
                     required
                   >
 
-                    <option value="">
-                      Select a shipping method
-                    </option>
+                </div>
 
-                    <option value="Express Courier">
-                      Express Courier
-                    </option>
 
-                    <option value="Road Delivery">
-                      Road Delivery
-                    </option>
+                <div class="form-group">
 
-                    <option value="Air Freight">
-                      Air Freight
-                    </option>
+                  <label for="packageWeight">
+                    Weight (kg)
+                  </label>
 
-                    <option value="Ocean Freight">
-                      Ocean Freight
-                    </option>
-
-                    <option value="Warehousing">
-                      Warehousing / Distribution
-                    </option>
-
-                  </select>
+                  <input
+                    type="number"
+                    id="packageWeight"
+                    name="weight"
+                    min="0"
+                    step="0.01"
+                    placeholder="Example: 10.5"
+                    required
+                  >
 
                 </div>
 
@@ -378,15 +408,169 @@
 
                 <div class="form-group">
 
-                  <label for="packageWeight">
-                    Approximate Weight
+                  <label for="packageType">
+                    Package Type
+                  </label>
+
+                  <select
+                    id="packageType"
+                    name="packageType"
+                    required
+                  >
+
+                    <option value="">
+                      Select package type
+                    </option>
+
+                    <option value="Parcel">
+                      Parcel
+                    </option>
+
+                    <option value="Envelope">
+                      Envelope
+                    </option>
+
+                    <option value="Pallet">
+                      Pallet
+                    </option>
+
+                    <option value="Container">
+                      Container
+                    </option>
+
+                    <option value="Freight">
+                      Freight
+                    </option>
+
+                  </select>
+
+                </div>
+
+              </div>
+
+            </div>
+
+
+            <!-- SHIPPING -->
+            <div class="form-section">
+
+              <h3>
+                Shipping Information
+              </h3>
+
+              <div class="form-grid">
+
+                <div class="form-group">
+
+                  <label for="pickupAddress">
+                    Pickup Address
+                  </label>
+
+                  <textarea
+                    id="pickupAddress"
+                    name="pickupAddress"
+                    rows="4"
+                    placeholder="Enter pickup address"
+                    required
+                  ></textarea>
+
+                </div>
+
+
+                <div class="form-group">
+
+                  <label for="deliveryAddress">
+                    Delivery Address
+                  </label>
+
+                  <textarea
+                    id="deliveryAddress"
+                    name="deliveryAddress"
+                    rows="4"
+                    placeholder="Enter delivery address"
+                    required
+                  ></textarea>
+
+                </div>
+
+
+                <div class="form-group">
+
+                  <label for="shippingMethod">
+                    Shipment Method
+                  </label>
+
+                  <select
+                    id="shippingMethod"
+                    name="shippingMethod"
+                    required
+                  >
+
+                    <option value="">
+                      Select shipment method
+                    </option>
+
+                    <option value="Air Freight">
+                      Air Freight
+                    </option>
+
+                    <option value="Sea Freight">
+                      Sea Freight
+                    </option>
+
+                    <option value="Road Transport">
+                      Road Transport
+                    </option>
+
+                    <option value="Express Courier">
+                      Express Courier
+                    </option>
+
+                  </select>
+
+                </div>
+
+              </div>
+
+
+              <div class="form-group">
+
+                <label for="specialInstructions">
+                  Special Instructions
+                </label>
+
+                <textarea
+                  id="specialInstructions"
+                  name="specialInstructions"
+                  rows="5"
+                  placeholder="Enter any special handling or delivery instructions"
+                ></textarea>
+
+              </div>
+
+            </div>
+
+
+            <!-- ORIGIN -->
+            <div class="form-section">
+
+              <h3>
+                Origin Information
+              </h3>
+
+              <div class="form-grid">
+
+                <div class="form-group">
+
+                  <label for="originLabel">
+                    Origin Label
                   </label>
 
                   <input
                     type="text"
-                    id="packageWeight"
-                    name="weight"
-                    placeholder="Example: 10 lb"
+                    id="originLabel"
+                    name="originLabel"
+                    placeholder="Example: Lagos Warehouse"
                     required
                   >
 
@@ -395,15 +579,187 @@
 
                 <div class="form-group">
 
-                  <label for="packageDescription">
-                    Package Description
+                  <label for="origin">
+                    Origin
                   </label>
 
                   <input
                     type="text"
-                    id="packageDescription"
-                    name="packageDescription"
-                    placeholder="What are you shipping?"
+                    id="origin"
+                    name="origin"
+                    placeholder="Example: Lagos, Nigeria"
+                    required
+                  >
+
+                </div>
+
+
+                <div class="form-group">
+
+                  <label for="originLatitude">
+                    Origin Latitude
+                  </label>
+
+                  <input
+                    type="number"
+                    id="originLatitude"
+                    name="originLatitude"
+                    step="any"
+                    placeholder="Example: 6.5244"
+                    required
+                  >
+
+                </div>
+
+
+                <div class="form-group">
+
+                  <label for="originLongitude">
+                    Origin Longitude
+                  </label>
+
+                  <input
+                    type="number"
+                    id="originLongitude"
+                    name="originLongitude"
+                    step="any"
+                    placeholder="Example: 3.3792"
+                    required
+                  >
+
+                </div>
+
+              </div>
+
+              <p class="coordinate-note">
+                Enter the geographical coordinates for the shipment origin.
+              </p>
+
+            </div>
+
+
+            <!-- DESTINATION -->
+            <div class="form-section">
+
+              <h3>
+                Destination Information
+              </h3>
+
+              <div class="form-grid">
+
+                <div class="form-group">
+
+                  <label for="destinationLabel">
+                    Destination Label
+                  </label>
+
+                  <input
+                    type="text"
+                    id="destinationLabel"
+                    name="destinationLabel"
+                    placeholder="Example: New York Delivery Center"
+                    required
+                  >
+
+                </div>
+
+
+                <div class="form-group">
+
+                  <label for="destination">
+                    Destination
+                  </label>
+
+                  <input
+                    type="text"
+                    id="destination"
+                    name="destination"
+                    placeholder="Example: New York, USA"
+                    required
+                  >
+
+                </div>
+
+
+                <div class="form-group">
+
+                  <label for="destinationLatitude">
+                    Destination Latitude
+                  </label>
+
+                  <input
+                    type="number"
+                    id="destinationLatitude"
+                    name="destinationLatitude"
+                    step="any"
+                    placeholder="Example: 40.7128"
+                    required
+                  >
+
+                </div>
+
+
+                <div class="form-group">
+
+                  <label for="destinationLongitude">
+                    Destination Longitude
+                  </label>
+
+                  <input
+                    type="number"
+                    id="destinationLongitude"
+                    name="destinationLongitude"
+                    step="any"
+                    placeholder="Example: -74.0060"
+                    required
+                  >
+
+                </div>
+
+              </div>
+
+              <p class="coordinate-note">
+                Enter the geographical coordinates for the shipment destination.
+              </p>
+
+            </div>
+
+
+            <!-- DELIVERY ESTIMATE -->
+            <div class="form-section">
+
+              <h3>
+                Estimated Delivery
+              </h3>
+
+              <div class="form-grid">
+
+                <div class="form-group">
+
+                  <label for="estimatedDeliveryTime">
+                    Estimated Delivery Time
+                  </label>
+
+                  <input
+                    type="time"
+                    id="estimatedDeliveryTime"
+                    name="estimatedDeliveryTime"
+                    required
+                  >
+
+                </div>
+
+
+                <div class="form-group">
+
+                  <label for="estimatedDeliveryDate">
+                    Estimated Delivery Date
+                  </label>
+
+                  <input
+                    type="date"
+                    id="estimatedDeliveryDate"
+                    name="estimatedDeliveryDate"
                     required
                   >
 
@@ -414,25 +770,50 @@
             </div>
 
 
-            <!-- ADDITIONAL INFORMATION -->
+            <!-- SHIPMENT IMAGE -->
             <div class="form-section">
 
               <h3>
-                Additional Information
+                Shipment Image
               </h3>
+
+              <p>
+                Upload an image of the actual shipment item being tracked.
+              </p>
 
               <div class="form-group">
 
-                <label for="requestNotes">
-                  Special Instructions
+                <label for="shipmentImage">
+                  Upload Shipment Image
                 </label>
 
-                <textarea
-                  id="requestNotes"
-                  name="notes"
-                  rows="6"
-                  placeholder="Add any special instructions or additional shipment details."
-                ></textarea>
+                <div class="upload-box">
+
+                  <input
+                    type="file"
+                    id="shipmentImage"
+                    name="shipmentImage"
+                    accept="image/*"
+                    required
+                  >
+
+                  <p>
+                    Select a photo of the parcel, envelope, pallet,
+                    container or freight.
+                  </p>
+
+                </div>
+
+                <div
+                  id="shipmentImagePreview"
+                  class="shipment-preview"
+                >
+                  <img
+                    id="shipmentPreviewImage"
+                    src=""
+                    alt="Shipment preview"
+                  >
+                </div>
 
               </div>
 
@@ -446,6 +827,28 @@
               style="display: none;"
               role="alert"
             ></div>
+
+
+            <!-- CREATED TRACKING NUMBER -->
+            <div
+              id="trackingCreated"
+              class="tracking-created"
+            >
+
+              <p>
+                Your shipment request has been created.
+              </p>
+
+              <p>
+                Tracking Number:
+                <strong id="createdTrackingNumber"></strong>
+              </p>
+
+              <p>
+                Keep this tracking number to check shipment updates.
+              </p>
+
+            </div>
 
 
             <!-- SUBMIT -->
@@ -496,8 +899,8 @@
             </h3>
 
             <p>
-              Provide your shipment and contact information
-              through the secure request form.
+              Provide your complete shipment and contact
+              information through the request form.
             </p>
 
           </article>
@@ -514,8 +917,8 @@
             </h3>
 
             <p>
-              An authorized administrator will review the
-              shipment request and available details.
+              An authorized administrator can review the
+              shipment information and request details.
             </p>
 
           </article>
@@ -532,9 +935,8 @@
             </h3>
 
             <p>
-              Once approved, shipment information can be
-              created and managed through the administrative
-              system.
+              Shipment information can then be managed through
+              the administrative system.
             </p>
 
           </article>
@@ -617,7 +1019,7 @@
             </li>
 
             <li>
-              <a href="contact.html">
+              <a href="Contact.html">
                 Contact Us
               </a>
             </li>
@@ -689,6 +1091,360 @@
 
 
   <script src="script.js"></script>
+
+  <script>
+
+    /*
+      SHIPMENT REQUEST STORAGE
+      ------------------------
+      This creates a shipment record in the browser's
+      local storage so the information can be used by
+      the administrative/tracking system we build next.
+    */
+
+    const shipmentForm =
+      document.getElementById("shipmentRequestForm");
+
+    const imageInput =
+      document.getElementById("shipmentImage");
+
+    const imagePreview =
+      document.getElementById("shipmentPreviewImage");
+
+    const imagePreviewBox =
+      document.getElementById("shipmentImagePreview");
+
+
+    /*
+      IMAGE PREVIEW
+    */
+
+    imageInput.addEventListener("change", function () {
+
+      const file = this.files[0];
+
+      if (!file) {
+        imagePreviewBox.style.display = "none";
+        imagePreview.src = "";
+        return;
+      }
+
+      const reader = new FileReader();
+
+      reader.onload = function (event) {
+
+        imagePreview.src = event.target.result;
+
+        imagePreviewBox.style.display = "block";
+
+      };
+
+      reader.readAsDataURL(file);
+
+    });
+
+
+    /*
+      CREATE TRACKING NUMBER
+    */
+
+    function createTrackingNumber() {
+
+      const randomNumber =
+        Math.floor(10000 + Math.random() * 90000);
+
+      return "EXP-" + randomNumber;
+
+    }
+
+
+    /*
+      SUBMIT SHIPMENT REQUEST
+    */
+
+    shipmentForm.addEventListener("submit", function (event) {
+
+      event.preventDefault();
+
+
+      const message =
+        document.getElementById("requestMessage");
+
+      const trackingCreated =
+        document.getElementById("trackingCreated");
+
+      const trackingNumberDisplay =
+        document.getElementById("createdTrackingNumber");
+
+
+      const imageFile =
+        imageInput.files[0];
+
+
+      if (!imageFile) {
+
+        message.textContent =
+          "Please upload an image of the shipment.";
+
+        message.style.display = "block";
+
+        return;
+
+      }
+
+
+      const reader = new FileReader();
+
+
+      reader.onload = function () {
+
+        const trackingNumber =
+          createTrackingNumber();
+
+
+        const shipment = {
+
+          trackingNumber: trackingNumber,
+
+          createdAt:
+            new Date().toISOString(),
+
+          customer: {
+
+            name:
+              document.getElementById("requestName").value,
+
+            phone:
+              document.getElementById("requestPhone").value,
+
+            email:
+              document.getElementById("requestEmail").value
+
+          },
+
+
+          sender: {
+
+            name:
+              document.getElementById("senderName").value,
+
+            phone:
+              document.getElementById("senderPhone").value,
+
+            address:
+              document.getElementById("senderAddress").value
+
+          },
+
+
+          receiver: {
+
+            name:
+              document.getElementById("receiverName").value,
+
+            phone:
+              document.getElementById("receiverPhone").value,
+
+            address:
+              document.getElementById("receiverAddress").value
+
+          },
+
+
+          package: {
+
+            description:
+              document.getElementById("packageDescription").value,
+
+            weight:
+              document.getElementById("packageWeight").value,
+
+            quantity:
+              document.getElementById("packageQuantity").value,
+
+            type:
+              document.getElementById("packageType").value
+
+          },
+
+
+          shipping: {
+
+            pickupAddress:
+              document.getElementById("pickupAddress").value,
+
+            deliveryAddress:
+              document.getElementById("deliveryAddress").value,
+
+            method:
+              document.getElementById("shippingMethod").value,
+
+            specialInstructions:
+              document.getElementById("specialInstructions").value
+
+          },
+
+
+          origin: {
+
+            label:
+              document.getElementById("originLabel").value,
+
+            location:
+              document.getElementById("origin").value,
+
+            latitude:
+              document.getElementById("originLatitude").value,
+
+            longitude:
+              document.getElementById("originLongitude").value
+
+          },
+
+
+          destination: {
+
+            label:
+              document.getElementById("destinationLabel").value,
+
+            location:
+              document.getElementById("destination").value,
+
+            latitude:
+              document.getElementById("destinationLatitude").value,
+
+            longitude:
+              document.getElementById("destinationLongitude").value
+
+          },
+
+
+          estimatedDelivery: {
+
+            time:
+              document.getElementById("estimatedDeliveryTime").value,
+
+            date:
+              document.getElementById("estimatedDeliveryDate").value
+
+          },
+
+
+          /*
+            New shipment starts at 0%.
+            The admin system will later be able
+            to change this from 0 to 100.
+          */
+
+          progress: 0,
+
+
+          /*
+            Transit history will be managed
+            from the administrative shipment system.
+          */
+
+          transitHistory: [],
+
+
+          /*
+            Uploaded image of the actual shipment.
+          */
+
+          shipmentImage:
+            reader.result,
+
+
+          status:
+            "Shipment Request Received"
+
+        };
+
+
+        /*
+          GET EXISTING SHIPMENTS
+        */
+
+        let shipments = [];
+
+        try {
+
+          shipments =
+            JSON.parse(
+              localStorage.getItem("expresslineShipments")
+            ) || [];
+
+        } catch (error) {
+
+          shipments = [];
+
+        }
+
+
+        /*
+          ADD NEW SHIPMENT
+        */
+
+        shipments.push(shipment);
+
+
+        /*
+          SAVE SHIPMENT
+        */
+
+        localStorage.setItem(
+          "expresslineShipments",
+          JSON.stringify(shipments)
+        );
+
+
+        /*
+          SHOW SUCCESS MESSAGE
+        */
+
+        message.textContent =
+          "Shipment request submitted successfully.";
+
+        message.style.display =
+          "block";
+
+
+        trackingNumberDisplay.textContent =
+          trackingNumber;
+
+        trackingCreated.style.display =
+          "block";
+
+
+        /*
+          SCROLL TO TRACKING NUMBER
+        */
+
+        trackingCreated.scrollIntoView({
+          behavior: "smooth",
+          block: "center"
+        });
+
+
+        /*
+          RESET FORM AFTER SUCCESS
+        */
+
+        shipmentForm.reset();
+
+        imagePreviewBox.style.display =
+          "none";
+
+        imagePreview.src = "";
+
+      };
+
+
+      reader.readAsDataURL(imageFile);
+
+    });
+
+  </script>
 
 </body>
 </html>
