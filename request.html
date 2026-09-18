@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
   <meta charset="UTF-8">
 
   <meta
@@ -9,2453 +8,1239 @@
     content="width=device-width, initial-scale=1.0"
   >
 
-  <title id="pageTitle">
-    Request Shipment | ExpressLine Delivery Services
-  </title>
+  <title id="pageTitle">Request Shipment | ExpressLine Delivery Services</title>
 
   <meta
     id="pageDescription"
     name="description"
-    content="Submit a shipment request to ExpressLine Delivery Services."
+    content="Request a shipment from ExpressLine Delivery Services."
   >
 
-  <meta
-    id="pageKeywords"
-    name="keywords"
-    content=""
-  >
+  <meta id="pageKeywords" name="keywords" content="shipment, delivery, logistics, courier">
 
-  <link
-    id="siteFavicon"
-    rel="icon"
-    href=""
-  >
-
-  <link
-    rel="stylesheet"
-    href="style.css"
-  >
+  <link rel="stylesheet" href="style.css">
 
   <style>
-
-    :root {
-      --cms-primary-color: #e30613;
-      --cms-primary-text: #ffffff;
-      --cms-secondary-color: #172033;
-      --cms-secondary-text: #ffffff;
-      --cms-accent-color: #111827;
-      --cms-accent-text: #ffffff;
-      --cms-text-color: #172033;
-      --cms-font-family: Arial, Helvetica, sans-serif;
-      --cms-font-size: 16px;
-    }
-
-    body {
-      font-family: var(--cms-font-family);
-      font-size: var(--cms-font-size);
-      color: var(--cms-text-color);
-    }
-
-    .logo-mark {
-      background: var(--cms-primary-color) !important;
-      color: var(--cms-primary-text) !important;
-    }
-
-    .nav-button,
-    .btn-primary {
-      background: var(--cms-primary-color) !important;
-      color: var(--cms-primary-text) !important;
-    }
-
-    .btn-secondary {
-      background: var(--cms-secondary-color) !important;
-      color: var(--cms-secondary-text) !important;
-    }
-
-    .section-label {
-      color: var(--cms-primary-color) !important;
-    }
-
-    .site-footer {
-      background: var(--cms-secondary-color) !important;
-      color: var(--cms-secondary-text) !important;
-    }
-
-    .site-footer a {
-      color: var(--cms-secondary-text);
-    }
-
-    .site-footer h3,
-    .site-footer p,
-    .site-footer span {
-      color: var(--cms-secondary-text);
-    }
-
     .shipment-preview {
       display: none;
       margin-top: 15px;
+      max-width: 320px;
     }
 
     .shipment-preview img {
       width: 100%;
-      max-width: 350px;
-      max-height: 250px;
-      object-fit: cover;
       border-radius: 12px;
-      border: 1px solid #ddd;
+      display: block;
     }
 
     .upload-box {
-      border: 2px dashed #bbb;
+      border: 2px dashed var(--border, #d9dee8);
       border-radius: 12px;
-      padding: 25px;
+      padding: 20px;
       text-align: center;
-      cursor: pointer;
-      background: #fafafa;
-    }
-
-    .upload-box:hover {
-      border-color: #555;
     }
 
     .coordinate-note {
       font-size: 13px;
-      color: #777;
-      margin-top: 5px;
+      color: var(--muted, #6b7280);
+      margin-top: 6px;
+    }
+
+    .request-success,
+    .request-error {
+      display: none;
+      padding: 15px;
+      border-radius: 10px;
+      margin-bottom: 20px;
     }
 
     .request-success {
-      display: none;
-      margin-top: 20px;
-      padding: 18px;
-      border-radius: 12px;
-      background: #f1f7ff;
-      border: 1px solid #cfe2ff;
-      color: #1e3a5f;
-    }
-
-    .request-success strong {
-      font-size: 18px;
+      background: #ecfdf3;
+      color: #166534;
+      border: 1px solid #bbf7d0;
     }
 
     .request-error {
-      display: none;
-      margin-top: 20px;
-      padding: 15px;
-      border-radius: 10px;
-      background: #fee2e2;
-      border: 1px solid #fecaca;
+      background: #fef2f2;
       color: #991b1b;
-      font-weight: bold;
+      border: 1px solid #fecaca;
     }
-
   </style>
-
 </head>
 
 <body>
 
+<header class="site-header">
+  <div class="container nav-container">
 
-  <!-- HEADER -->
+    <a href="index.html" class="logo">
+      <span class="logo-mark" id="siteLogoMark">EL</span>
+      <span id="siteShortName">ExpressLine</span>
+    </a>
 
-  <header class="site-header">
-
-    <div class="container navbar">
-
-      <a
-        href="index.html"
-        class="logo"
-      >
-
-        <span class="logo-mark">
-          EL
-        </span>
-
-        <span id="siteShortName">
-          ExpressLine
-        </span>
-
-      </a>
-
-
-      <button
-        class="menu-toggle"
-        type="button"
-        aria-label="Open navigation menu"
-      >
-        ☰
-      </button>
-
-
-      <nav class="nav-links">
-
-        <a
-          href="index.html"
-          id="navHome"
-        >
-          Home
-        </a>
-
-        <a
-          href="track.html"
-          id="navTrack"
-        >
-          Track Shipment
-        </a>
-
-        <a
-          href="services.html"
-          id="navServices"
-        >
-          Services
-        </a>
-
-        <a
-          href="about.html"
-          id="navAbout"
-        >
-          About Us
-        </a>
-
-        <a
-          href="contact.html"
-          id="navContact"
-        >
-          Contact Us
-        </a>
-
-        <a
-          href="request.html"
-          id="navRequest"
-          class="active"
-        >
-          Request Shipment
-        </a>
-
-        <a
-          href="login.html"
-          class="nav-button"
-          id="navLogin"
-        >
-          Customer Login
-        </a>
-
-      </nav>
-
-    </div>
-
-  </header>
-
-
-  <!-- MAIN -->
-
-  <main>
-
-
-    <!-- HERO -->
-
-    <section
-      class="hero"
-      style="min-height:430px;"
-      id="requestHero"
+    <button
+      class="mobile-menu-toggle"
+      id="mobileMenuToggle"
+      type="button"
+      aria-label="Open menu"
     >
-
-      <div class="container hero-content">
-
-        <span class="hero-badge">
-          SHIPMENT REQUEST
-        </span>
-
-        <h1>
-          Request a shipment.
-        </h1>
-
-        <p>
-          Provide the complete shipment details below so our team
-          can review and process your transportation requirements.
-        </p>
-
-      </div>
-
-    </section>
-
-
-    <!-- REQUEST FORM -->
-
-    <section class="section section-light">
-
-      <div class="container">
-
-        <div class="section-heading">
-
-          <p class="section-label">
-            GET STARTED
-          </p>
-
-          <h2>
-            Tell us about your shipment.
-          </h2>
-
-          <p>
-            Enter accurate sender, receiver, package, origin,
-            destination and delivery information.
-          </p>
-
-        </div>
-
-
-        <div class="form-card">
-
-          <form
-            id="shipmentRequestForm"
-          >
-
-
-            <!-- CUSTOMER INFORMATION -->
-
-            <div class="form-section">
-
-              <h3>
-                Your Information
-              </h3>
-
-              <div class="form-grid">
-
-                <div class="form-group">
-
-                  <label for="requestName">
-                    Full Name
-                  </label>
-
-                  <input
-                    type="text"
-                    id="requestName"
-                    name="name"
-                    placeholder="Enter your full name"
-                    autocomplete="name"
-                    required
-                  >
-
-                </div>
-
-
-                <div class="form-group">
-
-                  <label for="requestPhone">
-                    Phone Number
-                  </label>
-
-                  <input
-                    type="tel"
-                    id="requestPhone"
-                    name="phone"
-                    placeholder="Enter your phone number"
-                    autocomplete="tel"
-                    required
-                  >
-
-                </div>
-
-
-                <div class="form-group">
-
-                  <label for="requestEmail">
-                    Email Address
-                  </label>
-
-                  <input
-                    type="email"
-                    id="requestEmail"
-                    name="email"
-                    placeholder="Enter your email address"
-                    autocomplete="email"
-                    required
-                  >
-
-                </div>
-
-              </div>
-
-            </div>
-
-
-            <!-- SENDER -->
-
-            <div class="form-section">
-
-              <h3>
-                Sender Information
-              </h3>
-
-              <div class="form-grid">
-
-                <div class="form-group">
-
-                  <label for="senderName">
-                    Sender Name
-                  </label>
-
-                  <input
-                    type="text"
-                    id="senderName"
-                    name="senderName"
-                    placeholder="Enter sender name"
-                    required
-                  >
-
-                </div>
-
-
-                <div class="form-group">
-
-                  <label for="senderPhone">
-                    Sender Phone Number
-                  </label>
-
-                  <input
-                    type="tel"
-                    id="senderPhone"
-                    name="senderPhone"
-                    placeholder="Enter sender phone number"
-                    required
-                  >
-
-                </div>
-
-              </div>
-
-
-              <div class="form-group">
-
-                <label for="senderAddress">
-                  Sender Address
-                </label>
-
-                <textarea
-                  id="senderAddress"
-                  name="senderAddress"
-                  rows="4"
-                  placeholder="Enter the sender address"
-                  required
-                ></textarea>
-
-              </div>
-
-            </div>
-
-
-            <!-- RECEIVER -->
-
-            <div class="form-section">
-
-              <h3>
-                Receiver Information
-              </h3>
-
-              <div class="form-grid">
-
-                <div class="form-group">
-
-                  <label for="receiverName">
-                    Receiver Name
-                  </label>
-
-                  <input
-                    type="text"
-                    id="receiverName"
-                    name="receiverName"
-                    placeholder="Enter receiver name"
-                    required
-                  >
-
-                </div>
-
-
-                <div class="form-group">
-
-                  <label for="receiverPhone">
-                    Receiver Phone
-                  </label>
-
-                  <input
-                    type="tel"
-                    id="receiverPhone"
-                    name="receiverPhone"
-                    placeholder="Enter receiver phone number"
-                    required
-                  >
-
-                </div>
-
-              </div>
-
-
-              <div class="form-group">
-
-                <label for="receiverAddress">
-                  Receiver Address
-                </label>
-
-                <textarea
-                  id="receiverAddress"
-                  name="receiverAddress"
-                  rows="4"
-                  placeholder="Enter the receiver address"
-                  required
-                ></textarea>
-
-              </div>
-
-            </div>
-
-
-            <!-- PACKAGE -->
-
-            <div class="form-section">
-
-              <h3>
-                Package Information
-              </h3>
-
-              <div class="form-grid">
-
-                <div class="form-group">
-
-                  <label for="packageDescription">
-                    Package Description
-                  </label>
-
-                  <input
-                    type="text"
-                    id="packageDescription"
-                    name="packageDescription"
-                    placeholder="Describe the item being shipped"
-                    required
-                  >
-
-                </div>
-
-
-                <div class="form-group">
-
-                  <label for="packageWeight">
-                    Weight (kg)
-                  </label>
-
-                  <input
-                    type="number"
-                    id="packageWeight"
-                    name="weight"
-                    min="0"
-                    step="0.01"
-                    placeholder="Example: 10.5"
-                    required
-                  >
-
-                </div>
-
-
-                <div class="form-group">
-
-                  <label for="packageQuantity">
-                    Quantity
-                  </label>
-
-                  <input
-                    type="number"
-                    id="packageQuantity"
-                    name="quantity"
-                    min="1"
-                    placeholder="Number of packages"
-                    required
-                  >
-
-                </div>
-
-
-                <div class="form-group">
-
-                  <label for="packageType">
-                    Package Type
-                  </label>
-
-                  <select
-                    id="packageType"
-                    name="packageType"
-                    required
-                  >
-
-                    <option value="">
-                      Select package type
-                    </option>
-
-                    <option value="Parcel">
-                      Parcel
-                    </option>
-
-                    <option value="Envelope">
-                      Envelope
-                    </option>
-
-                    <option value="Pallet">
-                      Pallet
-                    </option>
-
-                    <option value="Container">
-                      Container
-                    </option>
-
-                    <option value="Freight">
-                      Freight
-                    </option>
-
-                  </select>
-
-                </div>
-
-              </div>
-
-            </div>
-
-
-            <!-- SHIPPING -->
-
-            <div class="form-section">
-
-              <h3>
-                Shipping Information
-              </h3>
-
-              <div class="form-grid">
-
-                <div class="form-group">
-
-                  <label for="pickupAddress">
-                    Pickup Address
-                  </label>
-
-                  <textarea
-                    id="pickupAddress"
-                    name="pickupAddress"
-                    rows="4"
-                    placeholder="Enter pickup address"
-                    required
-                  ></textarea>
-
-                </div>
-
-
-                <div class="form-group">
-
-                  <label for="deliveryAddress">
-                    Delivery Address
-                  </label>
-
-                  <textarea
-                    id="deliveryAddress"
-                    name="deliveryAddress"
-                    rows="4"
-                    placeholder="Enter delivery address"
-                    required
-                  ></textarea>
-
-                </div>
-
-
-                <div class="form-group">
-
-                  <label for="shippingMethod">
-                    Shipment Method
-                  </label>
-
-                  <select
-                    id="shippingMethod"
-                    name="shippingMethod"
-                    required
-                  >
-
-                    <option value="">
-                      Select shipment method
-                    </option>
-
-                    <option value="Air Freight">
-                      Air Freight
-                    </option>
-
-                    <option value="Sea Freight">
-                      Sea Freight
-                    </option>
-
-                    <option value="Road Transport">
-                      Road Transport
-                    </option>
-
-                    <option value="Express Courier">
-                      Express Courier
-                    </option>
-
-                  </select>
-
-                </div>
-
-              </div>
-
-
-              <div class="form-group">
-
-                <label for="specialInstructions">
-                  Special Instructions
-                </label>
-
-                <textarea
-                  id="specialInstructions"
-                  name="specialInstructions"
-                  rows="5"
-                  placeholder="Enter any special handling or delivery instructions"
-                ></textarea>
-
-              </div>
-
-            </div>
-
-
-            <!-- ORIGIN -->
-
-            <div class="form-section">
-
-              <h3>
-                Origin Information
-              </h3>
-
-              <div class="form-grid">
-
-                <div class="form-group">
-
-                  <label for="originLabel">
-                    Origin Label
-                  </label>
-
-                  <input
-                    type="text"
-                    id="originLabel"
-                    name="originLabel"
-                    placeholder="Example: Lagos Warehouse"
-                    required
-                  >
-
-                </div>
-
-
-                <div class="form-group">
-
-                  <label for="origin">
-                    Origin
-                  </label>
-
-                  <input
-                    type="text"
-                    id="origin"
-                    name="origin"
-                    placeholder="Example: Lagos, Nigeria"
-                    required
-                  >
-
-                </div>
-
-
-                <div class="form-group">
-
-                  <label for="originLatitude">
-                    Origin Latitude
-                  </label>
-
-                  <input
-                    type="number"
-                    id="originLatitude"
-                    name="originLatitude"
-                    step="any"
-                    placeholder="Example: 6.5244"
-                    required
-                  >
-
-                </div>
-
-
-                <div class="form-group">
-
-                  <label for="originLongitude">
-                    Origin Longitude
-                  </label>
-
-                  <input
-                    type="number"
-                    id="originLongitude"
-                    name="originLongitude"
-                    step="any"
-                    placeholder="Example: 3.3792"
-                    required
-                  >
-
-                </div>
-
-              </div>
-
-
-              <p class="coordinate-note">
-                Enter the geographical coordinates for the shipment origin.
-              </p>
-
-            </div>
-
-
-            <!-- DESTINATION -->
-
-            <div class="form-section">
-
-              <h3>
-                Destination Information
-              </h3>
-
-              <div class="form-grid">
-
-                <div class="form-group">
-
-                  <label for="destinationLabel">
-                    Destination Label
-                  </label>
-
-                  <input
-                    type="text"
-                    id="destinationLabel"
-                    name="destinationLabel"
-                    placeholder="Example: New York Delivery Center"
-                    required
-                  >
-
-                </div>
-
-
-                <div class="form-group">
-
-                  <label for="destination">
-                    Destination
-                  </label>
-
-                  <input
-                    type="text"
-                    id="destination"
-                    name="destination"
-                    placeholder="Example: New York, USA"
-                    required
-                  >
-
-                </div>
-
-
-                <div class="form-group">
-
-                  <label for="destinationLatitude">
-                    Destination Latitude
-                  </label>
-
-                  <input
-                    type="number"
-                    id="destinationLatitude"
-                    name="destinationLatitude"
-                    step="any"
-                    placeholder="Example: 40.7128"
-                    required
-                  >
-
-                </div>
-
-
-                <div class="form-group">
-
-                  <label for="destinationLongitude">
-                    Destination Longitude
-                  </label>
-
-                  <input
-                    type="number"
-                    id="destinationLongitude"
-                    name="destinationLongitude"
-                    step="any"
-                    placeholder="Example: -74.0060"
-                    required
-                  >
-
-                </div>
-
-              </div>
-
-
-              <p class="coordinate-note">
-                Enter the geographical coordinates for the shipment destination.
-              </p>
-
-            </div>
-
-
-            <!-- DELIVERY ESTIMATE -->
-
-            <div class="form-section">
-
-              <h3>
-                Estimated Delivery
-              </h3>
-
-              <div class="form-grid">
-
-                <div class="form-group">
-
-                  <label for="estimatedDeliveryTime">
-                    Estimated Delivery Time
-                  </label>
-
-                  <input
-                    type="time"
-                    id="estimatedDeliveryTime"
-                    name="estimatedDeliveryTime"
-                    required
-                  >
-
-                </div>
-
-
-                <div class="form-group">
-
-                  <label for="estimatedDeliveryDate">
-                    Estimated Delivery Date
-                  </label>
-
-                  <input
-                    type="date"
-                    id="estimatedDeliveryDate"
-                    name="estimatedDeliveryDate"
-                    required
-                  >
-
-                </div>
-
-              </div>
-
-            </div>
-
-
-            <!-- SHIPMENT IMAGE -->
-
-            <div class="form-section">
-
-              <h3>
-                Shipment Image
-              </h3>
-
-              <p>
-                You may upload an image of the shipment item.
-                This is optional.
-              </p>
-
-
-              <div class="form-group">
-
-                <label for="shipmentImage">
-                  Upload Shipment Image (Optional)
-                </label>
-
-
-                <div class="upload-box">
-
-                  <input
-                    type="file"
-                    id="shipmentImage"
-                    name="shipmentImage"
-                    accept="image/*"
-                  >
-
-                  <p>
-                    Select a photo of the parcel, envelope,
-                    pallet, container or freight.
-                  </p>
-
-                </div>
-
-
-                <div
-                  id="shipmentImagePreview"
-                  class="shipment-preview"
-                >
-
-                  <img
-                    id="shipmentPreviewImage"
-                    src=""
-                    alt="Shipment preview"
-                  >
-
-                </div>
-
-              </div>
-
-            </div>
-
-
-            <!-- STATUS MESSAGE -->
-
-            <div
-              id="requestMessage"
-              class="request-success"
-              role="alert"
-            ></div>
-
-
-            <div
-              id="requestError"
-              class="request-error"
-              role="alert"
-            ></div>
-
-
-            <!-- SUBMIT -->
-
-            <button
-              type="submit"
-              class="btn btn-primary"
-            >
-              Submit Shipment Request
-            </button>
-
-
-          </form>
-
-        </div>
-
-      </div>
-
-    </section>
-
-
-    <!-- INFORMATION -->
-
-    <section class="section">
-
-      <div class="container">
-
-        <div class="section-heading">
-
-          <p class="section-label">
-            WHAT HAPPENS NEXT
-          </p>
-
-          <h2>
-            Your request starts the process.
-          </h2>
-
-        </div>
-
-
-        <div class="cards">
-
-          <article class="card">
-
-            <div class="card-icon">
-              1
-            </div>
-
-            <h3>
-              Submit Request
-            </h3>
-
-            <p>
-              Provide your complete shipment and contact
-              information through the request form.
-            </p>
-
-          </article>
-
-
-          <article class="card">
-
-            <div class="card-icon">
-              2
-            </div>
-
-            <h3>
-              Request Review
-            </h3>
-
-            <p>
-              An authorized administrator can review the
-              shipment information and request details.
-            </p>
-
-          </article>
-
-
-          <article class="card">
-
-            <div class="card-icon">
-              3
-            </div>
-
-            <h3>
-              Shipment Setup
-            </h3>
-
-            <p>
-              After review, the shipment can be created and
-              managed through the administrative system.
-            </p>
-
-          </article>
-
-        </div>
-
-      </div>
-
-    </section>
-
-
-    <!-- CTA -->
-
-    <section class="cta">
-
-      <div class="container">
-
-        <h2>
-          Already have a shipment?
-        </h2>
-
-        <p>
-          Enter your tracking number to view available
-          shipment updates.
-        </p>
-
-        <a
-          href="track.html"
-          class="btn btn-primary"
-        >
-          Track Shipment
-        </a>
-
-      </div>
-
-    </section>
-
-  </main>
-
-
-  <!-- FOOTER -->
-
-  <footer class="site-footer">
-
+      ☰
+    </button>
+
+    <nav class="main-nav" id="mainNav">
+      <a href="index.html" id="navHome">Home</a>
+      <a href="track.html" id="navTrack">Track Shipment</a>
+      <a href="services.html" id="navServices">Services</a>
+      <a href="about.html" id="navAbout">About Us</a>
+      <a href="contact.html" id="navContact">Contact Us</a>
+      <a href="request.html" id="navRequest" class="active">Request Shipment</a>
+      <a href="login.html" id="navLogin">Customer Login</a>
+    </nav>
+
+  </div>
+</header>
+
+<main>
+
+  <section class="page-hero">
+    <div class="container">
+      <span class="eyebrow">SHIPMENT REQUEST</span>
+
+      <h1 id="requestHeroHeading">
+        Request a shipment.
+      </h1>
+
+      <p id="requestHeroDescription">
+        Provide your shipment details and our logistics team will review your request.
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
     <div class="container">
 
-      <div class="footer-grid">
+      <div
+        id="requestSuccess"
+        class="request-success"
+      ></div>
 
+      <div
+        id="requestError"
+        class="request-error"
+      ></div>
 
-        <div>
+      <form id="shipmentRequestForm">
 
-          <div class="logo">
+        <!-- CUSTOMER INFORMATION -->
+        <div class="form-section">
+          <h2>Customer Information</h2>
 
-            <span class="logo-mark">
-              EL
-            </span>
+          <div class="form-grid">
 
-            <span id="footerCompanyName">
-              ExpressLine
-            </span>
+            <div class="form-group">
+              <label for="requestName">Full Name</label>
+              <input
+                type="text"
+                id="requestName"
+                required
+              >
+            </div>
+
+            <div class="form-group">
+              <label for="requestPhone">Phone Number</label>
+              <input
+                type="tel"
+                id="requestPhone"
+                required
+              >
+            </div>
+
+            <div class="form-group">
+              <label for="requestEmail">Email Address</label>
+              <input
+                type="email"
+                id="requestEmail"
+                required
+              >
+            </div>
+
+          </div>
+        </div>
+
+        <!-- SENDER -->
+        <div class="form-section">
+          <h2>Sender Information</h2>
+
+          <div class="form-grid">
+
+            <div class="form-group">
+              <label for="senderName">Sender Name</label>
+              <input
+                type="text"
+                id="senderName"
+                required
+              >
+            </div>
+
+            <div class="form-group">
+              <label for="senderPhone">Sender Phone</label>
+              <input
+                type="tel"
+                id="senderPhone"
+                required
+              >
+            </div>
+
+            <div class="form-group form-group-full">
+              <label for="senderAddress">Sender Address</label>
+              <textarea
+                id="senderAddress"
+                rows="3"
+                required
+              ></textarea>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- RECEIVER -->
+        <div class="form-section">
+          <h2>Receiver Information</h2>
+
+          <div class="form-grid">
+
+            <div class="form-group">
+              <label for="receiverName">Receiver Name</label>
+              <input
+                type="text"
+                id="receiverName"
+                required
+              >
+            </div>
+
+            <div class="form-group">
+              <label for="receiverPhone">Receiver Phone</label>
+              <input
+                type="tel"
+                id="receiverPhone"
+                required
+              >
+            </div>
+
+            <div class="form-group form-group-full">
+              <label for="receiverAddress">Receiver Address</label>
+              <textarea
+                id="receiverAddress"
+                rows="3"
+                required
+              ></textarea>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- PACKAGE -->
+        <div class="form-section">
+          <h2>Package Details</h2>
+
+          <div class="form-grid">
+
+            <div class="form-group form-group-full">
+              <label for="packageDescription">Package Description</label>
+              <textarea
+                id="packageDescription"
+                rows="3"
+                required
+              ></textarea>
+            </div>
+
+            <div class="form-group">
+              <label for="packageWeight">Weight</label>
+              <input
+                type="text"
+                id="packageWeight"
+                placeholder="e.g. 5 kg"
+                required
+              >
+            </div>
+
+            <div class="form-group">
+              <label for="packageQuantity">Quantity</label>
+              <input
+                type="number"
+                id="packageQuantity"
+                min="1"
+                value="1"
+                required
+              >
+            </div>
+
+            <div class="form-group">
+              <label for="packageType">Package Type</label>
+              <select id="packageType" required>
+                <option value="">Select package type</option>
+                <option value="Document">Document</option>
+                <option value="Parcel">Parcel</option>
+                <option value="Box">Box</option>
+                <option value="Electronics">Electronics</option>
+                <option value="Clothing">Clothing</option>
+                <option value="Food">Food</option>
+                <option value="Other">Other</option>
+              </select>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- SHIPPING -->
+        <div class="form-section">
+          <h2>Shipping Details</h2>
+
+          <div class="form-grid">
+
+            <div class="form-group form-group-full">
+              <label for="pickupAddress">Pickup Address</label>
+              <textarea
+                id="pickupAddress"
+                rows="3"
+                required
+              ></textarea>
+            </div>
+
+            <div class="form-group form-group-full">
+              <label for="deliveryAddress">Delivery Address</label>
+              <textarea
+                id="deliveryAddress"
+                rows="3"
+                required
+              ></textarea>
+            </div>
+
+            <div class="form-group">
+              <label for="shippingMethod">Shipping Method</label>
+              <select id="shippingMethod" required>
+                <option value="">Select shipping method</option>
+                <option value="Standard Delivery">Standard Delivery</option>
+                <option value="Express Delivery">Express Delivery</option>
+                <option value="Air Freight">Air Freight</option>
+                <option value="Sea Freight">Sea Freight</option>
+                <option value="Road Freight">Road Freight</option>
+              </select>
+            </div>
+
+            <div class="form-group form-group-full">
+              <label for="specialInstructions">
+                Special Instructions
+              </label>
+
+              <textarea
+                id="specialInstructions"
+                rows="4"
+                placeholder="Any special instructions for this shipment"
+              ></textarea>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- ORIGIN -->
+        <div class="form-section">
+          <h2>Origin</h2>
+
+          <div class="form-grid">
+
+            <div class="form-group">
+              <label for="originLabel">Origin Name</label>
+              <input
+                type="text"
+                id="originLabel"
+                placeholder="e.g. Lagos Office"
+              >
+            </div>
+
+            <div class="form-group form-group-full">
+              <label for="origin">Origin Location</label>
+              <input
+                type="text"
+                id="origin"
+                placeholder="City, State, Country"
+                required
+              >
+            </div>
+
+            <div class="form-group">
+              <label for="originLatitude">Latitude</label>
+              <input
+                type="text"
+                id="originLatitude"
+              >
+            </div>
+
+            <div class="form-group">
+              <label for="originLongitude">Longitude</label>
+              <input
+                type="text"
+                id="originLongitude"
+              >
+            </div>
 
           </div>
 
-          <p id="footerText">
-            Professional courier and logistics solutions
-            designed to keep shipments moving with confidence.
+          <p class="coordinate-note">
+            Latitude and longitude are optional.
           </p>
-
         </div>
 
+        <!-- DESTINATION -->
+        <div class="form-section">
+          <h2>Destination</h2>
 
-        <div>
+          <div class="form-grid">
 
-          <h3>
-            Company
-          </h3>
+            <div class="form-group">
+              <label for="destinationLabel">
+                Destination Name
+              </label>
 
-          <ul class="footer-links">
+              <input
+                type="text"
+                id="destinationLabel"
+                placeholder="e.g. Abuja Office"
+              >
+            </div>
 
-            <li>
-              <a href="about.html">
-                About Us
-              </a>
-            </li>
+            <div class="form-group form-group-full">
+              <label for="destination">
+                Destination Location
+              </label>
 
-            <li>
-              <a href="services.html">
-                Services
-              </a>
-            </li>
+              <input
+                type="text"
+                id="destination"
+                placeholder="City, State, Country"
+                required
+              >
+            </div>
 
-            <li>
-              <a href="contact.html">
-                Contact Us
-              </a>
-            </li>
+            <div class="form-group">
+              <label for="destinationLatitude">
+                Latitude
+              </label>
 
-          </ul>
+              <input
+                type="text"
+                id="destinationLatitude"
+              >
+            </div>
 
-        </div>
+            <div class="form-group">
+              <label for="destinationLongitude">
+                Longitude
+              </label>
 
+              <input
+                type="text"
+                id="destinationLongitude"
+              >
+            </div>
 
-        <div>
+          </div>
 
-          <h3>
-            Customer
-          </h3>
-
-          <ul class="footer-links">
-
-            <li>
-              <a href="track.html">
-                Track Shipment
-              </a>
-            </li>
-
-            <li>
-              <a href="request.html">
-                Request Shipment
-              </a>
-            </li>
-
-            <li>
-              <a href="login.html">
-                Customer Login
-              </a>
-            </li>
-
-          </ul>
-
-        </div>
-
-
-        <div>
-
-          <h3>
-            Contact
-          </h3>
-
-          <p id="footerContactText">
-            Company contact information will be configured
-            through the administrator settings.
+          <p class="coordinate-note">
+            Latitude and longitude are optional.
           </p>
-
-          <p id="footerContactEmail"></p>
-
-          <p id="footerContactPhone"></p>
-
         </div>
 
+        <!-- DELIVERY -->
+        <div class="form-section">
+          <h2>Estimated Delivery</h2>
 
+          <div class="form-grid">
+
+            <div class="form-group">
+              <label for="estimatedDeliveryTime">
+                Preferred Time
+              </label>
+
+              <input
+                type="time"
+                id="estimatedDeliveryTime"
+              >
+            </div>
+
+            <div class="form-group">
+              <label for="estimatedDeliveryDate">
+                Preferred Date
+              </label>
+
+              <input
+                type="date"
+                id="estimatedDeliveryDate"
+              >
+            </div>
+
+          </div>
+        </div>
+
+        <!-- IMAGE -->
+        <div class="form-section">
+          <h2>Shipment Photo</h2>
+
+          <div class="upload-box">
+
+            <label for="shipmentImage">
+              Upload Shipment Photo
+            </label>
+
+            <input
+              type="file"
+              id="shipmentImage"
+              accept="image/*"
+            >
+
+            <div
+              id="shipmentImagePreview"
+              class="shipment-preview"
+            >
+              <img
+                id="shipmentPreviewImage"
+                src=""
+                alt="Shipment preview"
+              >
+            </div>
+
+          </div>
+        </div>
+
+        <button
+          type="submit"
+          class="btn btn-primary"
+        >
+          Submit Shipment Request
+        </button>
+
+      </form>
+
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+
+  <div class="container">
+
+    <div class="footer-grid">
+
+      <div>
+        <a href="index.html" class="logo">
+          <span class="logo-mark" id="footerLogoMark">EL</span>
+          <span id="footerCompanyName">ExpressLine</span>
+        </a>
+
+        <p id="footerText">
+          Professional courier and logistics solutions.
+        </p>
       </div>
 
+      <div>
+        <h3>Company</h3>
 
-      <div class="footer-bottom">
+        <a href="about.html">About Us</a>
+        <a href="services.html">Services</a>
+        <a href="contact.html">Contact Us</a>
+      </div>
 
-        <p id="copyrightText">
-          © 2026 ExpressLine Delivery Services.
-          All rights reserved.
-        </p>
+      <div>
+        <h3>Customer</h3>
 
+        <a href="track.html">Track Shipment</a>
+        <a href="request.html">Request Shipment</a>
+        <a href="login.html">Customer Login</a>
+      </div>
+
+      <div>
+        <h3>Contact</h3>
+
+        <p id="footerContactEmail"></p>
+        <p id="footerContactPhone"></p>
       </div>
 
     </div>
 
-  </footer>
+    <div class="footer-bottom">
+      <p id="copyrightText">
+        © 2026 ExpressLine. All rights reserved.
+      </p>
+    </div>
 
+  </div>
 
-  <script src="script.js"></script>
+</footer>
 
+<script src="script.js"></script>
 
-  <script>
+<script>
+  const WEBSITE_SETTINGS_KEY = "expresslineWebsiteSettings";
+  const REQUEST_STORAGE_KEY = "expresslineShipmentRequests";
 
-    /*
-      ==========================================
-      WEBSITE CONTROL CENTER CONNECTION
-      ==========================================
-    */
+  function getWebsiteSettings() {
+    try {
+      return JSON.parse(
+        localStorage.getItem(WEBSITE_SETTINGS_KEY)
+      ) || {};
+    } catch (error) {
+      return {};
+    }
+  }
 
-    const WEBSITE_SETTINGS_KEY =
-      "expresslineWebsiteSettings";
+  function setText(id, value) {
+    const element = document.getElementById(id);
 
+    if (element && value !== undefined && value !== null) {
+      element.textContent = value;
+    }
+  }
 
-    function getWebsiteSettings() {
+  function applyWebsiteSettings() {
+    const settings = getWebsiteSettings();
 
-      try {
-
-        return JSON.parse(
-          localStorage.getItem(
-            WEBSITE_SETTINGS_KEY
-          )
-        ) || {};
-
-      } catch (error) {
-
-        return {};
-
-      }
-
+    if (settings.websiteTitle) {
+      document.title = settings.websiteTitle;
+    } else if (settings.companyName) {
+      document.title =
+        "Request Shipment | " +
+        settings.companyName;
     }
 
+    if (settings.websiteDescription) {
+      const description =
+        document.getElementById("pageDescription");
 
-    function setText(
-      id,
-      value,
-      fallback = ""
-    ) {
+      if (description) {
+        description.setAttribute(
+          "content",
+          settings.websiteDescription
+        );
+      }
+    }
 
-      const element =
-        document.getElementById(id);
+    if (settings.seoTitle) {
+      document.title = settings.seoTitle;
+    }
 
+    if (settings.seoDescription) {
+      const description =
+        document.getElementById("pageDescription");
 
-      if (!element) {
+      if (description) {
+        description.setAttribute(
+          "content",
+          settings.seoDescription
+        );
+      }
+    }
+
+    if (settings.seoKeywords) {
+      const keywords =
+        document.getElementById("pageKeywords");
+
+      if (keywords) {
+        keywords.setAttribute(
+          "content",
+          settings.seoKeywords
+        );
+      }
+    }
+
+    const companyName =
+      settings.companyName || "ExpressLine";
+
+    const shortName =
+      settings.shortName || companyName;
+
+    setText("siteShortName", shortName);
+    setText("footerCompanyName", companyName);
+
+    if (settings.footerText) {
+      setText("footerText", settings.footerText);
+    }
+
+    if (settings.copyrightText) {
+      setText("copyrightText", settings.copyrightText);
+    }
+
+    if (settings.contactEmail) {
+      setText(
+        "footerContactEmail",
+        settings.contactEmail
+      );
+    }
+
+    if (settings.contactPhone) {
+      setText(
+        "footerContactPhone",
+        settings.contactPhone
+      );
+    }
+
+    setText(
+      "navHome",
+      settings.navHome || "Home"
+    );
+
+    setText(
+      "navServices",
+      settings.navServices || "Services"
+    );
+
+    setText(
+      "navTrack",
+      settings.navTrack || "Track Shipment"
+    );
+
+    setText(
+      "navRequest",
+      settings.navRequest || "Request Shipment"
+    );
+
+    setText(
+      "navAbout",
+      settings.navAbout || "About Us"
+    );
+
+    setText(
+      "navContact",
+      settings.navContact || "Contact Us"
+    );
+
+    setText(
+      "navLogin",
+      settings.navLogin || "Customer Login"
+    );
+
+    if (settings.heroHeading) {
+      setText(
+        "requestHeroHeading",
+        settings.heroHeading
+      );
+    }
+
+    if (settings.heroDescription) {
+      setText(
+        "requestHeroDescription",
+        settings.heroDescription
+      );
+    }
+
+    const root =
+      document.documentElement;
+
+    if (settings.primaryColor) {
+      root.style.setProperty(
+        "--primary-color",
+        settings.primaryColor
+      );
+
+      root.style.setProperty(
+        "--orange",
+        settings.primaryColor
+      );
+    }
+
+    if (settings.primaryColorText) {
+      root.style.setProperty(
+        "--primary-text",
+        settings.primaryColorText
+      );
+    }
+
+    if (settings.secondaryColor) {
+      root.style.setProperty(
+        "--secondary-color",
+        settings.secondaryColor
+      );
+
+      root.style.setProperty(
+        "--navy",
+        settings.secondaryColor
+      );
+    }
+
+    if (settings.secondaryColorText) {
+      root.style.setProperty(
+        "--secondary-text",
+        settings.secondaryColorText
+      );
+    }
+
+    if (settings.textColor) {
+      root.style.setProperty(
+        "--text-color",
+        settings.textColor
+      );
+
+      root.style.setProperty(
+        "--text",
+        settings.textColor
+      );
+    }
+
+    if (settings.fontFamily) {
+      root.style.setProperty(
+        "--font-family",
+        settings.fontFamily
+      );
+
+      document.body.style.fontFamily =
+        settings.fontFamily;
+    }
+
+    if (settings.fontSize) {
+      root.style.setProperty(
+        "--font-size",
+        settings.fontSize
+      );
+
+      document.body.style.fontSize =
+        settings.fontSize;
+    }
+
+    if (settings.logoUrl) {
+      const existingLogo =
+        document.querySelector(".logo-mark");
+
+      if (existingLogo) {
+        existingLogo.style.backgroundImage =
+          "url('" +
+          settings.logoUrl +
+          "')";
+
+        existingLogo.style.backgroundSize =
+          "cover";
+
+        existingLogo.style.backgroundPosition =
+          "center";
+
+        existingLogo.style.color =
+          "transparent";
+      }
+    }
+
+    if (settings.faviconUrl) {
+      let favicon =
+        document.querySelector(
+          'link[rel="icon"]'
+        );
+
+      if (!favicon) {
+        favicon =
+          document.createElement("link");
+
+        favicon.rel = "icon";
+
+        document.head.appendChild(
+          favicon
+        );
+      }
+
+      favicon.href =
+        settings.faviconUrl;
+    }
+  }
+
+  applyWebsiteSettings();
+
+  /*
+   * IMAGE PREVIEW
+   */
+  const shipmentImage =
+    document.getElementById("shipmentImage");
+
+  const shipmentImagePreview =
+    document.getElementById(
+      "shipmentImagePreview"
+    );
+
+  const shipmentPreviewImage =
+    document.getElementById(
+      "shipmentPreviewImage"
+    );
+
+  shipmentImage.addEventListener(
+    "change",
+    function () {
+      const file = this.files[0];
+
+      if (!file) {
+        shipmentImagePreview.style.display =
+          "none";
+
+        shipmentPreviewImage.src = "";
+
         return;
       }
 
+      if (!file.type.startsWith("image/")) {
+        this.value = "";
 
-      if (
-        value !== undefined &&
-        value !== null &&
-        String(value).trim() !== ""
-      ) {
+        shipmentImagePreview.style.display =
+          "none";
 
-        element.textContent =
-          value;
+        shipmentPreviewImage.src = "";
 
-      } else if (
-        fallback !== ""
-      ) {
+        showError(
+          "Please select a valid image file."
+        );
 
-        element.textContent =
-          fallback;
-
+        return;
       }
 
+      const reader =
+        new FileReader();
+
+      reader.onload = function (event) {
+        shipmentPreviewImage.src =
+          event.target.result;
+
+        shipmentImagePreview.style.display =
+          "block";
+      };
+
+      reader.readAsDataURL(file);
     }
-
-
-    function applyWebsiteSettings() {
-
-      const settings =
-        getWebsiteSettings();
-
-
-      /*
-        COMPANY
-      */
-
-      setText(
-        "siteShortName",
-        settings.shortName,
-        "ExpressLine"
-      );
-
-
-      setText(
-        "footerCompanyName",
-        settings.companyName ||
-        settings.shortName,
-        "ExpressLine"
-      );
-
-
-      /*
-        NAVIGATION
-      */
-
-      setText(
-        "navHome",
-        settings.navHome,
-        "Home"
-      );
-
-
-      setText(
-        "navTrack",
-        settings.navTrack,
-        "Track Shipment"
-      );
-
-
-      setText(
-        "navServices",
-        settings.navServices,
-        "Services"
-      );
-
-
-      setText(
-        "navAbout",
-        settings.navAbout,
-        "About Us"
-      );
-
-
-      setText(
-        "navContact",
-        settings.navContact,
-        "Contact Us"
-      );
-
-
-      setText(
-        "navRequest",
-        settings.navRequest,
-        "Request Shipment"
-      );
-
-
-      setText(
-        "navLogin",
-        settings.navLogin,
-        "Customer Login"
-      );
-
-
-      /*
-        FOOTER
-      */
-
-      setText(
-        "footerText",
-        settings.footerText,
-        "Professional courier and logistics solutions designed to keep shipments moving with confidence."
-      );
-
-
-      setText(
-        "copyrightText",
-        settings.copyrightText,
-        "© 2026 ExpressLine Delivery Services. All rights reserved."
-      );
-
-
-      /*
-        FOOTER CONTACT
-      */
-
-      const contactEmail =
-        settings.contactEmail ||
-        settings.supportEmail ||
-        "";
-
-
-      const contactPhone =
-        settings.contactPhone ||
-        settings.supportPhone ||
-        "";
-
-
-      const contactMessage =
-        settings.supportMessage ||
-        "Company contact information will be configured through the administrator settings.";
-
-
-      setText(
-        "footerContactText",
-        contactMessage,
-        "Company contact information will be configured through the administrator settings."
-      );
-
-
-      setText(
-        "footerContactEmail",
-        contactEmail
-      );
-
-
-      setText(
-        "footerContactPhone",
-        contactPhone
-      );
-
-
-      /*
-        WEBSITE TITLE
-      */
-
-      if (
-        settings.websiteTitle
-      ) {
-
-        document.title =
-          settings.websiteTitle;
-
-      }
-
-
-      /*
-        SEO
-      */
-
-      const description =
-        settings.seoDescription ||
-        settings.websiteDescription;
-
-
-      if (
-        description
-      ) {
-
-        const descriptionMeta =
-          document.getElementById(
-            "pageDescription"
-          );
-
-
-        if (
-          descriptionMeta
-        ) {
-
-          descriptionMeta.setAttribute(
-            "content",
-            description
-          );
-
-        }
-
-      }
-
-
-      if (
-        settings.seoTitle
-      ) {
-
-        document.title =
-          settings.seoTitle;
-
-      }
-
-
-      if (
-        settings.seoKeywords
-      ) {
-
-        const keywordsMeta =
-          document.getElementById(
-            "pageKeywords"
-          );
-
-
-        if (
-          keywordsMeta
-        ) {
-
-          keywordsMeta.setAttribute(
-            "content",
-            settings.seoKeywords
-          );
-
-        }
-
-      }
-
-
-      /*
-        COLORS
-      */
-
-      const root =
-        document.documentElement;
-
-
-      if (
-        settings.primaryColor
-      ) {
-
-        root.style.setProperty(
-          "--cms-primary-color",
-          settings.primaryColor
+  );
+
+  /*
+   * REQUEST STORAGE
+   */
+  function loadRequests() {
+    try {
+      const stored =
+        localStorage.getItem(
+          REQUEST_STORAGE_KEY
         );
 
-      }
-
-
-      if (
-        settings.primaryColorText
-      ) {
-
-        root.style.setProperty(
-          "--cms-primary-text",
-          settings.primaryColorText
-        );
-
-      }
-
-
-      if (
-        settings.secondaryColor
-      ) {
-
-        root.style.setProperty(
-          "--cms-secondary-color",
-          settings.secondaryColor
-        );
-
-      }
-
-
-      if (
-        settings.secondaryColorText
-      ) {
-
-        root.style.setProperty(
-          "--cms-secondary-text",
-          settings.secondaryColorText
-        );
-
-      }
-
-
-      if (
-        settings.accentColor
-      ) {
-
-        root.style.setProperty(
-          "--cms-accent-color",
-          settings.accentColor
-        );
-
-      }
-
-
-      if (
-        settings.accentColorText
-      ) {
-
-        root.style.setProperty(
-          "--cms-accent-text",
-          settings.accentColorText
-        );
-
-      }
-
-
-      if (
-        settings.textColor
-      ) {
-
-        root.style.setProperty(
-          "--cms-text-color",
-          settings.textColor
-        );
-
-      }
-
-
-      /*
-        TYPOGRAPHY
-      */
-
-      if (
-        settings.fontFamily
-      ) {
-
-        root.style.setProperty(
-          "--cms-font-family",
-          settings.fontFamily
-        );
-
-      }
-
-
-      if (
-        settings.fontSize
-      ) {
-
-        root.style.setProperty(
-          "--cms-font-size",
-          settings.fontSize
-        );
-
-      }
-
-
-      /*
-        FAVICON
-      */
-
-      if (
-        settings.faviconUrl
-      ) {
-
-        const favicon =
-          document.getElementById(
-            "siteFavicon"
-          );
-
-
-        if (
-          favicon
-        ) {
-
-          favicon.href =
-            settings.faviconUrl;
-
-        }
-
-      }
-
-    }
-
-
-    applyWebsiteSettings();
-
-
-    /*
-      ==========================================
-      CUSTOMER SHIPMENT REQUEST SYSTEM
-      ==========================================
-
-      IMPORTANT:
-
-      Customer requests are stored separately
-      from actual Admin-managed shipments.
-
-      Customer request:
-      expresslineShipmentRequests
-
-      Actual shipment:
-      expresslineShipments
-
-      A customer request does NOT automatically
-      become a shipment.
-    */
-
-
-    const REQUEST_STORAGE_KEY =
-      "expresslineShipmentRequests";
-
-
-    const shipmentForm =
-      document.getElementById(
-        "shipmentRequestForm"
-      );
-
-
-    const imageInput =
-      document.getElementById(
-        "shipmentImage"
-      );
-
-
-    const imagePreview =
-      document.getElementById(
-        "shipmentPreviewImage"
-      );
-
-
-    const imagePreviewBox =
-      document.getElementById(
-        "shipmentImagePreview"
-      );
-
-
-    /*
-      ==========================================
-      IMAGE PREVIEW
-      ==========================================
-    */
-
-    imageInput.addEventListener(
-      "change",
-      function () {
-
-        const file =
-          this.files[0];
-
-
-        if (!file) {
-
-          imagePreviewBox.style.display =
-            "none";
-
-          imagePreview.src =
-            "";
-
-          return;
-
-        }
-
-
-        if (
-          !file.type.startsWith(
-            "image/"
-          )
-        ) {
-
-          showError(
-            "Please select a valid image file."
-          );
-
-          this.value =
-            "";
-
-          imagePreviewBox.style.display =
-            "none";
-
-          imagePreview.src =
-            "";
-
-          return;
-
-        }
-
-
-        const reader =
-          new FileReader();
-
-
-        reader.onload =
-          function (event) {
-
-            imagePreview.src =
-              event.target.result;
-
-            imagePreviewBox.style.display =
-              "block";
-
-          };
-
-
-        reader.readAsDataURL(
-          file
-        );
-
-      }
-    );
-
-
-    /*
-      ==========================================
-      CREATE REQUEST ID
-      ==========================================
-    */
-
-    function createRequestId() {
-
-      const time =
-        Date.now()
-          .toString()
-          .slice(-8);
-
-
-      const random =
-        Math.floor(
-          100 +
-          Math.random() * 900
-        );
-
-
-      return (
-        "REQ-" +
-        time +
-        "-" +
-        random
-      );
-
-    }
-
-
-    /*
-      ==========================================
-      LOAD EXISTING REQUESTS
-      ==========================================
-    */
-
-    function loadRequests() {
-
-      try {
-
-        const saved =
-          localStorage.getItem(
-            REQUEST_STORAGE_KEY
-          );
-
-
-        if (!saved) {
-          return [];
-        }
-
-
-        const parsed =
-          JSON.parse(
-            saved
-          );
-
-
-        return Array.isArray(
-          parsed
-        )
-          ? parsed
-          : [];
-
-
-      } catch (error) {
-
+      if (!stored) {
         return [];
-
       }
 
+      const parsed =
+        JSON.parse(stored);
+
+      return Array.isArray(parsed)
+        ? parsed
+        : [];
+    } catch (error) {
+      return [];
     }
+  }
 
+  function saveRequests(requests) {
+    localStorage.setItem(
+      REQUEST_STORAGE_KEY,
+      JSON.stringify(requests)
+    );
+  }
 
-    /*
-      ==========================================
-      SAVE REQUESTS
-      ==========================================
-    */
+  function createRequestId() {
+    return (
+      "REQ-" +
+      String(Date.now()).slice(-8) +
+      "-" +
+      Math.floor(
+        100 + Math.random() * 900
+      )
+    );
+  }
 
-    function saveRequests(
-      requests
-    ) {
-
-      localStorage.setItem(
-        REQUEST_STORAGE_KEY,
-        JSON.stringify(
-          requests
-        )
+  function showSuccess(message) {
+    const box =
+      document.getElementById(
+        "requestSuccess"
       );
 
-    }
+    const error =
+      document.getElementById(
+        "requestError"
+      );
 
+    error.style.display = "none";
 
-    /*
-      ==========================================
-      SHOW SUCCESS
-      ==========================================
-    */
+    box.textContent = message;
 
-    function showSuccess(
-      text
-    ) {
+    box.style.display = "block";
+  }
 
-      const box =
-        document.getElementById(
-          "requestMessage"
-        );
+  function showError(message) {
+    const box =
+      document.getElementById(
+        "requestError"
+      );
 
+    const success =
+      document.getElementById(
+        "requestSuccess"
+      );
 
-      const errorBox =
-        document.getElementById(
-          "requestError"
-        );
+    success.style.display = "none";
 
+    box.textContent = message;
 
-      errorBox.style.display =
-        "none";
+    box.style.display = "block";
+  }
 
-      errorBox.textContent =
-        "";
-
-
-      box.textContent =
-        text;
-
-      box.style.display =
-        "block";
-
-    }
-
-
-    /*
-      ==========================================
-      SHOW ERROR
-      ==========================================
-    */
-
-    function showError(
-      text
-    ) {
-
-      const box =
-        document.getElementById(
-          "requestError"
-        );
-
-
-      const successBox =
-        document.getElementById(
-          "requestMessage"
-        );
-
-
-      successBox.style.display =
-        "none";
-
-      successBox.textContent =
-        "";
-
-
-      box.textContent =
-        text;
-
-      box.style.display =
-        "block";
-
-    }
-
-
-    /*
-      ==========================================
-      SUBMIT REQUEST
-      ==========================================
-    */
-
-    shipmentForm.addEventListener(
+  /*
+   * SUBMIT REQUEST
+   */
+  document
+    .getElementById("shipmentRequestForm")
+    .addEventListener(
       "submit",
       function (event) {
-
         event.preventDefault();
-
 
         const requestId =
           createRequestId();
 
-
-        /*
-          OPTIONAL IMAGE
-
-          If the customer does not upload
-          an image, the request still submits.
-        */
-
         const imageFile =
-          imageInput.files[0];
-
+          shipmentImage.files[0];
 
         if (imageFile) {
-
-          if (
-            !imageFile.type.startsWith(
-              "image/"
-            )
-          ) {
-
-            showError(
-              "Please select a valid image file."
-            );
-
-            return;
-
-          }
-
-
           const reader =
             new FileReader();
 
+          reader.onload = function (
+            readerEvent
+          ) {
+            createAndSaveRequest(
+              requestId,
+              readerEvent.target.result
+            );
+          };
 
-          reader.onload =
-            function () {
-
-              createAndSaveRequest(
-                requestId,
-                reader.result
-              );
-
-            };
-
-
-          reader.onerror =
-            function () {
-
-              showError(
-                "The shipment image could not be read. Please try again."
-              );
-
-            };
-
+          reader.onerror = function () {
+            showError(
+              "The shipment image could not be processed. Please try again."
+            );
+          };
 
           reader.readAsDataURL(
             imageFile
           );
-
-
         } else {
-
           createAndSaveRequest(
             requestId,
             ""
           );
-
         }
-
       }
     );
 
+  function createAndSaveRequest(
+    requestId,
+    shipmentImageData
+  ) {
+    const now =
+      new Date().toISOString();
 
-    /*
-      ==========================================
-      CREATE AND SAVE REQUEST
-      ==========================================
-    */
+    const request = {
+      id: requestId,
 
-    function createAndSaveRequest(
-      requestId,
-      shipmentImage
-    ) {
+      requestId: requestId,
 
+      status: "Pending",
 
-      const request = {
+      createdAt: now,
 
-        id:
-          requestId,
+      date: now,
 
+      customerName:
+        document.getElementById(
+          "requestName"
+        ).value.trim(),
 
-        requestId:
-          requestId,
+      customerPhone:
+        document.getElementById(
+          "requestPhone"
+        ).value.trim(),
 
+      customerEmail:
+        document.getElementById(
+          "requestEmail"
+        ).value.trim(),
 
-        status:
-          "Pending",
+      sender: {
+        name:
+          document.getElementById(
+            "senderName"
+          ).value.trim(),
 
+        phone:
+          document.getElementById(
+            "senderPhone"
+          ).value.trim(),
 
-        createdAt:
-          new Date().toISOString(),
+        address:
+          document.getElementById(
+            "senderAddress"
+          ).value.trim()
+      },
 
+      receiver: {
+        name:
+          document.getElementById(
+            "receiverName"
+          ).value.trim(),
+
+        phone:
+          document.getElementById(
+            "receiverPhone"
+          ).value.trim(),
+
+        address:
+          document.getElementById(
+            "receiverAddress"
+          ).value.trim()
+      },
+
+      package: {
+        description:
+          document.getElementById(
+            "packageDescription"
+          ).value.trim(),
+
+        weight:
+          document.getElementById(
+            "packageWeight"
+          ).value.trim(),
+
+        quantity:
+          document.getElementById(
+            "packageQuantity"
+          ).value.trim(),
+
+        type:
+          document.getElementById(
+            "packageType"
+          ).value
+      },
+
+      shipping: {
+        pickupAddress:
+          document.getElementById(
+            "pickupAddress"
+          ).value.trim(),
+
+        deliveryAddress:
+          document.getElementById(
+            "deliveryAddress"
+          ).value.trim(),
+
+        method:
+          document.getElementById(
+            "shippingMethod"
+          ).value,
+
+        specialInstructions:
+          document.getElementById(
+            "specialInstructions"
+          ).value.trim()
+      },
+
+      origin: {
+        label:
+          document.getElementById(
+            "originLabel"
+          ).value.trim(),
+
+        location:
+          document.getElementById(
+            "origin"
+          ).value.trim(),
+
+        latitude:
+          document.getElementById(
+            "originLatitude"
+          ).value.trim(),
+
+        longitude:
+          document.getElementById(
+            "originLongitude"
+          ).value.trim()
+      },
+
+      destination: {
+        label:
+          document.getElementById(
+            "destinationLabel"
+          ).value.trim(),
+
+        location:
+          document.getElementById(
+            "destination"
+          ).value.trim(),
+
+        latitude:
+          document.getElementById(
+            "destinationLatitude"
+          ).value.trim(),
+
+        longitude:
+          document.getElementById(
+            "destinationLongitude"
+          ).value.trim()
+      },
+
+      estimatedDelivery: {
+        time:
+          document.getElementById(
+            "estimatedDeliveryTime"
+          ).value,
 
         date:
-          new Date().toISOString(),
-
-
-        customerName:
-          document
-            .getElementById(
-              "requestName"
-            )
-            .value
-            .trim(),
-
-
-        customerPhone:
-          document
-            .getElementById(
-              "requestPhone"
-            )
-            .value
-            .trim(),
-
-
-        customerEmail:
-          document
-            .getElementById(
-              "requestEmail"
-            )
-            .value
-            .trim(),
-
-
-        sender: {
-
-          name:
-            document
-              .getElementById(
-                "senderName"
-              )
-              .value
-              .trim(),
-
-          phone:
-            document
-              .getElementById(
-                "senderPhone"
-              )
-              .value
-              .trim(),
-
-          address:
-            document
-              .getElementById(
-                "senderAddress"
-              )
-              .value
-              .trim()
-
-        },
-
-
-        receiver: {
-
-          name:
-            document
-              .getElementById(
-                "receiverName"
-              )
-              .value
-              .trim(),
-
-          phone:
-            document
-              .getElementById(
-                "receiverPhone"
-              )
-              .value
-              .trim(),
-
-          address:
-            document
-              .getElementById(
-                "receiverAddress"
-              )
-              .value
-              .trim()
-
-        },
-
-
-        package: {
-
-          description:
-            document
-              .getElementById(
-                "packageDescription"
-              )
-              .value
-              .trim(),
-
-          weight:
-            document
-              .getElementById(
-                "packageWeight"
-              )
-              .value
-              .trim(),
-
-          quantity:
-            document
-              .getElementById(
-                "packageQuantity"
-              )
-              .value
-              .trim(),
-
-          type:
-            document
-              .getElementById(
-                "packageType"
-              )
-              .value
-
-        },
-
-
-        shipping: {
-
-          pickupAddress:
-            document
-              .getElementById(
-                "pickupAddress"
-              )
-              .value
-              .trim(),
-
-          deliveryAddress:
-            document
-              .getElementById(
-                "deliveryAddress"
-              )
-              .value
-              .trim(),
-
-          method:
-            document
-              .getElementById(
-                "shippingMethod"
-              )
-              .value,
-
-          specialInstructions:
-            document
-              .getElementById(
-                "specialInstructions"
-              )
-              .value
-              .trim()
-
-        },
-
-
-        origin: {
-
-          label:
-            document
-              .getElementById(
-                "originLabel"
-              )
-              .value
-              .trim(),
-
-          location:
-            document
-              .getElementById(
-                "origin"
-              )
-              .value
-              .trim(),
-
-          latitude:
-            document
-              .getElementById(
-                "originLatitude"
-              )
-              .value
-              .trim(),
-
-          longitude:
-            document
-              .getElementById(
-                "originLongitude"
-              )
-              .value
-              .trim()
-
-        },
-
-
-        destination: {
-
-          label:
-            document
-              .getElementById(
-                "destinationLabel"
-              )
-              .value
-              .trim(),
-
-          location:
-            document
-              .getElementById(
-                "destination"
-              )
-              .value
-              .trim(),
-
-          latitude:
-            document
-              .getElementById(
-                "destinationLatitude"
-              )
-              .value
-              .trim(),
-
-          longitude:
-            document
-              .getElementById(
-                "destinationLongitude"
-              )
-              .value
-              .trim()
-
-        },
-
-
-        estimatedDelivery: {
-
-          time:
-            document
-              .getElementById(
-                "estimatedDeliveryTime"
-              )
-              .value,
-
-          date:
-            document
-              .getElementById(
-                "estimatedDeliveryDate"
-              )
-              .value
-
-        },
-
-
-        shipmentImage:
-          shipmentImage || "",
-
-
-        message:
-          document
-            .getElementById(
-              "specialInstructions"
-            )
-            .value
-            .trim()
-
-      };
-
-
-      /*
-        LOAD EXISTING REQUESTS
-      */
-
-      const requests =
-        loadRequests();
-
-
-      /*
-        ADD NEW CUSTOMER REQUEST
-      */
-
-      requests.unshift(
-        request
-      );
-
-
-      /*
-        SAVE ONLY TO REQUEST STORAGE
-      */
-
-      saveRequests(
-        requests
-      );
-
-
-      /*
-        SHOW SUCCESS
-      */
-
-      showSuccess(
-        "Your shipment request has been submitted successfully. Our team can now review your request."
-      );
-
-
-      /*
-        RESET FORM
-      */
-
-      shipmentForm.reset();
-
-
-      imagePreviewBox.style.display =
-        "none";
-
-      imagePreview.src =
-        "";
-
-
-      /*
-        SCROLL TO SUCCESS MESSAGE
-      */
-
-      document
-        .getElementById(
-          "requestMessage"
-        )
-        .scrollIntoView({
-          behavior: "smooth",
-          block: "center"
-        });
-
-    }
-
-  </script>
+          document.getElementById(
+            "estimatedDeliveryDate"
+          ).value
+      },
+
+      shipmentImage:
+        shipmentImageData || "",
+
+      message:
+        document.getElementById(
+          "specialInstructions"
+        ).value.trim()
+    };
+
+    const requests =
+      loadRequests();
+
+    requests.unshift(request);
+
+    saveRequests(requests);
+
+    showSuccess(
+      "Your shipment request has been submitted successfully. Our team will review your request."
+    );
+
+    document
+      .getElementById(
+        "shipmentRequestForm"
+      )
+      .reset();
+
+    shipmentImagePreview.style.display =
+      "none";
+
+    shipmentPreviewImage.src = "";
+
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
+  }
+</script>
 
 </body>
 </html>
