@@ -590,26 +590,51 @@
 </footer>
 
 
-<!-- WEBSITE SETTINGS -->
+<!-- SUPABASE -->
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <script>
 
-const WEBSITE_SETTINGS_KEY =
-  "expresslineWebsiteSettings";
+const SUPABASE_URL =
+  "https://uhjgietvznkfzckmxqfz.supabase.co";
+
+const SUPABASE_PUBLISHABLE_KEY =
+  "sb_publishable_zZ0JiBW-2uarX2gnR5w9hQ_77RpB6SM";
 
 
-function getWebsiteSettings() {
+const supabaseClient =
+  window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_PUBLISHABLE_KEY
+  );
+
+
+async function getWebsiteSettings() {
 
   try {
 
-    const saved =
-      localStorage.getItem(
-        WEBSITE_SETTINGS_KEY
+    const { data, error } =
+      await supabaseClient
+        .from("website_settings")
+        .select("settings")
+        .eq("id", 1)
+        .maybeSingle();
+
+
+    if (error) {
+
+      console.error(
+        "Unable to load website settings:",
+        error
       );
 
-    return saved
-      ? JSON.parse(saved)
-      : {};
+      return {};
+
+    }
+
+
+    return data?.settings || {};
 
   } catch (error) {
 
@@ -645,10 +670,10 @@ function setText(id, value) {
 }
 
 
-function applyWebsiteSettings() {
+async function applyWebsiteSettings() {
 
   const settings =
-    getWebsiteSettings();
+    await getWebsiteSettings();
 
 
   /* COMPANY */
