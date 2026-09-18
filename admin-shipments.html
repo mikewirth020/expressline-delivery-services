@@ -6,36 +6,174 @@
 
   <title>Manage Shipments | ExpressLine Admin</title>
 
-  <meta name="description" content="Manage ExpressLine Delivery Services shipments.">
+  <meta
+    name="description"
+    content="Manage ExpressLine Delivery Services shipments."
+  >
+
   <meta name="robots" content="noindex, nofollow">
 
-  <link rel="stylesheet" href="style.css">
-
   <style>
-    .shipment-admin {
-      max-width: 1200px;
-      margin: 0 auto;
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
     }
 
-    .admin-actions {
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: #f4f7fb;
+      color: #1f2937;
+    }
+
+    header {
+      background: #0b1f3a;
+      color: #fff;
+      padding: 18px 20px;
+    }
+
+    .header-inner {
+      max-width: 1200px;
+      margin: auto;
       display: flex;
-      gap: 12px;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
       flex-wrap: wrap;
-      margin-top: 20px;
+    }
+
+    header h1 {
+      font-size: 24px;
+      margin-bottom: 5px;
+    }
+
+    header p {
+      color: #cbd5e1;
+      font-size: 14px;
+    }
+
+    nav {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      padding: 9px 12px;
+      border-radius: 6px;
+      font-size: 14px;
+    }
+
+    nav a:hover,
+    nav a.active {
+      background: #163b68;
+    }
+
+    .container {
+      width: 92%;
+      max-width: 1200px;
+      margin: 28px auto 50px;
+    }
+
+    .page-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 15px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+
+    .page-top h2 {
+      color: #0b1f3a;
+      font-size: 24px;
+    }
+
+    .page-top p {
+      color: #64748b;
+      margin-top: 5px;
+    }
+
+    .primary-btn {
+      background: #0b1f3a;
+      color: white;
+      border: none;
+      border-radius: 7px;
+      padding: 12px 18px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .primary-btn:hover {
+      background: #163b68;
+    }
+
+    .secondary-btn {
+      background: #e8eef6;
+      color: #0b1f3a;
+      border: none;
+      border-radius: 7px;
+      padding: 11px 16px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .secondary-btn:hover {
+      background: #dce5f0;
+    }
+
+    .danger-btn {
+      background: #dc3545;
+      color: #fff;
+      border: none;
+      border-radius: 7px;
+      padding: 9px 13px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .danger-btn:hover {
+      background: #b02a37;
+    }
+
+    .search-box {
+      background: #fff;
+      padding: 16px;
+      border-radius: 10px;
+      box-shadow: 0 3px 12px rgba(0,0,0,.07);
+      margin-bottom: 20px;
+    }
+
+    .search-box input {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #cbd5e1;
+      border-radius: 7px;
+      font-size: 15px;
+      outline: none;
+    }
+
+    .search-box input:focus,
+    input:focus,
+    select:focus,
+    textarea:focus {
+      border-color: #0b1f3a;
+      box-shadow: 0 0 0 2px rgba(11,31,58,.08);
     }
 
     .shipment-list {
       display: grid;
       gap: 16px;
-      margin-top: 25px;
     }
 
     .shipment-card {
       background: #fff;
-      border: 1px solid #e5e7eb;
-      border-radius: 14px;
+      border-radius: 12px;
       padding: 20px;
-      box-shadow: 0 4px 15px rgba(0,0,0,.05);
+      box-shadow: 0 3px 12px rgba(0,0,0,.07);
+      border: 1px solid #e5e7eb;
     }
 
     .shipment-card-top {
@@ -47,83 +185,167 @@
     }
 
     .tracking-number {
-      font-size: 19px;
-      font-weight: 700;
+      color: #0b1f3a;
+      font-size: 20px;
+      font-weight: bold;
+      margin-bottom: 6px;
     }
 
-    .status-badge {
+    .customer-name {
+      font-size: 15px;
+      color: #475569;
+    }
+
+    .status {
       display: inline-block;
       padding: 6px 10px;
       border-radius: 20px;
-      background: #eef2ff;
-      color: #3730a3;
       font-size: 12px;
-      font-weight: 700;
+      font-weight: bold;
+      white-space: nowrap;
     }
 
-    .progress-area {
-      margin: 18px 0;
+    .status-pending {
+      background: #fff3cd;
+      color: #856404;
+    }
+
+    .status-transit {
+      background: #dbeafe;
+      color: #1d4ed8;
+    }
+
+    .status-delivered {
+      background: #dcfce7;
+      color: #166534;
+    }
+
+    .status-processing {
+      background: #ede9fe;
+      color: #6d28d9;
+    }
+
+    .status-cancelled {
+      background: #fee2e2;
+      color: #991b1b;
+    }
+
+    .shipment-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+      margin-top: 18px;
+    }
+
+    .info-item {
+      background: #f8fafc;
+      border-radius: 8px;
+      padding: 12px;
+    }
+
+    .info-label {
+      color: #64748b;
+      font-size: 12px;
+      margin-bottom: 5px;
+    }
+
+    .info-value {
+      color: #1e293b;
+      font-size: 14px;
+      font-weight: 600;
+      word-break: break-word;
+    }
+
+    .progress-wrap {
+      margin-top: 16px;
+    }
+
+    .progress-header {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 7px;
+      font-size: 13px;
+      font-weight: bold;
     }
 
     .progress-bar {
       width: 100%;
-      height: 10px;
-      background: #e5e7eb;
+      height: 9px;
+      background: #e2e8f0;
       border-radius: 20px;
       overflow: hidden;
     }
 
     .progress-fill {
       height: 100%;
-      background: #111827;
+      background: #0b1f3a;
       border-radius: 20px;
     }
 
-    .progress-label {
+    .card-actions {
       display: flex;
-      justify-content: space-between;
-      margin-bottom: 7px;
-      font-size: 13px;
-      color: #6b7280;
+      gap: 10px;
+      margin-top: 18px;
+      flex-wrap: wrap;
     }
 
-    .shipment-info {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 12px;
-      margin-top: 15px;
+    .empty {
+      background: #fff;
+      padding: 45px 20px;
+      border-radius: 12px;
+      text-align: center;
+      color: #64748b;
+      box-shadow: 0 3px 12px rgba(0,0,0,.07);
     }
 
-    .info-box {
-      padding: 12px;
-      background: #f9fafb;
-      border-radius: 9px;
+    .empty h3 {
+      color: #0b1f3a;
+      margin-bottom: 8px;
     }
 
-    .info-box small {
-      display: block;
-      color: #6b7280;
-      margin-bottom: 4px;
-    }
+    /* Editor */
 
     .editor {
       display: none;
-      margin-top: 30px;
       background: #fff;
-      border-radius: 15px;
-      padding: 25px;
-      border: 1px solid #e5e7eb;
-      box-shadow: 0 4px 18px rgba(0,0,0,.06);
+      border-radius: 12px;
+      padding: 22px;
+      box-shadow: 0 3px 12px rgba(0,0,0,.08);
+      margin-top: 22px;
     }
 
-    .editor-section {
-      margin-top: 25px;
-      padding-top: 20px;
+    .editor.show {
+      display: block;
+    }
+
+    .editor-title {
+      color: #0b1f3a;
+      margin-bottom: 5px;
+      font-size: 23px;
+    }
+
+    .editor-subtitle {
+      color: #64748b;
+      margin-bottom: 22px;
+      font-size: 14px;
+    }
+
+    .section {
       border-top: 1px solid #e5e7eb;
+      padding-top: 20px;
+      margin-top: 22px;
     }
 
-    .editor-section h3 {
-      margin-bottom: 18px;
+    .section:first-of-type {
+      border-top: none;
+      padding-top: 0;
+      margin-top: 0;
+    }
+
+    .section h3 {
+      color: #0b1f3a;
+      margin-bottom: 15px;
+      font-size: 18px;
     }
 
     .form-grid {
@@ -132,102 +354,169 @@
       gap: 15px;
     }
 
-    .full-width {
+    .form-group {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .form-group.full {
       grid-column: 1 / -1;
     }
 
+    label {
+      font-weight: bold;
+      font-size: 13px;
+      color: #334155;
+      margin-bottom: 7px;
+    }
+
+    input,
+    select,
+    textarea {
+      width: 100%;
+      padding: 11px 12px;
+      border: 1px solid #cbd5e1;
+      border-radius: 7px;
+      font-size: 14px;
+      font-family: inherit;
+      outline: none;
+      background: #fff;
+    }
+
+    textarea {
+      min-height: 100px;
+      resize: vertical;
+    }
+
+    .help-text {
+      color: #64748b;
+      font-size: 12px;
+      margin-top: 6px;
+      line-height: 1.5;
+    }
+
     .image-preview {
-      margin-top: 15px;
+      margin-top: 12px;
+      display: none;
     }
 
     .image-preview img {
-      max-width: 350px;
-      width: 100%;
-      max-height: 260px;
+      max-width: 240px;
+      max-height: 180px;
       object-fit: cover;
-      border-radius: 12px;
+      border-radius: 8px;
       border: 1px solid #ddd;
     }
 
-    .history-item {
-      border: 1px solid #e5e7eb;
-      background: #f9fafb;
-      border-radius: 12px;
-      padding: 16px;
-      margin-bottom: 14px;
+    .history-list {
+      display: grid;
+      gap: 10px;
+      margin-bottom: 15px;
     }
 
-    .history-item-header {
+    .history-item {
+      border: 1px solid #e2e8f0;
+      background: #f8fafc;
+      padding: 12px;
+      border-radius: 8px;
+    }
+
+    .history-top {
       display: flex;
       justify-content: space-between;
       gap: 10px;
-      align-items: center;
-      margin-bottom: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 5px;
     }
 
-    .history-actions {
-      display: flex;
-      gap: 8px;
+    .history-status {
+      font-weight: bold;
+      color: #0b1f3a;
     }
 
-    .small-button {
-      border: 0;
-      border-radius: 7px;
-      padding: 7px 10px;
-      cursor: pointer;
+    .history-date {
+      color: #64748b;
       font-size: 12px;
-      font-weight: 700;
     }
 
-    .delete-button {
-      background: #fee2e2;
-      color: #991b1b;
+    .history-location {
+      font-size: 13px;
+      font-weight: bold;
+      margin-bottom: 4px;
+    }
+
+    .history-details {
+      font-size: 13px;
+      color: #64748b;
+    }
+
+    .add-history {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 9px;
+      padding: 15px;
+    }
+
+    .editor-actions {
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
+      margin-top: 25px;
+      padding-top: 20px;
+      border-top: 1px solid #e5e7eb;
+      flex-wrap: wrap;
     }
 
     .message {
       display: none;
-      padding: 13px 15px;
-      margin: 20px 0;
-      border-radius: 9px;
-      background: #ecfdf5;
-      color: #065f46;
-      border: 1px solid #a7f3d0;
+      margin-bottom: 18px;
+      padding: 12px 14px;
+      border-radius: 7px;
+      font-size: 14px;
+      font-weight: bold;
     }
 
-    .no-shipments {
-      text-align: center;
-      padding: 45px 20px;
-      background: #fff;
-      border-radius: 14px;
-      border: 1px solid #e5e7eb;
-      color: #6b7280;
-    }
-
-    .current-location-box {
-      padding: 15px;
-      background: #f0fdf4;
-      border: 1px solid #bbf7d0;
-      border-radius: 10px;
-      margin-top: 15px;
-    }
-
-    .current-location-box strong {
+    .message.success {
       display: block;
-      margin-bottom: 5px;
+      background: #dcfce7;
+      color: #166534;
     }
 
-    @media (max-width: 700px) {
-      .shipment-info,
+    .message.error {
+      display: block;
+      background: #fee2e2;
+      color: #991b1b;
+    }
+
+    @media (max-width: 900px) {
+      .shipment-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 650px) {
+      .container {
+        width: 94%;
+      }
+
       .form-grid {
         grid-template-columns: 1fr;
       }
 
-      .full-width {
+      .form-group.full {
         grid-column: auto;
       }
 
-      .editor {
-        padding: 18px;
+      .shipment-grid {
+        grid-template-columns: 1fr;
+      }
+
+      header h1 {
+        font-size: 20px;
+      }
+
+      .page-top h2 {
+        font-size: 21px;
       }
     }
   </style>
@@ -235,2425 +524,1491 @@
 
 <body>
 
-<header class="site-header">
+<header>
+  <div class="header-inner">
+    <div>
+      <h1>ExpressLine Admin</h1>
+      <p>Shipment Management</p>
+    </div>
 
-  <div class="container navbar">
-
-    <a href="admin.html" class="logo">
-      <span class="logo-mark">EL</span>
-      <span>ExpressLine Admin</span>
-    </a>
-
-    <nav class="nav-links">
-
-      <a href="admin.html">
-        Dashboard
-      </a>
-
-      <a href="admin-shipments.html">
-        Shipments
-      </a>
-
-      <a href="admin-requests.html">
-        Requests
-      </a>
-
-      <a href="index.html">
-        View Website
-      </a>
-
-      <a href="admin-login.html">
-        Logout
-      </a>
-
+    <nav>
+      <a href="admin.html">Dashboard</a>
+      <a href="admin-shipments.html" class="active">Shipments</a>
+      <a href="admin-requests.html">Requests</a>
+      <a href="index.html">Website</a>
+      <a href="admin-login.html">Logout</a>
     </nav>
-
   </div>
-
 </header>
 
+<main class="container">
 
-<main>
+  <div id="message" class="message"></div>
 
-<section class="section section-light">
-
-  <div class="container shipment-admin">
-
-    <div class="section-heading">
-
-      <p class="section-label">
-        ADMINISTRATION
-      </p>
-
-      <h1>
-        Manage Shipments
-      </h1>
-
-      <p>
-        Create, edit and manage shipment tracking information.
-      </p>
-
+  <div class="page-top">
+    <div>
+      <h2>Manage Shipments</h2>
+      <p>Create, edit and manage customer shipment tracking information.</p>
     </div>
 
+    <button class="primary-btn" onclick="openNewShipment()">
+      + Create Shipment
+    </button>
+  </div>
 
-    <div class="admin-actions">
+  <div class="search-box">
+    <input
+      type="search"
+      id="searchInput"
+      placeholder="Search by tracking number, customer, sender, receiver, origin or destination..."
+      oninput="renderShipments()"
+    >
+  </div>
 
-      <a
-        href="request.html"
-        class="btn btn-primary"
-      >
-        Create Shipment
-      </a>
+  <div id="shipmentList" class="shipment-list"></div>
 
-      <a
-        href="admin.html"
-        class="btn btn-secondary"
-      >
-        Back to Admin
-      </a>
+  <!-- SHIPMENT EDITOR -->
 
+  <section id="editor" class="editor">
+
+    <h2 id="editorTitle" class="editor-title">Create Shipment</h2>
+
+    <p class="editor-subtitle">
+      Enter the shipment information below. The tracking number is entered manually by the administrator.
+    </p>
+
+    <!-- BASIC SHIPMENT INFORMATION -->
+
+    <div class="section">
+
+      <h3>Shipment Information</h3>
+
+      <div class="form-grid">
+
+        <div class="form-group">
+          <label for="trackingNumber">Tracking Number *</label>
+          <input
+            type="text"
+            id="trackingNumber"
+            placeholder="Example: EXP-10025"
+          >
+          <div class="help-text">
+            Enter the tracking number manually. This is the number the customer will use to track the shipment.
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="status">Shipment Status *</label>
+          <select id="status">
+            <option value="Shipment Created">Shipment Created</option>
+            <option value="Waiting for Pickup">Waiting for Pickup</option>
+            <option value="Packaged">Packaged</option>
+            <option value="Picked Up">Picked Up</option>
+            <option value="Processing">Processing</option>
+            <option value="Customs Clearance">Customs Clearance</option>
+            <option value="In Transit">In Transit</option>
+            <option value="Delivered">Delivered</option>
+            <option value="Cancelled">Cancelled</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="shipmentDate">Shipment Created Date *</label>
+          <input type="date" id="shipmentDate">
+        </div>
+
+        <div class="form-group">
+          <label for="estimatedDelivery">Estimated Delivery Date</label>
+          <input type="date" id="estimatedDelivery">
+        </div>
+
+        <div class="form-group">
+          <label for="progress">Shipment Progress (%)</label>
+          <input
+            type="number"
+            id="progress"
+            min="0"
+            max="100"
+            value="0"
+            placeholder="0 - 100"
+          >
+        </div>
+
+        <div class="form-group">
+          <label for="currentLocation">Current Shipment Location</label>
+          <input
+            type="text"
+            id="currentLocation"
+            placeholder="Example: Lagos Sorting Center"
+          >
+        </div>
+
+        <div class="form-group">
+          <label for="shipmentType">Shipment Type</label>
+          <select id="shipmentType">
+            <option value="">Select shipment type</option>
+            <option value="Document">Document</option>
+            <option value="Parcel">Parcel</option>
+            <option value="Package">Package</option>
+            <option value="Cargo">Cargo</option>
+            <option value="Express Delivery">Express Delivery</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="weight">Weight</label>
+          <input
+            type="text"
+            id="weight"
+            placeholder="Example: 5 kg"
+          >
+        </div>
+
+      </div>
     </div>
 
+    <!-- CUSTOMER -->
 
-    <div
-      id="message"
-      class="message"
-    ></div>
+    <div class="section">
 
+      <h3>Customer Information</h3>
 
-    <div class="form-card" style="margin-top:25px;">
+      <div class="form-grid">
+
+        <div class="form-group">
+          <label for="customerName">Customer Name *</label>
+          <input
+            type="text"
+            id="customerName"
+            placeholder="Enter customer full name"
+          >
+        </div>
+
+        <div class="form-group">
+          <label for="customerPhone">Customer Phone</label>
+          <input
+            type="tel"
+            id="customerPhone"
+            placeholder="Enter customer phone number"
+          >
+        </div>
+
+        <div class="form-group full">
+          <label for="customerEmail">Customer Email</label>
+          <input
+            type="email"
+            id="customerEmail"
+            placeholder="Enter customer email"
+          >
+        </div>
+
+      </div>
+    </div>
+
+    <!-- SENDER -->
+
+    <div class="section">
+
+      <h3>Sender Information</h3>
+
+      <div class="form-grid">
+
+        <div class="form-group">
+          <label for="senderName">Sender Name</label>
+          <input
+            type="text"
+            id="senderName"
+            placeholder="Enter sender name"
+          >
+        </div>
+
+        <div class="form-group">
+          <label for="senderPhone">Sender Phone</label>
+          <input
+            type="tel"
+            id="senderPhone"
+            placeholder="Enter sender phone"
+          >
+        </div>
+
+        <div class="form-group full">
+          <label for="senderAddress">Sender Address / Location</label>
+          <input
+            type="text"
+            id="senderAddress"
+            placeholder="Enter sender address or location"
+          >
+        </div>
+
+      </div>
+    </div>
+
+    <!-- RECEIVER -->
+
+    <div class="section">
+
+      <h3>Receiver Information</h3>
+
+      <div class="form-grid">
+
+        <div class="form-group">
+          <label for="receiverName">Receiver Name</label>
+          <input
+            type="text"
+            id="receiverName"
+            placeholder="Enter receiver name"
+          >
+        </div>
+
+        <div class="form-group">
+          <label for="receiverPhone">Receiver Phone</label>
+          <input
+            type="tel"
+            id="receiverPhone"
+            placeholder="Enter receiver phone"
+          >
+        </div>
+
+        <div class="form-group full">
+          <label for="receiverAddress">Receiver Address / Location</label>
+          <input
+            type="text"
+            id="receiverAddress"
+            placeholder="Enter receiver address or location"
+          >
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ORIGIN AND DESTINATION -->
+
+    <div class="section">
+
+      <h3>Route Information</h3>
+
+      <div class="form-grid">
+
+        <div class="form-group">
+          <label for="origin">Origin / Pickup Location *</label>
+          <input
+            type="text"
+            id="origin"
+            placeholder="Example: Lagos, Nigeria"
+          >
+        </div>
+
+        <div class="form-group">
+          <label for="destination">Destination *</label>
+          <input
+            type="text"
+            id="destination"
+            placeholder="Example: Abuja, Nigeria"
+          >
+        </div>
+
+      </div>
+    </div>
+
+    <!-- IMAGE -->
+
+    <div class="section">
+
+      <h3>Shipment Photo</h3>
 
       <div class="form-group">
 
-        <label for="shipmentSearch">
-          Search Shipments
-        </label>
+        <label for="shipmentImage">Upload Shipment Photo (Optional)</label>
 
         <input
-          type="search"
-          id="shipmentSearch"
-          placeholder="Tracking number, sender, receiver or destination"
+          type="file"
+          id="shipmentImage"
+          accept="image/*"
+          onchange="previewImage(event)"
         >
 
-      </div>
+        <div class="help-text">
+          This is optional. If no photo is uploaded, no shipment photo will be displayed to the customer.
+        </div>
 
+        <div id="imagePreview" class="image-preview">
+          <img id="previewImg" src="" alt="Shipment preview">
+        </div>
+
+      </div>
     </div>
 
+    <!-- NOTES -->
 
-    <div id="shipmentList" class="shipment-list"></div>
+    <div class="section">
 
+      <h3>Shipment Notes</h3>
 
-    <section
-      id="shipmentEditor"
-      class="editor"
-    >
-
-      <h2>
-        Edit Shipment
-      </h2>
-
-      <p>
-        Tracking Number:
-        <strong id="editingTrackingNumber"></strong>
-      </p>
-
-
-      <!-- STATUS & PROGRESS -->
-
-      <div class="editor-section">
-
-        <h3>
-          Status & Progress
-        </h3>
-
-        <div class="form-grid">
-
-          <div class="form-group">
-
-            <label for="editStatus">
-              Shipment Status
-            </label>
-
-            <input
-              type="text"
-              id="editStatus"
-              placeholder="Example: In Transit"
-            >
-
-          </div>
-
-
-          <div class="form-group">
-
-            <label for="editProgress">
-              Progress Percentage
-            </label>
-
-            <input
-              type="number"
-              id="editProgress"
-              min="0"
-              max="100"
-              step="1"
-              placeholder="0 - 100"
-            >
-
-          </div>
-
-
-          <div class="form-group full-width">
-
-            <label for="editCurrentLocation">
-              Current Shipment Location
-            </label>
-
-            <input
-              type="text"
-              id="editCurrentLocation"
-              placeholder="Example: Kaduna Sorting Center"
-            >
-
-            <div class="current-location-box">
-
-              <strong>
-                Customer Tracking Location
-              </strong>
-
-              <span>
-                This is the location customers will see when they track this shipment.
-              </span>
-
-            </div>
-
-          </div>
-
-        </div>
-
+      <div class="form-group">
+        <label for="notes">Additional Information</label>
+        <textarea
+          id="notes"
+          placeholder="Enter any additional shipment information..."
+        ></textarea>
       </div>
+    </div>
 
+    <!-- TRANSIT HISTORY -->
 
-      <!-- CUSTOMER -->
+    <div class="section">
 
-      <div class="editor-section">
+      <h3>Transit / Tracking Updates</h3>
 
-        <h3>
-          Customer Information
-        </h3>
+      <div id="historyList" class="history-list"></div>
 
-        <div class="form-grid">
-
-          <div class="form-group">
-
-            <label for="editCustomerName">
-              Customer Name
-            </label>
-
-            <input
-              type="text"
-              id="editCustomerName"
-            >
-
-          </div>
-
-
-          <div class="form-group">
-
-            <label for="editCustomerPhone">
-              Customer Phone
-            </label>
-
-            <input
-              type="text"
-              id="editCustomerPhone"
-            >
-
-          </div>
-
-
-          <div class="form-group full-width">
-
-            <label for="editCustomerEmail">
-              Customer Email
-            </label>
-
-            <input
-              type="email"
-              id="editCustomerEmail"
-            >
-
-          </div>
-
-        </div>
-
-      </div>
-
-
-      <!-- SENDER -->
-
-      <div class="editor-section">
-
-        <h3>
-          Sender Information
-        </h3>
+      <div class="add-history">
 
         <div class="form-grid">
 
           <div class="form-group">
-
-            <label for="editSenderName">
-              Sender Name
-            </label>
-
-            <input
-              type="text"
-              id="editSenderName"
-            >
-
-          </div>
-
-
-          <div class="form-group">
-
-            <label for="editSenderPhone">
-              Sender Phone Number
-            </label>
-
-            <input
-              type="text"
-              id="editSenderPhone"
-            >
-
-          </div>
-
-
-          <div class="form-group full-width">
-
-            <label for="editSenderAddress">
-              Sender Address
-            </label>
-
-            <textarea
-              id="editSenderAddress"
-              rows="4"
-            ></textarea>
-
-          </div>
-
-        </div>
-
-      </div>
-
-
-      <!-- RECEIVER -->
-
-      <div class="editor-section">
-
-        <h3>
-          Receiver Information
-        </h3>
-
-        <div class="form-grid">
-
-          <div class="form-group">
-
-            <label for="editReceiverName">
-              Receiver Name
-            </label>
-
-            <input
-              type="text"
-              id="editReceiverName"
-            >
-
-          </div>
-
-
-          <div class="form-group">
-
-            <label for="editReceiverPhone">
-              Receiver Phone Number
-            </label>
-
-            <input
-              type="text"
-              id="editReceiverPhone"
-            >
-
-          </div>
-
-
-          <div class="form-group full-width">
-
-            <label for="editReceiverAddress">
-              Receiver Address
-            </label>
-
-            <textarea
-              id="editReceiverAddress"
-              rows="4"
-            ></textarea>
-
-          </div>
-
-        </div>
-
-      </div>
-
-
-      <!-- PACKAGE -->
-
-      <div class="editor-section">
-
-        <h3>
-          Package Information
-        </h3>
-
-        <div class="form-grid">
-
-          <div class="form-group">
-
-            <label for="editPackageDescription">
-              Package Description
-            </label>
-
-            <input
-              type="text"
-              id="editPackageDescription"
-            >
-
-          </div>
-
-
-          <div class="form-group">
-
-            <label for="editWeight">
-              Weight (kg)
-            </label>
-
-            <input
-              type="number"
-              id="editWeight"
-              step="0.01"
-            >
-
-          </div>
-
-
-          <div class="form-group">
-
-            <label for="editQuantity">
-              Quantity
-            </label>
-
-            <input
-              type="number"
-              id="editQuantity"
-              min="1"
-            >
-
-          </div>
-
-
-          <div class="form-group">
-
-            <label for="editPackageType">
-              Package Type
-            </label>
-
-            <select id="editPackageType">
-
-              <option value="Parcel">
-                Parcel
-              </option>
-
-              <option value="Envelope">
-                Envelope
-              </option>
-
-              <option value="Pallet">
-                Pallet
-              </option>
-
-              <option value="Container">
-                Container
-              </option>
-
-              <option value="Freight">
-                Freight
-              </option>
-
+            <label for="historyStatus">Update Status</label>
+            <select id="historyStatus">
+              <option value="Shipment Created">Shipment Created</option>
+              <option value="Waiting for Pickup">Waiting for Pickup</option>
+              <option value="Packaged">Packaged</option>
+              <option value="Picked Up">Picked Up</option>
+              <option value="Processing">Processing</option>
+              <option value="Customs Clearance">Customs Clearance</option>
+              <option value="In Transit">In Transit</option>
+              <option value="Delivered">Delivered</option>
             </select>
-
           </div>
 
-        </div>
+          <div class="form-group">
+            <label for="historyDate">Date</label>
+            <input type="date" id="historyDate">
+          </div>
 
-      </div>
+          <div class="form-group">
+            <label for="historyTime">Time</label>
+            <input type="time" id="historyTime">
+          </div>
 
+          <div class="form-group">
+            <label for="historyLocation">Location</label>
+            <input
+              type="text"
+              id="historyLocation"
+              placeholder="Example: Lagos Sorting Center"
+            >
+          </div>
 
-      <!-- SHIPPING -->
-
-      <div class="editor-section">
-
-        <h3>
-          Shipping Information
-        </h3>
-
-        <div class="form-grid">
-
-          <div class="form-group full-width">
-
-            <label for="editPickupAddress">
-              Pickup Address
-            </label>
-
+          <div class="form-group full">
+            <label for="historyDetails">Update Details</label>
             <textarea
-              id="editPickupAddress"
-              rows="4"
+              id="historyDetails"
+              placeholder="Example: Shipment has been processed and is ready for transit."
             ></textarea>
-
-          </div>
-
-
-          <div class="form-group full-width">
-
-            <label for="editDeliveryAddress">
-              Delivery Address
-            </label>
-
-            <textarea
-              id="editDeliveryAddress"
-              rows="4"
-            ></textarea>
-
-          </div>
-
-
-          <div class="form-group">
-
-            <label for="editShippingMethod">
-              Shipment Method
-            </label>
-
-            <select id="editShippingMethod">
-
-              <option value="Air Freight">
-                Air Freight
-              </option>
-
-              <option value="Sea Freight">
-                Sea Freight
-              </option>
-
-              <option value="Road Transport">
-                Road Transport
-              </option>
-
-              <option value="Express Courier">
-                Express Courier
-              </option>
-
-            </select>
-
-          </div>
-
-
-          <div class="form-group">
-
-            <label for="editEstimatedDate">
-              Estimated Delivery Date
-            </label>
-
-            <input
-              type="date"
-              id="editEstimatedDate"
-            >
-
-          </div>
-
-
-          <div class="form-group">
-
-            <label for="editEstimatedTime">
-              Estimated Delivery Time
-            </label>
-
-            <input
-              type="time"
-              id="editEstimatedTime"
-            >
-
-          </div>
-
-
-          <div class="form-group full-width">
-
-            <label for="editSpecialInstructions">
-              Special Instructions
-            </label>
-
-            <textarea
-              id="editSpecialInstructions"
-              rows="4"
-            ></textarea>
-
           </div>
 
         </div>
-
-      </div>
-
-
-      <!-- ORIGIN -->
-
-      <div class="editor-section">
-
-        <h3>
-          Origin Information
-        </h3>
-
-        <div class="form-grid">
-
-          <div class="form-group">
-
-            <label for="editOriginLabel">
-              Origin Label
-            </label>
-
-            <input
-              type="text"
-              id="editOriginLabel"
-            >
-
-          </div>
-
-
-          <div class="form-group">
-
-            <label for="editOrigin">
-              Origin
-            </label>
-
-            <input
-              type="text"
-              id="editOrigin"
-            >
-
-          </div>
-
-
-          <div class="form-group">
-
-            <label for="editOriginLatitude">
-              Origin Latitude
-            </label>
-
-            <input
-              type="number"
-              id="editOriginLatitude"
-              step="any"
-            >
-
-          </div>
-
-
-          <div class="form-group">
-
-            <label for="editOriginLongitude">
-              Origin Longitude
-            </label>
-
-            <input
-              type="number"
-              id="editOriginLongitude"
-              step="any"
-            >
-
-          </div>
-
-        </div>
-
-      </div>
-
-
-      <!-- DESTINATION -->
-
-      <div class="editor-section">
-
-        <h3>
-          Destination Information
-        </h3>
-
-        <div class="form-grid">
-
-          <div class="form-group">
-
-            <label for="editDestinationLabel">
-              Destination Label
-            </label>
-
-            <input
-              type="text"
-              id="editDestinationLabel"
-            >
-
-          </div>
-
-
-          <div class="form-group">
-
-            <label for="editDestination">
-              Destination
-            </label>
-
-            <input
-              type="text"
-              id="editDestination"
-            >
-
-          </div>
-
-
-          <div class="form-group">
-
-            <label for="editDestinationLatitude">
-              Destination Latitude
-            </label>
-
-            <input
-              type="number"
-              id="editDestinationLatitude"
-              step="any"
-            >
-
-          </div>
-
-
-          <div class="form-group">
-
-            <label for="editDestinationLongitude">
-              Destination Longitude
-            </label>
-
-            <input
-              type="number"
-              id="editDestinationLongitude"
-              step="any"
-            >
-
-          </div>
-
-        </div>
-
-      </div>
-
-
-      <!-- SHIPMENT IMAGE -->
-
-      <div class="editor-section">
-
-        <h3>
-          Shipment Image
-        </h3>
-
-        <div class="form-group">
-
-          <label for="editShipmentImage">
-            Replace Shipment Image
-          </label>
-
-          <input
-            type="file"
-            id="editShipmentImage"
-            accept="image/*"
-          >
-
-          <div
-            id="currentImage"
-            class="image-preview"
-          ></div>
-
-        </div>
-
-      </div>
-
-
-      <!-- TRANSIT HISTORY -->
-
-      <div class="editor-section">
-
-        <h3>
-          Transit / Tracking History
-        </h3>
-
-        <div id="historyContainer"></div>
 
         <button
           type="button"
-          class="btn btn-secondary"
-          onclick="addHistory()"
+          class="secondary-btn"
+          style="margin-top:12px;"
+          onclick="addHistoryUpdate()"
         >
           + Add Transit Update
         </button>
 
       </div>
+    </div>
 
+    <div class="editor-actions">
 
-      <!-- SAVE -->
+      <button
+        type="button"
+        class="secondary-btn"
+        onclick="closeEditor()"
+      >
+        Cancel
+      </button>
 
-      <div class="admin-actions">
-
-        <button
-          type="button"
-          class="btn btn-primary"
-          onclick="saveShipment()"
-        >
-          Save Shipment
-        </button>
-
-        <button
-          type="button"
-          class="btn btn-secondary"
-          onclick="closeEditor()"
-        >
-          Close Editor
-        </button>
-
-      </div>
-
-    </section>
-
-  </div>
-
-</section>
-
-</main>
-
-
-<footer class="site-footer">
-
-  <div class="container">
-
-    <div class="footer-bottom">
-
-      <p>
-        © 2026 ExpressLine Delivery Services.
-        All rights reserved.
-      </p>
-
-      <p>
-        Administrator Portal
-      </p>
+      <button
+        type="button"
+        class="primary-btn"
+        onclick="saveShipment()"
+      >
+        Save Shipment
+      </button>
 
     </div>
 
-  </div>
+  </section>
 
-</footer>
-
+</main>
 
 <script>
+  const STORAGE_KEY = "expresslineShipments";
 
   let shipments = [];
+  let editingIndex = -1;
+  let currentImage = "";
+  let currentHistory = [];
 
-  let currentShipmentIndex = null;
-
-
-  /* LOAD SHIPMENTS */
-
-  function loadShipments() {
-
+  function getShipments() {
     try {
-
-      shipments =
-        JSON.parse(
-          localStorage.getItem(
-            "expresslineShipments"
-          ) || "[]"
-        );
-
+      const saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]");
+      return Array.isArray(saved) ? saved : [];
     } catch (error) {
-
-      shipments = [];
-
+      console.error("Could not read shipments:", error);
+      return [];
     }
-
-    if (!Array.isArray(shipments)) {
-      shipments = [];
-    }
-
-    renderShipments();
-
   }
 
-
-  /* SAVE SHIPMENTS */
-
-  function saveToStorage() {
-
-    localStorage.setItem(
-      "expresslineShipments",
-      JSON.stringify(shipments)
-    );
-
+  function saveAllShipments() {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(shipments));
   }
 
-
-  /* RENDER SHIPMENTS */
-
-  function renderShipments(search = "") {
-
-    const container =
-      document.getElementById(
-        "shipmentList"
-      );
-
-    container.innerHTML = "";
-
-
-    const searchText =
-      String(search).toLowerCase().trim();
-
-
-    const filtered =
-      shipments.filter(function(shipment) {
-
-        const tracking =
-          String(
-            shipment.trackingNumber || ""
-          ).toLowerCase();
-
-        const sender =
-          String(
-            shipment.sender?.name ||
-            shipment.senderName ||
-            ""
-          ).toLowerCase();
-
-        const receiver =
-          String(
-            shipment.receiver?.name ||
-            shipment.receiverName ||
-            ""
-          ).toLowerCase();
-
-        const destination =
-          String(
-            shipment.destination?.location ||
-            shipment.destinationLabel ||
-            shipment.destination ||
-            ""
-          ).toLowerCase();
-
-
-        return (
-          tracking.includes(searchText) ||
-          sender.includes(searchText) ||
-          receiver.includes(searchText) ||
-          destination.includes(searchText)
-        );
-
-      });
-
-
-    if (filtered.length === 0) {
-
-      container.innerHTML = `
-
-        <div class="no-shipments">
-
-          <h3>
-            No shipments found
-          </h3>
-
-          <p>
-            Create a shipment from the Request Shipment page.
-          </p>
-
-        </div>
-
-      `;
-
-      return;
-
-    }
-
-
-    filtered.forEach(function(shipment) {
-
-      const index =
-        shipments.indexOf(shipment);
-
-
-      const progress =
-        Math.max(
-          0,
-          Math.min(
-            100,
-            Number(shipment.progress || 0)
-          )
-        );
-
-
-      const currentLocation =
-        shipment.location ||
-        shipment.currentLocation ||
-        shipment.origin?.location ||
-        shipment.originLabel ||
-        "Not provided";
-
-
-      const senderName =
-        shipment.sender?.name ||
-        shipment.senderName ||
-        "No sender";
-
-
-      const receiverName =
-        shipment.receiver?.name ||
-        shipment.receiverName ||
-        "No receiver";
-
-
-      const origin =
-        shipment.origin?.location ||
-        shipment.origin ||
-        shipment.originLabel ||
-        "N/A";
-
-
-      const destination =
-        shipment.destination?.location ||
-        shipment.destination ||
-        shipment.destinationLabel ||
-        "N/A";
-
-
-      const method =
-        shipment.shipping?.method ||
-        shipment.shipmentType ||
-        "N/A";
-
-
-      const card =
-        document.createElement("div");
-
-
-      card.className =
-        "shipment-card";
-
-
-      card.innerHTML = `
-
-        <div class="shipment-card-top">
-
-          <div>
-
-            <div class="tracking-number">
-              ${escapeHtml(
-                shipment.trackingNumber ||
-                "No Tracking Number"
-              )}
-            </div>
-
-            <div>
-              ${escapeHtml(senderName)}
-              →
-              ${escapeHtml(receiverName)}
-            </div>
-
-          </div>
-
-          <span class="status-badge">
-            ${escapeHtml(
-              shipment.status || "Pending"
-            )}
-          </span>
-
-        </div>
-
-
-        <div class="progress-area">
-
-          <div class="progress-label">
-
-            <span>
-              Shipment Progress
-            </span>
-
-            <strong>
-              ${progress}%
-            </strong>
-
-          </div>
-
-          <div class="progress-bar">
-
-            <div
-              class="progress-fill"
-              style="width:${progress}%"
-            ></div>
-
-          </div>
-
-        </div>
-
-
-        <div class="shipment-info">
-
-          <div class="info-box">
-
-            <small>
-              Current Location
-            </small>
-
-            ${escapeHtml(currentLocation)}
-
-          </div>
-
-
-          <div class="info-box">
-
-            <small>
-              Destination
-            </small>
-
-            ${escapeHtml(destination)}
-
-          </div>
-
-
-          <div class="info-box">
-
-            <small>
-              Method
-            </small>
-
-            ${escapeHtml(method)}
-
-          </div>
-
-        </div>
-
-
-        <div class="admin-actions">
-
-          <button
-            type="button"
-            class="btn btn-primary"
-            onclick="openShipment(${index})"
-          >
-            Edit Shipment
-          </button>
-
-        </div>
-
-      `;
-
-
-      container.appendChild(card);
-
-    });
-
+  function today() {
+    return new Date().toISOString().split("T")[0];
   }
-
-
-  /* OPEN SHIPMENT */
-
-  function openShipment(index) {
-
-    currentShipmentIndex =
-      index;
-
-
-    const shipment =
-      shipments[index];
-
-
-    if (!shipment) {
-      return;
-    }
-
-
-    document.getElementById(
-      "shipmentEditor"
-    ).style.display =
-      "block";
-
-
-    document.getElementById(
-      "editingTrackingNumber"
-    ).textContent =
-      shipment.trackingNumber || "";
-
-
-    document.getElementById(
-      "editStatus"
-    ).value =
-      shipment.status || "";
-
-
-    document.getElementById(
-      "editProgress"
-    ).value =
-      shipment.progress || 0;
-
-
-    document.getElementById(
-      "editCurrentLocation"
-    ).value =
-      shipment.location ||
-      shipment.currentLocation ||
-      shipment.origin?.location ||
-      shipment.origin ||
-      "";
-
-
-    document.getElementById(
-      "editCustomerName"
-    ).value =
-      shipment.customer?.name ||
-      shipment.customerName ||
-      shipment.receiver?.name ||
-      shipment.receiverName ||
-      "";
-
-
-    document.getElementById(
-      "editCustomerPhone"
-    ).value =
-      shipment.customer?.phone ||
-      shipment.customerPhone ||
-      shipment.receiver?.phone ||
-      shipment.receiverPhone ||
-      "";
-
-
-    document.getElementById(
-      "editCustomerEmail"
-    ).value =
-      shipment.customer?.email ||
-      shipment.customerEmail ||
-      "";
-
-
-    document.getElementById(
-      "editSenderName"
-    ).value =
-      shipment.sender?.name ||
-      shipment.senderName ||
-      "";
-
-
-    document.getElementById(
-      "editSenderPhone"
-    ).value =
-      shipment.sender?.phone ||
-      shipment.senderPhone ||
-      "";
-
-
-    document.getElementById(
-      "editSenderAddress"
-    ).value =
-      shipment.sender?.address ||
-      shipment.senderAddress ||
-      "";
-
-
-    document.getElementById(
-      "editReceiverName"
-    ).value =
-      shipment.receiver?.name ||
-      shipment.receiverName ||
-      "";
-
-
-    document.getElementById(
-      "editReceiverPhone"
-    ).value =
-      shipment.receiver?.phone ||
-      shipment.receiverPhone ||
-      "";
-
-
-    document.getElementById(
-      "editReceiverAddress"
-    ).value =
-      shipment.receiver?.address ||
-      shipment.receiverAddress ||
-      "";
-
-
-    document.getElementById(
-      "editPackageDescription"
-    ).value =
-      shipment.package?.description ||
-      shipment.packageDescription ||
-      "";
-
-
-    document.getElementById(
-      "editWeight"
-    ).value =
-      shipment.package?.weight ||
-      shipment.weight ||
-      "";
-
-
-    document.getElementById(
-      "editQuantity"
-    ).value =
-      shipment.package?.quantity ||
-      shipment.quantity ||
-      "";
-
-
-    document.getElementById(
-      "editPackageType"
-    ).value =
-      shipment.package?.type ||
-      shipment.shipmentType ||
-      "Parcel";
-
-
-    document.getElementById(
-      "editPickupAddress"
-    ).value =
-      shipment.shipping?.pickupAddress ||
-      shipment.pickupAddress ||
-      "";
-
-
-    document.getElementById(
-      "editDeliveryAddress"
-    ).value =
-      shipment.shipping?.deliveryAddress ||
-      shipment.deliveryAddress ||
-      "";
-
-
-    document.getElementById(
-      "editShippingMethod"
-    ).value =
-      shipment.shipping?.method ||
-      shipment.shippingMethod ||
-      shipment.shipmentType ||
-      "Road Transport";
-
-
-    document.getElementById(
-      "editEstimatedDate"
-    ).value =
-      shipment.estimatedDelivery?.date ||
-      shipment.estimatedDelivery ||
-      shipment.estimatedDeliveryDate ||
-      "";
-
-
-    document.getElementById(
-      "editEstimatedTime"
-    ).value =
-      shipment.estimatedDelivery?.time ||
-      shipment.estimatedDeliveryTime ||
-      "";
-
-
-    document.getElementById(
-      "editSpecialInstructions"
-    ).value =
-      shipment.shipping?.specialInstructions ||
-      shipment.specialInstructions ||
-      shipment.notes ||
-      "";
-
-
-    document.getElementById(
-      "editOriginLabel"
-    ).value =
-      shipment.origin?.label ||
-      shipment.originLabel ||
-      "";
-
-
-    document.getElementById(
-      "editOrigin"
-    ).value =
-      shipment.origin?.location ||
-      shipment.origin ||
-      "";
-
-
-    document.getElementById(
-      "editOriginLatitude"
-    ).value =
-      shipment.origin?.latitude ||
-      shipment.originLatitude ||
-      "";
-
-
-    document.getElementById(
-      "editOriginLongitude"
-    ).value =
-      shipment.origin?.longitude ||
-      shipment.originLongitude ||
-      "";
-
-
-    document.getElementById(
-      "editDestinationLabel"
-    ).value =
-      shipment.destination?.label ||
-      shipment.destinationLabel ||
-      "";
-
-
-    document.getElementById(
-      "editDestination"
-    ).value =
-      shipment.destination?.location ||
-      shipment.destination ||
-      "";
-
-
-    document.getElementById(
-      "editDestinationLatitude"
-    ).value =
-      shipment.destination?.latitude ||
-      shipment.destinationLatitude ||
-      "";
-
-
-    document.getElementById(
-      "editDestinationLongitude"
-    ).value =
-      shipment.destination?.longitude ||
-      shipment.destinationLongitude ||
-      "";
-
-
-    renderImage(shipment);
-
-    renderHistory(shipment);
-
-
-    document.getElementById(
-      "shipmentEditor"
-    ).scrollIntoView({
-      behavior: "smooth"
-    });
-
-  }
-
-
-  /* IMAGE */
-
-  function renderImage(shipment) {
-
-    const box =
-      document.getElementById(
-        "currentImage"
-      );
-
-
-    if (shipment.shipmentImage) {
-
-      box.innerHTML = `
-
-        <img
-          src="${escapeAttribute(
-            shipment.shipmentImage
-          )}"
-          alt="Shipment item"
-        >
-
-      `;
-
-    } else {
-
-      box.innerHTML =
-        "<p>No shipment image uploaded.</p>";
-
-    }
-
-  }
-
-
-  document.getElementById(
-    "editShipmentImage"
-  ).addEventListener(
-    "change",
-    function() {
-
-      const file =
-        this.files[0];
-
-
-      if (!file) {
-        return;
-      }
-
-
-      const reader =
-        new FileReader();
-
-
-      reader.onload =
-        function(event) {
-
-          if (
-            currentShipmentIndex === null
-          ) {
-            return;
-          }
-
-
-          shipments[
-            currentShipmentIndex
-          ].shipmentImage =
-            event.target.result;
-
-
-          renderImage(
-            shipments[
-              currentShipmentIndex
-            ]
-          );
-
-        };
-
-
-      reader.readAsDataURL(file);
-
-    }
-  );
-
-
-  /* HISTORY */
-
-  function getHistory(shipment) {
-
-    if (
-      Array.isArray(
-        shipment.transitHistory
-      )
-    ) {
-
-      return shipment.transitHistory;
-
-    }
-
-
-    if (
-      Array.isArray(
-        shipment.history
-      )
-    ) {
-
-      return shipment.history;
-
-    }
-
-
-    return [];
-
-  }
-
-
-  function renderHistory(shipment) {
-
-    const container =
-      document.getElementById(
-        "historyContainer"
-      );
-
-
-    container.innerHTML = "";
-
-
-    const history =
-      getHistory(shipment);
-
-
-    shipment.transitHistory =
-      history;
-
-
-    history.forEach(
-      function(entry, index) {
-
-        createHistoryElement(
-          entry,
-          index
-        );
-
-      }
-    );
-
-  }
-
-
-  function createHistoryElement(
-    entry,
-    index
-  ) {
-
-    const container =
-      document.getElementById(
-        "historyContainer"
-      );
-
-
-    const item =
-      document.createElement("div");
-
-
-    item.className =
-      "history-item";
-
-
-    item.innerHTML = `
-
-      <div class="history-item-header">
-
-        <strong>
-          Transit Update ${index + 1}
-        </strong>
-
-        <div class="history-actions">
-
-          <button
-            type="button"
-            class="small-button delete-button"
-            onclick="deleteHistory(${index})"
-          >
-            Delete
-          </button>
-
-        </div>
-
-      </div>
-
-
-      <div class="form-grid">
-
-        <div class="form-group">
-
-          <label>
-            Date
-          </label>
-
-          <input
-            type="date"
-            class="history-date"
-            value="${escapeAttribute(
-              entry.date ||
-              entry.timestamp?.slice(0, 10) ||
-              ""
-            )}"
-          >
-
-        </div>
-
-
-        <div class="form-group">
-
-          <label>
-            Time
-          </label>
-
-          <input
-            type="time"
-            class="history-time"
-            value="${escapeAttribute(
-              entry.time || ""
-            )}"
-          >
-
-        </div>
-
-
-        <div class="form-group">
-
-          <label>
-            Location
-          </label>
-
-          <input
-            type="text"
-            class="history-location"
-            value="${escapeAttribute(
-              entry.location || ""
-            )}"
-            placeholder="Example: Lagos Sorting Center"
-          >
-
-        </div>
-
-
-        <div class="form-group">
-
-          <label>
-            Status
-          </label>
-
-          <input
-            type="text"
-            class="history-status"
-            value="${escapeAttribute(
-              entry.status ||
-              entry.title ||
-              entry.event ||
-              ""
-            )}"
-            placeholder="Example: In Transit"
-          >
-
-        </div>
-
-
-        <div class="form-group full-width">
-
-          <label>
-            Update Details
-          </label>
-
-          <textarea
-            class="history-details"
-            rows="4"
-            placeholder="Describe the shipment update"
-          >${escapeHtml(
-            entry.details ||
-            entry.description ||
-            ""
-          )}</textarea>
-
-        </div>
-
-      </div>
-
-    `;
-
-
-    container.appendChild(item);
-
-  }
-
-
-  function addHistory() {
-
-    if (
-      currentShipmentIndex === null
-    ) {
-      return;
-    }
-
-
-    const shipment =
-      shipments[
-        currentShipmentIndex
-      ];
-
-
-    if (
-      !Array.isArray(
-        shipment.transitHistory
-      )
-    ) {
-
-      shipment.transitHistory = [];
-
-    }
-
-
-    shipment.transitHistory.push({
-
-      date: "",
-
-      time: "",
-
-      location: "",
-
-      status: "",
-
-      details: ""
-
-    });
-
-
-    renderHistory(shipment);
-
-  }
-
-
-  function deleteHistory(index) {
-
-    if (
-      currentShipmentIndex === null
-    ) {
-      return;
-    }
-
-
-    const shipment =
-      shipments[
-        currentShipmentIndex
-      ];
-
-
-    if (
-      !Array.isArray(
-        shipment.transitHistory
-      )
-    ) {
-      return;
-    }
-
-
-    shipment.transitHistory.splice(
-      index,
-      1
-    );
-
-
-    renderHistory(shipment);
-
-  }
-
-
-  function collectHistory() {
-
-    const items =
-      document.querySelectorAll(
-        "#historyContainer .history-item"
-      );
-
-
-    const history = [];
-
-
-    items.forEach(function(item) {
-
-      history.push({
-
-        date:
-          item.querySelector(
-            ".history-date"
-          ).value,
-
-        time:
-          item.querySelector(
-            ".history-time"
-          ).value,
-
-        location:
-          item.querySelector(
-            ".history-location"
-          ).value,
-
-        status:
-          item.querySelector(
-            ".history-status"
-          ).value,
-
-        details:
-          item.querySelector(
-            ".history-details"
-          ).value
-
-      });
-
-    });
-
-
-    return history;
-
-  }
-
-
-  /* SAVE SHIPMENT */
-
-  function saveShipment() {
-
-    if (
-      currentShipmentIndex === null
-    ) {
-      return;
-    }
-
-
-    const shipment =
-      shipments[
-        currentShipmentIndex
-      ];
-
-
-    if (!shipment) {
-      return;
-    }
-
-
-    let progress =
-      Number(
-        document.getElementById(
-          "editProgress"
-        ).value
-      );
-
-
-    if (isNaN(progress)) {
-      progress = 0;
-    }
-
-
-    progress =
-      Math.max(
-        0,
-        Math.min(
-          100,
-          progress
-        )
-      );
-
-
-    const status =
-      document.getElementById(
-        "editStatus"
-      ).value.trim();
-
-
-    const currentLocation =
-      document.getElementById(
-        "editCurrentLocation"
-      ).value.trim();
-
-
-    const customerName =
-      document.getElementById(
-        "editCustomerName"
-      ).value.trim();
-
-
-    const customerPhone =
-      document.getElementById(
-        "editCustomerPhone"
-      ).value.trim();
-
-
-    const customerEmail =
-      document.getElementById(
-        "editCustomerEmail"
-      ).value.trim();
-
-
-    const senderName =
-      document.getElementById(
-        "editSenderName"
-      ).value.trim();
-
-
-    const senderPhone =
-      document.getElementById(
-        "editSenderPhone"
-      ).value.trim();
-
-
-    const senderAddress =
-      document.getElementById(
-        "editSenderAddress"
-      ).value.trim();
-
-
-    const receiverName =
-      document.getElementById(
-        "editReceiverName"
-      ).value.trim();
-
-
-    const receiverPhone =
-      document.getElementById(
-        "editReceiverPhone"
-      ).value.trim();
-
-
-    const receiverAddress =
-      document.getElementById(
-        "editReceiverAddress"
-      ).value.trim();
-
-
-    const packageDescription =
-      document.getElementById(
-        "editPackageDescription"
-      ).value.trim();
-
-
-    const weight =
-      document.getElementById(
-        "editWeight"
-      ).value;
-
-
-    const quantity =
-      document.getElementById(
-        "editQuantity"
-      ).value;
-
-
-    const packageType =
-      document.getElementById(
-        "editPackageType"
-      ).value;
-
-
-    const pickupAddress =
-      document.getElementById(
-        "editPickupAddress"
-      ).value.trim();
-
-
-    const deliveryAddress =
-      document.getElementById(
-        "editDeliveryAddress"
-      ).value.trim();
-
-
-    const shippingMethod =
-      document.getElementById(
-        "editShippingMethod"
-      ).value;
-
-
-    const estimatedDate =
-      document.getElementById(
-        "editEstimatedDate"
-      ).value;
-
-
-    const estimatedTime =
-      document.getElementById(
-        "editEstimatedTime"
-      ).value;
-
-
-    const specialInstructions =
-      document.getElementById(
-        "editSpecialInstructions"
-      ).value.trim();
-
-
-    const originLabel =
-      document.getElementById(
-        "editOriginLabel"
-      ).value.trim();
-
-
-    const originLocation =
-      document.getElementById(
-        "editOrigin"
-      ).value.trim();
-
-
-    const originLatitude =
-      document.getElementById(
-        "editOriginLatitude"
-      ).value;
-
-
-    const originLongitude =
-      document.getElementById(
-        "editOriginLongitude"
-      ).value;
-
-
-    const destinationLabel =
-      document.getElementById(
-        "editDestinationLabel"
-      ).value.trim();
-
-
-    const destinationLocation =
-      document.getElementById(
-        "editDestination"
-      ).value.trim();
-
-
-    const destinationLatitude =
-      document.getElementById(
-        "editDestinationLatitude"
-      ).value;
-
-
-    const destinationLongitude =
-      document.getElementById(
-        "editDestinationLongitude"
-      ).value;
-
-
-    const history =
-      collectHistory();
-
-
-    /* MAIN DATA */
-
-    shipment.progress =
-      progress;
-
-
-    shipment.status =
-      status;
-
-
-    shipment.location =
-      currentLocation;
-
-
-    shipment.currentLocation =
-      currentLocation;
-
-
-    shipment.customer = {
-
-      name:
-        customerName,
-
-      phone:
-        customerPhone,
-
-      email:
-        customerEmail
-
-    };
-
-
-    shipment.customerName =
-      customerName;
-
-
-    shipment.customerPhone =
-      customerPhone;
-
-
-    shipment.customerEmail =
-      customerEmail;
-
-
-    shipment.sender = {
-
-      name:
-        senderName,
-
-      phone:
-        senderPhone,
-
-      address:
-        senderAddress
-
-    };
-
-
-    shipment.senderName =
-      senderName;
-
-
-    shipment.senderPhone =
-      senderPhone;
-
-
-    shipment.senderAddress =
-      senderAddress;
-
-
-    shipment.receiver = {
-
-      name:
-        receiverName,
-
-      phone:
-        receiverPhone,
-
-      address:
-        receiverAddress
-
-    };
-
-
-    shipment.receiverName =
-      receiverName;
-
-
-    shipment.receiverPhone =
-      receiverPhone;
-
-
-    shipment.receiverAddress =
-      receiverAddress;
-
-
-    shipment.package = {
-
-      description:
-        packageDescription,
-
-      weight:
-        weight,
-
-      quantity:
-        quantity,
-
-      type:
-        packageType
-
-    };
-
-
-    shipment.packageDescription =
-      packageDescription;
-
-
-    shipment.weight =
-      weight;
-
-
-    shipment.quantity =
-      quantity;
-
-
-    shipment.shipmentType =
-      packageType;
-
-
-    shipment.shipping = {
-
-      pickupAddress:
-        pickupAddress,
-
-      deliveryAddress:
-        deliveryAddress,
-
-      method:
-        shippingMethod,
-
-      specialInstructions:
-        specialInstructions
-
-    };
-
-
-    shipment.pickupAddress =
-      pickupAddress;
-
-
-    shipment.deliveryAddress =
-      deliveryAddress;
-
-
-    shipment.shippingMethod =
-      shippingMethod;
-
-
-    shipment.specialInstructions =
-      specialInstructions;
-
-
-    shipment.estimatedDelivery = {
-
-      date:
-        estimatedDate,
-
-      time:
-        estimatedTime
-
-    };
-
-
-    shipment.estimatedDeliveryDate =
-      estimatedDate;
-
-
-    shipment.estimatedDeliveryTime =
-      estimatedTime;
-
-
-    shipment.origin = {
-
-      label:
-        originLabel,
-
-      location:
-        originLocation,
-
-      latitude:
-        originLatitude,
-
-      longitude:
-        originLongitude
-
-    };
-
-
-    shipment.originLabel =
-      originLabel;
-
-
-    shipment.originLatitude =
-      originLatitude;
-
-
-    shipment.originLongitude =
-      originLongitude;
-
-
-    shipment.destination = {
-
-      label:
-        destinationLabel,
-
-      location:
-        destinationLocation,
-
-      latitude:
-        destinationLatitude,
-
-      longitude:
-        destinationLongitude
-
-    };
-
-
-    shipment.destinationLabel =
-      destinationLabel;
-
-
-    shipment.destinationLatitude =
-      destinationLatitude;
-
-
-    shipment.destinationLongitude =
-      destinationLongitude;
-
-
-    /* TRACKING HISTORY */
-
-    shipment.transitHistory =
-      history;
-
-
-    shipment.history =
-      history;
-
-
-    /* LAST UPDATED */
-
-    shipment.updatedAt =
-      new Date().toISOString();
-
-
-    saveToStorage();
-
-
-    renderShipments(
-      document.getElementById(
-        "shipmentSearch"
-      ).value
-    );
-
-
-    showMessage(
-      "Shipment saved successfully. Tracking information has been updated."
-    );
-
-  }
-
-
-  /* CLOSE EDITOR */
-
-  function closeEditor() {
-
-    currentShipmentIndex =
-      null;
-
-
-    document.getElementById(
-      "shipmentEditor"
-    ).style.display =
-      "none";
-
-  }
-
-
-  /* SEARCH */
-
-  document.getElementById(
-    "shipmentSearch"
-  ).addEventListener(
-    "input",
-    function() {
-
-      renderShipments(
-        this.value
-      );
-
-    }
-  );
-
-
-  /* MESSAGE */
-
-  function showMessage(text) {
-
-    const message =
-      document.getElementById(
-        "message"
-      );
-
-
-    message.textContent =
-      text;
-
-
-    message.style.display =
-      "block";
-
-
-    setTimeout(
-      function() {
-
-        message.style.display =
-          "none";
-
-      },
-      3500
-    );
-
-  }
-
-
-  /* SECURITY */
 
   function escapeHtml(value) {
-
-    return String(value)
+    return String(value ?? "")
       .replace(/&/g, "&amp;")
       .replace(/</g, "&lt;")
       .replace(/>/g, "&gt;")
       .replace(/"/g, "&quot;")
       .replace(/'/g, "&#039;");
-
   }
 
+  function formatDate(value) {
+    if (!value) return "Not provided";
 
-  function escapeAttribute(value) {
+    const date = new Date(value + "T00:00:00");
 
-    return escapeHtml(value);
+    if (Number.isNaN(date.getTime())) {
+      return escapeHtml(value);
+    }
 
+    return date.toLocaleDateString("en-US", {
+      year: "numeric",
+      month: "short",
+      day: "numeric"
+    });
   }
 
+  function getValue(value, fallback = "") {
+    if (value === null || value === undefined) return fallback;
 
-  /* START */
+    if (typeof value === "object") {
+      return "";
+    }
 
-  loadShipments();
+    return String(value);
+  }
 
+  function getPersonName(person, flatValue = "") {
+    if (typeof person === "string") return person;
+
+    if (person && typeof person === "object") {
+      return person.name || person.fullName || "";
+    }
+
+    return flatValue || "";
+  }
+
+  function getPersonPhone(person, flatValue = "") {
+    if (typeof person === "string") return flatValue || "";
+
+    if (person && typeof person === "object") {
+      return person.phone || person.telephone || "";
+    }
+
+    return flatValue || "";
+  }
+
+  function getPersonAddress(person, flatValue = "") {
+    if (typeof person === "string") return person;
+
+    if (person && typeof person === "object") {
+      return person.address ||
+             person.location ||
+             person.city ||
+             "";
+    }
+
+    return flatValue || "";
+  }
+
+  function getLocation(value) {
+    if (!value) return "";
+
+    if (typeof value === "string") return value;
+
+    if (typeof value === "object") {
+      return value.location ||
+             value.address ||
+             value.city ||
+             value.name ||
+             "";
+    }
+
+    return "";
+  }
+
+  function getStatusClass(status) {
+    const s = String(status || "").toLowerCase();
+
+    if (s.includes("deliver")) return "status-delivered";
+    if (s.includes("cancel")) return "status-cancelled";
+    if (s.includes("transit") || s.includes("pickup") || s.includes("clearance")) {
+      return "status-transit";
+    }
+    if (s.includes("process") || s.includes("package")) {
+      return "status-processing";
+    }
+
+    return "status-pending";
+  }
+
+  function normalizeShipment(shipment) {
+    const senderName = getPersonName(
+      shipment.sender,
+      shipment.senderName
+    );
+
+    const senderPhone = getPersonPhone(
+      shipment.sender,
+      shipment.senderPhone
+    );
+
+    const senderAddress = getPersonAddress(
+      shipment.sender,
+      shipment.senderAddress
+    );
+
+    const receiverName = getPersonName(
+      shipment.receiver,
+      shipment.receiverName
+    );
+
+    const receiverPhone = getPersonPhone(
+      shipment.receiver,
+      shipment.receiverPhone
+    );
+
+    const receiverAddress = getPersonAddress(
+      shipment.receiver,
+      shipment.receiverAddress
+    );
+
+    const customerName =
+      getValue(shipment.customerName) ||
+      getValue(shipment.customer) ||
+      receiverName;
+
+    const customerPhone =
+      getValue(shipment.customerPhone) ||
+      receiverPhone;
+
+    const customerEmail =
+      getValue(shipment.customerEmail);
+
+    const origin =
+      getLocation(shipment.origin) ||
+      getValue(shipment.originLabel);
+
+    const destination =
+      getLocation(shipment.destination) ||
+      getValue(shipment.destinationLabel);
+
+    const shipmentType =
+      getValue(shipment.shipmentType) ||
+      getValue(shipment.package?.type) ||
+      getValue(shipment.packageType);
+
+    const weight =
+      getValue(shipment.weight) ||
+      getValue(shipment.package?.weight);
+
+    const currentLocation =
+      getValue(shipment.currentLocation) ||
+      getValue(shipment.location) ||
+      "";
+
+    const status =
+      getValue(shipment.status) ||
+      "Shipment Created";
+
+    let progress = Number(shipment.progress);
+
+    if (Number.isNaN(progress)) {
+      if (status.toLowerCase().includes("deliver")) {
+        progress = 100;
+      } else {
+        progress = 0;
+      }
+    }
+
+    progress = Math.max(0, Math.min(100, progress));
+
+    return {
+      ...shipment,
+      trackingNumber:
+        getValue(shipment.trackingNumber) ||
+        getValue(shipment.tracking) ||
+        "",
+
+      status,
+      progress,
+
+      customerName,
+      customerPhone,
+      customerEmail,
+
+      senderName,
+      senderPhone,
+      senderAddress,
+
+      receiverName,
+      receiverPhone,
+      receiverAddress,
+
+      origin,
+      destination,
+
+      shipmentType,
+      weight,
+
+      currentLocation,
+
+      shipmentDate:
+        getValue(shipment.shipmentDate) ||
+        getValue(shipment.createdDate) ||
+        "",
+
+      estimatedDelivery:
+        getValue(shipment.estimatedDelivery) ||
+        "",
+
+      shipmentImage:
+        getValue(shipment.shipmentImage) ||
+        getValue(shipment.image) ||
+        "",
+
+      notes:
+        getValue(shipment.notes) ||
+        ""
+    };
+  }
+
+  function renderShipments() {
+    shipments = getShipments();
+
+    const list = document.getElementById("shipmentList");
+    const search = document
+      .getElementById("searchInput")
+      .value
+      .trim()
+      .toLowerCase();
+
+    const filtered = shipments
+      .map((shipment, index) => ({
+        shipment: normalizeShipment(shipment),
+        index
+      }))
+      .filter(item => {
+        if (!search) return true;
+
+        const s = item.shipment;
+
+        const text = [
+          s.trackingNumber,
+          s.customerName,
+          s.customerPhone,
+          s.senderName,
+          s.receiverName,
+          s.origin,
+          s.destination,
+          s.status,
+          s.currentLocation
+        ]
+          .join(" ")
+          .toLowerCase();
+
+        return text.includes(search);
+      });
+
+    if (filtered.length === 0) {
+      list.innerHTML = `
+        <div class="empty">
+          <h3>No shipments found</h3>
+          <p>
+            ${shipments.length === 0
+              ? "No shipment has been created yet. Click “Create Shipment” to create one."
+              : "No shipment matches your search."}
+          </p>
+        </div>
+      `;
+      return;
+    }
+
+    list.innerHTML = filtered.map(item => {
+      const s = item.shipment;
+
+      return `
+        <article class="shipment-card">
+
+          <div class="shipment-card-top">
+
+            <div>
+              <div class="tracking-number">
+                ${escapeHtml(s.trackingNumber || "No tracking number")}
+              </div>
+
+              <div class="customer-name">
+                Customer:
+                ${escapeHtml(s.customerName || "Not provided")}
+              </div>
+            </div>
+
+            <span class="status ${getStatusClass(s.status)}">
+              ${escapeHtml(s.status)}
+            </span>
+
+          </div>
+
+          <div class="shipment-grid">
+
+            <div class="info-item">
+              <div class="info-label">Origin</div>
+              <div class="info-value">
+                ${escapeHtml(s.origin || "Not provided")}
+              </div>
+            </div>
+
+            <div class="info-item">
+              <div class="info-label">Destination</div>
+              <div class="info-value">
+                ${escapeHtml(s.destination || "Not provided")}
+              </div>
+            </div>
+
+            <div class="info-item">
+              <div class="info-label">Current Location</div>
+              <div class="info-value">
+                ${escapeHtml(s.currentLocation || "Not provided")}
+              </div>
+            </div>
+
+            <div class="info-item">
+              <div class="info-label">Estimated Delivery</div>
+              <div class="info-value">
+                ${escapeHtml(formatDate(s.estimatedDelivery))}
+              </div>
+            </div>
+
+          </div>
+
+          <div class="progress-wrap">
+
+            <div class="progress-header">
+              <span>Shipment Progress</span>
+              <span>${s.progress}%</span>
+            </div>
+
+            <div class="progress-bar">
+              <div
+                class="progress-fill"
+                style="width:${s.progress}%"
+              ></div>
+            </div>
+
+          </div>
+
+          <div class="card-actions">
+
+            <button
+              class="primary-btn"
+              onclick="openShipment(${item.index})"
+            >
+              Edit Shipment
+            </button>
+
+            <button
+              class="danger-btn"
+              onclick="deleteShipment(${item.index})"
+            >
+              Delete
+            </button>
+
+          </div>
+
+        </article>
+      `;
+    }).join("");
+  }
+
+  function clearEditor() {
+    document.getElementById("trackingNumber").value = "";
+    document.getElementById("status").value = "Shipment Created";
+    document.getElementById("shipmentDate").value = today();
+    document.getElementById("estimatedDelivery").value = "";
+    document.getElementById("progress").value = "0";
+    document.getElementById("currentLocation").value = "";
+    document.getElementById("shipmentType").value = "";
+    document.getElementById("weight").value = "";
+
+    document.getElementById("customerName").value = "";
+    document.getElementById("customerPhone").value = "";
+    document.getElementById("customerEmail").value = "";
+
+    document.getElementById("senderName").value = "";
+    document.getElementById("senderPhone").value = "";
+    document.getElementById("senderAddress").value = "";
+
+    document.getElementById("receiverName").value = "";
+    document.getElementById("receiverPhone").value = "";
+    document.getElementById("receiverAddress").value = "";
+
+    document.getElementById("origin").value = "";
+    document.getElementById("destination").value = "";
+
+    document.getElementById("shipmentImage").value = "";
+    document.getElementById("notes").value = "";
+
+    document.getElementById("historyStatus").value = "Shipment Created";
+    document.getElementById("historyDate").value = today();
+    document.getElementById("historyTime").value = "";
+    document.getElementById("historyLocation").value = "";
+    document.getElementById("historyDetails").value = "";
+
+    currentImage = "";
+    currentHistory = [];
+
+    renderHistory();
+
+    document.getElementById("imagePreview").style.display = "none";
+    document.getElementById("previewImg").src = "";
+  }
+
+  function openNewShipment() {
+    editingIndex = -1;
+
+    clearEditor();
+
+    document.getElementById("editorTitle").textContent =
+      "Create Shipment";
+
+    document.getElementById("editor").classList.add("show");
+
+    window.scrollTo({
+      top: document.getElementById("editor").offsetTop - 20,
+      behavior: "smooth"
+    });
+  }
+
+  function openShipment(index) {
+    shipments = getShipments();
+
+    const raw = shipments[index];
+
+    if (!raw) {
+      showMessage("Shipment could not be found.", "error");
+      return;
+    }
+
+    const s = normalizeShipment(raw);
+
+    editingIndex = index;
+
+    document.getElementById("editorTitle").textContent =
+      "Edit Shipment";
+
+    document.getElementById("trackingNumber").value =
+      s.trackingNumber;
+
+    document.getElementById("status").value =
+      s.status;
+
+    document.getElementById("shipmentDate").value =
+      s.shipmentDate;
+
+    document.getElementById("estimatedDelivery").value =
+      s.estimatedDelivery;
+
+    document.getElementById("progress").value =
+      s.progress;
+
+    document.getElementById("currentLocation").value =
+      s.currentLocation;
+
+    document.getElementById("shipmentType").value =
+      s.shipmentType;
+
+    document.getElementById("weight").value =
+      s.weight;
+
+    document.getElementById("customerName").value =
+      s.customerName;
+
+    document.getElementById("customerPhone").value =
+      s.customerPhone;
+
+    document.getElementById("customerEmail").value =
+      s.customerEmail;
+
+    document.getElementById("senderName").value =
+      s.senderName;
+
+    document.getElementById("senderPhone").value =
+      s.senderPhone;
+
+    document.getElementById("senderAddress").value =
+      s.senderAddress;
+
+    document.getElementById("receiverName").value =
+      s.receiverName;
+
+    document.getElementById("receiverPhone").value =
+      s.receiverPhone;
+
+    document.getElementById("receiverAddress").value =
+      s.receiverAddress;
+
+    document.getElementById("origin").value =
+      s.origin;
+
+    document.getElementById("destination").value =
+      s.destination;
+
+    document.getElementById("notes").value =
+      s.notes;
+
+    currentImage = s.shipmentImage || "";
+
+    if (currentImage) {
+      document.getElementById("previewImg").src = currentImage;
+      document.getElementById("imagePreview").style.display = "block";
+    } else {
+      document.getElementById("imagePreview").style.display = "none";
+      document.getElementById("previewImg").src = "";
+    }
+
+    currentHistory =
+      getHistory(raw).map(item => ({
+        date: item.date || "",
+        time: item.time || "",
+        location: item.location || "",
+        status: item.status || "",
+        details: item.details || ""
+      }));
+
+    renderHistory();
+
+    document.getElementById("editor").classList.add("show");
+
+    window.scrollTo({
+      top: document.getElementById("editor").offsetTop - 20,
+      behavior: "smooth"
+    });
+  }
+
+  function getHistory(shipment) {
+    let history = [];
+
+    if (Array.isArray(shipment.transitHistory)) {
+      history = shipment.transitHistory;
+    } else if (Array.isArray(shipment.history)) {
+      history = shipment.history;
+    }
+
+    return history.map(item => {
+      if (typeof item === "string") {
+        return {
+          date: "",
+          time: "",
+          location: "",
+          status: item,
+          details: ""
+        };
+      }
+
+      return {
+        date: item.date || item.createdDate || "",
+        time: item.time || "",
+        location:
+          getLocation(item.location) ||
+          item.currentLocation ||
+          "",
+        status:
+          item.status ||
+          item.title ||
+          "",
+        details:
+          item.details ||
+          item.description ||
+          ""
+      };
+    });
+  }
+
+  function renderHistory() {
+    const list = document.getElementById("historyList");
+
+    if (!currentHistory.length) {
+      list.innerHTML = `
+        <div class="help-text">
+          No transit updates have been added yet.
+        </div>
+      `;
+      return;
+    }
+
+    list.innerHTML = currentHistory.map((item, index) => `
+      <div class="history-item">
+
+        <div class="history-top">
+
+          <div class="history-status">
+            ${escapeHtml(item.status || "Shipment Update")}
+          </div>
+
+          <div class="history-date">
+            ${escapeHtml(formatDate(item.date))}
+            ${item.time ? " • " + escapeHtml(item.time) : ""}
+          </div>
+
+        </div>
+
+        <div class="history-location">
+          ${escapeHtml(item.location || "Location not provided")}
+        </div>
+
+        <div class="history-details">
+          ${escapeHtml(item.details || "No additional details.")}
+        </div>
+
+        <button
+          type="button"
+          class="danger-btn"
+          style="margin-top:10px;"
+          onclick="removeHistoryUpdate(${index})"
+        >
+          Remove
+        </button>
+
+      </div>
+    `).join("");
+  }
+
+  function addHistoryUpdate() {
+    const status =
+      document.getElementById("historyStatus").value;
+
+    const date =
+      document.getElementById("historyDate").value ||
+      today();
+
+    const time =
+      document.getElementById("historyTime").value;
+
+    const location =
+      document.getElementById("historyLocation").value.trim();
+
+    const details =
+      document.getElementById("historyDetails").value.trim();
+
+    if (!status) {
+      showMessage("Please select a transit status.", "error");
+      return;
+    }
+
+    currentHistory.push({
+      date,
+      time,
+      location,
+      status,
+      details
+    });
+
+    renderHistory();
+
+    document.getElementById("historyDate").value = today();
+    document.getElementById("historyTime").value = "";
+    document.getElementById("historyLocation").value = "";
+    document.getElementById("historyDetails").value = "";
+
+    showMessage("Transit update added. Save the shipment to keep it.", "success");
+  }
+
+  function removeHistoryUpdate(index) {
+    currentHistory.splice(index, 1);
+    renderHistory();
+  }
+
+  function previewImage(event) {
+    const file = event.target.files[0];
+
+    if (!file) {
+      return;
+    }
+
+    if (!file.type.startsWith("image/")) {
+      showMessage("Please select an image file.", "error");
+      event.target.value = "";
+      return;
+    }
+
+    const reader = new FileReader();
+
+    reader.onload = function(e) {
+      currentImage = e.target.result;
+
+      document.getElementById("previewImg").src =
+        currentImage;
+
+      document.getElementById("imagePreview").style.display =
+        "block";
+    };
+
+    reader.readAsDataURL(file);
+  }
+
+  function saveShipment() {
+
+    const trackingNumber =
+      document.getElementById("trackingNumber")
+        .value
+        .trim()
+        .toUpperCase();
+
+    const customerName =
+      document.getElementById("customerName")
+        .value
+        .trim();
+
+    const origin =
+      document.getElementById("origin")
+        .value
+        .trim();
+
+    const destination =
+      document.getElementById("destination")
+        .value
+        .trim();
+
+    const status =
+      document.getElementById("status")
+        .value;
+
+    const shipmentDate =
+      document.getElementById("shipmentDate")
+        .value;
+
+    const estimatedDelivery =
+      document.getElementById("estimatedDelivery")
+        .value;
+
+    const progressInput =
+      Number(document.getElementById("progress").value);
+
+    if (!trackingNumber) {
+      showMessage("Please enter a tracking number.", "error");
+      return;
+    }
+
+    if (!customerName) {
+      showMessage("Please enter the customer name.", "error");
+      return;
+    }
+
+    if (!origin) {
+      showMessage("Please enter the origin / pickup location.", "error");
+      return;
+    }
+
+    if (!destination) {
+      showMessage("Please enter the destination.", "error");
+      return;
+    }
+
+    if (!shipmentDate) {
+      showMessage("Please enter the shipment created date.", "error");
+      return;
+    }
+
+    let progress = Number.isFinite(progressInput)
+      ? progressInput
+      : 0;
+
+    progress = Math.max(0, Math.min(100, progress));
+
+    if (status === "Delivered") {
+      progress = 100;
+    }
+
+    const customerPhone =
+      document.getElementById("customerPhone")
+        .value
+        .trim();
+
+    const customerEmail =
+      document.getElementById("customerEmail")
+        .value
+        .trim();
+
+    const senderName =
+      document.getElementById("senderName")
+        .value
+        .trim();
+
+    const senderPhone =
+      document.getElementById("senderPhone")
+        .value
+        .trim();
+
+    const senderAddress =
+      document.getElementById("senderAddress")
+        .value
+        .trim();
+
+    const receiverName =
+      document.getElementById("receiverName")
+        .value
+        .trim();
+
+    const receiverPhone =
+      document.getElementById("receiverPhone")
+        .value
+        .trim();
+
+    const receiverAddress =
+      document.getElementById("receiverAddress")
+        .value
+        .trim();
+
+    const shipmentType =
+      document.getElementById("shipmentType")
+        .value;
+
+    const weight =
+      document.getElementById("weight")
+        .value
+        .trim();
+
+    const currentLocation =
+      document.getElementById("currentLocation")
+        .value
+        .trim();
+
+    const notes =
+      document.getElementById("notes")
+        .value
+        .trim();
+
+    shipments = getShipments();
+
+    const duplicateIndex = shipments.findIndex(
+      (shipment, index) => {
+        const existing =
+          normalizeShipment(shipment);
+
+        return (
+          existing.trackingNumber.toUpperCase() ===
+            trackingNumber &&
+          index !== editingIndex
+        );
+      }
+    );
+
+    if (duplicateIndex !== -1) {
+      showMessage(
+        "That tracking number already exists. Please enter a different tracking number.",
+        "error"
+      );
+      return;
+    }
+
+    const shipment = {
+
+      id:
+        editingIndex >= 0 &&
+        shipments[editingIndex] &&
+        shipments[editingIndex].id
+          ? shipments[editingIndex].id
+          : "SHIP-" + Date.now(),
+
+      trackingNumber,
+
+      status,
+
+      progress,
+
+      shipmentDate,
+
+      estimatedDelivery,
+
+      currentLocation,
+
+      location: currentLocation,
+
+      shipmentType,
+
+      weight,
+
+      customerName,
+      customerPhone,
+      customerEmail,
+
+      sender: {
+        name: senderName,
+        phone: senderPhone,
+        address: senderAddress
+      },
+
+      senderName,
+      senderPhone,
+      senderAddress,
+
+      receiver: {
+        name: receiverName,
+        phone: receiverPhone,
+        address: receiverAddress
+      },
+
+      receiverName,
+      receiverPhone,
+      receiverAddress,
+
+      origin: {
+        location: origin
+      },
+
+      originLabel: origin,
+
+      destination: {
+        location: destination
+      },
+
+      destinationLabel: destination,
+
+      package: {
+        type: shipmentType,
+        weight
+      },
+
+      notes,
+
+      shipmentImage: currentImage || "",
+
+      transitHistory: currentHistory,
+
+      history: currentHistory,
+
+      updatedAt: new Date().toISOString(),
+
+      createdAt:
+        editingIndex >= 0 &&
+        shipments[editingIndex] &&
+        shipments[editingIndex].createdAt
+          ? shipments[editingIndex].createdAt
+          : new Date().toISOString()
+    };
+
+    if (editingIndex >= 0) {
+      shipments[editingIndex] = shipment;
+    } else {
+      shipments.unshift(shipment);
+    }
+
+    saveAllShipments();
+
+    editingIndex = -1;
+
+    renderShipments();
+
+    document.getElementById("editor").classList.remove("show");
+
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
+
+    showMessage(
+      "Shipment saved successfully. Tracking information has been updated.",
+      "success"
+    );
+  }
+
+  function deleteShipment(index) {
+    shipments = getShipments();
+
+    const shipment = shipments[index];
+
+    if (!shipment) return;
+
+    const tracking =
+      normalizeShipment(shipment).trackingNumber ||
+      "this shipment";
+
+    const confirmed = confirm(
+      "Are you sure you want to delete " +
+      tracking +
+      "?"
+    );
+
+    if (!confirmed) return;
+
+    shipments.splice(index, 1);
+
+    saveAllShipments();
+
+    renderShipments();
+
+    showMessage(
+      "Shipment deleted successfully.",
+      "success"
+    );
+  }
+
+  function closeEditor() {
+    editingIndex = -1;
+
+    document.getElementById("editor")
+      .classList.remove("show");
+
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
+  }
+
+  function showMessage(text, type) {
+    const message =
+      document.getElementById("message");
+
+    message.textContent = text;
+
+    message.className =
+      "message " + type;
+
+    window.clearTimeout(
+      window.messageTimer
+    );
+
+    window.messageTimer =
+      window.setTimeout(() => {
+        message.className = "message";
+        message.textContent = "";
+      }, 4000);
+  }
+
+  document.addEventListener("DOMContentLoaded", function() {
+    document.getElementById("historyDate").value =
+      today();
+
+    renderShipments();
+  });
 </script>
 
 </body>
