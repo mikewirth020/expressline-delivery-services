@@ -970,7 +970,15 @@ td {
 
 
 <script>
+/* =========================
+   ADMIN ACCESS PROTECTION
+========================= */
 
+if (
+  localStorage.getItem("adminLoggedIn") !== "true"
+) {
+  window.location.replace("admin-login.html");
+}
 /* =========================
    STORAGE KEYS
 ========================= */
