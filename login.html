@@ -1,1205 +1,945 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Customer Login | ExpressLine Delivery Services</title>
 
   <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
-  >
-
-  <title id="pageTitle">
-    Customer Login | ExpressLine Delivery Services
-  </title>
-
-  <meta
-    id="pageDescription"
     name="description"
     content="Sign in to your ExpressLine Delivery Services customer account."
   >
 
-  <meta
-    id="pageKeywords"
-    name="keywords"
-    content="ExpressLine, customer login, shipment tracking, logistics"
-  >
+  <meta name="robots" content="index, follow">
 
+  <link rel="icon" id="siteFavicon" href="data:,">
   <link rel="stylesheet" href="style.css">
 
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+  <style>
+    :root {
+      --primary: #F97316;
+      --secondary: #111111;
+      --accent: #C2410C;
+      --text: #111111;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Inter, sans-serif;
+      color: var(--text);
+      background: #f7f7f7;
+      line-height: 1.6;
+    }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: #ffffff;
+      border-bottom: 1px solid #eeeeee;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    }
+
+    .navbar {
+      max-width: 1200px;
+      min-height: 76px;
+      margin: 0 auto;
+      padding: 12px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      font-weight: 800;
+      color: #111111;
+      min-width: 0;
+    }
+
+    .brand img {
+      width: 58px;
+      height: 58px;
+      object-fit: contain;
+      flex-shrink: 0;
+    }
+
+    .brand-text {
+      font-size: 1.05rem;
+      line-height: 1.2;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.92rem;
+      color: #222222;
+      white-space: nowrap;
+    }
+
+    .nav-links a:hover {
+      color: var(--primary);
+    }
+
+    .nav-button {
+      background: var(--primary) !important;
+      color: #ffffff !important;
+      padding: 10px 15px;
+      border-radius: 7px;
+    }
+
+    .nav-button:hover {
+      background: var(--accent) !important;
+    }
+
+    .menu-toggle {
+      display: none;
+      border: 0;
+      background: #111111;
+      color: #ffffff;
+      border-radius: 7px;
+      padding: 10px 13px;
+      font-size: 20px;
+      cursor: pointer;
+    }
+
+    .login-section {
+      min-height: calc(100vh - 76px);
+      padding: 70px 20px;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+    }
+
+    .login-card {
+      width: 100%;
+      max-width: 480px;
+      background: #ffffff;
+      border: 1px solid #e5e5e5;
+      border-radius: 14px;
+      padding: 34px;
+      box-shadow: 0 12px 40px rgba(0,0,0,0.08);
+    }
+
+    .login-card h1 {
+      margin: 0 0 10px;
+      color: #111111;
+      font-size: 2rem;
+      line-height: 1.2;
+    }
+
+    .login-card > p {
+      margin-top: 0;
+      margin-bottom: 28px;
+      color: #555555;
+    }
+
+    .form-group {
+      margin-bottom: 19px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 7px;
+      font-weight: 700;
+    }
+
+    input {
+      width: 100%;
+      padding: 13px 14px;
+      border: 1px solid #cccccc;
+      border-radius: 8px;
+      font: inherit;
+      color: #111111;
+      background: #ffffff;
+      outline: none;
+    }
+
+    input:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(249,115,22,0.12);
+    }
+
+    .login-button {
+      width: 100%;
+      border: 0;
+      background: var(--primary);
+      color: #ffffff;
+      padding: 14px;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-weight: 800;
+      cursor: pointer;
+    }
+
+    .login-button:hover {
+      background: var(--accent);
+    }
+
+    .login-button:disabled {
+      opacity: 0.65;
+      cursor: not-allowed;
+    }
+
+    .form-links {
+      margin-top: 20px;
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .form-links a {
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 700;
+    }
+
+    .form-links a:hover {
+      color: var(--accent);
+    }
+
+    .message {
+      display: none;
+      margin-top: 18px;
+      padding: 13px 15px;
+      border-radius: 8px;
+      font-weight: 600;
+    }
+
+    .message.success {
+      display: block;
+      background: #ecfdf3;
+      color: #166534;
+      border: 1px solid #bbf7d0;
+    }
+
+    .message.error {
+      display: block;
+      background: #fef2f2;
+      color: #991b1b;
+      border: 1px solid #fecaca;
+    }
+
+    .register-text {
+      margin-top: 25px;
+      padding-top: 20px;
+      border-top: 1px solid #eeeeee;
+      text-align: center;
+      color: #555555;
+    }
+
+    .register-text a {
+      color: var(--primary);
+      font-weight: 800;
+      text-decoration: none;
+    }
+
+    .site-footer {
+      background: #111111;
+      color: #ffffff;
+      padding: 35px 20px 25px;
+      text-align: center;
+    }
+
+    .site-footer p {
+      margin: 7px 0;
+      color: #dddddd;
+    }
+
+    .footer-links {
+      margin: 18px 0;
+      display: flex;
+      justify-content: center;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a {
+      color: #ffffff;
+      text-decoration: none;
+    }
+
+    .footer-links a:hover {
+      color: var(--primary);
+    }
+
+    #smartSupportButton {
+      position: fixed;
+      right: 20px;
+      bottom: 20px;
+      z-index: 2000;
+      display: none;
+      border: 0;
+      background: var(--primary);
+      color: #ffffff;
+      padding: 13px 18px;
+      border-radius: 30px;
+      font-weight: 800;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+      cursor: pointer;
+    }
+
+    #smartSupportButton:hover {
+      background: var(--accent);
+    }
+
+    @media (max-width: 800px) {
+      .menu-toggle {
+        display: block;
+      }
+
+      .nav-links {
+        display: none;
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 76px;
+        background: #ffffff;
+        border-bottom: 1px solid #eeeeee;
+        padding: 18px 20px;
+        box-shadow: 0 8px 18px rgba(0,0,0,0.08);
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+      }
+
+      .nav-links.open {
+        display: flex;
+      }
+
+      .nav-links a {
+        padding: 13px 5px;
+        border-bottom: 1px solid #eeeeee;
+      }
+
+      .nav-links a:last-child {
+        border-bottom: 0;
+      }
+
+      .nav-button {
+        text-align: center;
+        margin-top: 8px;
+      }
+
+      .brand-text {
+        font-size: 0.92rem;
+      }
+
+      .brand img {
+        width: 50px;
+        height: 50px;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .navbar {
+        padding: 10px 14px;
+      }
+
+      .login-section {
+        padding: 45px 14px;
+      }
+
+      .login-card {
+        padding: 24px 18px;
+      }
+
+      .login-card h1 {
+        font-size: 1.7rem;
+      }
+
+      #smartSupportButton {
+        right: 14px;
+        bottom: 14px;
+      }
+    }
+  </style>
 </head>
 
 <body>
 
+<header class="site-header">
+  <nav class="navbar">
 
-  <!-- HEADER -->
+    <a href="index.html" class="brand">
+      <img id="siteLogo" src="" alt="ExpressLine Delivery Services">
+      <span class="brand-text" id="brandName">
+        ExpressLine Delivery Services
+      </span>
+    </a>
 
-  <header class="site-header">
+    <button
+      type="button"
+      class="menu-toggle"
+      id="menuToggle"
+      aria-label="Open menu"
+      aria-expanded="false"
+    >
+      ☰
+    </button>
 
-    <div class="container navbar">
+    <div class="nav-links" id="navLinks">
+      <a href="index.html">Home</a>
+      <a href="services.html">Services</a>
+      <a href="track.html">Track Shipment</a>
+      <a href="request.html">Request a Shipment</a>
+      <a href="about.html">About Us</a>
+      <a href="Customer Support.html">Support</a>
+      <a href="contact.html">Contact</a>
+      <a href="login.html" class="nav-button">Customer Login</a>
+    </div>
 
-      <a
-        href="index.html"
-        class="logo"
-      >
+  </nav>
+</header>
 
-        <span class="logo-mark">
-          EL
-        </span>
+<main class="login-section">
 
-        <span id="siteShortName">
-          ExpressLine
-        </span>
+  <div class="login-card">
 
-      </a>
+    <h1>Customer Login</h1>
 
+    <p>
+      Sign in to your ExpressLine Delivery Services account.
+    </p>
+
+    <form id="loginForm">
+
+      <div class="form-group">
+        <label for="email">Email Address</label>
+
+        <input
+          type="email"
+          id="email"
+          autocomplete="email"
+          required
+        >
+      </div>
+
+      <div class="form-group">
+        <label for="password">Password</label>
+
+        <input
+          type="password"
+          id="password"
+          autocomplete="current-password"
+          required
+        >
+      </div>
 
       <button
-        class="menu-toggle"
-        type="button"
-        aria-label="Open navigation menu"
+        type="submit"
+        class="login-button"
+        id="loginButton"
       >
-        ☰
+        Sign In
       </button>
 
+      <div id="formMessage" class="message"></div>
 
-      <nav class="nav-links">
+    </form>
 
-        <a
-          id="navHome"
-          href="index.html"
-        >
-          Home
-        </a>
-
-        <a
-          id="navTrack"
-          href="track.html"
-        >
-          Track Shipment
-        </a>
-
-        <a
-          id="navServices"
-          href="services.html"
-        >
-          Services
-        </a>
-
-        <a
-          id="navAbout"
-          href="about.html"
-        >
-          About Us
-        </a>
-
-        <a
-          id="navContact"
-          href="contact.html"
-        >
-          Contact Us
-        </a>
-
-        <a
-          id="navRequest"
-          href="request.html"
-        >
-          Request Shipment
-        </a>
-
-        <a
-          id="navLogin"
-          href="login.html"
-          class="nav-button"
-        >
-          Customer Login
-        </a>
-
-      </nav>
-
+    <div class="form-links">
+      <a href="forgot-password.html">Forgot Password?</a>
+      <a href="register.html">Create Account</a>
     </div>
 
-  </header>
-
-
-  <!-- MAIN -->
-
-  <main>
-
-    <section class="section section-light">
-
-      <div class="container">
-
-        <div class="form-card login-card">
-
-          <div class="section-heading">
-
-            <p class="section-label">
-              CUSTOMER PORTAL
-            </p>
-
-            <h1>
-              Welcome back.
-            </h1>
-
-            <p>
-              Sign in to access your shipments, shipment requests,
-              notifications and account information.
-            </p>
-
-          </div>
-
-
-          <form id="loginForm">
-
-            <div class="form-group">
-
-              <label for="loginEmail">
-                Email Address
-              </label>
-
-              <input
-                type="email"
-                id="loginEmail"
-                name="email"
-                placeholder="Enter your email address"
-                autocomplete="email"
-                required
-              >
-
-            </div>
-
-
-            <div class="form-group">
-
-              <label for="loginPassword">
-                Password
-              </label>
-
-              <input
-                type="password"
-                id="loginPassword"
-                name="password"
-                placeholder="Enter your password"
-                autocomplete="current-password"
-                required
-              >
-
-            </div>
-
-
-            <div class="form-options">
-
-              <label class="checkbox-label">
-
-                <input
-                  type="checkbox"
-                  name="remember"
-                >
-
-                <span>
-                  Remember me
-                </span>
-
-              </label>
-
-
-              <a href="forgot-password.html">
-                Forgot password?
-              </a>
-
-            </div>
-
-
-            <div
-              id="loginMessage"
-              class="tracking-message"
-              style="display: none;"
-              role="alert"
-            ></div>
-
-
-            <button
-              type="submit"
-              class="btn btn-primary"
-              id="loginButton"
-            >
-              Sign In
-            </button>
-
-          </form>
-
-
-          <div class="login-footer">
-
-            <p>
-              Don't have a customer account?
-            </p>
-
-            <a
-              href="register.html"
-              class="btn btn-secondary"
-            >
-              Create an Account
-            </a>
-
-          </div>
-
-        </div>
-
-      </div>
-
-    </section>
-
-
-    <!-- CUSTOMER FEATURES -->
-
-    <section class="section">
-
-      <div class="container">
-
-        <div class="section-heading">
-
-          <p class="section-label">
-            CUSTOMER PORTAL
-          </p>
-
-          <h2>
-            Manage your shipments in one place.
-          </h2>
-
-          <p>
-            Your customer account will provide access to the
-            shipment information associated with your account.
-          </p>
-
-        </div>
-
-
-        <div class="cards">
-
-          <article class="card">
-
-            <div class="card-icon">
-              📦
-            </div>
-
-            <h3>
-              Active Shipments
-            </h3>
-
-            <p>
-              View active shipments and available tracking
-              information associated with your account.
-            </p>
-
-          </article>
-
-
-          <article class="card">
-
-            <div class="card-icon">
-              🕐
-            </div>
-
-            <h3>
-              Shipment History
-            </h3>
-
-            <p>
-              Review completed and previous shipments connected
-              to your customer account.
-            </p>
-
-          </article>
-
-
-          <article class="card">
-
-            <div class="card-icon">
-              🔔
-            </div>
-
-            <h3>
-              Notifications
-            </h3>
-
-            <p>
-              View important account and shipment updates
-              available through the customer portal.
-            </p>
-
-          </article>
-
-        </div>
-
-      </div>
-
-    </section>
-
-
-    <!-- SECURITY -->
-
-    <section class="section section-light">
-
-      <div class="container">
-
-        <div class="section-heading">
-
-          <p class="section-label">
-            ACCOUNT SECURITY
-          </p>
-
-          <h2>
-            Your account is protected.
-          </h2>
-
-          <p>
-            Your customer account uses secure authentication
-            and protected sessions. Customer accounts are
-            authenticated through the ExpressLine customer portal.
-          </p>
-
-        </div>
-
-      </div>
-
-    </section>
-
-  </main>
-
-
-  <!-- FOOTER -->
-
-  <footer class="site-footer">
-
-    <div class="container">
-
-      <div class="footer-grid">
-
-
-        <div>
-
-          <div class="logo">
-
-            <span class="logo-mark">
-              EL
-            </span>
-
-            <span id="footerCompanyName">
-              ExpressLine
-            </span>
-
-          </div>
-
-          <p id="footerText">
-            Professional courier and logistics solutions
-            designed to keep shipments moving with confidence.
-          </p>
-
-        </div>
-
-
-        <div>
-
-          <h3>
-            Company
-          </h3>
-
-          <ul class="footer-links">
-
-            <li>
-              <a href="about.html">
-                About Us
-              </a>
-            </li>
-
-            <li>
-              <a href="services.html">
-                Services
-              </a>
-            </li>
-
-            <li>
-              <a href="contact.html">
-                Contact Us
-              </a>
-            </li>
-
-          </ul>
-
-        </div>
-
-
-        <div>
-
-          <h3>
-            Customer
-          </h3>
-
-          <ul class="footer-links">
-
-            <li>
-              <a href="track.html">
-                Track Shipment
-              </a>
-            </li>
-
-            <li>
-              <a href="request.html">
-                Request Shipment
-              </a>
-            </li>
-
-            <li>
-              <a href="login.html">
-                Customer Login
-              </a>
-            </li>
-
-          </ul>
-
-        </div>
-
-
-        <div>
-
-          <h3>
-            Contact
-          </h3>
-
-          <p id="footerContactText">
-            Company contact information will be configured
-            through the administrator settings.
-          </p>
-
-          <p id="footerContactEmail">
-          </p>
-
-          <p id="footerContactPhone">
-          </p>
-
-        </div>
-
-      </div>
-
-
-      <div class="footer-bottom">
-
-        <p id="copyrightText">
-          © 2026 ExpressLine Delivery Services.
-          All rights reserved.
-        </p>
-
-      </div>
-
+    <div class="register-text">
+      Don't have an account?
+      <a href="register.html">Register here</a>
     </div>
 
-  </footer>
+  </div>
 
+</main>
 
-  <!-- SUPABASE -->
+<footer class="site-footer">
 
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <p id="footerText">
+    Reliable logistics and delivery solutions for individuals and businesses.
+  </p>
 
+  <div class="footer-links">
+    <a href="contact.html">Contact</a>
+    <a href="Customer Support.html">Customer Support</a>
+    <a href="index.html">Home</a>
+  </div>
 
-  <!-- WEBSITE SETTINGS + CUSTOMER LOGIN -->
+  <p id="copyrightText">
+    © 2026 ExpressLine Delivery Services. All rights reserved.
+  </p>
 
-  <script>
+</footer>
 
-    const SUPABASE_URL =
-      "https://uhjgietvznkfzckmxqfz.supabase.co";
+<button
+  type="button"
+  id="smartSupportButton"
+>
+  Live Support
+</button>
 
-    const SUPABASE_PUBLISHABLE_KEY =
-      "sb_publishable_zZ0JiBW-2uarX2gnR5w9hQ_77RpB6SM";
+<script>
+  const SUPABASE_URL =
+    "https://uhjgietvznkfzckmxqfz.supabase.co";
 
+  const SUPABASE_PUBLISHABLE_KEY =
+    "sb_publishable_zZ0JiBW-2uarX2gnR5w9hQ_77RpB6SM";
 
-    const supabaseClient =
-      window.supabase.createClient(
-        SUPABASE_URL,
-        SUPABASE_PUBLISHABLE_KEY
+  const supabaseClient =
+    window.supabase.createClient(
+      SUPABASE_URL,
+      SUPABASE_PUBLISHABLE_KEY
+    );
+
+  const defaultSettings = {
+    companyName: "ExpressLine Delivery Services",
+    logo: "",
+    logoSize: "medium",
+
+    primaryColor: "#F97316",
+    secondaryColor: "#111111",
+    accentColor: "#C2410C",
+    textColor: "#111111",
+
+    fontFamily: "Inter, sans-serif",
+    baseFontSize: "16px",
+
+    footerText:
+      "Reliable logistics and delivery solutions for individuals and businesses.",
+
+    copyright:
+      "© 2026 ExpressLine Delivery Services. All rights reserved.",
+
+    favicon: "",
+
+    pageTitle:
+      "Customer Login | ExpressLine Delivery Services",
+
+    seoDescription:
+      "Sign in to your ExpressLine Delivery Services customer account.",
+
+    smartsuppEnabled: false,
+    smartsuppKey: "",
+    smartsuppButtonText: "Live Support"
+  };
+
+  let settings = {
+    ...defaultSettings
+  };
+
+  async function loadWebsiteSettings() {
+    try {
+      const { data, error } =
+        await supabaseClient
+          .from("website_settings")
+          .select("settings")
+          .eq("id", 1)
+          .maybeSingle();
+
+      if (error) {
+        console.error(
+          "Website settings error:",
+          error
+        );
+        return;
+      }
+
+      if (data && data.settings) {
+        settings = {
+          ...defaultSettings,
+          ...data.settings
+        };
+      }
+
+      applyWebsiteSettings();
+
+    } catch (error) {
+      console.error(
+        "Settings loading error:",
+        error
+      );
+    }
+  }
+
+  function applyWebsiteSettings() {
+    const root =
+      document.documentElement;
+
+    root.style.setProperty(
+      "--primary",
+      settings.primaryColor ||
+        "#F97316"
+    );
+
+    root.style.setProperty(
+      "--secondary",
+      settings.secondaryColor ||
+        "#111111"
+    );
+
+    root.style.setProperty(
+      "--accent",
+      settings.accentColor ||
+        "#C2410C"
+    );
+
+    root.style.setProperty(
+      "--text",
+      settings.textColor ||
+        "#111111"
+    );
+
+    document.body.style.fontFamily =
+      settings.fontFamily ||
+      "Inter, sans-serif";
+
+    if (settings.baseFontSize) {
+      document.body.style.fontSize =
+        settings.baseFontSize;
+    }
+
+    const brandName =
+      document.getElementById(
+        "brandName"
       );
 
+    if (brandName) {
+      brandName.textContent =
+        settings.companyName ||
+        defaultSettings.companyName;
+    }
 
-    /* =========================================================
-       WEBSITE SETTINGS
-       ========================================================= */
+    const logo =
+      document.getElementById(
+        "siteLogo"
+      );
 
-    async function getWebsiteSettings() {
+    if (logo) {
+      if (settings.logo) {
+        logo.src = settings.logo;
+        logo.style.display = "block";
+      } else {
+        logo.style.display = "none";
+      }
+
+      const logoSizes = {
+        small: "44px",
+        medium: "58px",
+        large: "76px"
+      };
+
+      const selectedSize =
+        logoSizes[settings.logoSize] ||
+        logoSizes.medium;
+
+      logo.style.width =
+        selectedSize;
+
+      logo.style.height =
+        selectedSize;
+    }
+
+    const footerText =
+      document.getElementById(
+        "footerText"
+      );
+
+    if (footerText) {
+      footerText.textContent =
+        settings.footerText ||
+        defaultSettings.footerText;
+    }
+
+    const copyrightText =
+      document.getElementById(
+        "copyrightText"
+      );
+
+    if (copyrightText) {
+      copyrightText.textContent =
+        settings.copyright ||
+        defaultSettings.copyright;
+    }
+
+    if (settings.favicon) {
+      const favicon =
+        document.getElementById(
+          "siteFavicon"
+        );
+
+      if (favicon) {
+        favicon.href =
+          settings.favicon;
+      }
+    }
+
+    if (settings.pageTitle) {
+      document.title =
+        settings.pageTitle;
+    }
+
+    const metaDescription =
+      document.querySelector(
+        'meta[name="description"]'
+      );
+
+    if (
+      metaDescription &&
+      settings.seoDescription
+    ) {
+      metaDescription.setAttribute(
+        "content",
+        settings.seoDescription
+      );
+    }
+
+    setupSmartsupp();
+  }
+
+  function setupSmartsupp() {
+    const button =
+      document.getElementById(
+        "smartSupportButton"
+      );
+
+    if (
+      !settings.smartsuppEnabled ||
+      !settings.smartsuppKey
+    ) {
+      if (button) {
+        button.style.display = "none";
+      }
+
+      return;
+    }
+
+    if (button) {
+      button.textContent =
+        settings.smartsuppButtonText ||
+        "Live Support";
+
+      button.style.display =
+        "block";
+
+      button.onclick = function () {
+        if (
+          typeof window.smartsupp ===
+          "function"
+        ) {
+          window.smartsupp(
+            "chat:open"
+          );
+        }
+      };
+    }
+
+    if (
+      typeof window.smartsupp ===
+      "function"
+    ) {
+      return;
+    }
+
+    window._smartsupp =
+      window._smartsupp || {};
+
+    window._smartsupp.key =
+      settings.smartsuppKey;
+
+    const script =
+      document.createElement(
+        "script"
+      );
+
+    script.src =
+      "https://www.smartsuppchat.com/loader.js?";
+
+    script.async = true;
+
+    document.head.appendChild(
+      script
+    );
+  }
+
+  const loginForm =
+    document.getElementById(
+      "loginForm"
+    );
+
+  const loginButton =
+    document.getElementById(
+      "loginButton"
+    );
+
+  const formMessage =
+    document.getElementById(
+      "formMessage"
+    );
+
+  loginForm.addEventListener(
+    "submit",
+    async function (event) {
+      event.preventDefault();
+
+      const email =
+        document.getElementById(
+          "email"
+        ).value.trim();
+
+      const password =
+        document.getElementById(
+          "password"
+        ).value;
+
+      formMessage.className =
+        "message";
+
+      formMessage.textContent =
+        "";
+
+      loginButton.disabled =
+        true;
+
+      loginButton.textContent =
+        "Signing In...";
 
       try {
-
         const { data, error } =
-          await supabaseClient
-            .from("website_settings")
-            .select("settings")
-            .eq("id", 1)
-            .maybeSingle();
-
-
-        if (error) {
-
-          console.error(
-            "Unable to load website settings:",
-            error
+          await supabaseClient.auth.signInWithPassword(
+            {
+              email: email,
+              password: password
+            }
           );
 
-          return {};
-
+        if (error) {
+          throw error;
         }
 
+        localStorage.setItem(
+          "customerLoggedIn",
+          "true"
+        );
 
-        return data?.settings || {};
+        localStorage.setItem(
+          "customerEmail",
+          email
+        );
+
+        formMessage.className =
+          "message success";
+
+        formMessage.textContent =
+          "Login successful. Redirecting...";
+
+        setTimeout(
+          function () {
+            window.location.href =
+              "index.html";
+          },
+          700
+        );
 
       } catch (error) {
-
         console.error(
-          "Unable to load website settings:",
+          "Login error:",
           error
         );
 
-        return {};
+        formMessage.className =
+          "message error";
 
+        formMessage.textContent =
+          error.message ||
+          "Unable to sign in. Please check your email and password.";
       }
 
+      loginButton.disabled =
+        false;
+
+      loginButton.textContent =
+        "Sign In";
     }
-
-
-    function setText(id, value) {
-
-      const element =
-        document.getElementById(id);
-
-      if (
-        element &&
-        value !== undefined &&
-        value !== null &&
-        String(value).trim() !== ""
-      ) {
-
-        element.textContent =
-          value;
-
-      }
-
-    }
-
-
-    async function applyWebsiteSettings() {
-
-      const settings =
-        await getWebsiteSettings();
-
-
-      /* COMPANY */
-
-      setText(
-        "siteShortName",
-        settings.shortName ||
-        settings.companyName
-      );
-
-      setText(
-        "footerCompanyName",
-        settings.companyName ||
-        settings.shortName
-      );
-
-
-      /* NAVIGATION */
-
-      setText(
-        "navHome",
-        settings.navHome
-      );
-
-      setText(
-        "navTrack",
-        settings.navTrack
-      );
-
-      setText(
-        "navServices",
-        settings.navServices
-      );
-
-      setText(
-        "navAbout",
-        settings.navAbout
-      );
-
-      setText(
-        "navContact",
-        settings.navContact
-      );
-
-      setText(
-        "navRequest",
-        settings.navRequest
-      );
-
-      setText(
-        "navLogin",
-        settings.navLogin
-      );
-
-
-      /* FOOTER */
-
-      setText(
-        "footerText",
-        settings.footerText
-      );
-
-      setText(
-        "copyrightText",
-        settings.copyrightText
-      );
-
-
-      /* CONTACT */
-
-      if (
-        settings.contactEmail &&
-        String(settings.contactEmail).trim() !== ""
-      ) {
-
-        setText(
-          "footerContactEmail",
-          settings.contactEmail
-        );
-
-      }
-
-
-      if (
-        settings.contactPhone &&
-        String(settings.contactPhone).trim() !== ""
-      ) {
-
-        setText(
-          "footerContactPhone",
-          settings.contactPhone
-        );
-
-      }
-
-
-      if (
-        settings.contactEmail ||
-        settings.contactPhone ||
-        settings.businessAddress
-      ) {
-
-        const contactText =
-          document.getElementById(
-            "footerContactText"
-          );
-
-        if (contactText) {
-
-          contactText.textContent =
-            settings.businessAddress ||
-            "Contact ExpressLine Delivery Services.";
-
-        }
-
-      }
-
-
-      /* WEBSITE TITLE */
-
-      if (
-        settings.websiteTitle &&
-        String(settings.websiteTitle).trim() !== ""
-      ) {
-
-        document.title =
-          settings.websiteTitle;
-
-      }
-
-
-      /* SEO DESCRIPTION */
-
-      const description =
-        document.getElementById(
-          "pageDescription"
-        );
-
-      if (
-        description &&
-        settings.seoDescription
-      ) {
-
-        description.setAttribute(
-          "content",
-          settings.seoDescription
-        );
-
-      }
-
-
-      /* SEO KEYWORDS */
-
-      const keywords =
-        document.getElementById(
-          "pageKeywords"
-        );
-
-      if (
-        keywords &&
-        settings.seoKeywords
-      ) {
-
-        keywords.setAttribute(
-          "content",
-          settings.seoKeywords
-        );
-
-      }
-
-
-      /* COLORS */
-
-      if (settings.primaryColor) {
-
-        document.documentElement.style.setProperty(
-          "--primary-color",
-          settings.primaryColor
-        );
-
-        document.documentElement.style.setProperty(
-          "--orange",
-          settings.primaryColor
-        );
-
-      }
-
-      if (settings.primaryColorText) {
-
-        document.documentElement.style.setProperty(
-          "--primary-text",
-          settings.primaryColorText
-        );
-
-      }
-
-      if (settings.secondaryColor) {
-
-        document.documentElement.style.setProperty(
-          "--secondary-color",
-          settings.secondaryColor
-        );
-
-        document.documentElement.style.setProperty(
-          "--navy",
-          settings.secondaryColor
-        );
-
-      }
-
-      if (settings.secondaryColorText) {
-
-        document.documentElement.style.setProperty(
-          "--secondary-text",
-          settings.secondaryColorText
-        );
-
-      }
-
-      if (settings.accentColor) {
-
-        document.documentElement.style.setProperty(
-          "--accent-color",
-          settings.accentColor
-        );
-
-      }
-
-      if (settings.accentColorText) {
-
-        document.documentElement.style.setProperty(
-          "--accent-text",
-          settings.accentColorText
-        );
-
-      }
-
-      if (settings.textColor) {
-
-        document.documentElement.style.setProperty(
-          "--text-color",
-          settings.textColor
-        );
-
-        document.documentElement.style.setProperty(
-          "--text",
-          settings.textColor
-        );
-
-      }
-
-
-      /* TYPOGRAPHY */
-
-      if (settings.fontFamily) {
-
-        document.documentElement.style.setProperty(
-          "--font-family",
-          settings.fontFamily
-        );
-
-        document.body.style.fontFamily =
-          settings.fontFamily;
-
-      }
-
-      if (settings.fontSize) {
-
-        document.documentElement.style.setProperty(
-          "--font-size",
-          settings.fontSize
-        );
-
-        document.body.style.fontSize =
-          settings.fontSize;
-
-      }
-
-
-      /* FAVICON */
-
-      if (
-        settings.faviconUrl &&
-        String(settings.faviconUrl).trim() !== ""
-      ) {
-
-        let favicon =
-          document.querySelector(
-            'link[rel="icon"]'
-          );
-
-        if (!favicon) {
-
-          favicon =
-            document.createElement("link");
-
-          favicon.rel =
-            "icon";
-
-          document.head.appendChild(
-            favicon
-          );
-
-        }
-
-        favicon.href =
-          settings.faviconUrl;
-
-      }
-
-    }
-
-
-    /* =========================================================
-       CUSTOMER LOGIN
-       ========================================================= */
-
-    const loginForm =
-      document.getElementById(
-        "loginForm"
-      );
-
-    const loginMessage =
-      document.getElementById(
-        "loginMessage"
-      );
-
-    const loginButton =
-      document.getElementById(
-        "loginButton"
-      );
-
-
-    function showLoginMessage(
-      message,
-      isError
-    ) {
-
-      loginMessage.textContent =
-        message;
-
-      loginMessage.style.display =
-        "block";
-
-      if (isError) {
-
-        loginMessage.style.color =
-          "#991b1b";
-
-        loginMessage.style.background =
-          "#fef2f2";
-
-        loginMessage.style.border =
-          "1px solid #fecaca";
-
-      } else {
-
-        loginMessage.style.color =
-          "#166534";
-
-        loginMessage.style.background =
-          "#ecfdf3";
-
-        loginMessage.style.border =
-          "1px solid #bbf7d0";
-
-      }
-
-      loginMessage.style.padding =
-        "12px";
-
-      loginMessage.style.borderRadius =
-        "8px";
-
-      loginMessage.style.marginBottom =
-        "15px";
-
-    }
-
-
-    loginForm.addEventListener(
-      "submit",
-      async function(event) {
-
-        event.preventDefault();
-
-
-        const email =
-          document
-            .getElementById(
-              "loginEmail"
-            )
-            .value
-            .trim();
-
-        const password =
-          document
-            .getElementById(
-              "loginPassword"
-            )
-            .value;
-
-
-        if (!email || !password) {
-
-          showLoginMessage(
-            "Please enter your email address and password.",
-            true
-          );
-
-          return;
-
-        }
-
-
-        loginButton.disabled =
-          true;
-
-        loginButton.textContent =
-          "Signing In...";
-
-
-        try {
-
-          const {
-            data,
-            error
-          } =
-            await supabaseClient.auth.signInWithPassword({
-              email:
-                email,
-
-              password:
-                password
-            });
-
-
-          if (error) {
-
-            throw error;
-
-          }
-
-
-          if (
-            !data ||
-            !data.user
-          ) {
-
-            throw new Error(
-              "Unable to sign in. Please try again."
-            );
-
-          }
-
-
-          localStorage.setItem(
-            "customerLoggedIn",
-            "true"
-          );
-
-
-          localStorage.setItem(
-            "customerEmail",
-            data.user.email || email
-          );
-
-
-          showLoginMessage(
-            "Login successful. Redirecting...",
-            false
-          );
-
-
-          setTimeout(
-            function() {
-
-              window.location.href =
-                "index.html";
-
-            },
-            700
-          );
-
-
-        } catch (error) {
-
-          console.error(
-            "Customer login error:",
-            error
-          );
-
-
-          let message =
-            "Unable to sign in. Please check your email and password.";
-
-
-          if (
-            error &&
-            error.message
-          ) {
-
-            const errorMessage =
-              String(
-                error.message
-              );
-
-
-            if (
-              errorMessage
-                .toLowerCase()
-                .includes(
-                  "invalid login credentials"
-                )
-            ) {
-
-              message =
-                "Invalid email or password. Please check your details and try again.";
-
-            } else {
-
-              message =
-                errorMessage;
-
-            }
-
-          }
-
-
-          showLoginMessage(
-            message,
-            true
-          );
-
-
-        } finally {
-
-          loginButton.disabled =
-            false;
-
-          loginButton.textContent =
-            "Sign In";
-
-        }
-
-      }
+  );
+
+  const menuToggle =
+    document.getElementById(
+      "menuToggle"
     );
 
+  const navLinks =
+    document.getElementById(
+      "navLinks"
+    );
 
-    /* =========================================================
-       MOBILE MENU
-       ========================================================= */
+  menuToggle.addEventListener(
+    "click",
+    function () {
+      const isOpen =
+        navLinks.classList.toggle(
+          "open"
+        );
 
-    const menuToggle =
-      document.querySelector(
-        ".menu-toggle"
+      menuToggle.setAttribute(
+        "aria-expanded",
+        isOpen
+          ? "true"
+          : "false"
       );
 
-    const navLinks =
-      document.querySelector(
-        ".nav-links"
+      menuToggle.setAttribute(
+        "aria-label",
+        isOpen
+          ? "Close menu"
+          : "Open menu"
       );
+    }
+  );
 
-
-    if (
-      menuToggle &&
-      navLinks
-    ) {
-
-      menuToggle.addEventListener(
+  navLinks
+    .querySelectorAll("a")
+    .forEach(function (link) {
+      link.addEventListener(
         "click",
-        function() {
-
-          navLinks.classList.toggle(
-            "active"
+        function () {
+          navLinks.classList.remove(
+            "open"
           );
 
+          menuToggle.setAttribute(
+            "aria-expanded",
+            "false"
+          );
+
+          menuToggle.setAttribute(
+            "aria-label",
+            "Open menu"
+          );
         }
       );
+    });
 
-
-      navLinks
-        .querySelectorAll("a")
-        .forEach(function(link) {
-
-          link.addEventListener(
-            "click",
-            function() {
-
-              navLinks.classList.remove(
-                "active"
-              );
-
-            }
-          );
-
-        });
-
-    }
-
-
-    /* =========================================================
-       START
-       ========================================================= */
-
-    applyWebsiteSettings();
-
-  </script>
-
-
-  <script src="script.js"></script>
+  loadWebsiteSettings();
+</script>
 
 </body>
 </html>
