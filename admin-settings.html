@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Admin - Website Control Center</title>
+  <title>Website CMS - ExpressLine Admin</title>
 
   <style>
     * {
@@ -18,20 +18,38 @@
       color: #172033;
     }
 
-    header {
+    .topbar {
       background: #111827;
       color: white;
-      padding: 22px 25px;
+      padding: 18px 25px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 15px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
     }
 
-    header h1 {
+    .topbar h1 {
       margin: 0;
-      font-size: 25px;
+      font-size: 22px;
     }
 
-    header p {
-      margin: 7px 0 0;
+    .topbar p {
+      margin: 5px 0 0;
       color: #cbd5e1;
+      font-size: 13px;
+    }
+
+    .dashboard-link {
+      color: white;
+      text-decoration: none;
+      background: #2563eb;
+      padding: 10px 15px;
+      border-radius: 7px;
+      font-weight: bold;
+      font-size: 14px;
     }
 
     .container {
@@ -40,50 +58,54 @@
       padding: 0 18px 50px;
     }
 
-    .back {
-      display: inline-block;
-      margin-bottom: 22px;
-      color: #2563eb;
-      text-decoration: none;
-      font-weight: bold;
+    .notice {
+      background: #e8f1ff;
+      border: 1px solid #bfdbfe;
+      color: #1e40af;
+      padding: 15px 18px;
+      border-radius: 10px;
+      margin-bottom: 25px;
+      line-height: 1.5;
     }
 
-    .back:hover {
-      text-decoration: underline;
+    .warning {
+      background: #fff7ed;
+      border: 1px solid #fed7aa;
+      color: #9a3412;
+      padding: 15px 18px;
+      border-radius: 10px;
+      margin-bottom: 25px;
+      line-height: 1.5;
     }
 
     .section {
       background: white;
-      border-radius: 14px;
+      border-radius: 12px;
       padding: 25px;
-      margin-bottom: 25px;
-      box-shadow: 0 3px 14px rgba(0,0,0,0.07);
+      margin-bottom: 22px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.06);
     }
 
-    .section h2 {
-      margin: 0 0 7px;
-      font-size: 21px;
-      color: #111827;
-    }
-
-    .description {
-      color: #6b7280;
-      margin: 0 0 22px;
-      line-height: 1.5;
-    }
-
-    .subheading {
-      font-size: 16px;
-      font-weight: bold;
-      margin: 25px 0 15px;
-      color: #1f2937;
+    .section-header {
       border-bottom: 1px solid #e5e7eb;
-      padding-bottom: 9px;
+      margin-bottom: 22px;
+      padding-bottom: 14px;
+    }
+
+    .section-header h2 {
+      margin: 0;
+      font-size: 20px;
+    }
+
+    .section-header p {
+      margin: 6px 0 0;
+      color: #6b7280;
+      font-size: 14px;
     }
 
     .grid {
       display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
+      grid-template-columns: repeat(2, 1fr);
       gap: 18px;
     }
 
@@ -92,261 +114,174 @@
     }
 
     .form-group {
-      margin-bottom: 17px;
+      margin-bottom: 16px;
     }
 
     label {
       display: block;
-      margin-bottom: 7px;
       font-weight: bold;
+      margin-bottom: 7px;
       font-size: 14px;
-      color: #374151;
     }
 
     input,
-    select,
-    textarea {
+    textarea,
+    select {
       width: 100%;
       padding: 12px;
       border: 1px solid #d1d5db;
-      border-radius: 8px;
+      border-radius: 7px;
       font-size: 15px;
       background: white;
       color: #111827;
     }
 
     textarea {
-      min-height: 105px;
+      min-height: 110px;
       resize: vertical;
     }
 
     input:focus,
-    select:focus,
-    textarea:focus {
+    textarea:focus,
+    select:focus {
       outline: none;
       border-color: #2563eb;
-      box-shadow: 0 0 0 3px rgba(37,99,235,0.10);
+    }
+
+    .help {
+      display: block;
+      color: #6b7280;
+      font-size: 12px;
+      margin-top: 5px;
+    }
+
+    .color-row {
+      display: grid;
+      grid-template-columns: 70px 1fr;
+      gap: 10px;
+      align-items: center;
+    }
+
+    input[type="color"] {
+      width: 70px;
+      height: 45px;
+      padding: 3px;
+      cursor: pointer;
+    }
+
+    .check-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 0;
+    }
+
+    .check-row input {
+      width: auto;
+    }
+
+    .check-row label {
+      margin: 0;
+      font-weight: normal;
     }
 
     .button-row {
       display: flex;
+      gap: 12px;
       flex-wrap: wrap;
-      gap: 10px;
-      margin-top: 10px;
     }
 
-    .button {
+    button {
       border: none;
-      background: #2563eb;
-      color: white;
+      border-radius: 7px;
       padding: 12px 18px;
-      border-radius: 8px;
-      cursor: pointer;
       font-size: 14px;
       font-weight: bold;
+      cursor: pointer;
     }
 
-    .button:hover {
+    .primary {
+      background: #2563eb;
+      color: white;
+    }
+
+    .primary:hover {
       background: #1d4ed8;
     }
 
     .secondary {
-      background: #475569;
-    }
-
-    .secondary:hover {
-      background: #334155;
+      background: #e5e7eb;
+      color: #111827;
     }
 
     .danger {
       background: #dc2626;
+      color: white;
     }
 
     .danger:hover {
       background: #b91c1c;
     }
 
-    .success {
-      background: #059669;
-    }
-
-    .success:hover {
-      background: #047857;
-    }
-
-    .checkbox-list {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 12px;
-    }
-
-    .checkbox-row {
+    .save-bar {
+      background: #111827;
+      padding: 18px;
+      border-radius: 12px;
+      color: white;
       display: flex;
       align-items: center;
-      gap: 9px;
-      padding: 11px;
-      border: 1px solid #e5e7eb;
-      border-radius: 8px;
-      background: #f9fafb;
+      justify-content: space-between;
+      gap: 15px;
+      flex-wrap: wrap;
+      position: sticky;
+      bottom: 15px;
+      z-index: 50;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.18);
     }
 
-    .checkbox-row input {
-      width: auto;
-      margin: 0;
-    }
-
-    .checkbox-row label {
-      margin: 0;
-      font-weight: normal;
-      cursor: pointer;
-    }
-
-    .upload-box {
-      border: 2px dashed #cbd5e1;
-      border-radius: 12px;
-      padding: 25px;
-      text-align: center;
-      background: #f8fafc;
-      margin-top: 10px;
-    }
-
-    .upload-box strong {
-      display: block;
-      margin-bottom: 7px;
-      color: #1f2937;
-    }
-
-    .upload-box span {
-      display: block;
-      color: #6b7280;
-      font-size: 13px;
-      margin-bottom: 15px;
-    }
-
-    .preview {
-      margin-top: 15px;
-      display: none;
-    }
-
-    .preview img {
-      max-width: 180px;
-      max-height: 120px;
-      border-radius: 8px;
-      border: 1px solid #d1d5db;
-      object-fit: cover;
-    }
-
-    .image-manager {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 18px;
-    }
-
-    .image-card {
-      border: 1px solid #e5e7eb;
-      border-radius: 12px;
-      padding: 17px;
-      background: #fafafa;
-    }
-
-    .image-card h3 {
-      margin: 0 0 7px;
-      font-size: 16px;
-    }
-
-    .image-card p {
-      margin: 0 0 13px;
-      color: #6b7280;
-      font-size: 13px;
-    }
-
-    .status-box {
-      padding: 14px;
-      background: #eff6ff;
-      color: #1e40af;
-      border-radius: 8px;
-      margin-bottom: 20px;
-      display: none;
-      font-weight: bold;
-    }
-
-    .warning {
-      padding: 14px;
-      background: #fff7ed;
-      border: 1px solid #fed7aa;
-      color: #9a3412;
-      border-radius: 8px;
-      line-height: 1.5;
-      margin-bottom: 20px;
+    .save-bar span {
       font-size: 14px;
     }
 
-    .color-row {
-      display: flex;
-      gap: 12px;
-      align-items: center;
+    .save-bar button {
+      background: #22c55e;
+      color: white;
     }
 
-    .color-row input[type="color"] {
-      width: 60px;
-      height: 44px;
-      padding: 3px;
-      cursor: pointer;
+    .save-bar button:hover {
+      background: #16a34a;
     }
 
-    .range-row {
-      display: flex;
-      align-items: center;
-      gap: 15px;
-    }
-
-    .range-row input[type="range"] {
-      flex: 1;
-    }
-
-    .range-value {
-      min-width: 50px;
+    .status {
+      margin-top: 15px;
+      padding: 12px;
+      border-radius: 7px;
+      display: none;
+      background: #dcfce7;
+      color: #166534;
       font-weight: bold;
     }
 
-    .footer-actions {
-      background: #111827;
-      color: white;
-      border-radius: 14px;
-      padding: 22px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 15px;
-      flex-wrap: wrap;
-    }
-
-    .footer-actions p {
-      margin: 0;
-      color: #cbd5e1;
-    }
-
     @media (max-width: 700px) {
-      .grid,
-      .image-manager,
-      .checkbox-list {
+      .grid {
         grid-template-columns: 1fr;
+      }
+
+      .full {
+        grid-column: auto;
+      }
+
+      .topbar {
+        align-items: flex-start;
+        flex-direction: column;
       }
 
       .section {
         padding: 19px;
       }
 
-      header {
-        padding: 20px;
-      }
-
-      .footer-actions {
-        align-items: stretch;
-      }
-
-      .footer-actions .button-row {
-        width: 100%;
+      .save-bar {
+        position: static;
       }
     }
   </style>
@@ -354,1322 +289,812 @@
 
 <body>
 
-<header>
-  <h1>Website Control Center</h1>
-  <p>Manage your ExpressLine website, content, images and appearance.</p>
-</header>
-
-<div class="container">
-
-  <a href="admin.html" class="back">← Back to Admin Dashboard</a>
-
-  <div id="statusBox" class="status-box"></div>
-
-  <div class="warning">
-    <strong>Important:</strong> These controls store website settings in this browser.
-    GitHub Pages does not allow a browser form to directly rewrite your repository files.
-    The public pages will need to be connected to these settings for the changes to appear site-wide.
-  </div>
-
-  <!-- WEBSITE IDENTITY -->
-
-  <div class="section">
-    <h2>Website Identity</h2>
-    <p class="description">
-      Control your company name, logo, favicon, browser title and main website identity.
-    </p>
-
-    <div class="grid">
-
-      <div class="form-group">
-        <label for="siteName">Website / Company Name</label>
-        <input type="text" id="siteName" value="ExpressLine Delivery Services">
-      </div>
-
-      <div class="form-group">
-        <label for="siteTitle">Browser Page Title</label>
-        <input type="text" id="siteTitle" value="ExpressLine Delivery Services">
-      </div>
-
-      <div class="form-group full">
-        <label for="tagline">Website Tagline</label>
-        <input type="text" id="tagline" value="Fast, Reliable and Secure Delivery">
-      </div>
-
+  <header class="topbar">
+    <div>
+      <h1>Website Control Center</h1>
+      <p>ExpressLine Website Editor</p>
     </div>
 
-    <div class="subheading">Website Logo</div>
+    <a href="admin.html" class="dashboard-link">
+      ← Admin Dashboard
+    </a>
+  </header>
 
-    <div class="upload-box">
-      <strong>Upload Website Logo</strong>
-      <span>Choose the logo image you want displayed on the website.</span>
+  <main class="container">
 
-      <input type="file" id="logoUpload" accept="image/*">
-
-      <div class="preview" id="logoPreview">
-        <img id="logoPreviewImage" alt="Logo preview">
-      </div>
+    <div class="notice">
+      <strong>Website Control Center</strong><br>
+      Use this page to manage your website identity, homepage content,
+      images, colors, navigation, services, contact information,
+      customer support, SEO and footer information.
     </div>
 
-    <div class="subheading">Favicon</div>
-
-    <div class="upload-box">
-      <strong>Upload Website Favicon</strong>
-      <span>Choose the small icon displayed in the browser tab.</span>
-
-      <input type="file" id="faviconUpload" accept="image/*">
-
-      <div class="preview" id="faviconPreview">
-        <img id="faviconPreviewImage" alt="Favicon preview">
-      </div>
+    <div class="warning">
+      <strong>Important:</strong><br>
+      These settings are currently saved in this browser. Saving them here
+      does not automatically rewrite the HTML files on your website.
+      The public website pages must be connected to these settings for the
+      changes to appear website-wide.
     </div>
 
-    <div class="button-row">
-      <button class="button" onclick="saveIdentity()">Save Identity</button>
-    </div>
-  </div>
-
-
-  <!-- HEADER -->
-
-  <div class="section">
-    <h2>Header & Navigation</h2>
-    <p class="description">
-      Control the main website navigation and header buttons.
-    </p>
-
-    <div class="grid">
-
-      <div class="form-group">
-        <label for="homeLabel">Home Label</label>
-        <input type="text" id="homeLabel" value="Home">
+    <!-- COMPANY IDENTITY -->
+    <section class="section">
+      <div class="section-header">
+        <h2>🏢 Company Identity</h2>
+        <p>Control the main identity of the website.</p>
       </div>
 
-      <div class="form-group">
-        <label for="servicesLabel">Services Label</label>
-        <input type="text" id="servicesLabel" value="Services">
-      </div>
+      <div class="grid">
 
-      <div class="form-group">
-        <label for="trackLabel">Track Shipment Label</label>
-        <input type="text" id="trackLabel" value="Track Shipment">
-      </div>
-
-      <div class="form-group">
-        <label for="requestLabel">Request Shipment Label</label>
-        <input type="text" id="requestLabel" value="Request a Shipment">
-      </div>
-
-      <div class="form-group">
-        <label for="aboutLabel">About Us Label</label>
-        <input type="text" id="aboutLabel" value="About Us">
-      </div>
-
-      <div class="form-group">
-        <label for="contactLabel">Contact Label</label>
-        <input type="text" id="contactLabel" value="Contact">
-      </div>
-
-      <div class="form-group">
-        <label for="loginLabel">Login Button</label>
-        <input type="text" id="loginLabel" value="Login">
-      </div>
-
-      <div class="form-group">
-        <label for="registerLabel">Create Account Button</label>
-        <input type="text" id="registerLabel" value="Create Account">
-      </div>
-
-    </div>
-
-    <div class="subheading">Navigation Visibility</div>
-
-    <div class="checkbox-list">
-
-      <div class="checkbox-row">
-        <input type="checkbox" id="showHome" checked>
-        <label for="showHome">Show Home</label>
-      </div>
-
-      <div class="checkbox-row">
-        <input type="checkbox" id="showServices" checked>
-        <label for="showServices">Show Services</label>
-      </div>
-
-      <div class="checkbox-row">
-        <input type="checkbox" id="showTrack" checked>
-        <label for="showTrack">Show Track Shipment</label>
-      </div>
-
-      <div class="checkbox-row">
-        <input type="checkbox" id="showRequest" checked>
-        <label for="showRequest">Show Request Shipment</label>
-      </div>
-
-      <div class="checkbox-row">
-        <input type="checkbox" id="showAbout" checked>
-        <label for="showAbout">Show About Us</label>
-      </div>
-
-      <div class="checkbox-row">
-        <input type="checkbox" id="showContact" checked>
-        <label for="showContact">Show Contact</label>
-      </div>
-
-      <div class="checkbox-row">
-        <input type="checkbox" id="showLogin" checked>
-        <label for="showLogin">Show Login</label>
-      </div>
-
-      <div class="checkbox-row">
-        <input type="checkbox" id="showRegister" checked>
-        <label for="showRegister">Show Create Account</label>
-      </div>
-
-    </div>
-
-    <div class="button-row">
-      <button class="button" onclick="saveHeader()">Save Header Settings</button>
-    </div>
-  </div>
-
-
-  <!-- HOMEPAGE -->
-
-  <div class="section">
-    <h2>Homepage Content</h2>
-    <p class="description">
-      Control the main text, announcement and call-to-action content displayed on the homepage.
-    </p>
-
-    <div class="grid">
-
-      <div class="form-group full">
-        <label for="heroTitle">Hero Main Heading</label>
-        <input type="text" id="heroTitle" value="Fast, Reliable Delivery">
-      </div>
-
-      <div class="form-group full">
-        <label for="heroDescription">Hero Description</label>
-        <textarea id="heroDescription">Professional logistics and delivery services designed to move your shipments safely and efficiently.</textarea>
-      </div>
-
-      <div class="form-group">
-        <label for="heroButton">Hero Primary Button</label>
-        <input type="text" id="heroButton" value="Request a Shipment">
-      </div>
-
-      <div class="form-group">
-        <label for="heroSecondButton">Hero Secondary Button</label>
-        <input type="text" id="heroSecondButton" value="Track Shipment">
-      </div>
-
-      <div class="form-group full">
-        <label for="announcement">Announcement Bar Text</label>
-        <input type="text" id="announcement" value="Reliable delivery services for individuals and businesses.">
-      </div>
-
-    </div>
-
-    <div class="subheading">Homepage Hero Image</div>
-
-    <div class="upload-box">
-      <strong>Upload Homepage Hero Image</strong>
-      <span>Choose the main image shown in the homepage hero section.</span>
-
-      <input type="file" id="heroUpload" accept="image/*">
-
-      <div class="preview" id="heroPreview">
-        <img id="heroPreviewImage" alt="Homepage hero preview">
-      </div>
-    </div>
-
-    <div class="button-row">
-      <button class="button" onclick="saveHomepage()">Save Homepage</button>
-    </div>
-  </div>
-
-
-  <!-- WEBSITE IMAGE MANAGER -->
-
-  <div class="section">
-    <h2>Website Image Manager</h2>
-    <p class="description">
-      Manually upload images that can be used throughout your website.
-    </p>
-
-    <div class="image-manager">
-
-      <div class="image-card">
-        <h3>About Us Image</h3>
-        <p>Image for the About Us page or section.</p>
-        <input type="file" id="aboutImageUpload" accept="image/*">
-        <div class="preview" id="aboutImagePreview">
-          <img id="aboutImagePreviewImage" alt="About image preview">
+        <div class="form-group">
+          <label>Company Name</label>
+          <input id="companyName" type="text" value="ExpressLine Delivery Services">
         </div>
-      </div>
 
-      <div class="image-card">
-        <h3>Services Image</h3>
-        <p>Image for services and logistics offerings.</p>
-        <input type="file" id="servicesImageUpload" accept="image/*">
-        <div class="preview" id="servicesImagePreview">
-          <img id="servicesImagePreviewImage" alt="Services image preview">
+        <div class="form-group">
+          <label>Short Company Name</label>
+          <input id="shortName" type="text" value="ExpressLine">
         </div>
-      </div>
 
-      <div class="image-card">
-        <h3>Promotional Banner</h3>
-        <p>Image for promotional banners or campaigns.</p>
-        <input type="file" id="bannerImageUpload" accept="image/*">
-        <div class="preview" id="bannerImagePreview">
-          <img id="bannerImagePreviewImage" alt="Banner preview">
+        <div class="form-group full">
+          <label>Company Tagline</label>
+          <input id="tagline" type="text" value="Fast. Reliable. Delivered.">
         </div>
-      </div>
 
-      <div class="image-card">
-        <h3>Contact Page Image</h3>
-        <p>Image for your Contact page.</p>
-        <input type="file" id="contactImageUpload" accept="image/*">
-        <div class="preview" id="contactImagePreview">
-          <img id="contactImagePreviewImage" alt="Contact image preview">
+        <div class="form-group">
+          <label>Logo URL</label>
+          <input id="logoUrl" type="text" placeholder="https://example.com/logo.png">
+          <span class="help">Enter the URL of the logo image.</span>
         </div>
-      </div>
 
-      <div class="image-card">
-        <h3>Support Page Image</h3>
-        <p>Image for Customer Support.</p>
-        <input type="file" id="supportImageUpload" accept="image/*">
-        <div class="preview" id="supportImagePreview">
-          <img id="supportImagePreviewImage" alt="Support image preview">
+        <div class="form-group">
+          <label>Favicon URL</label>
+          <input id="faviconUrl" type="text" placeholder="https://example.com/favicon.png">
         </div>
+
+      </div>
+    </section>
+
+    <!-- WEBSITE GENERAL -->
+    <section class="section">
+      <div class="section-header">
+        <h2>🌐 Website General Settings</h2>
+        <p>Control the website title, description and general behavior.</p>
       </div>
 
-      <div class="image-card">
-        <h3>Other Website Image</h3>
-        <p>Upload another image for future website use.</p>
-        <input type="file" id="otherImageUpload" accept="image/*">
-        <div class="preview" id="otherImagePreview">
-          <img id="otherImagePreviewImage" alt="Other website image preview">
+      <div class="grid">
+
+        <div class="form-group">
+          <label>Website Title</label>
+          <input id="websiteTitle" type="text" value="ExpressLine Delivery Services">
         </div>
+
+        <div class="form-group">
+          <label>Website Status</label>
+          <select id="websiteStatus">
+            <option value="online">Online</option>
+            <option value="maintenance">Maintenance Mode</option>
+          </select>
+        </div>
+
+        <div class="form-group full">
+          <label>Website Description</label>
+          <textarea id="websiteDescription">Professional logistics and delivery services for individuals and businesses.</textarea>
+        </div>
+
+        <div class="form-group">
+          <label>Announcement Bar Text</label>
+          <input id="announcementText" type="text" placeholder="Enter announcement">
+        </div>
+
+        <div class="form-group">
+          <label>Announcement Bar</label>
+
+          <div class="check-row">
+            <input type="checkbox" id="announcementEnabled">
+            <label for="announcementEnabled">Show announcement bar</label>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- HEADER -->
+    <section class="section">
+      <div class="section-header">
+        <h2>🧭 Header & Navigation</h2>
+        <p>Control the public website header and navigation labels.</p>
       </div>
 
-    </div>
+      <div class="grid">
 
-    <div class="button-row">
-      <button class="button" onclick="saveWebsiteImages()">Save Website Images</button>
-    </div>
-  </div>
+        <div class="form-group">
+          <label>Home Label</label>
+          <input id="navHome" type="text" value="Home">
+        </div>
 
+        <div class="form-group">
+          <label>Services Label</label>
+          <input id="navServices" type="text" value="Services">
+        </div>
 
-  <!-- SHIPMENT IMAGE MANAGER -->
+        <div class="form-group">
+          <label>Track Shipment Label</label>
+          <input id="navTrack" type="text" value="Track Shipment">
+        </div>
 
-  <div class="section">
-    <h2>Shipment Image Manager</h2>
-    <p class="description">
-      Upload the actual product, parcel, envelope, pallet, container or freight image belonging to a shipment.
-    </p>
+        <div class="form-group">
+          <label>Request Shipment Label</label>
+          <input id="navRequest" type="text" value="Request a Shipment">
+        </div>
 
-    <div class="grid">
+        <div class="form-group">
+          <label>About Label</label>
+          <input id="navAbout" type="text" value="About Us">
+        </div>
 
-      <div class="form-group">
-        <label for="shipmentTrackingNumber">Shipment Tracking Number</label>
-        <input
-          type="text"
-          id="shipmentTrackingNumber"
-          placeholder="Example: EXP-10284"
-        >
+        <div class="form-group">
+          <label>Contact Label</label>
+          <input id="navContact" type="text" value="Contact">
+        </div>
+
+        <div class="form-group">
+          <label>Login Label</label>
+          <input id="navLogin" type="text" value="Login">
+        </div>
+
+        <div class="form-group">
+          <label>Create Account Label</label>
+          <input id="navRegister" type="text" value="Create Account">
+        </div>
+
+      </div>
+    </section>
+
+    <!-- HOMEPAGE -->
+    <section class="section">
+      <div class="section-header">
+        <h2>🏠 Homepage Content</h2>
+        <p>Control the main homepage messaging.</p>
       </div>
 
-      <div class="form-group">
-        <label for="shipmentImageUpload">Upload Shipment Image</label>
-        <input type="file" id="shipmentImageUpload" accept="image/*">
+      <div class="grid">
+
+        <div class="form-group full">
+          <label>Hero Heading</label>
+          <input id="heroHeading" type="text" value="Reliable Delivery. Wherever You Need It.">
+        </div>
+
+        <div class="form-group full">
+          <label>Hero Description</label>
+          <textarea id="heroDescription">Professional delivery and logistics solutions designed for individuals and businesses.</textarea>
+        </div>
+
+        <div class="form-group">
+          <label>Primary Button Text</label>
+          <input id="heroPrimaryButton" type="text" value="Request a Shipment">
+        </div>
+
+        <div class="form-group">
+          <label>Secondary Button Text</label>
+          <input id="heroSecondaryButton" type="text" value="Track Shipment">
+        </div>
+
+        <div class="form-group full">
+          <label>Hero Image URL</label>
+          <input id="heroImage" type="text" placeholder="https://example.com/hero.jpg">
+        </div>
+
+      </div>
+    </section>
+
+    <!-- IMAGES -->
+    <section class="section">
+      <div class="section-header">
+        <h2>🖼️ Website Images</h2>
+        <p>Set the image sources used by different website sections.</p>
       </div>
 
-    </div>
+      <div class="grid">
 
-    <div class="upload-box">
-      <strong>Shipment / Product Photo</strong>
+        <div class="form-group">
+          <label>Services Image</label>
+          <input id="servicesImage" type="text" placeholder="Image URL">
+        </div>
+
+        <div class="form-group">
+          <label>Business Solutions Image</label>
+          <input id="businessImage" type="text" placeholder="Image URL">
+        </div>
+
+        <div class="form-group">
+          <label>About Page Image</label>
+          <input id="aboutImage" type="text" placeholder="Image URL">
+        </div>
+
+        <div class="form-group">
+          <label>Contact Page Image</label>
+          <input id="contactImage" type="text" placeholder="Image URL">
+        </div>
+
+        <div class="form-group full">
+          <label>Default Website Background Image</label>
+          <input id="backgroundImage" type="text" placeholder="Image URL">
+        </div>
+
+      </div>
+    </section>
+
+    <!-- COLORS -->
+    <section class="section">
+      <div class="section-header">
+        <h2>🎨 Colors & Branding</h2>
+        <p>Control the main colors used throughout the website.</p>
+      </div>
+
+      <div class="grid">
+
+        <div class="form-group">
+          <label>Primary Brand Color</label>
+
+          <div class="color-row">
+            <input id="primaryColor" type="color" value="#2563eb">
+            <input id="primaryColorText" type="text" value="#2563eb">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Secondary Brand Color</label>
+
+          <div class="color-row">
+            <input id="secondaryColor" type="color" value="#111827">
+            <input id="secondaryColorText" type="text" value="#111827">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Accent Color</label>
+
+          <div class="color-row">
+            <input id="accentColor" type="color" value="#22c55e">
+            <input id="accentColorText" type="text" value="#22c55e">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Text Color</label>
+
+          <div class="color-row">
+            <input id="textColor" type="color" value="#172033">
+            <input id="textColorText" type="text" value="#172033">
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- TYPOGRAPHY -->
+    <section class="section">
+      <div class="section-header">
+        <h2>🔤 Typography</h2>
+        <p>Control the website's main font.</p>
+      </div>
+
+      <div class="grid">
+
+        <div class="form-group">
+          <label>Website Font</label>
+
+          <select id="fontFamily">
+            <option value="Arial, sans-serif">Arial</option>
+            <option value="Verdana, sans-serif">Verdana</option>
+            <option value="Georgia, serif">Georgia</option>
+            <option value="Tahoma, sans-serif">Tahoma</option>
+            <option value="Trebuchet MS, sans-serif">Trebuchet MS</option>
+            <option value="Courier New, monospace">Courier New</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>Base Font Size</label>
+
+          <select id="fontSize">
+            <option value="14px">Small</option>
+            <option value="16px" selected>Normal</option>
+            <option value="18px">Large</option>
+          </select>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- SERVICES -->
+    <section class="section">
+      <div class="section-header">
+        <h2>🛠️ Services</h2>
+        <p>Control the service content displayed on the website.</p>
+      </div>
+
+      <div class="grid">
+
+        <div class="form-group">
+          <label>Service 1 Name</label>
+          <input id="service1Name" type="text" value="Express Delivery">
+        </div>
+
+        <div class="form-group">
+          <label>Service 1 Description</label>
+          <textarea id="service1Description">Fast delivery for urgent shipments.</textarea>
+        </div>
+
+        <div class="form-group">
+          <label>Service 2 Name</label>
+          <input id="service2Name" type="text" value="Business Logistics">
+        </div>
+
+        <div class="form-group">
+          <label>Service 2 Description</label>
+          <textarea id="service2Description">Reliable logistics solutions for businesses.</textarea>
+        </div>
+
+        <div class="form-group">
+          <label>Service 3 Name</label>
+          <input id="service3Name" type="text" value="International Shipping">
+        </div>
+
+        <div class="form-group">
+          <label>Service 3 Description</label>
+          <textarea id="service3Description">Shipping solutions for destinations worldwide.</textarea>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="section">
+      <div class="section-header">
+        <h2>📞 Contact Information</h2>
+        <p>Control the contact details displayed to customers.</p>
+      </div>
+
+      <div class="grid">
+
+        <div class="form-group">
+          <label>Contact Email</label>
+          <input id="contactEmail" type="email" value="info@example.com">
+        </div>
+
+        <div class="form-group">
+          <label>Contact Phone</label>
+          <input id="contactPhone" type="tel" value="+1 555 0100">
+        </div>
+
+        <div class="form-group">
+          <label>WhatsApp Number</label>
+          <input id="whatsappNumber" type="text" placeholder="Country code + number">
+        </div>
+
+        <div class="form-group">
+          <label>Business Address</label>
+          <input id="businessAddress" type="text" value="Newark, NJ">
+        </div>
+
+        <div class="form-group full">
+          <label>Business Hours</label>
+          <input id="businessHours" type="text" value="Monday - Friday, 8:00 AM - 6:00 PM">
+        </div>
+
+      </div>
+    </section>
+
+    <!-- CUSTOMER SUPPORT -->
+    <section class="section">
+      <div class="section-header">
+        <h2>💬 Customer Support</h2>
+        <p>Control the support information customers see.</p>
+      </div>
+
+      <div class="grid">
+
+        <div class="form-group">
+          <label>Support Email</label>
+          <input id="supportEmail" type="email" value="support@example.com">
+        </div>
+
+        <div class="form-group">
+          <label>Support Phone</label>
+          <input id="supportPhone" type="tel" value="+1 555 0100">
+        </div>
+
+        <div class="form-group full">
+          <label>Support Message</label>
+          <textarea id="supportMessage">Our customer support team is available to help with shipments, deliveries and account questions.</textarea>
+        </div>
+
+        <div class="form-group">
+          <label>Live Chat</label>
+
+          <select id="liveChat">
+            <option value="enabled">Enabled</option>
+            <option value="disabled">Disabled</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>Support Hours</label>
+          <input id="supportHours" type="text" value="Monday - Friday, 8:00 AM - 6:00 PM">
+        </div>
+
+      </div>
+    </section>
+
+    <!-- SEO -->
+    <section class="section">
+      <div class="section-header">
+        <h2>🔎 SEO Settings</h2>
+        <p>Control search engine information for the website.</p>
+      </div>
+
+      <div class="grid">
+
+        <div class="form-group full">
+          <label>SEO Title</label>
+          <input id="seoTitle" type="text" value="ExpressLine Delivery Services">
+        </div>
+
+        <div class="form-group full">
+          <label>SEO Description</label>
+          <textarea id="seoDescription">Fast and reliable delivery and logistics services.</textarea>
+        </div>
+
+        <div class="form-group full">
+          <label>SEO Keywords</label>
+          <input id="seoKeywords" type="text" value="delivery, logistics, shipping, courier">
+        </div>
+
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <section class="section">
+      <div class="section-header">
+        <h2>🦶 Footer</h2>
+        <p>Control the footer content and copyright information.</p>
+      </div>
+
+      <div class="grid">
+
+        <div class="form-group full">
+          <label>Footer Text</label>
+          <textarea id="footerText">ExpressLine Delivery Services provides professional logistics and delivery solutions.</textarea>
+        </div>
+
+        <div class="form-group">
+          <label>Copyright Text</label>
+          <input id="copyrightText" type="text" value="© 2026 ExpressLine Delivery Services. All rights reserved.">
+        </div>
+
+        <div class="form-group">
+          <label>Privacy Policy URL</label>
+          <input id="privacyUrl" type="text" placeholder="https://example.com/privacy">
+        </div>
+
+        <div class="form-group">
+          <label>Terms & Conditions URL</label>
+          <input id="termsUrl" type="text" placeholder="https://example.com/terms">
+        </div>
+
+      </div>
+    </section>
+
+    <!-- SAVE -->
+    <div class="save-bar">
+
       <span>
-        Upload the image that should be associated with this shipment.
+        Save your website settings before leaving this page.
       </span>
 
-      <div class="preview" id="shipmentImagePreview">
-        <img id="shipmentImagePreviewImage" alt="Shipment image preview">
-      </div>
-    </div>
+      <div class="button-row">
 
-    <div class="button-row">
-      <button class="button success" onclick="saveShipmentImage()">
-        Save Shipment Image
-      </button>
-    </div>
-  </div>
-
-
-  <!-- COLORS -->
-
-  <div class="section">
-    <h2>Colors & Appearance</h2>
-    <p class="description">
-      Control the main colors used throughout the website.
-    </p>
-
-    <div class="grid">
-
-      <div class="form-group">
-        <label>Primary Website Color</label>
-        <div class="color-row">
-          <input type="color" id="primaryColor" value="#111827">
-          <input type="text" id="primaryColorText" value="#111827">
-        </div>
-      </div>
-
-      <div class="form-group">
-        <label>Accent Color</label>
-        <div class="color-row">
-          <input type="color" id="accentColor" value="#2563eb">
-          <input type="text" id="accentColorText" value="#2563eb">
-        </div>
-      </div>
-
-      <div class="form-group">
-        <label>Website Background</label>
-        <div class="color-row">
-          <input type="color" id="backgroundColor" value="#f3f6f9">
-          <input type="text" id="backgroundColorText" value="#f3f6f9">
-        </div>
-      </div>
-
-      <div class="form-group">
-        <label>Text Color</label>
-        <div class="color-row">
-          <input type="color" id="textColor" value="#172033">
-          <input type="text" id="textColorText" value="#172033">
-        </div>
-      </div>
-
-    </div>
-
-    <div class="subheading">Button Appearance</div>
-
-    <div class="form-group">
-      <label for="buttonRadius">Button Corner Radius</label>
-
-      <div class="range-row">
-        <input
-          type="range"
-          id="buttonRadius"
-          min="0"
-          max="30"
-          value="8"
+        <button
+          type="button"
+          class="secondary"
+          onclick="loadSettings()"
         >
+          Reset
+        </button>
 
-        <span class="range-value" id="buttonRadiusValue">8px</span>
-      </div>
-    </div>
-
-    <div class="button-row">
-      <button class="button" onclick="saveAppearance()">
-        Save Appearance
-      </button>
-    </div>
-  </div>
-
-
-  <!-- TYPOGRAPHY -->
-
-  <div class="section">
-    <h2>Typography</h2>
-    <p class="description">
-      Control the general font and text sizing of the website.
-    </p>
-
-    <div class="grid">
-
-      <div class="form-group">
-        <label for="fontFamily">Website Font</label>
-
-        <select id="fontFamily">
-          <option value="Arial">Arial</option>
-          <option value="Helvetica">Helvetica</option>
-          <option value="Georgia">Georgia</option>
-          <option value="Verdana">Verdana</option>
-          <option value="Trebuchet MS">Trebuchet MS</option>
-          <option value="Times New Roman">Times New Roman</option>
-        </select>
-      </div>
-
-      <div class="form-group">
-        <label for="fontSize">Base Font Size</label>
-
-        <select id="fontSize">
-          <option value="14px">14px</option>
-          <option value="15px" selected>15px</option>
-          <option value="16px">16px</option>
-          <option value="17px">17px</option>
-          <option value="18px">18px</option>
-        </select>
-      </div>
-
-    </div>
-
-    <div class="button-row">
-      <button class="button" onclick="saveTypography()">
-        Save Typography
-      </button>
-    </div>
-  </div>
-
-
-  <!-- CONTACT -->
-
-  <div class="section">
-    <h2>Contact & Customer Support</h2>
-    <p class="description">
-      Manage the contact information shown to customers.
-    </p>
-
-    <div class="grid">
-
-      <div class="form-group">
-        <label for="contactEmail">Contact Email</label>
-        <input type="email" id="contactEmail" value="info@example.com">
-      </div>
-
-      <div class="form-group">
-        <label for="supportEmail">Customer Support Email</label>
-        <input type="email" id="supportEmail" value="support@example.com">
-      </div>
-
-      <div class="form-group">
-        <label for="contactPhone">Contact Phone</label>
-        <input type="tel" id="contactPhone" value="+1 000 000 0000">
-      </div>
-
-      <div class="form-group">
-        <label for="supportPhone">Customer Support Phone</label>
-        <input type="tel" id="supportPhone" value="+1 000 000 0000">
-      </div>
-
-      <div class="form-group full">
-        <label for="companyAddress">Company Address</label>
-        <textarea id="companyAddress">Newark, NJ</textarea>
-      </div>
-
-      <div class="form-group full">
-        <label for="supportMessage">Customer Support Welcome Message</label>
-        <textarea id="supportMessage">How can we help you today?</textarea>
-      </div>
-
-    </div>
-
-    <div class="button-row">
-      <button class="button" onclick="saveContact()">
-        Save Contact & Support
-      </button>
-    </div>
-  </div>
-
-
-  <!-- FOOTER -->
-
-  <div class="section">
-    <h2>Footer</h2>
-    <p class="description">
-      Control the information displayed at the bottom of the website.
-    </p>
-
-    <div class="grid">
-
-      <div class="form-group full">
-        <label for="footerDescription">Footer Description</label>
-        <textarea id="footerDescription">ExpressLine Delivery Services provides professional logistics and delivery solutions.</textarea>
-      </div>
-
-      <div class="form-group">
-        <label for="copyrightText">Copyright Text</label>
-        <input
-          type="text"
-          id="copyrightText"
-          value="© 2026 ExpressLine Delivery Services. All rights reserved."
+        <button
+          type="button"
+          class="danger"
+          onclick="clearSettings()"
         >
-      </div>
+          Clear Settings
+        </button>
 
-      <div class="form-group">
-        <label for="footerEmail">Footer Email</label>
-        <input
-          type="email"
-          id="footerEmail"
-          value="info@example.com"
+        <button
+          type="button"
+          onclick="saveSettings()"
         >
+          Save Website Settings
+        </button>
+
       </div>
 
     </div>
 
-    <div class="button-row">
-      <button class="button" onclick="saveFooter()">
-        Save Footer
-      </button>
-    </div>
-  </div>
-
-
-  <!-- SEO -->
-
-  <div class="section">
-    <h2>SEO & Browser Settings</h2>
-    <p class="description">
-      Manage basic search-engine and browser information.
-    </p>
-
-    <div class="grid">
-
-      <div class="form-group full">
-        <label for="metaDescription">Meta Description</label>
-        <textarea id="metaDescription">ExpressLine Delivery Services provides reliable logistics, shipment tracking and delivery services.</textarea>
-      </div>
-
-      <div class="form-group full">
-        <label for="metaKeywords">Meta Keywords</label>
-        <input
-          type="text"
-          id="metaKeywords"
-          value="logistics, delivery, shipping, shipment tracking, courier, freight"
-        >
-      </div>
-
+    <div id="statusMessage" class="status">
+      Website settings saved successfully.
     </div>
 
-    <div class="button-row">
-      <button class="button" onclick="saveSEO()">
-        Save SEO Settings
-      </button>
-    </div>
-  </div>
+  </main>
 
+  <script>
 
-  <!-- WEBSITE BEHAVIOR -->
-
-  <div class="section">
-    <h2>Website Behavior</h2>
-    <p class="description">
-      Control general website behavior.
-    </p>
-
-    <div class="checkbox-list">
-
-      <div class="checkbox-row">
-        <input type="checkbox" id="enableTracking" checked>
-        <label for="enableTracking">Enable Shipment Tracking</label>
-      </div>
-
-      <div class="checkbox-row">
-        <input type="checkbox" id="enableRequests" checked>
-        <label for="enableRequests">Allow Shipment Requests</label>
-      </div>
-
-      <div class="checkbox-row">
-        <input type="checkbox" id="enableAccounts" checked>
-        <label for="enableAccounts">Allow Customer Accounts</label>
-      </div>
-
-      <div class="checkbox-row">
-        <input type="checkbox" id="maintenanceMode">
-        <label for="maintenanceMode">Maintenance Mode</label>
-      </div>
-
-    </div>
-
-    <div class="button-row">
-      <button class="button" onclick="saveBehavior()">
-        Save Website Behavior
-      </button>
-    </div>
-  </div>
-
-
-  <!-- FINAL ACTIONS -->
-
-  <div class="footer-actions">
-
-    <div>
-      <strong>Website Control Center</strong>
-      <p>Save your settings or restore the default configuration.</p>
-    </div>
-
-    <div class="button-row">
-      <button class="button success" onclick="saveAll()">
-        Save All Settings
-      </button>
-
-      <button class="button secondary" onclick="previewWebsite()">
-        Preview Website
-      </button>
-
-      <button class="button danger" onclick="resetSettings()">
-        Reset Settings
-      </button>
-
-      <button class="button secondary" onclick="logoutAdmin()">
-        Log Out
-      </button>
-    </div>
-
-  </div>
-
-</div>
-
-
-<script>
-
-  /*
-   * EXPRESSLINE WEBSITE CONTROL CENTER
-   */
-
-  const STORAGE_KEY = "expresslineWebsiteSettings";
-
-  function showStatus(message) {
-    const box = document.getElementById("statusBox");
-
-    box.textContent = message;
-    box.style.display = "block";
-
-    setTimeout(function() {
-      box.style.display = "none";
-    }, 3000);
-  }
-
-
-  function getSettings() {
-
-    return {
-
-      identity: {
-        siteName: document.getElementById("siteName").value,
-        siteTitle: document.getElementById("siteTitle").value,
-        tagline: document.getElementById("tagline").value
-      },
-
-      header: {
-        homeLabel: document.getElementById("homeLabel").value,
-        servicesLabel: document.getElementById("servicesLabel").value,
-        trackLabel: document.getElementById("trackLabel").value,
-        requestLabel: document.getElementById("requestLabel").value,
-        aboutLabel: document.getElementById("aboutLabel").value,
-        contactLabel: document.getElementById("contactLabel").value,
-        loginLabel: document.getElementById("loginLabel").value,
-        registerLabel: document.getElementById("registerLabel").value,
-
-        showHome: document.getElementById("showHome").checked,
-        showServices: document.getElementById("showServices").checked,
-        showTrack: document.getElementById("showTrack").checked,
-        showRequest: document.getElementById("showRequest").checked,
-        showAbout: document.getElementById("showAbout").checked,
-        showContact: document.getElementById("showContact").checked,
-        showLogin: document.getElementById("showLogin").checked,
-        showRegister: document.getElementById("showRegister").checked
-      },
-
-      homepage: {
-        heroTitle: document.getElementById("heroTitle").value,
-        heroDescription: document.getElementById("heroDescription").value,
-        heroButton: document.getElementById("heroButton").value,
-        heroSecondButton: document.getElementById("heroSecondButton").value,
-        announcement: document.getElementById("announcement").value
-      },
-
-      appearance: {
-        primaryColor: document.getElementById("primaryColor").value,
-        accentColor: document.getElementById("accentColor").value,
-        backgroundColor: document.getElementById("backgroundColor").value,
-        textColor: document.getElementById("textColor").value,
-        buttonRadius: document.getElementById("buttonRadius").value
-      },
-
-      typography: {
-        fontFamily: document.getElementById("fontFamily").value,
-        fontSize: document.getElementById("fontSize").value
-      },
-
-      contact: {
-        contactEmail: document.getElementById("contactEmail").value,
-        supportEmail: document.getElementById("supportEmail").value,
-        contactPhone: document.getElementById("contactPhone").value,
-        supportPhone: document.getElementById("supportPhone").value,
-        companyAddress: document.getElementById("companyAddress").value,
-        supportMessage: document.getElementById("supportMessage").value
-      },
-
-      footer: {
-        footerDescription: document.getElementById("footerDescription").value,
-        copyrightText: document.getElementById("copyrightText").value,
-        footerEmail: document.getElementById("footerEmail").value
-      },
-
-      seo: {
-        metaDescription: document.getElementById("metaDescription").value,
-        metaKeywords: document.getElementById("metaKeywords").value
-      },
-
-      behavior: {
-        enableTracking: document.getElementById("enableTracking").checked,
-        enableRequests: document.getElementById("enableRequests").checked,
-        enableAccounts: document.getElementById("enableAccounts").checked,
-        maintenanceMode: document.getElementById("maintenanceMode").checked
-      }
-
-    };
-
-  }
-
-
-  function saveAll() {
-
-    const settings = getSettings();
-
-    localStorage.setItem(
-      STORAGE_KEY,
-      JSON.stringify(settings)
-    );
-
-    showStatus("All website settings saved successfully.");
-
-  }
-
-
-  function saveIdentity() {
-    saveAll();
-    showStatus("Website identity saved.");
-  }
-
-
-  function saveHeader() {
-    saveAll();
-    showStatus("Header settings saved.");
-  }
-
-
-  function saveHomepage() {
-    saveAll();
-    showStatus("Homepage settings saved.");
-  }
-
-
-  function saveWebsiteImages() {
-
-    saveAll();
-
-    showStatus("Website image settings saved.");
-
-  }
-
-
-  function saveShipmentImage() {
-
-    const trackingNumber =
-      document.getElementById("shipmentTrackingNumber").value.trim();
-
-    if (!trackingNumber) {
-
-      alert("Please enter the shipment tracking number.");
-
-      return;
-
+    /* ADMIN ACCESS PROTECTION */
+    if (localStorage.getItem("adminLoggedIn") !== "true") {
+      window.location.replace("admin-login.html");
     }
 
-    const file =
-      document.getElementById("shipmentImageUpload").files[0];
+    const STORAGE_KEY = "expresslineWebsiteSettings";
 
-    if (!file) {
+    const fields = [
 
-      alert("Please choose a shipment image.");
+      "companyName",
+      "shortName",
+      "tagline",
+      "logoUrl",
+      "faviconUrl",
 
-      return;
+      "websiteTitle",
+      "websiteStatus",
+      "websiteDescription",
+      "announcementText",
+      "announcementEnabled",
 
-    }
+      "navHome",
+      "navServices",
+      "navTrack",
+      "navRequest",
+      "navAbout",
+      "navContact",
+      "navLogin",
+      "navRegister",
 
-    const reader = new FileReader();
+      "heroHeading",
+      "heroDescription",
+      "heroPrimaryButton",
+      "heroSecondaryButton",
+      "heroImage",
 
-    reader.onload = function(event) {
+      "servicesImage",
+      "businessImage",
+      "aboutImage",
+      "contactImage",
+      "backgroundImage",
 
-      const shipmentImages =
-        JSON.parse(
-          localStorage.getItem("expresslineShipmentImages") || "{}"
-        );
+      "primaryColor",
+      "primaryColorText",
+      "secondaryColor",
+      "secondaryColorText",
+      "accentColor",
+      "accentColorText",
+      "textColor",
+      "textColorText",
 
-      shipmentImages[trackingNumber] = event.target.result;
+      "fontFamily",
+      "fontSize",
+
+      "service1Name",
+      "service1Description",
+      "service2Name",
+      "service2Description",
+      "service3Name",
+      "service3Description",
+
+      "contactEmail",
+      "contactPhone",
+      "whatsappNumber",
+      "businessAddress",
+      "businessHours",
+
+      "supportEmail",
+      "supportPhone",
+      "supportMessage",
+      "liveChat",
+      "supportHours",
+
+      "seoTitle",
+      "seoDescription",
+      "seoKeywords",
+
+      "footerText",
+      "copyrightText",
+      "privacyUrl",
+      "termsUrl"
+
+    ];
+
+    function saveSettings() {
+
+      const settings = {};
+
+      fields.forEach(id => {
+
+        const element = document.getElementById(id);
+
+        if (!element) return;
+
+        if (element.type === "checkbox") {
+
+          settings[id] = element.checked;
+
+        } else {
+
+          settings[id] = element.value;
+
+        }
+
+      });
 
       localStorage.setItem(
-        "expresslineShipmentImages",
-        JSON.stringify(shipmentImages)
+        STORAGE_KEY,
+        JSON.stringify(settings)
       );
 
-      showStatus(
-        "Shipment image saved for " + trackingNumber + "."
-      );
+      const status =
+        document.getElementById("statusMessage");
 
-    };
+      status.style.display = "block";
 
-    reader.readAsDataURL(file);
+      setTimeout(() => {
 
-  }
+        status.style.display = "none";
 
-
-  function saveAppearance() {
-    saveAll();
-    showStatus("Appearance settings saved.");
-  }
-
-
-  function saveTypography() {
-    saveAll();
-    showStatus("Typography settings saved.");
-  }
-
-
-  function saveContact() {
-    saveAll();
-    showStatus("Contact and support settings saved.");
-  }
-
-
-  function saveFooter() {
-    saveAll();
-    showStatus("Footer settings saved.");
-  }
-
-
-  function saveSEO() {
-    saveAll();
-    showStatus("SEO settings saved.");
-  }
-
-
-  function saveBehavior() {
-    saveAll();
-    showStatus("Website behavior settings saved.");
-  }
-
-
-  function previewWebsite() {
-
-    window.open("index.html", "_blank");
-
-  }
-
-
-  function resetSettings() {
-
-    const confirmed =
-      confirm(
-        "Are you sure you want to reset the website settings?"
-      );
-
-    if (!confirmed) {
-      return;
+      }, 3000);
     }
 
-    localStorage.removeItem(STORAGE_KEY);
+    function loadSettings() {
 
-    location.reload();
+      const saved =
+        localStorage.getItem(STORAGE_KEY);
 
-  }
+      if (!saved) return;
 
+      let settings;
 
-  function logoutAdmin() {
+      try {
 
-    localStorage.removeItem("adminLoggedIn");
+        settings = JSON.parse(saved);
 
-    window.location.href = "admin-login.html";
+      } catch (error) {
 
-  }
+        console.error(
+          "Invalid website settings:",
+          error
+        );
 
-
-  function setupImagePreview(inputId, previewId, imageId) {
-
-    const input = document.getElementById(inputId);
-    const preview = document.getElementById(previewId);
-    const image = document.getElementById(imageId);
-
-    if (!input) {
-      return;
-    }
-
-    input.addEventListener("change", function() {
-
-      const file = input.files[0];
-
-      if (!file) {
         return;
       }
 
-      const reader = new FileReader();
+      fields.forEach(id => {
 
-      reader.onload = function(event) {
+        const element =
+          document.getElementById(id);
 
-        image.src = event.target.result;
-        preview.style.display = "block";
+        if (
+          !element ||
+          !(id in settings)
+        ) {
+          return;
+        }
 
-      };
+        if (element.type === "checkbox") {
 
-      reader.readAsDataURL(file);
+          element.checked =
+            Boolean(settings[id]);
 
-    });
+        } else {
 
-  }
+          element.value =
+            settings[id];
 
+        }
 
-  function setupColorPicker(colorId, textId) {
+      });
 
-    const color =
-      document.getElementById(colorId);
-
-    const text =
-      document.getElementById(textId);
-
-    color.addEventListener("input", function() {
-      text.value = color.value;
-    });
-
-    text.addEventListener("input", function() {
-
-      if (/^#[0-9A-Fa-f]{6}$/.test(text.value)) {
-        color.value = text.value;
-      }
-
-    });
-
-  }
-
-
-  function loadSettings() {
-
-    const saved =
-      localStorage.getItem(STORAGE_KEY);
-
-    if (!saved) {
-      return;
+      syncColorFields();
     }
 
-    try {
+    function clearSettings() {
 
-      const settings = JSON.parse(saved);
-
-      if (settings.identity) {
-
-        document.getElementById("siteName").value =
-          settings.identity.siteName || "";
-
-        document.getElementById("siteTitle").value =
-          settings.identity.siteTitle || "";
-
-        document.getElementById("tagline").value =
-          settings.identity.tagline || "";
-
-      }
-
-
-      if (settings.header) {
-
-        const h = settings.header;
-
-        document.getElementById("homeLabel").value =
-          h.homeLabel || "Home";
-
-        document.getElementById("servicesLabel").value =
-          h.servicesLabel || "Services";
-
-        document.getElementById("trackLabel").value =
-          h.trackLabel || "Track Shipment";
-
-        document.getElementById("requestLabel").value =
-          h.requestLabel || "Request a Shipment";
-
-        document.getElementById("aboutLabel").value =
-          h.aboutLabel || "About Us";
-
-        document.getElementById("contactLabel").value =
-          h.contactLabel || "Contact";
-
-        document.getElementById("loginLabel").value =
-          h.loginLabel || "Login";
-
-        document.getElementById("registerLabel").value =
-          h.registerLabel || "Create Account";
-
-        document.getElementById("showHome").checked =
-          h.showHome !== false;
-
-        document.getElementById("showServices").checked =
-          h.showServices !== false;
-
-        document.getElementById("showTrack").checked =
-          h.showTrack !== false;
-
-        document.getElementById("showRequest").checked =
-          h.showRequest !== false;
-
-        document.getElementById("showAbout").checked =
-          h.showAbout !== false;
-
-        document.getElementById("showContact").checked =
-          h.showContact !== false;
-
-        document.getElementById("showLogin").checked =
-          h.showLogin !== false;
-
-        document.getElementById("showRegister").checked =
-          h.showRegister !== false;
-
-      }
-
-
-      if (settings.homepage) {
-
-        const p = settings.homepage;
-
-        document.getElementById("heroTitle").value =
-          p.heroTitle || "";
-
-        document.getElementById("heroDescription").value =
-          p.heroDescription || "";
-
-        document.getElementById("heroButton").value =
-          p.heroButton || "";
-
-        document.getElementById("heroSecondButton").value =
-          p.heroSecondButton || "";
-
-        document.getElementById("announcement").value =
-          p.announcement || "";
-
-      }
-
-
-      if (settings.appearance) {
-
-        const a = settings.appearance;
-
-        document.getElementById("primaryColor").value =
-          a.primaryColor || "#111827";
-
-        document.getElementById("primaryColorText").value =
-          a.primaryColor || "#111827";
-
-        document.getElementById("accentColor").value =
-          a.accentColor || "#2563eb";
-
-        document.getElementById("accentColorText").value =
-          a.accentColor || "#2563eb";
-
-        document.getElementById("backgroundColor").value =
-          a.backgroundColor || "#f3f6f9";
-
-        document.getElementById("backgroundColorText").value =
-          a.backgroundColor || "#f3f6f9";
-
-        document.getElementById("textColor").value =
-          a.textColor || "#172033";
-
-        document.getElementById("textColorText").value =
-          a.textColor || "#172033";
-
-        document.getElementById("buttonRadius").value =
-          a.buttonRadius || "8";
-
-        document.getElementById("buttonRadiusValue").textContent =
-          (a.buttonRadius || "8") + "px";
-
-      }
-
-
-      if (settings.typography) {
-
-        document.getElementById("fontFamily").value =
-          settings.typography.fontFamily || "Arial";
-
-        document.getElementById("fontSize").value =
-          settings.typography.fontSize || "15px";
-
-      }
-
-
-      if (settings.contact) {
-
-        const c = settings.contact;
-
-        document.getElementById("contactEmail").value =
-          c.contactEmail || "";
-
-        document.getElementById("supportEmail").value =
-          c.supportEmail || "";
-
-        document.getElementById("contactPhone").value =
-          c.contactPhone || "";
-
-        document.getElementById("supportPhone").value =
-          c.supportPhone || "";
-
-        document.getElementById("companyAddress").value =
-          c.companyAddress || "";
-
-        document.getElementById("supportMessage").value =
-          c.supportMessage || "";
-
-      }
-
-
-      if (settings.footer) {
-
-        const f = settings.footer;
-
-        document.getElementById("footerDescription").value =
-          f.footerDescription || "";
-
-        document.getElementById("copyrightText").value =
-          f.copyrightText || "";
-
-        document.getElementById("footerEmail").value =
-          f.footerEmail || "";
-
-      }
-
-
-      if (settings.seo) {
-
-        document.getElementById("metaDescription").value =
-          settings.seo.metaDescription || "";
-
-        document.getElementById("metaKeywords").value =
-          settings.seo.metaKeywords || "";
-
-      }
-
-
-      if (settings.behavior) {
-
-        document.getElementById("enableTracking").checked =
-          settings.behavior.enableTracking !== false;
-
-        document.getElementById("enableRequests").checked =
-          settings.behavior.enableRequests !== false;
-
-        document.getElementById("enableAccounts").checked =
-          settings.behavior.enableAccounts !== false;
-
-        document.getElementById("maintenanceMode").checked =
-          settings.behavior.maintenanceMode === true;
-
-      }
-
-    } catch (error) {
-
-      console.error(
-        "Could not load saved website settings.",
-        error
+      const confirmed = confirm(
+        "Are you sure you want to delete all saved website settings?"
       );
 
+      if (!confirmed) return;
+
+      localStorage.removeItem(STORAGE_KEY);
+
+      location.reload();
     }
 
-  }
+    function syncColorFields() {
 
+      const pairs = [
 
-  setupImagePreview(
-    "logoUpload",
-    "logoPreview",
-    "logoPreviewImage"
-  );
+        [
+          "primaryColor",
+          "primaryColorText"
+        ],
 
-  setupImagePreview(
-    "faviconUpload",
-    "faviconPreview",
-    "faviconPreviewImage"
-  );
+        [
+          "secondaryColor",
+          "secondaryColorText"
+        ],
 
-  setupImagePreview(
-    "heroUpload",
-    "heroPreview",
-    "heroPreviewImage"
-  );
+        [
+          "accentColor",
+          "accentColorText"
+        ],
 
-  setupImagePreview(
-    "aboutImageUpload",
-    "aboutImagePreview",
-    "aboutImagePreviewImage"
-  );
+        [
+          "textColor",
+          "textColorText"
+        ]
 
-  setupImagePreview(
-    "servicesImageUpload",
-    "servicesImagePreview",
-    "servicesImagePreviewImage"
-  );
+      ];
 
-  setupImagePreview(
-    "bannerImageUpload",
-    "bannerImagePreview",
-    "bannerImagePreviewImage"
-  );
+      pairs.forEach(
+        ([colorId, textId]) => {
 
-  setupImagePreview(
-    "contactImageUpload",
-    "contactImagePreview",
-    "contactImagePreviewImage"
-  );
+          const color =
+            document.getElementById(colorId);
 
-  setupImagePreview(
-    "supportImageUpload",
-    "supportImagePreview",
-    "supportImagePreviewImage"
-  );
+          const text =
+            document.getElementById(textId);
 
-  setupImagePreview(
-    "otherImageUpload",
-    "otherImagePreview",
-    "otherImagePreviewImage"
-  );
+          if (!color || !text) return;
 
-  setupImagePreview(
-    "shipmentImageUpload",
-    "shipmentImagePreview",
-    "shipmentImagePreviewImage"
-  );
+          color.oninput = () => {
 
+            text.value =
+              color.value;
 
-  setupColorPicker(
-    "primaryColor",
-    "primaryColorText"
-  );
+          };
 
-  setupColorPicker(
-    "accentColor",
-    "accentColorText"
-  );
+          text.oninput = () => {
 
-  setupColorPicker(
-    "backgroundColor",
-    "backgroundColorText"
-  );
+            const value =
+              text.value;
 
-  setupColorPicker(
-    "textColor",
-    "textColorText"
-  );
+            if (
+              /^#[0-9A-Fa-f]{6}$/.test(value)
+            ) {
 
+              color.value =
+                value;
 
-  document
-    .getElementById("buttonRadius")
-    .addEventListener("input", function() {
+            }
 
-      document.getElementById("buttonRadiusValue").textContent =
-        this.value + "px";
+          };
 
-    });
+        }
+      );
+    }
 
+    document.addEventListener(
+      "DOMContentLoaded",
+      () => {
 
-  loadSettings();
+        syncColorFields();
 
-</script>
+        loadSettings();
+
+      }
+    );
+
+  </script>
 
 </body>
 </html>
