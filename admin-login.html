@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Admin Login - ExpressLine Delivery Services</title>
 
     <style>
@@ -45,6 +46,7 @@
             display: block;
             margin-bottom: 7px;
             font-weight: bold;
+            color: #111827;
         }
 
         input {
@@ -75,6 +77,11 @@
 
         button:hover {
             background: #1d4ed8;
+        }
+
+        button:disabled {
+            background: #93c5fd;
+            cursor: not-allowed;
         }
 
         .error {
@@ -123,6 +130,7 @@
             type="email"
             id="email"
             placeholder="Enter admin email"
+            autocomplete="username"
             required
         >
 
@@ -132,10 +140,11 @@
             type="password"
             id="password"
             placeholder="Enter admin password"
+            autocomplete="current-password"
             required
         >
 
-        <button type="submit">
+        <button type="submit" id="loginButton">
             Login
         </button>
 
@@ -148,13 +157,31 @@
 </div>
 
 <script>
-    document.getElementById("adminLoginForm").addEventListener("submit", function(event) {
+    const adminLoginForm = document.getElementById("adminLoginForm");
+    const errorMessage = document.getElementById("errorMessage");
+    const loginButton = document.getElementById("loginButton");
+
+    /*
+        If the admin is already logged in,
+        do not show the login page again.
+    */
+    if (localStorage.getItem("adminLoggedIn") === "true") {
+        window.location.replace("admin.html");
+    }
+
+    adminLoginForm.addEventListener("submit", function(event) {
 
         event.preventDefault();
+
+        errorMessage.style.display = "none";
 
         const email = document.getElementById("email").value.trim();
         const password = document.getElementById("password").value;
 
+        /*
+            Current admin login credentials.
+            These can be changed later.
+        */
         const adminEmail = "admin@logistics.com";
         const adminPassword = "admin123";
 
@@ -162,11 +189,17 @@
 
             localStorage.setItem("adminLoggedIn", "true");
 
-            window.location.href = "admin.html";
+            loginButton.disabled = true;
+            loginButton.textContent = "Logging in...";
+
+            window.location.replace("admin.html");
 
         } else {
 
-            document.getElementById("errorMessage").style.display = "block";
+            errorMessage.style.display = "block";
+
+            document.getElementById("password").value = "";
+            document.getElementById("password").focus();
 
         }
 
