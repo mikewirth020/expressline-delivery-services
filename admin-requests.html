@@ -253,6 +253,7 @@
       background: #f8fafc;
       padding: 14px;
       border-radius: 8px;
+      word-break: break-word;
     }
 
     .details-box.full {
@@ -355,13 +356,6 @@
       </p>
     </div>
 
-    <!--
-      IMPORTANT:
-      This link goes ONLY to admin-shipments.html.
-      It does NOT go to request.html.
-      It does NOT use add-shipment.html.
-    -->
-
     <a
       href="admin-shipments.html"
       class="primary-btn"
@@ -400,10 +394,28 @@
 
 <script>
 
+/* =========================================================
+   ADMIN ACCESS PROTECTION
+   ========================================================= */
+
+if (localStorage.getItem("adminLoggedIn") !== "true") {
+  window.location.replace("admin-login.html");
+}
+
+
+/* =========================================================
+   STORAGE
+   ========================================================= */
+
 const REQUEST_STORAGE_KEY =
   "expresslineShipmentRequests";
 
 let requests = [];
+
+
+/* =========================================================
+   LOAD REQUESTS
+   ========================================================= */
 
 function loadRequests() {
 
@@ -435,7 +447,13 @@ function loadRequests() {
     return [];
 
   }
+
 }
+
+
+/* =========================================================
+   SAFE HTML
+   ========================================================= */
 
 function escapeHTML(value) {
 
@@ -447,6 +465,11 @@ function escapeHTML(value) {
     .replace(/'/g, "&#039;");
 
 }
+
+
+/* =========================================================
+   TEXT NORMALIZATION
+   ========================================================= */
 
 function textValue(value) {
 
@@ -466,6 +489,11 @@ function textValue(value) {
   return String(value);
 
 }
+
+
+/* =========================================================
+   LOCATION NORMALIZATION
+   ========================================================= */
 
 function locationValue(value) {
 
@@ -497,6 +525,11 @@ function locationValue(value) {
 
 }
 
+
+/* =========================================================
+   NORMALIZE REQUEST
+   ========================================================= */
+
 function normalizeRequest(request) {
 
   const sender =
@@ -509,6 +542,12 @@ function normalizeRequest(request) {
     request.receiver &&
     typeof request.receiver === "object"
       ? request.receiver
+      : {};
+
+  const packageData =
+    request.package &&
+    typeof request.package === "object"
+      ? request.package
       : {};
 
   return {
@@ -549,17 +588,11 @@ function normalizeRequest(request) {
     shipmentType:
       textValue(request.shipmentType) ||
       textValue(request.packageType) ||
-      textValue(
-        request.package &&
-        request.package.type
-      ),
+      textValue(packageData.type),
 
     weight:
       textValue(request.weight) ||
-      textValue(
-        request.package &&
-        request.package.weight
-      ),
+      textValue(packageData.weight),
 
     message:
       textValue(request.message) ||
@@ -578,6 +611,11 @@ function normalizeRequest(request) {
   };
 
 }
+
+
+/* =========================================================
+   FORMAT DATE
+   ========================================================= */
 
 function formatDate(value) {
 
@@ -607,6 +645,11 @@ function formatDate(value) {
 
 }
 
+
+/* =========================================================
+   STATUS CLASS
+   ========================================================= */
+
 function getStatusClass(status) {
 
   const value =
@@ -629,6 +672,11 @@ function getStatusClass(status) {
   return "pending";
 
 }
+
+
+/* =========================================================
+   RENDER REQUESTS
+   ========================================================= */
 
 function renderRequests() {
 
@@ -923,6 +971,11 @@ function renderRequests() {
 
 }
 
+
+/* =========================================================
+   VIEW DETAILS
+   ========================================================= */
+
 function toggleDetails(index) {
 
   const box =
@@ -940,19 +993,22 @@ function toggleDetails(index) {
 
 }
 
-function openAdminShipments() {
 
-  /*
-    IMPORTANT:
-    Admin requests never open request.html.
-    Admin requests never open add-shipment.html.
-    They always open the Admin shipment manager.
-  */
+/* =========================================================
+   OPEN ADMIN SHIPMENT MANAGER
+   ========================================================= */
+
+function openAdminShipments() {
 
   window.location.href =
     "admin-shipments.html";
 
 }
+
+
+/* =========================================================
+   DELETE REQUEST
+   ========================================================= */
 
 function deleteRequest(index) {
 
@@ -993,9 +1049,27 @@ function deleteRequest(index) {
 
 }
 
+
+/* =========================================================
+   START
+   ========================================================= */
+
 document.addEventListener(
   "DOMContentLoaded",
   function() {
+
+    /*
+      The access check above runs first.
+      If the Admin is logged in, load requests normally.
+    */
+
+    if (
+      localStorage.getItem(
+        "adminLoggedIn"
+      ) !== "true"
+    ) {
+      return;
+    }
 
     renderRequests();
 
