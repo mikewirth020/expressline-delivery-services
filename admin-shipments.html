@@ -754,32 +754,66 @@
 
 </div>
 
+<!-- Supabase -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
 <script>
 
 /* =========================
-   ADMIN ACCESS PROTECTION
+   SUPABASE
 ========================= */
 
-if (
-  localStorage.getItem("adminLoggedIn") !== "true"
-) {
-  window.location.replace("admin-login.html");
+const SUPABASE_URL =
+  "https://uhjgietvznkfzckmxqfz.supabase.co";
+
+const SUPABASE_PUBLISHABLE_KEY =
+  "sb_publishable_zZ0JiBW-2uarX2gnR5w9hQ_77RpB6SM";
+
+const supabaseClient =
+  window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_PUBLISHABLE_KEY
+  );
+
+
+/* =========================
+   ADMIN SESSION
+========================= */
+
+async function checkAdminSession() {
+
+  const {
+    data,
+    error
+  } =
+    await supabaseClient.auth.getSession();
+
+  if (
+    error ||
+    !data ||
+    !data.session
+  ) {
+
+    window.location.replace(
+      "admin-login.html"
+    );
+
+    return false;
+  }
+
+  return true;
+
 }
 
 
-/* =========================
-   STORAGE
-========================= */
+async function logoutAdmin() {
 
-const STORAGE_KEY = "expresslineShipments";
+  await supabaseClient.auth.signOut();
 
+  localStorage.removeItem(
+    "adminLoggedIn"
+  );
 
-/* =========================
-   LOGOUT
-========================= */
-
-function logoutAdmin() {
-  localStorage.removeItem("adminLoggedIn");
 }
 
 
@@ -802,48 +836,13 @@ const shipmentsList =
     "shipmentsList"
   );
 
-let editingTrackingNumber = null;
+let editingTrackingNumber =
+  null;
 
 
 /* =========================
    HELPERS
 ========================= */
-
-function getShipments() {
-
-  try {
-
-    const data =
-      JSON.parse(
-        localStorage.getItem(
-          STORAGE_KEY
-        ) || "[]"
-      );
-
-    return Array.isArray(data)
-      ? data
-      : [];
-
-  } catch (error) {
-
-    return [];
-
-  }
-
-}
-
-
-function saveShipments(
-  shipments
-) {
-
-  localStorage.setItem(
-    STORAGE_KEY,
-    JSON.stringify(shipments)
-  );
-
-}
-
 
 function getText(
   value,
@@ -863,7 +862,9 @@ function getText(
     return fallback;
   }
 
-  return String(value).trim();
+  return String(
+    value
+  ).trim();
 
 }
 
@@ -913,13 +914,11 @@ function getNumber(
   const number =
     Number(value);
 
-  if (
-    Number.isFinite(number)
-  ) {
-    return number;
-  }
-
-  return fallback;
+  return Number.isFinite(
+    number
+  )
+    ? number
+    : fallback;
 
 }
 
@@ -947,14 +946,6 @@ function normalizeHistory(
       ) {
         return null;
       }
-
-      /*
-        Keep BOTH "details" and "note"
-        compatible with track.html.
-
-        Older records may have "note".
-        New records use "details".
-      */
 
       const details =
         getText(
@@ -1013,6 +1004,12 @@ function normalizeHistory(
 function normalizeShipment(
   shipment
 ) {
+
+  shipment =
+    shipment &&
+    typeof shipment === "object"
+      ? shipment
+      : {};
 
   return {
 
@@ -1196,6 +1193,308 @@ function normalizeShipment(
 
 
 /* =========================
+   LOAD SHIPMENTS
+========================= */
+
+async function getShipments() {
+
+  const {
+    data,
+    error
+  } =
+    await supabaseClient
+      .from("shipments")
+      .select(
+        "id, tracking_number, data, created_at, updated_at"
+      )
+      .order(
+        "created_at",
+        {
+          ascending: false
+        }
+      );
+
+  if (error) {
+
+    console.error(
+      "Load shipments error:",
+      error
+    );
+
+    showMessage(
+      "Unable to load shipments: " +
+      error.message,
+      "error"
+    );
+
+    return [];
+
+  }
+
+  return (
+    Array.isArray(data)
+      ? data
+      : []
+  )
+    .map(row => {
+
+      const shipment =
+        normalizeShipment(
+          row.data
+        );
+
+      /*
+        The database tracking_number
+        is the authoritative tracking number.
+      */
+
+      shipment.trackingNumber =
+        getText(
+          row.tracking_number,
+          shipment.trackingNumber
+        );
+
+      return {
+
+        id:
+          row.id,
+
+        tracking_number:
+          row.tracking_number,
+
+        created_at:
+          row.created_at,
+
+        updated_at:
+          row.updated_at,
+
+        data:
+          shipment
+
+      };
+
+    });
+
+}
+
+
+/* =========================
+   FIND SHIPMENT
+========================= */
+
+async function findShipment(
+  trackingNumber
+) {
+
+  const {
+    data,
+    error
+  } =
+    await supabaseClient
+      .from("shipments")
+      .select(
+        "id, tracking_number, data, created_at, updated_at"
+      )
+      .eq(
+        "tracking_number",
+        trackingNumber
+      )
+      .maybeSingle();
+
+  if (error) {
+
+    console.error(
+      "Find shipment error:",
+      error
+    );
+
+    return null;
+
+  }
+
+  if (!data) {
+    return null;
+  }
+
+  const shipment =
+    normalizeShipment(
+      data.data
+    );
+
+  shipment.trackingNumber =
+    getText(
+      data.tracking_number,
+      shipment.trackingNumber
+    );
+
+  return {
+
+    id:
+      data.id,
+
+    tracking_number:
+      data.tracking_number,
+
+    created_at:
+      data.created_at,
+
+    updated_at:
+      data.updated_at,
+
+    data:
+      shipment
+
+  };
+
+}
+
+
+/* =========================
+   SAVE / UPSERT SHIPMENT
+========================= */
+
+async function saveShipmentToSupabase(
+  shipment,
+  oldTrackingNumber = null
+) {
+
+  /*
+    If the tracking number was changed
+    while editing, remove the old row
+    after the new row has been saved.
+  */
+
+  const {
+    error
+  } =
+    await supabaseClient
+      .from("shipments")
+      .upsert(
+        {
+          tracking_number:
+            shipment.trackingNumber,
+
+          data:
+            shipment
+
+        },
+        {
+          onConflict:
+            "tracking_number"
+        }
+      );
+
+  if (error) {
+
+    console.error(
+      "Save shipment error:",
+      error
+    );
+
+    throw error;
+
+  }
+
+  if (
+    oldTrackingNumber &&
+    oldTrackingNumber.toUpperCase() !==
+    shipment.trackingNumber.toUpperCase()
+  ) {
+
+    const {
+      error:
+        deleteError
+    } =
+      await supabaseClient
+        .from("shipments")
+        .delete()
+        .eq(
+          "tracking_number",
+          oldTrackingNumber
+        );
+
+    if (deleteError) {
+
+      console.error(
+        "Old shipment cleanup error:",
+        deleteError
+      );
+
+      throw deleteError;
+
+    }
+
+  }
+
+}
+
+
+/* =========================
+   DELETE SHIPMENT
+========================= */
+
+async function deleteShipment(
+  trackingNumber
+) {
+
+  const confirmed =
+    confirm(
+      "Are you sure you want to delete shipment " +
+      trackingNumber +
+      "?"
+    );
+
+  if (!confirmed) {
+    return;
+  }
+
+  const {
+    error
+  } =
+    await supabaseClient
+      .from("shipments")
+      .delete()
+      .eq(
+        "tracking_number",
+        trackingNumber
+      );
+
+  if (error) {
+
+    console.error(
+      "Delete shipment error:",
+      error
+    );
+
+    showMessage(
+      "Unable to delete shipment: " +
+      error.message,
+      "error"
+    );
+
+    return;
+
+  }
+
+  if (
+    editingTrackingNumber ===
+    trackingNumber
+  ) {
+
+    resetForm();
+
+  }
+
+  await renderShipments();
+
+  showMessage(
+    "Shipment deleted successfully."
+  );
+
+}
+
+
+/* =========================
    MESSAGE
 ========================= */
 
@@ -1208,7 +1507,8 @@ function showMessage(
     text;
 
   message.className =
-    "message " + type;
+    "message " +
+    type;
 
   window.scrollTo({
     top: 0,
@@ -1223,7 +1523,7 @@ function showMessage(
     message.textContent =
       "";
 
-  }, 4000);
+  }, 5000);
 
 }
 
@@ -1256,7 +1556,13 @@ function todayDate() {
       "0"
     );
 
-  return `${year}-${month}-${day}`;
+  return (
+    year +
+    "-" +
+    month +
+    "-" +
+    day
+  );
 
 }
 
@@ -1320,7 +1626,7 @@ function setSelectValue(
 
 
 /* =========================
-   FORM RESET
+   RESET FORM
 ========================= */
 
 function resetForm() {
@@ -1393,23 +1699,16 @@ function showCreateForm() {
    EDIT SHIPMENT
 ========================= */
 
-function editShipment(
+async function editShipment(
   trackingNumber
 ) {
 
-  const shipments =
-    getShipments();
-
-  const rawShipment =
-    shipments.find(
-      shipment =>
-        getText(
-          shipment.trackingNumber ||
-          shipment.tracking
-        ) === trackingNumber
+  const record =
+    await findShipment(
+      trackingNumber
     );
 
-  if (!rawShipment) {
+  if (!record) {
 
     showMessage(
       "Shipment not found.",
@@ -1417,11 +1716,12 @@ function editShipment(
     );
 
     return;
+
   }
 
   const shipment =
     normalizeShipment(
-      rawShipment
+      record.data
     );
 
   editingTrackingNumber =
@@ -1579,57 +1879,6 @@ function editShipment(
 
 
 /* =========================
-   DELETE SHIPMENT
-========================= */
-
-function deleteShipment(
-  trackingNumber
-) {
-
-  const confirmed =
-    confirm(
-      "Are you sure you want to delete shipment " +
-      trackingNumber +
-      "?"
-    );
-
-  if (!confirmed) {
-    return;
-  }
-
-  const shipments =
-    getShipments();
-
-  const updated =
-    shipments.filter(
-      shipment =>
-        getText(
-          shipment.trackingNumber ||
-          shipment.tracking
-        ) !== trackingNumber
-    );
-
-  saveShipments(
-    updated
-  );
-
-  if (
-    editingTrackingNumber ===
-    trackingNumber
-  ) {
-    resetForm();
-  }
-
-  renderShipments();
-
-  showMessage(
-    "Shipment deleted successfully."
-  );
-
-}
-
-
-/* =========================
    SAVE SHIPMENT
 ========================= */
 
@@ -1657,33 +1906,24 @@ form.addEventListener(
       );
 
       return;
+
     }
 
-    const shipments =
-      getShipments();
-
-    const existingIndex =
-      shipments.findIndex(
-        shipment =>
-          getText(
-            shipment.trackingNumber ||
-            shipment.tracking
-          ).toUpperCase() ===
-          trackingNumber.toUpperCase()
+    const existingRecord =
+      await findShipment(
+        trackingNumber
       );
 
+    /*
+      Prevent duplicate tracking numbers
+      when creating a new shipment.
+    */
+
     if (
-      existingIndex !== -1 &&
+      existingRecord &&
       (
         !editingTrackingNumber ||
-        getText(
-          shipments[
-            existingIndex
-          ].trackingNumber ||
-          shipments[
-            existingIndex
-          ].tracking
-        ).toUpperCase() !==
+        existingRecord.tracking_number.toUpperCase() !==
         editingTrackingNumber.toUpperCase()
       )
     ) {
@@ -1694,14 +1934,13 @@ form.addEventListener(
       );
 
       return;
+
     }
 
     let existingShipment =
-      existingIndex !== -1
+      existingRecord
         ? normalizeShipment(
-            shipments[
-              existingIndex
-            ]
+            existingRecord.data
           )
         : null;
 
@@ -1721,6 +1960,35 @@ form.addEventListener(
       ).files[0];
 
     if (imageFile) {
+
+      if (
+        !imageFile.type.startsWith(
+          "image/"
+        )
+      ) {
+
+        showMessage(
+          "Please select a valid image file.",
+          "error"
+        );
+
+        return;
+
+      }
+
+      if (
+        imageFile.size >
+        5 * 1024 * 1024
+      ) {
+
+        showMessage(
+          "Shipment photo must be 5MB or smaller.",
+          "error"
+        );
+
+        return;
+
+      }
 
       shipmentImage =
         await new Promise(
@@ -1789,6 +2057,9 @@ form.addEventListener(
       historyNote
     ) {
 
+      const now =
+        new Date();
+
       transitHistory.push({
 
         status:
@@ -1800,12 +2071,6 @@ form.addEventListener(
         location:
           historyLocation,
 
-        /*
-          Save the update description
-          using "details" for track.html,
-          and "note" for backwards compatibility.
-        */
-
         details:
           historyNote,
 
@@ -1813,10 +2078,10 @@ form.addEventListener(
           historyNote,
 
         date:
-          new Date().toISOString(),
+          now.toISOString(),
 
         time:
-          new Date().toLocaleTimeString(
+          now.toLocaleTimeString(
             "en-US",
             {
               hour: "2-digit",
@@ -1951,28 +2216,30 @@ form.addEventListener(
 
 
     /* =========================
-       SAVE
+       SAVE TO SUPABASE
     ========================= */
 
-    if (
-      existingIndex !== -1
-    ) {
+    try {
 
-      shipments[
-        existingIndex
-      ] = shipment;
-
-    } else {
-
-      shipments.unshift(
-        shipment
+      await saveShipmentToSupabase(
+        shipment,
+        editingTrackingNumber
       );
 
-    }
+    } catch (error) {
 
-    saveShipments(
-      shipments
-    );
+      showMessage(
+        "Unable to save shipment: " +
+        (
+          error.message ||
+          "Unknown error"
+        ),
+        "error"
+      );
+
+      return;
+
+    }
 
 
     /* =========================
@@ -1981,7 +2248,7 @@ form.addEventListener(
 
     resetForm();
 
-    renderShipments();
+    await renderShipments();
 
     showMessage(
       wasEditing
@@ -1997,13 +2264,13 @@ form.addEventListener(
    RENDER SHIPMENTS
 ========================= */
 
-function renderShipments() {
+async function renderShipments() {
 
-  const shipments =
-    getShipments();
+  const records =
+    await getShipments();
 
   if (
-    !shipments.length
+    !records.length
   ) {
 
     shipmentsList.innerHTML = `
@@ -2013,16 +2280,23 @@ function renderShipments() {
     `;
 
     return;
+
   }
 
   shipmentsList.innerHTML =
-    shipments
+    records
       .map(
-        rawShipment => {
+        record => {
 
           const shipment =
             normalizeShipment(
-              rawShipment
+              record.data
+            );
+
+          shipment.trackingNumber =
+            getText(
+              record.tracking_number,
+              shipment.trackingNumber
             );
 
           const safeTracking =
@@ -2399,12 +2673,23 @@ function formatDateTime(
    INITIAL LOAD
 ========================= */
 
-document.getElementById(
-  "shipmentDate"
-).value =
-  todayDate();
+(async function() {
 
-renderShipments();
+  const allowed =
+    await checkAdminSession();
+
+  if (!allowed) {
+    return;
+  }
+
+  document.getElementById(
+    "shipmentDate"
+  ).value =
+    todayDate();
+
+  await renderShipments();
+
+})();
 
 </script>
 
