@@ -1,158 +1,203 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
 
   <title>Website CMS - ExpressLine Admin</title>
 
+  <link rel="stylesheet" href="style.css">
+
   <style>
-    * {
-      box-sizing: border-box;
-    }
-
     body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #f3f6f9;
-      color: #172033;
+      background: #f5f7fb;
     }
 
-    .topbar {
-      background: #111827;
-      color: white;
-      padding: 18px 25px;
+    .cms-page {
+      min-height: 100vh;
+    }
+
+    .cms-header {
+      background: #172033;
+      color: #ffffff;
+      padding: 24px 20px;
+    }
+
+    .cms-header-inner {
+      max-width: 1100px;
+      margin: 0 auto;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 15px;
-      position: sticky;
-      top: 0;
-      z-index: 100;
+      gap: 20px;
     }
 
-    .topbar h1 {
+    .cms-header h1 {
+      margin: 0 0 6px;
+      font-size: 26px;
+    }
+
+    .cms-header p {
       margin: 0;
-      font-size: 22px;
+      opacity: 0.8;
     }
 
-    .topbar p {
-      margin: 5px 0 0;
-      color: #cbd5e1;
-      font-size: 13px;
-    }
-
-    .dashboard-link {
-      color: white;
+    .cms-back {
+      color: #ffffff;
       text-decoration: none;
-      background: #2563eb;
-      padding: 10px 15px;
-      border-radius: 7px;
-      font-weight: bold;
-      font-size: 14px;
+      border: 1px solid rgba(255,255,255,0.3);
+      padding: 10px 16px;
+      border-radius: 8px;
+      white-space: nowrap;
     }
 
-    .container {
+    .cms-container {
       max-width: 1100px;
       margin: 30px auto;
-      padding: 0 18px 50px;
+      padding: 0 20px 50px;
     }
 
-    .notice {
-      background: #e8f1ff;
-      border: 1px solid #bfdbfe;
-      color: #1e40af;
-      padding: 15px 18px;
+    .cms-notice {
+      background: #fff8e6;
+      border: 1px solid #f3d58a;
+      color: #6b4e00;
       border-radius: 10px;
-      margin-bottom: 25px;
-      line-height: 1.5;
+      padding: 16px;
+      margin-bottom: 24px;
+      line-height: 1.6;
     }
 
-    .warning {
-      background: #fff7ed;
-      border: 1px solid #fed7aa;
-      color: #9a3412;
-      padding: 15px 18px;
-      border-radius: 10px;
-      margin-bottom: 25px;
-      line-height: 1.5;
+    .cms-section {
+      background: #ffffff;
+      border-radius: 14px;
+      padding: 24px;
+      margin-bottom: 24px;
+      box-shadow: 0 4px 18px rgba(0,0,0,0.05);
     }
 
-    .section {
-      background: white;
-      border-radius: 12px;
-      padding: 25px;
-      margin-bottom: 22px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.06);
-    }
-
-    .section-header {
-      border-bottom: 1px solid #e5e7eb;
-      margin-bottom: 22px;
-      padding-bottom: 14px;
-    }
-
-    .section-header h2 {
-      margin: 0;
+    .cms-section h2 {
+      margin-top: 0;
+      margin-bottom: 20px;
+      color: #172033;
       font-size: 20px;
     }
 
-    .section-header p {
-      margin: 6px 0 0;
+    .cms-section-description {
       color: #6b7280;
-      font-size: 14px;
+      margin-top: -10px;
+      margin-bottom: 20px;
+      line-height: 1.5;
     }
 
-    .grid {
+    .cms-grid {
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
+      grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 18px;
     }
 
-    .full {
+    .cms-field {
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+    }
+
+    .cms-field.full {
       grid-column: 1 / -1;
     }
 
-    .form-group {
-      margin-bottom: 16px;
+    .cms-field label {
+      font-weight: 600;
+      color: #172033;
     }
 
-    label {
-      display: block;
-      font-weight: bold;
-      margin-bottom: 7px;
-      font-size: 14px;
-    }
-
-    input,
-    textarea,
-    select {
+    .cms-field input,
+    .cms-field textarea,
+    .cms-field select {
       width: 100%;
-      padding: 12px;
-      border: 1px solid #d1d5db;
-      border-radius: 7px;
-      font-size: 15px;
-      background: white;
-      color: #111827;
+      box-sizing: border-box;
+      padding: 12px 13px;
+      border: 1px solid #d9dee8;
+      border-radius: 8px;
+      background: #ffffff;
+      color: #172033;
+      font: inherit;
     }
 
-    textarea {
-      min-height: 110px;
+    .cms-field textarea {
+      min-height: 100px;
       resize: vertical;
     }
 
-    input:focus,
-    textarea:focus,
-    select:focus {
+    .cms-field input:focus,
+    .cms-field textarea:focus,
+    .cms-field select:focus {
       outline: none;
-      border-color: #2563eb;
+      border-color: #e30613;
+      box-shadow: 0 0 0 3px rgba(227,6,19,0.08);
     }
 
-    .help {
+    .image-upload-box {
+      border: 2px dashed #d9dee8;
+      border-radius: 12px;
+      padding: 18px;
+      background: #fafbfc;
+    }
+
+    .image-upload-box input[type="file"] {
+      padding: 10px;
+      background: #ffffff;
+      cursor: pointer;
+    }
+
+    .image-help {
       display: block;
+      margin-top: 8px;
       color: #6b7280;
-      font-size: 12px;
-      margin-top: 5px;
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
+    .image-preview {
+      display: none;
+      margin-top: 15px;
+    }
+
+    .image-preview img {
+      display: block;
+      width: 100%;
+      max-width: 360px;
+      max-height: 220px;
+      object-fit: contain;
+      background: #ffffff;
+      border: 1px solid #d9dee8;
+      border-radius: 10px;
+      padding: 8px;
+      box-sizing: border-box;
+    }
+
+    .image-preview-actions {
+      margin-top: 10px;
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .small-button {
+      border: none;
+      border-radius: 7px;
+      padding: 8px 12px;
+      cursor: pointer;
+      font-weight: 600;
+    }
+
+    .remove-image-button {
+      background: #fee2e2;
+      color: #991b1b;
     }
 
     .color-row {
@@ -162,939 +207,1964 @@
       align-items: center;
     }
 
-    input[type="color"] {
+    .color-row input[type="color"] {
       width: 70px;
       height: 45px;
       padding: 3px;
       cursor: pointer;
     }
 
-    .check-row {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      padding: 10px 0;
-    }
-
-    .check-row input {
-      width: auto;
-    }
-
-    .check-row label {
-      margin: 0;
-      font-weight: normal;
-    }
-
-    .button-row {
-      display: flex;
-      gap: 12px;
-      flex-wrap: wrap;
-    }
-
-    button {
-      border: none;
-      border-radius: 7px;
-      padding: 12px 18px;
-      font-size: 14px;
-      font-weight: bold;
-      cursor: pointer;
-    }
-
-    .primary {
-      background: #2563eb;
-      color: white;
-    }
-
-    .primary:hover {
-      background: #1d4ed8;
-    }
-
-    .secondary {
-      background: #e5e7eb;
-      color: #111827;
-    }
-
-    .danger {
-      background: #dc2626;
-      color: white;
-    }
-
-    .danger:hover {
-      background: #b91c1c;
-    }
-
-    .save-bar {
-      background: #111827;
-      padding: 18px;
-      border-radius: 12px;
-      color: white;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 15px;
-      flex-wrap: wrap;
+    .cms-actions {
       position: sticky;
-      bottom: 15px;
-      z-index: 50;
-      box-shadow: 0 8px 30px rgba(0,0,0,0.18);
+      bottom: 0;
+      z-index: 10;
+      background: rgba(245,247,251,0.96);
+      border-top: 1px solid #d9dee8;
+      padding: 15px 0;
+      margin-top: 10px;
+      backdrop-filter: blur(8px);
     }
 
-    .save-bar span {
-      font-size: 14px;
+    .cms-actions-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 20px;
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
     }
 
-    .save-bar button {
-      background: #22c55e;
-      color: white;
+    .cms-button {
+      border: none;
+      border-radius: 8px;
+      padding: 13px 20px;
+      font-weight: 700;
+      cursor: pointer;
+      font-size: 15px;
     }
 
-    .save-bar button:hover {
-      background: #16a34a;
+    .save-button {
+      background: #e30613;
+      color: #ffffff;
     }
 
-    .status {
-      margin-top: 15px;
-      padding: 12px;
-      border-radius: 7px;
+    .reset-button {
+      background: #172033;
+      color: #ffffff;
+    }
+
+    .clear-button {
+      background: #fee2e2;
+      color: #991b1b;
+    }
+
+    .cms-message {
       display: none;
-      background: #dcfce7;
+      max-width: 1100px;
+      margin: 20px auto 0;
+      padding: 14px 20px;
+      border-radius: 8px;
+      font-weight: 600;
+    }
+
+    .cms-message.success {
+      display: block;
+      background: #ecfdf3;
+      border: 1px solid #bbf7d0;
       color: #166534;
-      font-weight: bold;
+    }
+
+    .cms-message.error {
+      display: block;
+      background: #fef2f2;
+      border: 1px solid #fecaca;
+      color: #991b1b;
     }
 
     @media (max-width: 700px) {
-      .grid {
-        grid-template-columns: 1fr;
-      }
-
-      .full {
-        grid-column: auto;
-      }
-
-      .topbar {
+      .cms-header-inner {
         align-items: flex-start;
         flex-direction: column;
       }
 
-      .section {
-        padding: 19px;
+      .cms-grid {
+        grid-template-columns: 1fr;
       }
 
-      .save-bar {
-        position: static;
+      .cms-field.full {
+        grid-column: auto;
+      }
+
+      .cms-section {
+        padding: 18px;
       }
     }
   </style>
+
 </head>
 
 <body>
 
-  <header class="topbar">
-    <div>
-      <h1>Website Control Center</h1>
-      <p>ExpressLine Website Editor</p>
-    </div>
+<div class="cms-page">
 
-    <a href="admin.html" class="dashboard-link">
-      ← Admin Dashboard
-    </a>
+  <header class="cms-header">
+    <div class="cms-header-inner">
+
+      <div>
+        <h1>Website Control Center</h1>
+        <p>ExpressLine Website Editor</p>
+      </div>
+
+      <a
+        href="admin.html"
+        class="cms-back"
+      >
+        ← Back to Admin
+      </a>
+
+    </div>
   </header>
 
-  <main class="container">
+  <div
+    id="cmsMessage"
+    class="cms-message"
+  ></div>
 
-    <div class="notice">
-      <strong>Website Control Center</strong><br>
-      Use this page to manage your website identity, homepage content,
-      images, colors, navigation, services, contact information,
-      customer support, SEO and footer information.
-    </div>
+  <main class="cms-container">
 
-    <div class="warning">
-      <strong>Important:</strong><br>
-      These settings are currently saved in this browser. Saving them here
-      does not automatically rewrite the HTML files on your website.
-      The public website pages must be connected to these settings for the
-      changes to appear website-wide.
+    <div class="cms-notice">
+      <strong>Website Editor</strong><br>
+      Changes made here are saved in this browser and are used by the ExpressLine website pages connected to the Website Control Center.
+      Images can now be uploaded directly from your phone or computer. You do not need to paste image URLs.
     </div>
 
     <!-- COMPANY IDENTITY -->
-    <section class="section">
-      <div class="section-header">
-        <h2>🏢 Company Identity</h2>
-        <p>Control the main identity of the website.</p>
+    <section class="cms-section">
+
+      <h2>Company Identity</h2>
+
+      <div class="cms-grid">
+
+        <div class="cms-field">
+          <label for="companyName">
+            Company Name
+          </label>
+
+          <input
+            type="text"
+            id="companyName"
+            placeholder="ExpressLine"
+          >
+        </div>
+
+        <div class="cms-field">
+          <label for="shortName">
+            Short Name
+          </label>
+
+          <input
+            type="text"
+            id="shortName"
+            placeholder="ExpressLine"
+          >
+        </div>
+
+        <div class="cms-field full">
+          <label for="tagline">
+            Tagline
+          </label>
+
+          <input
+            type="text"
+            id="tagline"
+            placeholder="Fast, reliable delivery"
+          >
+        </div>
+
+        <div class="cms-field full">
+
+          <label>
+            Company Logo
+          </label>
+
+          <div class="image-upload-box">
+
+            <input
+              type="file"
+              id="logoFile"
+              accept="image/*"
+            >
+
+            <span class="image-help">
+              Select your company logo from your device.
+            </span>
+
+            <div
+              id="logoPreviewBox"
+              class="image-preview"
+            >
+              <img
+                id="logoPreview"
+                src=""
+                alt="Logo preview"
+              >
+
+              <div class="image-preview-actions">
+                <button
+                  type="button"
+                  class="small-button remove-image-button"
+                  onclick="removeImage('logo')"
+                >
+                  Remove Logo
+                </button>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+        <div class="cms-field full">
+
+          <label>
+            Favicon
+          </label>
+
+          <div class="image-upload-box">
+
+            <input
+              type="file"
+              id="faviconFile"
+              accept="image/*,.ico"
+            >
+
+            <span class="image-help">
+              Select the small icon that appears in the browser tab.
+            </span>
+
+            <div
+              id="faviconPreviewBox"
+              class="image-preview"
+            >
+              <img
+                id="faviconPreview"
+                src=""
+                alt="Favicon preview"
+              >
+
+              <div class="image-preview-actions">
+                <button
+                  type="button"
+                  class="small-button remove-image-button"
+                  onclick="removeImage('favicon')"
+                >
+                  Remove Favicon
+                </button>
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
       </div>
 
-      <div class="grid">
-
-        <div class="form-group">
-          <label>Company Name</label>
-          <input id="companyName" type="text" value="ExpressLine Delivery Services">
-        </div>
-
-        <div class="form-group">
-          <label>Short Company Name</label>
-          <input id="shortName" type="text" value="ExpressLine">
-        </div>
-
-        <div class="form-group full">
-          <label>Company Tagline</label>
-          <input id="tagline" type="text" value="Fast. Reliable. Delivered.">
-        </div>
-
-        <div class="form-group">
-          <label>Logo URL</label>
-          <input id="logoUrl" type="text" placeholder="https://example.com/logo.png">
-          <span class="help">Enter the URL of the logo image.</span>
-        </div>
-
-        <div class="form-group">
-          <label>Favicon URL</label>
-          <input id="faviconUrl" type="text" placeholder="https://example.com/favicon.png">
-        </div>
-
-      </div>
     </section>
 
     <!-- WEBSITE GENERAL -->
-    <section class="section">
-      <div class="section-header">
-        <h2>🌐 Website General Settings</h2>
-        <p>Control the website title, description and general behavior.</p>
-      </div>
+    <section class="cms-section">
 
-      <div class="grid">
+      <h2>Website General</h2>
 
-        <div class="form-group">
-          <label>Website Title</label>
-          <input id="websiteTitle" type="text" value="ExpressLine Delivery Services">
+      <div class="cms-grid">
+
+        <div class="cms-field full">
+          <label for="websiteTitle">
+            Website Title
+          </label>
+
+          <input
+            type="text"
+            id="websiteTitle"
+            placeholder="ExpressLine Delivery Services"
+          >
         </div>
 
-        <div class="form-group">
-          <label>Website Status</label>
+        <div class="cms-field">
+          <label for="websiteStatus">
+            Website Status
+          </label>
+
           <select id="websiteStatus">
             <option value="online">Online</option>
-            <option value="maintenance">Maintenance Mode</option>
+            <option value="maintenance">Maintenance</option>
           </select>
         </div>
 
-        <div class="form-group full">
-          <label>Website Description</label>
-          <textarea id="websiteDescription">Professional logistics and delivery services for individuals and businesses.</textarea>
+        <div class="cms-field">
+          <label for="announcementEnabled">
+            Announcement
+          </label>
+
+          <select id="announcementEnabled">
+            <option value="false">Disabled</option>
+            <option value="true">Enabled</option>
+          </select>
         </div>
 
-        <div class="form-group">
-          <label>Announcement Bar Text</label>
-          <input id="announcementText" type="text" placeholder="Enter announcement">
+        <div class="cms-field full">
+          <label for="websiteDescription">
+            Website Description
+          </label>
+
+          <textarea
+            id="websiteDescription"
+            placeholder="Describe your company and services."
+          ></textarea>
         </div>
 
-        <div class="form-group">
-          <label>Announcement Bar</label>
+        <div class="cms-field full">
+          <label for="announcementText">
+            Announcement Text
+          </label>
 
-          <div class="check-row">
-            <input type="checkbox" id="announcementEnabled">
-            <label for="announcementEnabled">Show announcement bar</label>
-          </div>
+          <input
+            type="text"
+            id="announcementText"
+            placeholder="Important announcement"
+          >
         </div>
 
       </div>
+
     </section>
 
     <!-- HEADER -->
-    <section class="section">
-      <div class="section-header">
-        <h2>🧭 Header & Navigation</h2>
-        <p>Control the public website header and navigation labels.</p>
+    <section class="cms-section">
+
+      <h2>Header Navigation</h2>
+
+      <div class="cms-grid">
+
+        <div class="cms-field">
+          <label for="navHome">Home</label>
+          <input type="text" id="navHome">
+        </div>
+
+        <div class="cms-field">
+          <label for="navServices">Services</label>
+          <input type="text" id="navServices">
+        </div>
+
+        <div class="cms-field">
+          <label for="navTrack">Track Shipment</label>
+          <input type="text" id="navTrack">
+        </div>
+
+        <div class="cms-field">
+          <label for="navRequest">Request Shipment</label>
+          <input type="text" id="navRequest">
+        </div>
+
+        <div class="cms-field">
+          <label for="navAbout">About Us</label>
+          <input type="text" id="navAbout">
+        </div>
+
+        <div class="cms-field">
+          <label for="navContact">Contact Us</label>
+          <input type="text" id="navContact">
+        </div>
+
+        <div class="cms-field">
+          <label for="navLogin">Customer Login</label>
+          <input type="text" id="navLogin">
+        </div>
+
+        <div class="cms-field">
+          <label for="navRegister">Register</label>
+          <input type="text" id="navRegister">
+        </div>
+
       </div>
 
-      <div class="grid">
-
-        <div class="form-group">
-          <label>Home Label</label>
-          <input id="navHome" type="text" value="Home">
-        </div>
-
-        <div class="form-group">
-          <label>Services Label</label>
-          <input id="navServices" type="text" value="Services">
-        </div>
-
-        <div class="form-group">
-          <label>Track Shipment Label</label>
-          <input id="navTrack" type="text" value="Track Shipment">
-        </div>
-
-        <div class="form-group">
-          <label>Request Shipment Label</label>
-          <input id="navRequest" type="text" value="Request a Shipment">
-        </div>
-
-        <div class="form-group">
-          <label>About Label</label>
-          <input id="navAbout" type="text" value="About Us">
-        </div>
-
-        <div class="form-group">
-          <label>Contact Label</label>
-          <input id="navContact" type="text" value="Contact">
-        </div>
-
-        <div class="form-group">
-          <label>Login Label</label>
-          <input id="navLogin" type="text" value="Login">
-        </div>
-
-        <div class="form-group">
-          <label>Create Account Label</label>
-          <input id="navRegister" type="text" value="Create Account">
-        </div>
-
-      </div>
     </section>
 
     <!-- HOMEPAGE -->
-    <section class="section">
-      <div class="section-header">
-        <h2>🏠 Homepage Content</h2>
-        <p>Control the main homepage messaging.</p>
+    <section class="cms-section">
+
+      <h2>Homepage</h2>
+
+      <div class="cms-grid">
+
+        <div class="cms-field full">
+          <label for="heroHeading">
+            Hero Heading
+          </label>
+
+          <input
+            type="text"
+            id="heroHeading"
+            placeholder="Fast, reliable delivery"
+          >
+        </div>
+
+        <div class="cms-field full">
+          <label for="heroDescription">
+            Hero Description
+          </label>
+
+          <textarea
+            id="heroDescription"
+            placeholder="Your shipment is in safe hands."
+          ></textarea>
+        </div>
+
+        <div class="cms-field">
+          <label for="heroPrimaryButton">
+            Primary Button
+          </label>
+
+          <input
+            type="text"
+            id="heroPrimaryButton"
+            placeholder="Track Shipment"
+          >
+        </div>
+
+        <div class="cms-field">
+          <label for="heroSecondaryButton">
+            Secondary Button
+          </label>
+
+          <input
+            type="text"
+            id="heroSecondaryButton"
+            placeholder="Request Shipment"
+          >
+        </div>
+
+        <div class="cms-field full">
+
+          <label>
+            Homepage Hero Image
+          </label>
+
+          <div class="image-upload-box">
+
+            <input
+              type="file"
+              id="heroImageFile"
+              accept="image/*"
+            >
+
+            <span class="image-help">
+              Select the image displayed in the homepage hero section.
+            </span>
+
+            <div
+              id="heroImagePreviewBox"
+              class="image-preview"
+            >
+              <img
+                id="heroImagePreview"
+                src=""
+                alt="Hero image preview"
+              >
+
+              <div class="image-preview-actions">
+                <button
+                  type="button"
+                  class="small-button remove-image-button"
+                  onclick="removeImage('heroImage')"
+                >
+                  Remove Image
+                </button>
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
       </div>
 
-      <div class="grid">
-
-        <div class="form-group full">
-          <label>Hero Heading</label>
-          <input id="heroHeading" type="text" value="Reliable Delivery. Wherever You Need It.">
-        </div>
-
-        <div class="form-group full">
-          <label>Hero Description</label>
-          <textarea id="heroDescription">Professional delivery and logistics solutions designed for individuals and businesses.</textarea>
-        </div>
-
-        <div class="form-group">
-          <label>Primary Button Text</label>
-          <input id="heroPrimaryButton" type="text" value="Request a Shipment">
-        </div>
-
-        <div class="form-group">
-          <label>Secondary Button Text</label>
-          <input id="heroSecondaryButton" type="text" value="Track Shipment">
-        </div>
-
-        <div class="form-group full">
-          <label>Hero Image URL</label>
-          <input id="heroImage" type="text" placeholder="https://example.com/hero.jpg">
-        </div>
-
-      </div>
     </section>
 
-    <!-- IMAGES -->
-    <section class="section">
-      <div class="section-header">
-        <h2>🖼️ Website Images</h2>
-        <p>Set the image sources used by different website sections.</p>
+    <!-- WEBSITE IMAGES -->
+    <section class="cms-section">
+
+      <h2>Website Images</h2>
+
+      <p class="cms-section-description">
+        Upload the images you want to use throughout the website.
+      </p>
+
+      <div class="cms-grid">
+
+        <!-- SERVICES IMAGE -->
+        <div class="cms-field">
+
+          <label>
+            Services Image
+          </label>
+
+          <div class="image-upload-box">
+
+            <input
+              type="file"
+              id="servicesImageFile"
+              accept="image/*"
+            >
+
+            <span class="image-help">
+              Image used on the Services page.
+            </span>
+
+            <div
+              id="servicesImagePreviewBox"
+              class="image-preview"
+            >
+              <img
+                id="servicesImagePreview"
+                src=""
+                alt="Services image preview"
+              >
+
+              <div class="image-preview-actions">
+                <button
+                  type="button"
+                  class="small-button remove-image-button"
+                  onclick="removeImage('servicesImage')"
+                >
+                  Remove
+                </button>
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+        <!-- BUSINESS IMAGE -->
+        <div class="cms-field">
+
+          <label>
+            Business Image
+          </label>
+
+          <div class="image-upload-box">
+
+            <input
+              type="file"
+              id="businessImageFile"
+              accept="image/*"
+            >
+
+            <span class="image-help">
+              Image for your business/company section.
+            </span>
+
+            <div
+              id="businessImagePreviewBox"
+              class="image-preview"
+            >
+              <img
+                id="businessImagePreview"
+                src=""
+                alt="Business image preview"
+              >
+
+              <div class="image-preview-actions">
+                <button
+                  type="button"
+                  class="small-button remove-image-button"
+                  onclick="removeImage('businessImage')"
+                >
+                  Remove
+                </button>
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+        <!-- ABOUT IMAGE -->
+        <div class="cms-field">
+
+          <label>
+            About Image
+          </label>
+
+          <div class="image-upload-box">
+
+            <input
+              type="file"
+              id="aboutImageFile"
+              accept="image/*"
+            >
+
+            <span class="image-help">
+              Image used on the About page.
+            </span>
+
+            <div
+              id="aboutImagePreviewBox"
+              class="image-preview"
+            >
+              <img
+                id="aboutImagePreview"
+                src=""
+                alt="About image preview"
+              >
+
+              <div class="image-preview-actions">
+                <button
+                  type="button"
+                  class="small-button remove-image-button"
+                  onclick="removeImage('aboutImage')"
+                >
+                  Remove
+                </button>
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+        <!-- CONTACT IMAGE -->
+        <div class="cms-field">
+
+          <label>
+            Contact Image
+          </label>
+
+          <div class="image-upload-box">
+
+            <input
+              type="file"
+              id="contactImageFile"
+              accept="image/*"
+            >
+
+            <span class="image-help">
+              Image used on the Contact page.
+            </span>
+
+            <div
+              id="contactImagePreviewBox"
+              class="image-preview"
+            >
+              <img
+                id="contactImagePreview"
+                src=""
+                alt="Contact image preview"
+              >
+
+              <div class="image-preview-actions">
+                <button
+                  type="button"
+                  class="small-button remove-image-button"
+                  onclick="removeImage('contactImage')"
+                >
+                  Remove
+                </button>
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+        <!-- BACKGROUND IMAGE -->
+        <div class="cms-field full">
+
+          <label>
+            Background Image
+          </label>
+
+          <div class="image-upload-box">
+
+            <input
+              type="file"
+              id="backgroundImageFile"
+              accept="image/*"
+            >
+
+            <span class="image-help">
+              Select a background image for the website.
+            </span>
+
+            <div
+              id="backgroundImagePreviewBox"
+              class="image-preview"
+            >
+              <img
+                id="backgroundImagePreview"
+                src=""
+                alt="Background image preview"
+              >
+
+              <div class="image-preview-actions">
+                <button
+                  type="button"
+                  class="small-button remove-image-button"
+                  onclick="removeImage('backgroundImage')"
+                >
+                  Remove
+                </button>
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
       </div>
 
-      <div class="grid">
-
-        <div class="form-group">
-          <label>Services Image</label>
-          <input id="servicesImage" type="text" placeholder="Image URL">
-        </div>
-
-        <div class="form-group">
-          <label>Business Solutions Image</label>
-          <input id="businessImage" type="text" placeholder="Image URL">
-        </div>
-
-        <div class="form-group">
-          <label>About Page Image</label>
-          <input id="aboutImage" type="text" placeholder="Image URL">
-        </div>
-
-        <div class="form-group">
-          <label>Contact Page Image</label>
-          <input id="contactImage" type="text" placeholder="Image URL">
-        </div>
-
-        <div class="form-group full">
-          <label>Default Website Background Image</label>
-          <input id="backgroundImage" type="text" placeholder="Image URL">
-        </div>
-
-      </div>
     </section>
 
     <!-- COLORS -->
-    <section class="section">
-      <div class="section-header">
-        <h2>🎨 Colors & Branding</h2>
-        <p>Control the main colors used throughout the website.</p>
+    <section class="cms-section">
+
+      <h2>Colors</h2>
+
+      <div class="cms-grid">
+
+        <div class="cms-field">
+          <label for="primaryColor">
+            Primary Color
+          </label>
+
+          <div class="color-row">
+            <input
+              type="color"
+              id="primaryColor"
+              value="#e30613"
+            >
+
+            <input
+              type="text"
+              id="primaryColorText"
+              value="#e30613"
+            >
+          </div>
+        </div>
+
+        <div class="cms-field">
+          <label for="secondaryColor">
+            Secondary Color
+          </label>
+
+          <div class="color-row">
+            <input
+              type="color"
+              id="secondaryColor"
+              value="#172033"
+            >
+
+            <input
+              type="text"
+              id="secondaryColorText"
+              value="#172033"
+            >
+          </div>
+        </div>
+
+        <div class="cms-field">
+          <label for="accentColor">
+            Accent Color
+          </label>
+
+          <div class="color-row">
+            <input
+              type="color"
+              id="accentColor"
+              value="#111827"
+            >
+
+            <input
+              type="text"
+              id="accentColorText"
+              value="#111827"
+            >
+          </div>
+        </div>
+
+        <div class="cms-field">
+          <label for="textColor">
+            Text Color
+          </label>
+
+          <div class="color-row">
+            <input
+              type="color"
+              id="textColor"
+              value="#172033"
+            >
+
+            <input
+              type="text"
+              id="textColorText"
+              value="#172033"
+            >
+          </div>
+        </div>
+
       </div>
 
-      <div class="grid">
-
-        <div class="form-group">
-          <label>Primary Brand Color</label>
-
-          <div class="color-row">
-            <input id="primaryColor" type="color" value="#2563eb">
-            <input id="primaryColorText" type="text" value="#2563eb">
-          </div>
-        </div>
-
-        <div class="form-group">
-          <label>Secondary Brand Color</label>
-
-          <div class="color-row">
-            <input id="secondaryColor" type="color" value="#111827">
-            <input id="secondaryColorText" type="text" value="#111827">
-          </div>
-        </div>
-
-        <div class="form-group">
-          <label>Accent Color</label>
-
-          <div class="color-row">
-            <input id="accentColor" type="color" value="#22c55e">
-            <input id="accentColorText" type="text" value="#22c55e">
-          </div>
-        </div>
-
-        <div class="form-group">
-          <label>Text Color</label>
-
-          <div class="color-row">
-            <input id="textColor" type="color" value="#172033">
-            <input id="textColorText" type="text" value="#172033">
-          </div>
-        </div>
-
-      </div>
     </section>
 
     <!-- TYPOGRAPHY -->
-    <section class="section">
-      <div class="section-header">
-        <h2>🔤 Typography</h2>
-        <p>Control the website's main font.</p>
-      </div>
+    <section class="cms-section">
 
-      <div class="grid">
+      <h2>Typography</h2>
 
-        <div class="form-group">
-          <label>Website Font</label>
+      <div class="cms-grid">
+
+        <div class="cms-field">
+          <label for="fontFamily">
+            Font Family
+          </label>
 
           <select id="fontFamily">
-            <option value="Arial, sans-serif">Arial</option>
-            <option value="Verdana, sans-serif">Verdana</option>
-            <option value="Georgia, serif">Georgia</option>
-            <option value="Tahoma, sans-serif">Tahoma</option>
-            <option value="Trebuchet MS, sans-serif">Trebuchet MS</option>
-            <option value="Courier New, monospace">Courier New</option>
+            <option value="Arial, Helvetica, sans-serif">
+              Arial
+            </option>
+
+            <option value="Inter, Arial, Helvetica, sans-serif">
+              Inter
+            </option>
+
+            <option value="Georgia, serif">
+              Georgia
+            </option>
+
+            <option value="Verdana, sans-serif">
+              Verdana
+            </option>
+
+            <option value="Tahoma, sans-serif">
+              Tahoma
+            </option>
+
+            <option value="Trebuchet MS, sans-serif">
+              Trebuchet MS
+            </option>
           </select>
         </div>
 
-        <div class="form-group">
-          <label>Base Font Size</label>
+        <div class="cms-field">
+          <label for="fontSize">
+            Font Size
+          </label>
 
           <select id="fontSize">
-            <option value="14px">Small</option>
-            <option value="16px" selected>Normal</option>
-            <option value="18px">Large</option>
+            <option value="14px">14px</option>
+            <option value="15px">15px</option>
+            <option value="16px">16px</option>
+            <option value="17px">17px</option>
+            <option value="18px">18px</option>
           </select>
         </div>
 
       </div>
+
     </section>
 
     <!-- SERVICES -->
-    <section class="section">
-      <div class="section-header">
-        <h2>🛠️ Services</h2>
-        <p>Control the service content displayed on the website.</p>
+    <section class="cms-section">
+
+      <h2>Services</h2>
+
+      <div class="cms-grid">
+
+        <div class="cms-field">
+          <label for="service1Name">
+            Service 1 Name
+          </label>
+
+          <input
+            type="text"
+            id="service1Name"
+          >
+        </div>
+
+        <div class="cms-field">
+          <label for="service1Description">
+            Service 1 Description
+          </label>
+
+          <textarea
+            id="service1Description"
+          ></textarea>
+        </div>
+
+        <div class="cms-field">
+          <label for="service2Name">
+            Service 2 Name
+          </label>
+
+          <input
+            type="text"
+            id="service2Name"
+          >
+        </div>
+
+        <div class="cms-field">
+          <label for="service2Description">
+            Service 2 Description
+          </label>
+
+          <textarea
+            id="service2Description"
+          ></textarea>
+        </div>
+
+        <div class="cms-field">
+          <label for="service3Name">
+            Service 3 Name
+          </label>
+
+          <input
+            type="text"
+            id="service3Name"
+          >
+        </div>
+
+        <div class="cms-field">
+          <label for="service3Description">
+            Service 3 Description
+          </label>
+
+          <textarea
+            id="service3Description"
+          ></textarea>
+        </div>
+
       </div>
 
-      <div class="grid">
-
-        <div class="form-group">
-          <label>Service 1 Name</label>
-          <input id="service1Name" type="text" value="Express Delivery">
-        </div>
-
-        <div class="form-group">
-          <label>Service 1 Description</label>
-          <textarea id="service1Description">Fast delivery for urgent shipments.</textarea>
-        </div>
-
-        <div class="form-group">
-          <label>Service 2 Name</label>
-          <input id="service2Name" type="text" value="Business Logistics">
-        </div>
-
-        <div class="form-group">
-          <label>Service 2 Description</label>
-          <textarea id="service2Description">Reliable logistics solutions for businesses.</textarea>
-        </div>
-
-        <div class="form-group">
-          <label>Service 3 Name</label>
-          <input id="service3Name" type="text" value="International Shipping">
-        </div>
-
-        <div class="form-group">
-          <label>Service 3 Description</label>
-          <textarea id="service3Description">Shipping solutions for destinations worldwide.</textarea>
-        </div>
-
-      </div>
     </section>
 
     <!-- CONTACT -->
-    <section class="section">
-      <div class="section-header">
-        <h2>📞 Contact Information</h2>
-        <p>Control the contact details displayed to customers.</p>
+    <section class="cms-section">
+
+      <h2>Contact</h2>
+
+      <div class="cms-grid">
+
+        <div class="cms-field">
+          <label for="contactEmail">
+            Contact Email
+          </label>
+
+          <input
+            type="email"
+            id="contactEmail"
+          >
+        </div>
+
+        <div class="cms-field">
+          <label for="contactPhone">
+            Contact Phone
+          </label>
+
+          <input
+            type="text"
+            id="contactPhone"
+          >
+        </div>
+
+        <div class="cms-field">
+          <label for="whatsappNumber">
+            WhatsApp Number
+          </label>
+
+          <input
+            type="text"
+            id="whatsappNumber"
+            placeholder="Include country code"
+          >
+        </div>
+
+        <div class="cms-field">
+          <label for="businessHours">
+            Business Hours
+          </label>
+
+          <input
+            type="text"
+            id="businessHours"
+            placeholder="Mon - Fri, 8AM - 6PM"
+          >
+        </div>
+
+        <div class="cms-field full">
+          <label for="businessAddress">
+            Business Address
+          </label>
+
+          <textarea
+            id="businessAddress"
+          ></textarea>
+        </div>
+
       </div>
 
-      <div class="grid">
-
-        <div class="form-group">
-          <label>Contact Email</label>
-          <input id="contactEmail" type="email" value="info@example.com">
-        </div>
-
-        <div class="form-group">
-          <label>Contact Phone</label>
-          <input id="contactPhone" type="tel" value="+1 555 0100">
-        </div>
-
-        <div class="form-group">
-          <label>WhatsApp Number</label>
-          <input id="whatsappNumber" type="text" placeholder="Country code + number">
-        </div>
-
-        <div class="form-group">
-          <label>Business Address</label>
-          <input id="businessAddress" type="text" value="Newark, NJ">
-        </div>
-
-        <div class="form-group full">
-          <label>Business Hours</label>
-          <input id="businessHours" type="text" value="Monday - Friday, 8:00 AM - 6:00 PM">
-        </div>
-
-      </div>
     </section>
 
-    <!-- CUSTOMER SUPPORT -->
-    <section class="section">
-      <div class="section-header">
-        <h2>💬 Customer Support</h2>
-        <p>Control the support information customers see.</p>
-      </div>
+    <!-- SUPPORT -->
+    <section class="cms-section">
 
-      <div class="grid">
+      <h2>Support</h2>
 
-        <div class="form-group">
-          <label>Support Email</label>
-          <input id="supportEmail" type="email" value="support@example.com">
+      <div class="cms-grid">
+
+        <div class="cms-field">
+          <label for="supportEmail">
+            Support Email
+          </label>
+
+          <input
+            type="email"
+            id="supportEmail"
+          >
         </div>
 
-        <div class="form-group">
-          <label>Support Phone</label>
-          <input id="supportPhone" type="tel" value="+1 555 0100">
+        <div class="cms-field">
+          <label for="supportPhone">
+            Support Phone
+          </label>
+
+          <input
+            type="text"
+            id="supportPhone"
+          >
         </div>
 
-        <div class="form-group full">
-          <label>Support Message</label>
-          <textarea id="supportMessage">Our customer support team is available to help with shipments, deliveries and account questions.</textarea>
-        </div>
-
-        <div class="form-group">
-          <label>Live Chat</label>
+        <div class="cms-field">
+          <label for="liveChat">
+            Live Chat
+          </label>
 
           <select id="liveChat">
-            <option value="enabled">Enabled</option>
-            <option value="disabled">Disabled</option>
+            <option value="false">Disabled</option>
+            <option value="true">Enabled</option>
           </select>
         </div>
 
-        <div class="form-group">
-          <label>Support Hours</label>
-          <input id="supportHours" type="text" value="Monday - Friday, 8:00 AM - 6:00 PM">
+        <div class="cms-field">
+          <label for="supportHours">
+            Support Hours
+          </label>
+
+          <input
+            type="text"
+            id="supportHours"
+          >
+        </div>
+
+        <div class="cms-field full">
+          <label for="supportMessage">
+            Support Message
+          </label>
+
+          <textarea
+            id="supportMessage"
+          ></textarea>
         </div>
 
       </div>
+
     </section>
 
     <!-- SEO -->
-    <section class="section">
-      <div class="section-header">
-        <h2>🔎 SEO Settings</h2>
-        <p>Control search engine information for the website.</p>
+    <section class="cms-section">
+
+      <h2>SEO</h2>
+
+      <div class="cms-grid">
+
+        <div class="cms-field full">
+          <label for="seoTitle">
+            SEO Title
+          </label>
+
+          <input
+            type="text"
+            id="seoTitle"
+          >
+        </div>
+
+        <div class="cms-field full">
+          <label for="seoDescription">
+            SEO Description
+          </label>
+
+          <textarea
+            id="seoDescription"
+          ></textarea>
+        </div>
+
+        <div class="cms-field full">
+          <label for="seoKeywords">
+            SEO Keywords
+          </label>
+
+          <input
+            type="text"
+            id="seoKeywords"
+          >
+        </div>
+
       </div>
 
-      <div class="grid">
-
-        <div class="form-group full">
-          <label>SEO Title</label>
-          <input id="seoTitle" type="text" value="ExpressLine Delivery Services">
-        </div>
-
-        <div class="form-group full">
-          <label>SEO Description</label>
-          <textarea id="seoDescription">Fast and reliable delivery and logistics services.</textarea>
-        </div>
-
-        <div class="form-group full">
-          <label>SEO Keywords</label>
-          <input id="seoKeywords" type="text" value="delivery, logistics, shipping, courier">
-        </div>
-
-      </div>
     </section>
 
     <!-- FOOTER -->
-    <section class="section">
-      <div class="section-header">
-        <h2>🦶 Footer</h2>
-        <p>Control the footer content and copyright information.</p>
+    <section class="cms-section">
+
+      <h2>Footer</h2>
+
+      <div class="cms-grid">
+
+        <div class="cms-field full">
+          <label for="footerText">
+            Footer Text
+          </label>
+
+          <textarea
+            id="footerText"
+          ></textarea>
+        </div>
+
+        <div class="cms-field full">
+          <label for="copyrightText">
+            Copyright Text
+          </label>
+
+          <input
+            type="text"
+            id="copyrightText"
+          >
+        </div>
+
+        <div class="cms-field">
+          <label for="privacyUrl">
+            Privacy Policy Link
+          </label>
+
+          <input
+            type="text"
+            id="privacyUrl"
+          >
+        </div>
+
+        <div class="cms-field">
+          <label for="termsUrl">
+            Terms Link
+          </label>
+
+          <input
+            type="text"
+            id="termsUrl"
+          >
+        </div>
+
       </div>
 
-      <div class="grid">
-
-        <div class="form-group full">
-          <label>Footer Text</label>
-          <textarea id="footerText">ExpressLine Delivery Services provides professional logistics and delivery solutions.</textarea>
-        </div>
-
-        <div class="form-group">
-          <label>Copyright Text</label>
-          <input id="copyrightText" type="text" value="© 2026 ExpressLine Delivery Services. All rights reserved.">
-        </div>
-
-        <div class="form-group">
-          <label>Privacy Policy URL</label>
-          <input id="privacyUrl" type="text" placeholder="https://example.com/privacy">
-        </div>
-
-        <div class="form-group">
-          <label>Terms & Conditions URL</label>
-          <input id="termsUrl" type="text" placeholder="https://example.com/terms">
-        </div>
-
-      </div>
     </section>
-
-    <!-- SAVE -->
-    <div class="save-bar">
-
-      <span>
-        Save your website settings before leaving this page.
-      </span>
-
-      <div class="button-row">
-
-        <button
-          type="button"
-          class="secondary"
-          onclick="loadSettings()"
-        >
-          Reset
-        </button>
-
-        <button
-          type="button"
-          class="danger"
-          onclick="clearSettings()"
-        >
-          Clear Settings
-        </button>
-
-        <button
-          type="button"
-          onclick="saveSettings()"
-        >
-          Save Website Settings
-        </button>
-
-      </div>
-
-    </div>
-
-    <div id="statusMessage" class="status">
-      Website settings saved successfully.
-    </div>
 
   </main>
 
-  <script>
+  <div class="cms-actions">
 
-    /* ADMIN ACCESS PROTECTION */
-    if (localStorage.getItem("adminLoggedIn") !== "true") {
-      window.location.replace("admin-login.html");
+    <div class="cms-actions-inner">
+
+      <button
+        type="button"
+        class="cms-button save-button"
+        onclick="saveSettings()"
+      >
+        Save Website Settings
+      </button>
+
+      <button
+        type="button"
+        class="cms-button reset-button"
+        onclick="loadSettings()"
+      >
+        Reload Saved Settings
+      </button>
+
+      <button
+        type="button"
+        class="cms-button clear-button"
+        onclick="clearSettings()"
+      >
+        Clear Website Settings
+      </button>
+
+    </div>
+
+  </div>
+
+</div>
+
+<script>
+
+  /*
+   * ADMIN ACCESS
+   */
+  if (
+    localStorage.getItem("adminLoggedIn") !== "true"
+  ) {
+    window.location.replace(
+      "admin-login.html"
+    );
+  }
+
+
+  /*
+   * STORAGE
+   */
+  const STORAGE_KEY =
+    "expresslineWebsiteSettings";
+
+
+  /*
+   * ALL TEXT SETTINGS
+   */
+  const fields = [
+    "companyName",
+    "shortName",
+    "tagline",
+
+    "websiteTitle",
+    "websiteStatus",
+    "websiteDescription",
+    "announcementText",
+    "announcementEnabled",
+
+    "navHome",
+    "navServices",
+    "navTrack",
+    "navRequest",
+    "navAbout",
+    "navContact",
+    "navLogin",
+    "navRegister",
+
+    "heroHeading",
+    "heroDescription",
+    "heroPrimaryButton",
+    "heroSecondaryButton",
+
+    "primaryColor",
+    "primaryColorText",
+    "secondaryColor",
+    "secondaryColorText",
+    "accentColor",
+    "accentColorText",
+    "textColor",
+    "textColorText",
+
+    "fontFamily",
+    "fontSize",
+
+    "service1Name",
+    "service1Description",
+    "service2Name",
+    "service2Description",
+    "service3Name",
+    "service3Description",
+
+    "contactEmail",
+    "contactPhone",
+    "whatsappNumber",
+    "businessAddress",
+    "businessHours",
+
+    "supportEmail",
+    "supportPhone",
+    "supportMessage",
+    "liveChat",
+    "supportHours",
+
+    "seoTitle",
+    "seoDescription",
+    "seoKeywords",
+
+    "footerText",
+    "copyrightText",
+    "privacyUrl",
+    "termsUrl"
+  ];
+
+
+  /*
+   * IMAGE SETTINGS
+   *
+   * Images are stored as data URLs.
+   */
+  const imageFields = [
+    {
+      setting: "logoUrl",
+      fileId: "logoFile",
+      previewId: "logoPreview",
+      boxId: "logoPreviewBox"
+    },
+    {
+      setting: "faviconUrl",
+      fileId: "faviconFile",
+      previewId: "faviconPreview",
+      boxId: "faviconPreviewBox"
+    },
+    {
+      setting: "heroImage",
+      fileId: "heroImageFile",
+      previewId: "heroImagePreview",
+      boxId: "heroImagePreviewBox"
+    },
+    {
+      setting: "servicesImage",
+      fileId: "servicesImageFile",
+      previewId: "servicesImagePreview",
+      boxId: "servicesImagePreviewBox"
+    },
+    {
+      setting: "businessImage",
+      fileId: "businessImageFile",
+      previewId: "businessImagePreview",
+      boxId: "businessImagePreviewBox"
+    },
+    {
+      setting: "aboutImage",
+      fileId: "aboutImageFile",
+      previewId: "aboutImagePreview",
+      boxId: "aboutImagePreviewBox"
+    },
+    {
+      setting: "contactImage",
+      fileId: "contactImageFile",
+      previewId: "contactImagePreview",
+      boxId: "contactImagePreviewBox"
+    },
+    {
+      setting: "backgroundImage",
+      fileId: "backgroundImageFile",
+      previewId: "backgroundImagePreview",
+      boxId: "backgroundImagePreviewBox"
+    }
+  ];
+
+
+  let uploadedImages = {};
+
+
+  /*
+   * MESSAGE
+   */
+  function showMessage(
+    message,
+    type
+  ) {
+    const box =
+      document.getElementById(
+        "cmsMessage"
+      );
+
+    box.textContent = message;
+
+    box.className =
+      "cms-message " + type;
+
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
+  }
+
+
+  /*
+   * LOAD SAVED SETTINGS
+   */
+  function getSavedSettings() {
+    try {
+      const saved =
+        localStorage.getItem(
+          STORAGE_KEY
+        );
+
+      if (!saved) {
+        return {};
+      }
+
+      const parsed =
+        JSON.parse(saved);
+
+      return parsed &&
+        typeof parsed === "object"
+        ? parsed
+        : {};
+
+    } catch (error) {
+      return {};
+    }
+  }
+
+
+  /*
+   * SET FIELD VALUE
+   */
+  function setFieldValue(
+    id,
+    value
+  ) {
+    const element =
+      document.getElementById(id);
+
+    if (!element) {
+      return;
     }
 
-    const STORAGE_KEY = "expresslineWebsiteSettings";
+    if (
+      value !== undefined &&
+      value !== null
+    ) {
+      element.value = value;
+    }
+  }
 
-    const fields = [
 
-      "companyName",
-      "shortName",
-      "tagline",
-      "logoUrl",
-      "faviconUrl",
+  /*
+   * LOAD SETTINGS INTO FORM
+   */
+  function loadSettings() {
 
-      "websiteTitle",
-      "websiteStatus",
-      "websiteDescription",
-      "announcementText",
-      "announcementEnabled",
+    const settings =
+      getSavedSettings();
 
-      "navHome",
-      "navServices",
-      "navTrack",
-      "navRequest",
-      "navAbout",
-      "navContact",
-      "navLogin",
-      "navRegister",
+    fields.forEach(function (id) {
 
-      "heroHeading",
-      "heroDescription",
-      "heroPrimaryButton",
-      "heroSecondaryButton",
-      "heroImage",
+      if (
+        Object.prototype.hasOwnProperty.call(
+          settings,
+          id
+        )
+      ) {
+        setFieldValue(
+          id,
+          settings[id]
+        );
+      }
 
-      "servicesImage",
-      "businessImage",
-      "aboutImage",
-      "contactImage",
-      "backgroundImage",
+    });
 
-      "primaryColor",
-      "primaryColorText",
-      "secondaryColor",
-      "secondaryColorText",
-      "accentColor",
-      "accentColorText",
-      "textColor",
-      "textColorText",
 
-      "fontFamily",
-      "fontSize",
+    /*
+     * Load images.
+     */
+    imageFields.forEach(
+      function (image) {
 
-      "service1Name",
-      "service1Description",
-      "service2Name",
-      "service2Description",
-      "service3Name",
-      "service3Description",
+        const value =
+          settings[image.setting] || "";
 
-      "contactEmail",
-      "contactPhone",
-      "whatsappNumber",
-      "businessAddress",
-      "businessHours",
+        uploadedImages[
+          image.setting
+        ] = value;
 
-      "supportEmail",
-      "supportPhone",
-      "supportMessage",
-      "liveChat",
-      "supportHours",
+        showImagePreview(
+          image,
+          value
+        );
+      }
+    );
 
-      "seoTitle",
-      "seoDescription",
-      "seoKeywords",
 
-      "footerText",
-      "copyrightText",
-      "privacyUrl",
-      "termsUrl"
+    syncColorFields();
+  }
 
-    ];
 
-    function saveSettings() {
+  /*
+   * IMAGE PREVIEW
+   */
+  function showImagePreview(
+    image,
+    value
+  ) {
 
-      const settings = {};
+    const box =
+      document.getElementById(
+        image.boxId
+      );
 
-      fields.forEach(id => {
+    const preview =
+      document.getElementById(
+        image.previewId
+      );
 
-        const element = document.getElementById(id);
+    if (
+      !box ||
+      !preview
+    ) {
+      return;
+    }
 
-        if (!element) return;
+    if (value) {
 
-        if (element.type === "checkbox") {
+      preview.src = value;
 
-          settings[id] = element.checked;
+      box.style.display =
+        "block";
 
-        } else {
+    } else {
 
-          settings[id] = element.value;
+      preview.src = "";
 
+      box.style.display =
+        "none";
+    }
+  }
+
+
+  /*
+   * READ UPLOADED IMAGE
+   */
+  function handleImageUpload(
+    image
+  ) {
+
+    const input =
+      document.getElementById(
+        image.fileId
+      );
+
+    if (
+      !input ||
+      !input.files ||
+      !input.files[0]
+    ) {
+      return;
+    }
+
+    const file =
+      input.files[0];
+
+
+    if (
+      !file.type.startsWith(
+        "image/"
+      ) &&
+      file.type !== ""
+    ) {
+
+      input.value = "";
+
+      showMessage(
+        "Please select a valid image file.",
+        "error"
+      );
+
+      return;
+    }
+
+
+    /*
+     * Limit individual images
+     * to approximately 5 MB.
+     */
+    if (
+      file.size >
+      5 * 1024 * 1024
+    ) {
+
+      input.value = "";
+
+      showMessage(
+        "Please choose an image smaller than 5 MB.",
+        "error"
+      );
+
+      return;
+    }
+
+
+    const reader =
+      new FileReader();
+
+
+    reader.onload =
+      function (event) {
+
+        const dataUrl =
+          event.target.result;
+
+        uploadedImages[
+          image.setting
+        ] = dataUrl;
+
+        showImagePreview(
+          image,
+          dataUrl
+        );
+
+      };
+
+
+    reader.onerror =
+      function () {
+
+        showMessage(
+          "The image could not be loaded. Please try another image.",
+          "error"
+        );
+
+      };
+
+
+    reader.readAsDataURL(file);
+  }
+
+
+  /*
+   * REMOVE IMAGE
+   */
+  function removeImage(
+    imageName
+  ) {
+
+    uploadedImages[
+      getImageSettingName(
+        imageName
+      )
+    ] = "";
+
+
+    const image =
+      imageFields.find(
+        function (item) {
+          return (
+            item.setting ===
+            getImageSettingName(
+              imageName
+            )
+          );
         }
+      );
 
-      });
+
+    if (!image) {
+      return;
+    }
+
+
+    const input =
+      document.getElementById(
+        image.fileId
+      );
+
+    if (input) {
+      input.value = "";
+    }
+
+
+    showImagePreview(
+      image,
+      ""
+    );
+  }
+
+
+  /*
+   * IMAGE NAME MAPPING
+   */
+  function getImageSettingName(
+    imageName
+  ) {
+
+    const mapping = {
+      logo: "logoUrl",
+      favicon: "faviconUrl",
+      heroImage: "heroImage",
+      servicesImage: "servicesImage",
+      businessImage: "businessImage",
+      aboutImage: "aboutImage",
+      contactImage: "contactImage",
+      backgroundImage: "backgroundImage"
+    };
+
+    return (
+      mapping[imageName] ||
+      imageName
+    );
+  }
+
+
+  /*
+   * SAVE SETTINGS
+   */
+  function saveSettings() {
+
+    const settings = {};
+
+
+    /*
+     * Save text fields.
+     */
+    fields.forEach(function (id) {
+
+      const element =
+        document.getElementById(id);
+
+      if (!element) {
+        return;
+      }
+
+      settings[id] =
+        element.value;
+
+    });
+
+
+    /*
+     * Save uploaded images.
+     */
+    imageFields.forEach(
+      function (image) {
+
+        settings[
+          image.setting
+        ] =
+          uploadedImages[
+            image.setting
+          ] || "";
+
+      }
+    );
+
+
+    try {
 
       localStorage.setItem(
         STORAGE_KEY,
         JSON.stringify(settings)
       );
 
-      const status =
-        document.getElementById("statusMessage");
+      showMessage(
+        "Website settings saved successfully.",
+        "success"
+      );
 
-      status.style.display = "block";
+    } catch (error) {
 
-      setTimeout(() => {
+      showMessage(
+        "The settings could not be saved. The uploaded images may be too large. Try smaller images.",
+        "error"
+      );
 
-        status.style.display = "none";
-
-      }, 3000);
     }
 
-    function loadSettings() {
+  }
 
-      const saved =
-        localStorage.getItem(STORAGE_KEY);
 
-      if (!saved) return;
+  /*
+   * CLEAR SETTINGS
+   */
+  function clearSettings() {
 
-      let settings;
+    const confirmed =
+      window.confirm(
+        "Are you sure you want to clear all saved website settings?"
+      );
 
-      try {
+    if (!confirmed) {
+      return;
+    }
 
-        settings = JSON.parse(saved);
 
-      } catch (error) {
+    localStorage.removeItem(
+      STORAGE_KEY
+    );
 
-        console.error(
-          "Invalid website settings:",
-          error
-        );
 
+    uploadedImages = {};
+
+
+    fields.forEach(function (id) {
+
+      const element =
+        document.getElementById(id);
+
+      if (!element) {
         return;
       }
 
-      fields.forEach(id => {
+      if (
+        element.tagName ===
+        "SELECT"
+      ) {
+        element.selectedIndex = 0;
+      } else {
+        element.value = "";
+      }
 
-        const element =
-          document.getElementById(id);
+    });
 
-        if (
-          !element ||
-          !(id in settings)
-        ) {
-          return;
+
+    imageFields.forEach(
+      function (image) {
+
+        const input =
+          document.getElementById(
+            image.fileId
+          );
+
+        if (input) {
+          input.value = "";
         }
 
-        if (element.type === "checkbox") {
-
-          element.checked =
-            Boolean(settings[id]);
-
-        } else {
-
-          element.value =
-            settings[id];
-
-        }
-
-      });
-
-      syncColorFields();
-    }
-
-    function clearSettings() {
-
-      const confirmed = confirm(
-        "Are you sure you want to delete all saved website settings?"
-      );
-
-      if (!confirmed) return;
-
-      localStorage.removeItem(STORAGE_KEY);
-
-      location.reload();
-    }
-
-    function syncColorFields() {
-
-      const pairs = [
-
-        [
-          "primaryColor",
-          "primaryColorText"
-        ],
-
-        [
-          "secondaryColor",
-          "secondaryColorText"
-        ],
-
-        [
-          "accentColor",
-          "accentColorText"
-        ],
-
-        [
-          "textColor",
-          "textColorText"
-        ]
-
-      ];
-
-      pairs.forEach(
-        ([colorId, textId]) => {
-
-          const color =
-            document.getElementById(colorId);
-
-          const text =
-            document.getElementById(textId);
-
-          if (!color || !text) return;
-
-          color.oninput = () => {
-
-            text.value =
-              color.value;
-
-          };
-
-          text.oninput = () => {
-
-            const value =
-              text.value;
-
-            if (
-              /^#[0-9A-Fa-f]{6}$/.test(value)
-            ) {
-
-              color.value =
-                value;
-
-            }
-
-          };
-
-        }
-      );
-    }
-
-    document.addEventListener(
-      "DOMContentLoaded",
-      () => {
-
-        syncColorFields();
-
-        loadSettings();
+        showImagePreview(
+          image,
+          ""
+        );
 
       }
     );
 
-  </script>
+
+    syncColorFields();
+
+
+    showMessage(
+      "Website settings have been cleared.",
+      "success"
+    );
+
+  }
+
+
+  /*
+   * COLOR SYNC
+   */
+  function syncColorFields() {
+
+    const pairs = [
+      [
+        "primaryColor",
+        "primaryColorText"
+      ],
+      [
+        "secondaryColor",
+        "secondaryColorText"
+      ],
+      [
+        "accentColor",
+        "accentColorText"
+      ],
+      [
+        "textColor",
+        "textColorText"
+      ]
+    ];
+
+
+    pairs.forEach(
+      function (pair) {
+
+        const color =
+          document.getElementById(
+            pair[0]
+          );
+
+        const text =
+          document.getElementById(
+            pair[1]
+          );
+
+
+        if (!color || !text) {
+          return;
+        }
+
+
+        color.addEventListener(
+          "input",
+          function () {
+            text.value =
+              color.value;
+          }
+        );
+
+
+        text.addEventListener(
+          "input",
+          function () {
+
+            if (
+              /^#[0-9A-Fa-f]{6}$/.test(
+                text.value
+              )
+            ) {
+              color.value =
+                text.value;
+            }
+
+          }
+        );
+
+      }
+    );
+
+  }
+
+
+  /*
+   * CONNECT IMAGE UPLOADS
+   */
+  imageFields.forEach(
+    function (image) {
+
+      const input =
+        document.getElementById(
+          image.fileId
+        );
+
+      if (input) {
+
+        input.addEventListener(
+          "change",
+          function () {
+            handleImageUpload(
+              image
+            );
+          }
+        );
+
+      }
+
+    }
+  );
+
+
+  /*
+   * INITIAL LOAD
+   */
+  syncColorFields();
+
+  loadSettings();
+
+</script>
 
 </body>
 </html>
