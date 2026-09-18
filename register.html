@@ -4,7 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Create Account | ExpressLine Delivery Services</title>
+  <title id="pageTitle">
+    Create Account | ExpressLine Delivery Services
+  </title>
 
   <meta
     id="pageDescription"
@@ -117,6 +119,11 @@
       opacity: 0.92;
     }
 
+    .register-button:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+
     .register-message {
       display: none;
       padding: 12px 14px;
@@ -177,38 +184,63 @@
 <body>
 
   <!-- HEADER -->
+
   <header class="site-header">
 
     <div class="container">
 
       <a href="index.html" class="logo">
-        <span class="logo-mark">EL</span>
-        <span id="siteShortName">ExpressLine</span>
+
+        <span class="logo-mark">
+          EL
+        </span>
+
+        <span id="siteShortName">
+          ExpressLine
+        </span>
+
       </a>
+
 
       <button
         class="menu-toggle"
         id="menuToggle"
+        type="button"
         aria-label="Open menu"
       >
         ☰
       </button>
 
+
       <nav id="mainNav">
 
-        <a href="index.html" id="navHome">Home</a>
+        <a href="index.html" id="navHome">
+          Home
+        </a>
 
-        <a href="track.html" id="navTrack">Track Shipment</a>
+        <a href="track.html" id="navTrack">
+          Track Shipment
+        </a>
 
-        <a href="services.html" id="navServices">Services</a>
+        <a href="services.html" id="navServices">
+          Services
+        </a>
 
-        <a href="about.html" id="navAbout">About Us</a>
+        <a href="about.html" id="navAbout">
+          About Us
+        </a>
 
-        <a href="contact.html" id="navContact">Contact Us</a>
+        <a href="contact.html" id="navContact">
+          Contact Us
+        </a>
 
-        <a href="request.html" id="navRequest">Request Shipment</a>
+        <a href="request.html" id="navRequest">
+          Request Shipment
+        </a>
 
-        <a href="login.html" id="navLogin">Customer Login</a>
+        <a href="login.html" id="navLogin">
+          Customer Login
+        </a>
 
       </nav>
 
@@ -218,6 +250,7 @@
 
 
   <!-- REGISTER -->
+
   <main>
 
     <section class="register-section">
@@ -226,17 +259,22 @@
 
         <div class="register-card">
 
-          <h1>Create Your Account</h1>
+          <h1>
+            Create Your Account
+          </h1>
 
           <p>
             Register with ExpressLine Delivery Services to manage your shipments
             and access your customer account.
           </p>
 
+
           <div
             id="registerMessage"
             class="register-message"
+            role="alert"
           ></div>
+
 
           <form id="registerForm">
 
@@ -287,6 +325,7 @@
                   id="registerEmail"
                   name="email"
                   placeholder="Enter your email"
+                  autocomplete="email"
                   required
                 >
 
@@ -321,6 +360,7 @@
                   id="registerPassword"
                   name="password"
                   placeholder="Create a password"
+                  autocomplete="new-password"
                   minlength="6"
                   required
                 >
@@ -339,6 +379,7 @@
                   id="confirmPassword"
                   name="confirmPassword"
                   placeholder="Confirm your password"
+                  autocomplete="new-password"
                   minlength="6"
                   required
                 >
@@ -382,6 +423,7 @@
 
             <button
               type="submit"
+              id="registerButton"
               class="register-button"
             >
               Create Account
@@ -410,6 +452,7 @@
 
 
   <!-- FOOTER -->
+
   <footer class="site-footer">
 
     <div class="container">
@@ -418,9 +461,19 @@
 
         <div>
 
-          <a href="index.html" class="logo footer-logo">
-            <span class="logo-mark">EL</span>
-            <span id="footerCompanyName">ExpressLine</span>
+          <a
+            href="index.html"
+            class="logo footer-logo"
+          >
+
+            <span class="logo-mark">
+              EL
+            </span>
+
+            <span id="footerCompanyName">
+              ExpressLine
+            </span>
+
           </a>
 
           <p id="footerText">
@@ -432,31 +485,59 @@
 
         <div>
 
-          <h3>Company</h3>
+          <h3>
+            Company
+          </h3>
 
-          <a href="index.html">Home</a>
-          <a href="services.html">Services</a>
-          <a href="about.html">About Us</a>
-          <a href="contact.html">Contact Us</a>
+          <a href="index.html">
+            Home
+          </a>
+
+          <a href="services.html">
+            Services
+          </a>
+
+          <a href="about.html">
+            About Us
+          </a>
+
+          <a href="contact.html">
+            Contact Us
+          </a>
 
         </div>
 
 
         <div>
 
-          <h3>Customer</h3>
+          <h3>
+            Customer
+          </h3>
 
-          <a href="track.html">Track Shipment</a>
-          <a href="request.html">Request Shipment</a>
-          <a href="login.html">Customer Login</a>
-          <a href="register.html">Register</a>
+          <a href="track.html">
+            Track Shipment
+          </a>
+
+          <a href="request.html">
+            Request Shipment
+          </a>
+
+          <a href="login.html">
+            Customer Login
+          </a>
+
+          <a href="register.html">
+            Register
+          </a>
 
         </div>
 
 
         <div>
 
-          <h3>Contact</h3>
+          <h3>
+            Contact
+          </h3>
 
           <p id="footerContactText">
             Contact ExpressLine for delivery and logistics support.
@@ -478,9 +559,11 @@
       <div class="footer-bottom">
 
         <p>
+
           <span id="copyrightText">
             © 2026 ExpressLine Delivery Services. All rights reserved.
           </span>
+
         </p>
 
       </div>
@@ -490,160 +573,360 @@
   </footer>
 
 
-  <script src="script.js"></script>
+  <!-- SUPABASE -->
 
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+
+  <!-- WEBSITE SETTINGS + CUSTOMER REGISTRATION -->
 
   <script>
-    const WEBSITE_SETTINGS_KEY = "expresslineWebsiteSettings";
 
-    function getWebsiteSettings() {
+    const SUPABASE_URL =
+      "https://uhjgietvznkfzckmxqfz.supabase.co";
+
+    const SUPABASE_PUBLISHABLE_KEY =
+      "sb_publishable_zZ0JiBW-2uarX2gnR5w9hQ_77RpB6SM";
+
+
+    const supabaseClient =
+      window.supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_PUBLISHABLE_KEY
+      );
+
+
+    async function getWebsiteSettings() {
+
       try {
-        return JSON.parse(
-          localStorage.getItem(WEBSITE_SETTINGS_KEY)
-        ) || {};
+
+        const { data, error } =
+          await supabaseClient
+            .from("website_settings")
+            .select("settings")
+            .eq("id", 1)
+            .maybeSingle();
+
+
+        if (error) {
+
+          console.error(
+            "Unable to load website settings:",
+            error
+          );
+
+          return {};
+
+        }
+
+
+        return data?.settings || {};
+
       } catch (error) {
+
+        console.error(
+          "Unable to load website settings:",
+          error
+        );
+
         return {};
+
       }
+
     }
+
 
     function setText(id, value) {
-      const element = document.getElementById(id);
 
-      if (element && value !== undefined && value !== null && value !== "") {
-        element.textContent = value;
+      const element =
+        document.getElementById(id);
+
+      if (
+        element &&
+        value !== undefined &&
+        value !== null &&
+        String(value).trim() !== ""
+      ) {
+
+        element.textContent =
+          value;
+
       }
+
     }
 
-    function setHref(id, href) {
-      const element = document.getElementById(id);
 
-      if (element && href) {
-        element.href = href;
-      }
-    }
+    async function applyWebsiteSettings() {
 
-    function applyWebsiteSettings() {
+      const settings =
+        await getWebsiteSettings();
 
-      const settings = getWebsiteSettings();
 
-      /*
-        Website title and SEO
-      */
-      if (settings.websiteTitle) {
-        document.title = settings.websiteTitle;
-      }
+      /* WEBSITE TITLE */
 
-      if (settings.seoTitle) {
-        document.title = settings.seoTitle;
+      if (
+        settings.websiteTitle &&
+        String(settings.websiteTitle).trim() !== ""
+      ) {
+
+        document.title =
+          settings.websiteTitle;
+
       }
 
-      const description = document.getElementById("pageDescription");
+
+      if (
+        settings.seoTitle &&
+        String(settings.seoTitle).trim() !== ""
+      ) {
+
+        document.title =
+          settings.seoTitle;
+
+      }
+
+
+      /* SEO DESCRIPTION */
+
+      const description =
+        document.getElementById(
+          "pageDescription"
+        );
 
       if (
         description &&
-        (settings.seoDescription || settings.websiteDescription)
+        (
+          settings.seoDescription ||
+          settings.websiteDescription
+        )
       ) {
+
         description.content =
           settings.seoDescription ||
           settings.websiteDescription;
-      }
 
-      const keywords = document.getElementById("pageKeywords");
-
-      if (keywords && settings.seoKeywords) {
-        keywords.content = settings.seoKeywords;
       }
 
 
-      /*
-        Company
-      */
+      /* SEO KEYWORDS */
+
+      const keywords =
+        document.getElementById(
+          "pageKeywords"
+        );
+
+      if (
+        keywords &&
+        settings.seoKeywords
+      ) {
+
+        keywords.content =
+          settings.seoKeywords;
+
+      }
+
+
+      /* COMPANY */
+
       setText(
         "siteShortName",
-        settings.shortName || settings.companyName
+        settings.shortName ||
+        settings.companyName
       );
 
       setText(
         "footerCompanyName",
-        settings.companyName || settings.shortName
+        settings.companyName ||
+        settings.shortName
       );
 
 
-      /*
-        Navigation
-      */
-      setText("navHome", settings.navHome);
-      setText("navTrack", settings.navTrack);
-      setText("navServices", settings.navServices);
-      setText("navAbout", settings.navAbout);
-      setText("navContact", settings.navContact);
-      setText("navRequest", settings.navRequest);
-      setText("navLogin", settings.navLogin);
+      /* NAVIGATION */
+
+      setText(
+        "navHome",
+        settings.navHome
+      );
+
+      setText(
+        "navTrack",
+        settings.navTrack
+      );
+
+      setText(
+        "navServices",
+        settings.navServices
+      );
+
+      setText(
+        "navAbout",
+        settings.navAbout
+      );
+
+      setText(
+        "navContact",
+        settings.navContact
+      );
+
+      setText(
+        "navRequest",
+        settings.navRequest
+      );
+
+      setText(
+        "navLogin",
+        settings.navLogin
+      );
 
 
-      /*
-        Footer
-      */
-      setText("footerText", settings.footerText);
-      setText("copyrightText", settings.copyrightText);
+      /* FOOTER */
+
+      setText(
+        "footerText",
+        settings.footerText
+      );
+
+      setText(
+        "copyrightText",
+        settings.copyrightText
+      );
 
 
-      /*
-        Contact details
-      */
-      if (settings.contactEmail) {
+      /* CONTACT */
+
+      if (
+        settings.contactEmail &&
+        String(settings.contactEmail).trim() !== ""
+      ) {
+
         setText(
           "footerContactEmail",
-          "Email: " + settings.contactEmail
+          "Email: " +
+          settings.contactEmail
         );
+
       }
 
-      if (settings.contactPhone) {
+
+      if (
+        settings.contactPhone &&
+        String(settings.contactPhone).trim() !== ""
+      ) {
+
         setText(
           "footerContactPhone",
-          "Phone: " + settings.contactPhone
+          "Phone: " +
+          settings.contactPhone
         );
+
       }
 
 
-      /*
-        Website colors
-      */
-      const root = document.documentElement;
+      if (
+        settings.businessAddress ||
+        settings.contactEmail ||
+        settings.contactPhone
+      ) {
+
+        setText(
+          "footerContactText",
+          settings.businessAddress ||
+          "Contact ExpressLine Delivery Services."
+        );
+
+      }
+
+
+      /* COLORS */
+
+      const root =
+        document.documentElement;
+
 
       if (settings.primaryColor) {
+
         root.style.setProperty(
           "--primary-color",
           settings.primaryColor
         );
+
       }
 
+
+      if (settings.primaryColorText) {
+
+        root.style.setProperty(
+          "--primary-text",
+          settings.primaryColorText
+        );
+
+      }
+
+
       if (settings.secondaryColor) {
+
         root.style.setProperty(
           "--secondary-color",
           settings.secondaryColor
         );
+
       }
 
+
+      if (settings.secondaryColorText) {
+
+        root.style.setProperty(
+          "--secondary-text",
+          settings.secondaryColorText
+        );
+
+      }
+
+
       if (settings.accentColor) {
+
         root.style.setProperty(
           "--accent-color",
           settings.accentColor
         );
+
       }
 
+
+      if (settings.accentColorText) {
+
+        root.style.setProperty(
+          "--accent-text",
+          settings.accentColorText
+        );
+
+      }
+
+
       if (settings.textColor) {
+
         root.style.setProperty(
           "--text-color",
           settings.textColor
         );
+
       }
 
 
-      /*
-        Typography
-      */
+      if (settings.textColorText) {
+
+        root.style.setProperty(
+          "--text-color-text",
+          settings.textColorText
+        );
+
+      }
+
+
+      /* TYPOGRAPHY */
+
       if (settings.fontFamily) {
+
         root.style.setProperty(
           "--font-family",
           settings.fontFamily
@@ -651,9 +934,12 @@
 
         document.body.style.fontFamily =
           settings.fontFamily;
+
       }
 
+
       if (settings.fontSize) {
+
         root.style.setProperty(
           "--font-size",
           settings.fontSize
@@ -661,215 +947,390 @@
 
         document.body.style.fontSize =
           settings.fontSize;
+
       }
 
 
-      /*
-        Favicon uploaded through the Admin Website Editor.
-      */
-      if (settings.faviconUrl) {
+      /* FAVICON */
+
+      if (
+        settings.faviconUrl &&
+        String(settings.faviconUrl).trim() !== ""
+      ) {
 
         let favicon =
           document.querySelector(
             'link[rel="icon"]'
           );
 
+
         if (!favicon) {
-          favicon = document.createElement("link");
-          favicon.rel = "icon";
-          document.head.appendChild(favicon);
+
+          favicon =
+            document.createElement(
+              "link"
+            );
+
+          favicon.rel =
+            "icon";
+
+          document.head.appendChild(
+            favicon
+          );
+
         }
 
-        favicon.href = settings.faviconUrl;
+
+        favicon.href =
+          settings.faviconUrl;
+
       }
+
     }
 
 
-    /*
-      Customer registration
-    */
+    /* MOBILE MENU */
+
+    const menuToggle =
+      document.getElementById(
+        "menuToggle"
+      );
+
+    const mainNav =
+      document.getElementById(
+        "mainNav"
+      );
+
+
+    if (
+      menuToggle &&
+      mainNav
+    ) {
+
+      menuToggle.addEventListener(
+        "click",
+        function() {
+
+          mainNav.classList.toggle(
+            "active"
+          );
+
+        }
+      );
+
+
+      mainNav
+        .querySelectorAll("a")
+        .forEach(function(link) {
+
+          link.addEventListener(
+            "click",
+            function() {
+
+              mainNav.classList.remove(
+                "active"
+              );
+
+            }
+          );
+
+        });
+
+    }
+
+
+    /* CUSTOMER REGISTRATION */
+
     const registerForm =
-      document.getElementById("registerForm");
+      document.getElementById(
+        "registerForm"
+      );
+
+    const registerMessage =
+      document.getElementById(
+        "registerMessage"
+      );
+
+    const registerButton =
+      document.getElementById(
+        "registerButton"
+      );
+
+
+    function showRegisterMessage(
+      type,
+      text
+    ) {
+
+      if (!registerMessage) {
+        return;
+      }
+
+
+      registerMessage.className =
+        "register-message " +
+        type;
+
+      registerMessage.textContent =
+        text;
+
+    }
+
 
     if (registerForm) {
 
       registerForm.addEventListener(
         "submit",
-        function(event) {
+        async function(event) {
 
           event.preventDefault();
 
+
           const firstName =
-            document.getElementById("firstName").value.trim();
+            document.getElementById(
+              "firstName"
+            ).value.trim();
+
 
           const lastName =
-            document.getElementById("lastName").value.trim();
+            document.getElementById(
+              "lastName"
+            ).value.trim();
+
 
           const email =
-            document.getElementById("registerEmail").value.trim();
+            document.getElementById(
+              "registerEmail"
+            ).value.trim();
+
 
           const phone =
-            document.getElementById("registerPhone").value.trim();
+            document.getElementById(
+              "registerPhone"
+            ).value.trim();
+
 
           const password =
-            document.getElementById("registerPassword").value;
+            document.getElementById(
+              "registerPassword"
+            ).value;
+
 
           const confirmPassword =
-            document.getElementById("confirmPassword").value;
+            document.getElementById(
+              "confirmPassword"
+            ).value;
+
 
           const address =
-            document.getElementById("registerAddress").value.trim();
+            document.getElementById(
+              "registerAddress"
+            ).value.trim();
+
 
           const agreeTerms =
-            document.getElementById("agreeTerms").checked;
+            document.getElementById(
+              "agreeTerms"
+            ).checked;
 
-          const message =
-            document.getElementById("registerMessage");
 
+          if (
+            password.length < 6
+          ) {
 
-          if (password.length < 6) {
-
-            message.className =
-              "register-message error";
-
-            message.textContent =
-              "Password must contain at least 6 characters.";
+            showRegisterMessage(
+              "error",
+              "Password must contain at least 6 characters."
+            );
 
             return;
+
           }
 
 
-          if (password !== confirmPassword) {
+          if (
+            password !==
+            confirmPassword
+          ) {
 
-            message.className =
-              "register-message error";
-
-            message.textContent =
-              "Passwords do not match.";
+            showRegisterMessage(
+              "error",
+              "Passwords do not match."
+            );
 
             return;
+
           }
 
 
           if (!agreeTerms) {
 
-            message.className =
-              "register-message error";
-
-            message.textContent =
-              "Please agree to the terms and conditions.";
+            showRegisterMessage(
+              "error",
+              "Please agree to the terms and conditions."
+            );
 
             return;
+
           }
 
 
-          const usersKey =
-            "expresslineCustomers";
+          if (registerButton) {
 
-          let customers = [];
+            registerButton.disabled =
+              true;
+
+            registerButton.textContent =
+              "Creating Account...";
+
+          }
+
 
           try {
 
-            customers =
-              JSON.parse(
-                localStorage.getItem(usersKey)
-              ) || [];
+            const { data, error } =
+              await supabaseClient.auth.signUp({
 
-          } catch (error) {
+                email:
+                  email,
 
-            customers = [];
+                password:
+                  password,
 
-          }
+                options: {
+
+                  data: {
+
+                    first_name:
+                      firstName,
+
+                    last_name:
+                      lastName,
+
+                    phone:
+                      phone,
+
+                    address:
+                      address
+
+                  }
+
+                }
+
+              });
 
 
-          const existingUser =
-            customers.find(
-              function(user) {
-                return (
-                  user.email &&
-                  user.email.toLowerCase() ===
-                    email.toLowerCase()
-                );
-              }
+            if (error) {
+
+              throw error;
+
+            }
+
+
+            /*
+              If email confirmation is disabled,
+              Supabase may immediately create a session.
+            */
+
+            if (data.session) {
+
+              showRegisterMessage(
+                "success",
+                "Your account has been created successfully. Redirecting to login..."
+              );
+
+            } else {
+
+              showRegisterMessage(
+                "success",
+                "Your account has been created successfully. Please check your email if confirmation is required, then log in."
+              );
+
+            }
+
+
+            registerForm.reset();
+
+
+            setTimeout(
+              function() {
+
+                window.location.href =
+                  "login.html";
+
+              },
+              1800
             );
 
 
-          if (existingUser) {
+          } catch (error) {
 
-            message.className =
-              "register-message error";
+            console.error(
+              "Registration error:",
+              error
+            );
 
-            message.textContent =
-              "An account with this email already exists.";
 
-            return;
+            let errorMessage =
+              "Unable to create your account. Please try again.";
+
+
+            if (
+              error &&
+              error.message
+            ) {
+
+              if (
+                error.message
+                  .toLowerCase()
+                  .includes(
+                    "already registered"
+                  )
+              ) {
+
+                errorMessage =
+                  "An account with this email already exists.";
+
+              } else {
+
+                errorMessage =
+                  error.message;
+
+              }
+
+            }
+
+
+            showRegisterMessage(
+              "error",
+              errorMessage
+            );
+
+
+            if (registerButton) {
+
+              registerButton.disabled =
+                false;
+
+              registerButton.textContent =
+                "Create Account";
+
+            }
+
           }
-
-
-          const customer = {
-
-            id:
-              "CUS-" +
-              Date.now() +
-              "-" +
-              Math.floor(
-                Math.random() * 1000
-              ),
-
-            firstName: firstName,
-
-            lastName: lastName,
-
-            email: email,
-
-            phone: phone,
-
-            password: password,
-
-            address: address,
-
-            createdAt:
-              new Date().toISOString()
-
-          };
-
-
-          customers.push(customer);
-
-
-          localStorage.setItem(
-            usersKey,
-            JSON.stringify(customers)
-          );
-
-
-          message.className =
-            "register-message success";
-
-          message.textContent =
-            "Your account has been created successfully. Redirecting to login...";
-
-
-          registerForm.reset();
-
-
-          setTimeout(function() {
-
-            window.location.href =
-              "login.html";
-
-          }, 1500);
 
         }
       );
+
     }
 
 
-    /*
-      Apply Website Control Center settings.
-    */
     applyWebsiteSettings();
+
   </script>
+
+
+  <script src="script.js"></script>
 
 </body>
 </html>
