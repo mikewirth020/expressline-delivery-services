@@ -222,6 +222,7 @@
             <button
               type="submit"
               class="btn btn-primary"
+              id="loginButton"
             >
               Sign In
             </button>
@@ -354,10 +355,9 @@
           </h2>
 
           <p>
-            The production customer portal will use secure
-            server-side authentication and protected sessions.
-            Customer accounts will only be able to access their
-            own authorized records.
+            Your customer account uses secure authentication
+            and protected sessions. Customer accounts are
+            authenticated through the ExpressLine customer portal.
           </p>
 
         </div>
@@ -503,7 +503,7 @@
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 
-  <!-- WEBSITE SETTINGS CONNECTION -->
+  <!-- WEBSITE SETTINGS + CUSTOMER LOGIN -->
 
   <script>
 
@@ -520,6 +520,10 @@
         SUPABASE_PUBLISHABLE_KEY
       );
 
+
+    /* =========================================================
+       WEBSITE SETTINGS
+       ========================================================= */
 
     async function getWebsiteSettings() {
 
@@ -765,6 +769,11 @@
           settings.primaryColor
         );
 
+        document.documentElement.style.setProperty(
+          "--orange",
+          settings.primaryColor
+        );
+
       }
 
       if (settings.primaryColorText) {
@@ -780,6 +789,11 @@
 
         document.documentElement.style.setProperty(
           "--secondary-color",
+          settings.secondaryColor
+        );
+
+        document.documentElement.style.setProperty(
+          "--navy",
           settings.secondaryColor
         );
 
@@ -819,13 +833,9 @@
           settings.textColor
         );
 
-      }
-
-      if (settings.textColorText) {
-
         document.documentElement.style.setProperty(
-          "--text-color-text",
-          settings.textColorText
+          "--text",
+          settings.textColor
         );
 
       }
@@ -840,6 +850,9 @@
           settings.fontFamily
         );
 
+        document.body.style.fontFamily =
+          settings.fontFamily;
+
       }
 
       if (settings.fontSize) {
@@ -848,6 +861,9 @@
           "--font-size",
           settings.fontSize
         );
+
+        document.body.style.fontSize =
+          settings.fontSize;
 
       }
 
@@ -886,7 +902,245 @@
     }
 
 
-    /* MOBILE MENU */
+    /* =========================================================
+       CUSTOMER LOGIN
+       ========================================================= */
+
+    const loginForm =
+      document.getElementById(
+        "loginForm"
+      );
+
+    const loginMessage =
+      document.getElementById(
+        "loginMessage"
+      );
+
+    const loginButton =
+      document.getElementById(
+        "loginButton"
+      );
+
+
+    function showLoginMessage(
+      message,
+      isError
+    ) {
+
+      loginMessage.textContent =
+        message;
+
+      loginMessage.style.display =
+        "block";
+
+      if (isError) {
+
+        loginMessage.style.color =
+          "#991b1b";
+
+        loginMessage.style.background =
+          "#fef2f2";
+
+        loginMessage.style.border =
+          "1px solid #fecaca";
+
+      } else {
+
+        loginMessage.style.color =
+          "#166534";
+
+        loginMessage.style.background =
+          "#ecfdf3";
+
+        loginMessage.style.border =
+          "1px solid #bbf7d0";
+
+      }
+
+      loginMessage.style.padding =
+        "12px";
+
+      loginMessage.style.borderRadius =
+        "8px";
+
+      loginMessage.style.marginBottom =
+        "15px";
+
+    }
+
+
+    loginForm.addEventListener(
+      "submit",
+      async function(event) {
+
+        event.preventDefault();
+
+
+        const email =
+          document
+            .getElementById(
+              "loginEmail"
+            )
+            .value
+            .trim();
+
+        const password =
+          document
+            .getElementById(
+              "loginPassword"
+            )
+            .value;
+
+
+        if (!email || !password) {
+
+          showLoginMessage(
+            "Please enter your email address and password.",
+            true
+          );
+
+          return;
+
+        }
+
+
+        loginButton.disabled =
+          true;
+
+        loginButton.textContent =
+          "Signing In...";
+
+
+        try {
+
+          const {
+            data,
+            error
+          } =
+            await supabaseClient.auth.signInWithPassword({
+              email:
+                email,
+
+              password:
+                password
+            });
+
+
+          if (error) {
+
+            throw error;
+
+          }
+
+
+          if (
+            !data ||
+            !data.user
+          ) {
+
+            throw new Error(
+              "Unable to sign in. Please try again."
+            );
+
+          }
+
+
+          localStorage.setItem(
+            "customerLoggedIn",
+            "true"
+          );
+
+
+          localStorage.setItem(
+            "customerEmail",
+            data.user.email || email
+          );
+
+
+          showLoginMessage(
+            "Login successful. Redirecting...",
+            false
+          );
+
+
+          setTimeout(
+            function() {
+
+              window.location.href =
+                "index.html";
+
+            },
+            700
+          );
+
+
+        } catch (error) {
+
+          console.error(
+            "Customer login error:",
+            error
+          );
+
+
+          let message =
+            "Unable to sign in. Please check your email and password.";
+
+
+          if (
+            error &&
+            error.message
+          ) {
+
+            const errorMessage =
+              String(
+                error.message
+              );
+
+
+            if (
+              errorMessage
+                .toLowerCase()
+                .includes(
+                  "invalid login credentials"
+                )
+            ) {
+
+              message =
+                "Invalid email or password. Please check your details and try again.";
+
+            } else {
+
+              message =
+                errorMessage;
+
+            }
+
+          }
+
+
+          showLoginMessage(
+            message,
+            true
+          );
+
+
+        } finally {
+
+          loginButton.disabled =
+            false;
+
+          loginButton.textContent =
+            "Sign In";
+
+        }
+
+      }
+    );
+
+
+    /* =========================================================
+       MOBILE MENU
+       ========================================================= */
 
     const menuToggle =
       document.querySelector(
@@ -935,6 +1189,10 @@
 
     }
 
+
+    /* =========================================================
+       START
+       ========================================================= */
 
     applyWebsiteSettings();
 
