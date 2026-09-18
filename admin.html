@@ -166,7 +166,7 @@ body {
 
 .quick-actions {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: 15px;
   margin-bottom: 25px;
 }
@@ -537,13 +537,6 @@ td {
     Shipment Requests
   </a>
 
-  <!--
-    IMPORTANT:
-    Admin creates shipments through
-    admin-shipments.html.
-    The customer request.html is NOT used here.
-  -->
-
   <a href="admin-shipments.html">
     <span class="icon">＋</span>
     Create Shipment
@@ -557,6 +550,11 @@ td {
   <div class="menu-title">
     Website
   </div>
+
+  <a href="admin-settings.html">
+    <span class="icon">✎</span>
+    Edit Website
+  </a>
 
   <a href="index.html">
     <span class="icon">🌐</span>
@@ -707,6 +705,26 @@ td {
 
         <span>
           View, edit and manage shipments
+        </span>
+
+      </a>
+
+
+      <a
+        href="admin-settings.html"
+        class="action"
+      >
+
+        <div class="action-icon">
+          ✎
+        </div>
+
+        <strong>
+          Edit Website
+        </strong>
+
+        <span>
+          Manage your ExpressLine website settings
         </span>
 
       </a>
@@ -979,6 +997,8 @@ if (
 ) {
   window.location.replace("admin-login.html");
 }
+
+
 /* =========================
    STORAGE KEYS
 ========================= */
