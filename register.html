@@ -4,178 +4,374 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title id="pageTitle">
-    Create Account | ExpressLine Delivery Services
-  </title>
+  <title>Create Account | ExpressLine Delivery Services</title>
 
   <meta
-    id="pageDescription"
     name="description"
-    content="Create your ExpressLine Delivery Services customer account."
+    content="Create a customer account with ExpressLine Delivery Services."
   >
 
-  <meta
-    id="pageKeywords"
-    name="keywords"
-    content="ExpressLine, delivery, logistics, shipment"
-  >
+  <meta name="robots" content="index, follow">
 
+  <link rel="icon" id="siteFavicon" href="data:,">
   <link rel="stylesheet" href="style.css">
 
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
   <style>
-    .register-section {
-      padding: 70px 20px;
-      background: #f7f8fa;
+    :root {
+      --primary: #F97316;
+      --secondary: #111111;
+      --accent: #C2410C;
+      --text: #111111;
     }
 
-    .register-container {
-      max-width: 760px;
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Inter, sans-serif;
+      color: var(--text);
+      background: #f7f7f7;
+      line-height: 1.6;
+    }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: #ffffff;
+      border-bottom: 1px solid #eeeeee;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    }
+
+    .navbar {
+      max-width: 1200px;
+      min-height: 76px;
       margin: 0 auto;
+      padding: 12px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      font-weight: 800;
+      color: #111111;
+      min-width: 0;
+    }
+
+    .brand img {
+      width: 58px;
+      height: 58px;
+      object-fit: contain;
+      flex-shrink: 0;
+    }
+
+    .brand-text {
+      font-size: 1.05rem;
+      line-height: 1.2;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.92rem;
+      color: #222222;
+      white-space: nowrap;
+    }
+
+    .nav-links a:hover {
+      color: var(--primary);
+    }
+
+    .nav-button {
+      background: var(--primary) !important;
+      color: #ffffff !important;
+      padding: 10px 15px;
+      border-radius: 7px;
+    }
+
+    .nav-button:hover {
+      background: var(--accent) !important;
+    }
+
+    .menu-toggle {
+      display: none;
+      border: 0;
+      background: #111111;
+      color: #ffffff;
+      border-radius: 7px;
+      padding: 10px 13px;
+      font-size: 20px;
+      cursor: pointer;
+    }
+
+    .register-section {
+      min-height: calc(100vh - 76px);
+      padding: 60px 20px;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
     }
 
     .register-card {
+      width: 100%;
+      max-width: 620px;
       background: #ffffff;
-      padding: 35px;
+      border: 1px solid #e5e5e5;
       border-radius: 14px;
-      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+      padding: 34px;
+      box-shadow: 0 12px 40px rgba(0,0,0,0.08);
     }
 
     .register-card h1 {
       margin: 0 0 10px;
+      color: #111111;
+      font-size: 2rem;
+      line-height: 1.2;
     }
 
     .register-card > p {
-      color: #697386;
+      margin-top: 0;
       margin-bottom: 28px;
+      color: #555555;
     }
 
-    .register-grid {
+    .form-grid {
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
+      grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 18px;
     }
 
     .form-group {
-      margin-bottom: 18px;
+      margin-bottom: 2px;
     }
 
     .form-group.full {
       grid-column: 1 / -1;
     }
 
-    .form-group label {
+    label {
       display: block;
       margin-bottom: 7px;
       font-weight: 700;
     }
 
-    .form-group input {
+    input {
       width: 100%;
       padding: 13px 14px;
-      border: 1px solid #d5dbe5;
+      border: 1px solid #cccccc;
       border-radius: 8px;
-      font-size: 15px;
-      box-sizing: border-box;
-    }
-
-    .form-group input:focus {
+      font: inherit;
+      color: #111111;
+      background: #ffffff;
       outline: none;
-      border-color: #e30613;
-      box-shadow: 0 0 0 3px rgba(227, 6, 19, 0.08);
     }
 
-    .terms-row {
-      display: flex;
-      align-items: flex-start;
-      gap: 9px;
-      margin: 8px 0 20px;
-      font-size: 14px;
-      color: #4b5563;
-    }
-
-    .terms-row input {
-      margin-top: 3px;
-    }
-
-    .terms-row a {
-      color: #e30613;
-      text-decoration: none;
-      font-weight: 700;
+    input:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(249,115,22,0.12);
     }
 
     .register-button {
       width: 100%;
-      border: none;
-      background: #e30613;
+      margin-top: 24px;
+      border: 0;
+      background: var(--primary);
       color: #ffffff;
       padding: 14px;
       border-radius: 8px;
-      font-size: 16px;
-      font-weight: 700;
+      font-size: 1rem;
+      font-weight: 800;
       cursor: pointer;
     }
 
     .register-button:hover {
-      opacity: 0.92;
+      background: var(--accent);
     }
 
     .register-button:disabled {
-      opacity: 0.6;
+      opacity: 0.65;
       cursor: not-allowed;
     }
 
-    .register-message {
+    .message {
       display: none;
-      padding: 12px 14px;
-      margin-bottom: 20px;
+      margin-top: 18px;
+      padding: 13px 15px;
       border-radius: 8px;
-      font-size: 14px;
-      line-height: 1.5;
+      font-weight: 600;
     }
 
-    .register-message.success {
+    .message.success {
       display: block;
-      background: #eaf8ef;
-      color: #16713b;
-      border: 1px solid #b9e3c7;
+      background: #ecfdf3;
+      color: #166534;
+      border: 1px solid #bbf7d0;
     }
 
-    .register-message.error {
+    .message.error {
       display: block;
-      background: #fff0f0;
-      color: #b00000;
-      border: 1px solid #efb8b8;
+      background: #fef2f2;
+      color: #991b1b;
+      border: 1px solid #fecaca;
     }
 
-    .login-link {
+    .login-text {
+      margin-top: 25px;
+      padding-top: 20px;
+      border-top: 1px solid #eeeeee;
       text-align: center;
-      margin-top: 22px;
-      color: #697386;
-      font-size: 14px;
+      color: #555555;
     }
 
-    .login-link a {
-      color: #e30613;
-      font-weight: 700;
+    .login-text a {
+      color: var(--primary);
+      font-weight: 800;
       text-decoration: none;
     }
 
-    @media (max-width: 700px) {
-      .register-section {
-        padding: 45px 15px;
+    .site-footer {
+      background: #111111;
+      color: #ffffff;
+      padding: 35px 20px 25px;
+      text-align: center;
+    }
+
+    .site-footer p {
+      margin: 7px 0;
+      color: #dddddd;
+    }
+
+    .footer-links {
+      margin: 18px 0;
+      display: flex;
+      justify-content: center;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a {
+      color: #ffffff;
+      text-decoration: none;
+    }
+
+    .footer-links a:hover {
+      color: var(--primary);
+    }
+
+    #smartSupportButton {
+      position: fixed;
+      right: 20px;
+      bottom: 20px;
+      z-index: 2000;
+      display: none;
+      border: 0;
+      background: var(--primary);
+      color: #ffffff;
+      padding: 13px 18px;
+      border-radius: 30px;
+      font-weight: 800;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+      cursor: pointer;
+    }
+
+    #smartSupportButton:hover {
+      background: var(--accent);
+    }
+
+    @media (max-width: 800px) {
+      .menu-toggle {
+        display: block;
       }
 
-      .register-card {
-        padding: 25px 18px;
-      }
-
-      .register-grid {
-        grid-template-columns: 1fr;
+      .nav-links {
+        display: none;
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 76px;
+        background: #ffffff;
+        border-bottom: 1px solid #eeeeee;
+        padding: 18px 20px;
+        box-shadow: 0 8px 18px rgba(0,0,0,0.08);
+        flex-direction: column;
+        align-items: stretch;
         gap: 0;
+      }
+
+      .nav-links.open {
+        display: flex;
+      }
+
+      .nav-links a {
+        padding: 13px 5px;
+        border-bottom: 1px solid #eeeeee;
+      }
+
+      .nav-links a:last-child {
+        border-bottom: 0;
+      }
+
+      .nav-button {
+        text-align: center;
+        margin-top: 8px;
+      }
+
+      .brand-text {
+        font-size: 0.92rem;
+      }
+
+      .brand img {
+        width: 50px;
+        height: 50px;
+      }
+
+      .form-grid {
+        grid-template-columns: 1fr;
       }
 
       .form-group.full {
         grid-column: auto;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .navbar {
+        padding: 10px 14px;
+      }
+
+      .register-section {
+        padding: 40px 14px;
+      }
+
+      .register-card {
+        padding: 24px 18px;
+      }
+
+      .register-card h1 {
+        font-size: 1.7rem;
+      }
+
+      #smartSupportButton {
+        right: 14px;
+        bottom: 14px;
       }
     }
   </style>
@@ -183,1154 +379,679 @@
 
 <body>
 
-  <!-- HEADER -->
+<header class="site-header">
+  <nav class="navbar">
 
-  <header class="site-header">
+    <a href="index.html" class="brand">
+      <img id="siteLogo" src="" alt="ExpressLine Delivery Services">
+      <span class="brand-text" id="brandName">
+        ExpressLine Delivery Services
+      </span>
+    </a>
 
-    <div class="container">
+    <button
+      type="button"
+      class="menu-toggle"
+      id="menuToggle"
+      aria-label="Open menu"
+      aria-expanded="false"
+    >
+      ☰
+    </button>
 
-      <a href="index.html" class="logo">
+    <div class="nav-links" id="navLinks">
+      <a href="index.html">Home</a>
+      <a href="services.html">Services</a>
+      <a href="track.html">Track Shipment</a>
+      <a href="request.html">Request a Shipment</a>
+      <a href="about.html">About Us</a>
+      <a href="Customer Support.html">Support</a>
+      <a href="contact.html">Contact</a>
+      <a href="login.html" class="nav-button">Customer Login</a>
+    </div>
 
-        <span class="logo-mark">
-          EL
-        </span>
+  </nav>
+</header>
 
-        <span id="siteShortName">
-          ExpressLine
-        </span>
+<main class="register-section">
 
-      </a>
+  <div class="register-card">
 
+    <h1>Create Your Account</h1>
+
+    <p>
+      Create an ExpressLine customer account to access our services.
+    </p>
+
+    <form id="registerForm">
+
+      <div class="form-grid">
+
+        <div class="form-group">
+          <label for="firstName">First Name</label>
+          <input
+            type="text"
+            id="firstName"
+            autocomplete="given-name"
+            required
+          >
+        </div>
+
+        <div class="form-group">
+          <label for="lastName">Last Name</label>
+          <input
+            type="text"
+            id="lastName"
+            autocomplete="family-name"
+            required
+          >
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email Address</label>
+          <input
+            type="email"
+            id="email"
+            autocomplete="email"
+            required
+          >
+        </div>
+
+        <div class="form-group">
+          <label for="phone">Phone Number</label>
+          <input
+            type="tel"
+            id="phone"
+            autocomplete="tel"
+            required
+          >
+        </div>
+
+        <div class="form-group full">
+          <label for="address">Address</label>
+          <input
+            type="text"
+            id="address"
+            autocomplete="street-address"
+            required
+          >
+        </div>
+
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input
+            type="password"
+            id="password"
+            autocomplete="new-password"
+            minlength="6"
+            required
+          >
+        </div>
+
+        <div class="form-group">
+          <label for="confirmPassword">Confirm Password</label>
+          <input
+            type="password"
+            id="confirmPassword"
+            autocomplete="new-password"
+            minlength="6"
+            required
+          >
+        </div>
+
+      </div>
 
       <button
-        class="menu-toggle"
-        id="menuToggle"
-        type="button"
-        aria-label="Open menu"
+        type="submit"
+        class="register-button"
+        id="registerButton"
       >
-        ☰
+        Create Account
       </button>
 
+      <div id="formMessage" class="message"></div>
 
-      <nav id="mainNav">
+    </form>
 
-        <a href="index.html" id="navHome">
-          Home
-        </a>
-
-        <a href="track.html" id="navTrack">
-          Track Shipment
-        </a>
-
-        <a href="services.html" id="navServices">
-          Services
-        </a>
-
-        <a href="about.html" id="navAbout">
-          About Us
-        </a>
-
-        <a href="contact.html" id="navContact">
-          Contact Us
-        </a>
-
-        <a href="request.html" id="navRequest">
-          Request Shipment
-        </a>
-
-        <a href="login.html" id="navLogin">
-          Customer Login
-        </a>
-
-      </nav>
-
+    <div class="login-text">
+      Already have an account?
+      <a href="login.html">Sign in here</a>
     </div>
 
-  </header>
+  </div>
 
+</main>
 
-  <!-- REGISTER -->
+<footer class="site-footer">
 
-  <main>
+  <p id="footerText">
+    Reliable logistics and delivery solutions for individuals and businesses.
+  </p>
 
-    <section class="register-section">
+  <div class="footer-links">
+    <a href="contact.html">Contact</a>
+    <a href="Customer Support.html">Customer Support</a>
+    <a href="index.html">Home</a>
+  </div>
 
-      <div class="register-container">
+  <p id="copyrightText">
+    © 2026 ExpressLine Delivery Services. All rights reserved.
+  </p>
 
-        <div class="register-card">
+</footer>
 
-          <h1>
-            Create Your Account
-          </h1>
+<button type="button" id="smartSupportButton">
+  Live Support
+</button>
 
-          <p>
-            Register with ExpressLine Delivery Services to manage your shipments
-            and access your customer account.
-          </p>
+<script>
+  const SUPABASE_URL =
+    "https://uhjgietvznkfzckmxqfz.supabase.co";
 
+  const SUPABASE_PUBLISHABLE_KEY =
+    "sb_publishable_zZ0JiBW-2uarX2gnR5w9hQ_77RpB6SM";
 
-          <div
-            id="registerMessage"
-            class="register-message"
-            role="alert"
-          ></div>
+  const supabaseClient =
+    window.supabase.createClient(
+      SUPABASE_URL,
+      SUPABASE_PUBLISHABLE_KEY
+    );
 
+  const defaultSettings = {
+    companyName: "ExpressLine Delivery Services",
+    logo: "",
+    logoSize: "medium",
 
-          <form id="registerForm">
+    primaryColor: "#F97316",
+    secondaryColor: "#111111",
+    accentColor: "#C2410C",
+    textColor: "#111111",
 
-            <div class="register-grid">
+    fontFamily: "Inter, sans-serif",
+    baseFontSize: "16px",
 
-              <div class="form-group">
+    footerText:
+      "Reliable logistics and delivery solutions for individuals and businesses.",
 
-                <label for="firstName">
-                  First Name
-                </label>
+    copyright:
+      "© 2026 ExpressLine Delivery Services. All rights reserved.",
 
-                <input
-                  type="text"
-                  id="firstName"
-                  name="firstName"
-                  placeholder="Enter your first name"
-                  required
-                >
+    favicon: "",
 
-              </div>
+    pageTitle:
+      "Create Account | ExpressLine Delivery Services",
 
+    seoDescription:
+      "Create a customer account with ExpressLine Delivery Services.",
 
-              <div class="form-group">
+    smartsuppEnabled: false,
+    smartsuppKey: "",
+    smartsuppButtonText: "Live Support"
+  };
 
-                <label for="lastName">
-                  Last Name
-                </label>
+  let settings = {
+    ...defaultSettings
+  };
 
-                <input
-                  type="text"
-                  id="lastName"
-                  name="lastName"
-                  placeholder="Enter your last name"
-                  required
-                >
+  async function loadWebsiteSettings() {
+    try {
+      const { data, error } =
+        await supabaseClient
+          .from("website_settings")
+          .select("settings")
+          .eq("id", 1)
+          .maybeSingle();
 
-              </div>
-
-
-              <div class="form-group">
-
-                <label for="registerEmail">
-                  Email Address
-                </label>
-
-                <input
-                  type="email"
-                  id="registerEmail"
-                  name="email"
-                  placeholder="Enter your email"
-                  autocomplete="email"
-                  required
-                >
-
-              </div>
-
-
-              <div class="form-group">
-
-                <label for="registerPhone">
-                  Phone Number
-                </label>
-
-                <input
-                  type="tel"
-                  id="registerPhone"
-                  name="phone"
-                  placeholder="Enter your phone number"
-                  required
-                >
-
-              </div>
-
-
-              <div class="form-group">
-
-                <label for="registerPassword">
-                  Password
-                </label>
-
-                <input
-                  type="password"
-                  id="registerPassword"
-                  name="password"
-                  placeholder="Create a password"
-                  autocomplete="new-password"
-                  minlength="6"
-                  required
-                >
-
-              </div>
-
-
-              <div class="form-group">
-
-                <label for="confirmPassword">
-                  Confirm Password
-                </label>
-
-                <input
-                  type="password"
-                  id="confirmPassword"
-                  name="confirmPassword"
-                  placeholder="Confirm your password"
-                  autocomplete="new-password"
-                  minlength="6"
-                  required
-                >
-
-              </div>
-
-
-              <div class="form-group full">
-
-                <label for="registerAddress">
-                  Address
-                </label>
-
-                <input
-                  type="text"
-                  id="registerAddress"
-                  name="address"
-                  placeholder="Enter your address"
-                  required
-                >
-
-              </div>
-
-            </div>
-
-
-            <div class="terms-row">
-
-              <input
-                type="checkbox"
-                id="agreeTerms"
-                required
-              >
-
-              <label for="agreeTerms">
-                I agree to the ExpressLine terms and conditions.
-              </label>
-
-            </div>
-
-
-            <button
-              type="submit"
-              id="registerButton"
-              class="register-button"
-            >
-              Create Account
-            </button>
-
-          </form>
-
-
-          <div class="login-link">
-
-            Already have an account?
-
-            <a href="login.html">
-              Login here
-            </a>
-
-          </div>
-
-        </div>
-
-      </div>
-
-    </section>
-
-  </main>
-
-
-  <!-- FOOTER -->
-
-  <footer class="site-footer">
-
-    <div class="container">
-
-      <div class="footer-grid">
-
-        <div>
-
-          <a
-            href="index.html"
-            class="logo footer-logo"
-          >
-
-            <span class="logo-mark">
-              EL
-            </span>
-
-            <span id="footerCompanyName">
-              ExpressLine
-            </span>
-
-          </a>
-
-          <p id="footerText">
-            Reliable delivery and logistics services for individuals and businesses.
-          </p>
-
-        </div>
-
-
-        <div>
-
-          <h3>
-            Company
-          </h3>
-
-          <a href="index.html">
-            Home
-          </a>
-
-          <a href="services.html">
-            Services
-          </a>
-
-          <a href="about.html">
-            About Us
-          </a>
-
-          <a href="contact.html">
-            Contact Us
-          </a>
-
-        </div>
-
-
-        <div>
-
-          <h3>
-            Customer
-          </h3>
-
-          <a href="track.html">
-            Track Shipment
-          </a>
-
-          <a href="request.html">
-            Request Shipment
-          </a>
-
-          <a href="login.html">
-            Customer Login
-          </a>
-
-          <a href="register.html">
-            Register
-          </a>
-
-        </div>
-
-
-        <div>
-
-          <h3>
-            Contact
-          </h3>
-
-          <p id="footerContactText">
-            Contact ExpressLine for delivery and logistics support.
-          </p>
-
-          <p id="footerContactEmail">
-            Email: support@example.com
-          </p>
-
-          <p id="footerContactPhone">
-            Phone: +234 000 000 0000
-          </p>
-
-        </div>
-
-      </div>
-
-
-      <div class="footer-bottom">
-
-        <p>
-
-          <span id="copyrightText">
-            © 2026 ExpressLine Delivery Services. All rights reserved.
-          </span>
-
-        </p>
-
-      </div>
-
-    </div>
-
-  </footer>
-
-
-  <!-- SUPABASE -->
-
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
-
-  <!-- WEBSITE SETTINGS + CUSTOMER REGISTRATION -->
-
-  <script>
-
-    const SUPABASE_URL =
-      "https://uhjgietvznkfzckmxqfz.supabase.co";
-
-    const SUPABASE_PUBLISHABLE_KEY =
-      "sb_publishable_zZ0JiBW-2uarX2gnR5w9hQ_77RpB6SM";
-
-
-    const supabaseClient =
-      window.supabase.createClient(
-        SUPABASE_URL,
-        SUPABASE_PUBLISHABLE_KEY
-      );
-
-
-    async function getWebsiteSettings() {
-
-      try {
-
-        const { data, error } =
-          await supabaseClient
-            .from("website_settings")
-            .select("settings")
-            .eq("id", 1)
-            .maybeSingle();
-
-
-        if (error) {
-
-          console.error(
-            "Unable to load website settings:",
-            error
-          );
-
-          return {};
-
-        }
-
-
-        return data?.settings || {};
-
-      } catch (error) {
-
+      if (error) {
         console.error(
-          "Unable to load website settings:",
+          "Website settings error:",
           error
         );
-
-        return {};
-
-      }
-
-    }
-
-
-    function setText(id, value) {
-
-      const element =
-        document.getElementById(id);
-
-      if (
-        element &&
-        value !== undefined &&
-        value !== null &&
-        String(value).trim() !== ""
-      ) {
-
-        element.textContent =
-          value;
-
-      }
-
-    }
-
-
-    async function applyWebsiteSettings() {
-
-      const settings =
-        await getWebsiteSettings();
-
-
-      /* WEBSITE TITLE */
-
-      if (
-        settings.websiteTitle &&
-        String(settings.websiteTitle).trim() !== ""
-      ) {
-
-        document.title =
-          settings.websiteTitle;
-
-      }
-
-
-      if (
-        settings.seoTitle &&
-        String(settings.seoTitle).trim() !== ""
-      ) {
-
-        document.title =
-          settings.seoTitle;
-
-      }
-
-
-      /* SEO DESCRIPTION */
-
-      const description =
-        document.getElementById(
-          "pageDescription"
-        );
-
-      if (
-        description &&
-        (
-          settings.seoDescription ||
-          settings.websiteDescription
-        )
-      ) {
-
-        description.content =
-          settings.seoDescription ||
-          settings.websiteDescription;
-
-      }
-
-
-      /* SEO KEYWORDS */
-
-      const keywords =
-        document.getElementById(
-          "pageKeywords"
-        );
-
-      if (
-        keywords &&
-        settings.seoKeywords
-      ) {
-
-        keywords.content =
-          settings.seoKeywords;
-
-      }
-
-
-      /* COMPANY */
-
-      setText(
-        "siteShortName",
-        settings.shortName ||
-        settings.companyName
-      );
-
-      setText(
-        "footerCompanyName",
-        settings.companyName ||
-        settings.shortName
-      );
-
-
-      /* NAVIGATION */
-
-      setText(
-        "navHome",
-        settings.navHome
-      );
-
-      setText(
-        "navTrack",
-        settings.navTrack
-      );
-
-      setText(
-        "navServices",
-        settings.navServices
-      );
-
-      setText(
-        "navAbout",
-        settings.navAbout
-      );
-
-      setText(
-        "navContact",
-        settings.navContact
-      );
-
-      setText(
-        "navRequest",
-        settings.navRequest
-      );
-
-      setText(
-        "navLogin",
-        settings.navLogin
-      );
-
-
-      /* FOOTER */
-
-      setText(
-        "footerText",
-        settings.footerText
-      );
-
-      setText(
-        "copyrightText",
-        settings.copyrightText
-      );
-
-
-      /* CONTACT */
-
-      if (
-        settings.contactEmail &&
-        String(settings.contactEmail).trim() !== ""
-      ) {
-
-        setText(
-          "footerContactEmail",
-          "Email: " +
-          settings.contactEmail
-        );
-
-      }
-
-
-      if (
-        settings.contactPhone &&
-        String(settings.contactPhone).trim() !== ""
-      ) {
-
-        setText(
-          "footerContactPhone",
-          "Phone: " +
-          settings.contactPhone
-        );
-
-      }
-
-
-      if (
-        settings.businessAddress ||
-        settings.contactEmail ||
-        settings.contactPhone
-      ) {
-
-        setText(
-          "footerContactText",
-          settings.businessAddress ||
-          "Contact ExpressLine Delivery Services."
-        );
-
-      }
-
-
-      /* COLORS */
-
-      const root =
-        document.documentElement;
-
-
-      if (settings.primaryColor) {
-
-        root.style.setProperty(
-          "--primary-color",
-          settings.primaryColor
-        );
-
-      }
-
-
-      if (settings.primaryColorText) {
-
-        root.style.setProperty(
-          "--primary-text",
-          settings.primaryColorText
-        );
-
-      }
-
-
-      if (settings.secondaryColor) {
-
-        root.style.setProperty(
-          "--secondary-color",
-          settings.secondaryColor
-        );
-
-      }
-
-
-      if (settings.secondaryColorText) {
-
-        root.style.setProperty(
-          "--secondary-text",
-          settings.secondaryColorText
-        );
-
-      }
-
-
-      if (settings.accentColor) {
-
-        root.style.setProperty(
-          "--accent-color",
-          settings.accentColor
-        );
-
-      }
-
-
-      if (settings.accentColorText) {
-
-        root.style.setProperty(
-          "--accent-text",
-          settings.accentColorText
-        );
-
-      }
-
-
-      if (settings.textColor) {
-
-        root.style.setProperty(
-          "--text-color",
-          settings.textColor
-        );
-
-      }
-
-
-      if (settings.textColorText) {
-
-        root.style.setProperty(
-          "--text-color-text",
-          settings.textColorText
-        );
-
-      }
-
-
-      /* TYPOGRAPHY */
-
-      if (settings.fontFamily) {
-
-        root.style.setProperty(
-          "--font-family",
-          settings.fontFamily
-        );
-
-        document.body.style.fontFamily =
-          settings.fontFamily;
-
-      }
-
-
-      if (settings.fontSize) {
-
-        root.style.setProperty(
-          "--font-size",
-          settings.fontSize
-        );
-
-        document.body.style.fontSize =
-          settings.fontSize;
-
-      }
-
-
-      /* FAVICON */
-
-      if (
-        settings.faviconUrl &&
-        String(settings.faviconUrl).trim() !== ""
-      ) {
-
-        let favicon =
-          document.querySelector(
-            'link[rel="icon"]'
-          );
-
-
-        if (!favicon) {
-
-          favicon =
-            document.createElement(
-              "link"
-            );
-
-          favicon.rel =
-            "icon";
-
-          document.head.appendChild(
-            favicon
-          );
-
-        }
-
-
-        favicon.href =
-          settings.faviconUrl;
-
-      }
-
-    }
-
-
-    /* MOBILE MENU */
-
-    const menuToggle =
-      document.getElementById(
-        "menuToggle"
-      );
-
-    const mainNav =
-      document.getElementById(
-        "mainNav"
-      );
-
-
-    if (
-      menuToggle &&
-      mainNav
-    ) {
-
-      menuToggle.addEventListener(
-        "click",
-        function() {
-
-          mainNav.classList.toggle(
-            "active"
-          );
-
-        }
-      );
-
-
-      mainNav
-        .querySelectorAll("a")
-        .forEach(function(link) {
-
-          link.addEventListener(
-            "click",
-            function() {
-
-              mainNav.classList.remove(
-                "active"
-              );
-
-            }
-          );
-
-        });
-
-    }
-
-
-    /* CUSTOMER REGISTRATION */
-
-    const registerForm =
-      document.getElementById(
-        "registerForm"
-      );
-
-    const registerMessage =
-      document.getElementById(
-        "registerMessage"
-      );
-
-    const registerButton =
-      document.getElementById(
-        "registerButton"
-      );
-
-
-    function showRegisterMessage(
-      type,
-      text
-    ) {
-
-      if (!registerMessage) {
         return;
       }
 
+      if (data && data.settings) {
+        settings = {
+          ...defaultSettings,
+          ...data.settings
+        };
+      }
 
-      registerMessage.className =
-        "register-message " +
-        type;
+      applyWebsiteSettings();
 
-      registerMessage.textContent =
-        text;
+    } catch (error) {
+      console.error(
+        "Settings loading error:",
+        error
+      );
+    }
+  }
 
+  function applyWebsiteSettings() {
+    const root =
+      document.documentElement;
+
+    root.style.setProperty(
+      "--primary",
+      settings.primaryColor ||
+        "#F97316"
+    );
+
+    root.style.setProperty(
+      "--secondary",
+      settings.secondaryColor ||
+        "#111111"
+    );
+
+    root.style.setProperty(
+      "--accent",
+      settings.accentColor ||
+        "#C2410C"
+    );
+
+    root.style.setProperty(
+      "--text",
+      settings.textColor ||
+        "#111111"
+    );
+
+    document.body.style.fontFamily =
+      settings.fontFamily ||
+      "Inter, sans-serif";
+
+    if (settings.baseFontSize) {
+      document.body.style.fontSize =
+        settings.baseFontSize;
     }
 
-
-    if (registerForm) {
-
-      registerForm.addEventListener(
-        "submit",
-        async function(event) {
-
-          event.preventDefault();
-
-
-          const firstName =
-            document.getElementById(
-              "firstName"
-            ).value.trim();
-
-
-          const lastName =
-            document.getElementById(
-              "lastName"
-            ).value.trim();
-
-
-          const email =
-            document.getElementById(
-              "registerEmail"
-            ).value.trim();
-
-
-          const phone =
-            document.getElementById(
-              "registerPhone"
-            ).value.trim();
-
-
-          const password =
-            document.getElementById(
-              "registerPassword"
-            ).value;
-
-
-          const confirmPassword =
-            document.getElementById(
-              "confirmPassword"
-            ).value;
-
-
-          const address =
-            document.getElementById(
-              "registerAddress"
-            ).value.trim();
-
-
-          const agreeTerms =
-            document.getElementById(
-              "agreeTerms"
-            ).checked;
-
-
-          if (
-            password.length < 6
-          ) {
-
-            showRegisterMessage(
-              "error",
-              "Password must contain at least 6 characters."
-            );
-
-            return;
-
-          }
-
-
-          if (
-            password !==
-            confirmPassword
-          ) {
-
-            showRegisterMessage(
-              "error",
-              "Passwords do not match."
-            );
-
-            return;
-
-          }
-
-
-          if (!agreeTerms) {
-
-            showRegisterMessage(
-              "error",
-              "Please agree to the terms and conditions."
-            );
-
-            return;
-
-          }
-
-
-          if (registerButton) {
-
-            registerButton.disabled =
-              true;
-
-            registerButton.textContent =
-              "Creating Account...";
-
-          }
-
-
-          try {
-
-            const { data, error } =
-              await supabaseClient.auth.signUp({
-
-                email:
-                  email,
-
-                password:
-                  password,
-
-                options: {
-
-                  data: {
-
-                    first_name:
-                      firstName,
-
-                    last_name:
-                      lastName,
-
-                    phone:
-                      phone,
-
-                    address:
-                      address
-
-                  }
-
-                }
-
-              });
-
-
-            if (error) {
-
-              throw error;
-
-            }
-
-
-            /*
-              If email confirmation is disabled,
-              Supabase may immediately create a session.
-            */
-
-            if (data.session) {
-
-              showRegisterMessage(
-                "success",
-                "Your account has been created successfully. Redirecting to login..."
-              );
-
-            } else {
-
-              showRegisterMessage(
-                "success",
-                "Your account has been created successfully. Please check your email if confirmation is required, then log in."
-              );
-
-            }
-
-
-            registerForm.reset();
-
-
-            setTimeout(
-              function() {
-
-                window.location.href =
-                  "login.html";
-
-              },
-              1800
-            );
-
-
-          } catch (error) {
-
-            console.error(
-              "Registration error:",
-              error
-            );
-
-
-            let errorMessage =
-              "Unable to create your account. Please try again.";
-
-
-            if (
-              error &&
-              error.message
-            ) {
-
-              if (
-                error.message
-                  .toLowerCase()
-                  .includes(
-                    "already registered"
-                  )
-              ) {
-
-                errorMessage =
-                  "An account with this email already exists.";
-
-              } else {
-
-                errorMessage =
-                  error.message;
-
-              }
-
-            }
-
-
-            showRegisterMessage(
-              "error",
-              errorMessage
-            );
-
-
-            if (registerButton) {
-
-              registerButton.disabled =
-                false;
-
-              registerButton.textContent =
-                "Create Account";
-
-            }
-
-          }
-
-        }
+    const brandName =
+      document.getElementById(
+        "brandName"
       );
 
+    if (brandName) {
+      brandName.textContent =
+        settings.companyName ||
+        defaultSettings.companyName;
     }
 
+    const logo =
+      document.getElementById(
+        "siteLogo"
+      );
 
-    applyWebsiteSettings();
+    if (logo) {
+      if (settings.logo) {
+        logo.src = settings.logo;
+        logo.style.display = "block";
+      } else {
+        logo.style.display = "none";
+      }
 
-  </script>
+      const logoSizes = {
+        small: "44px",
+        medium: "58px",
+        large: "76px"
+      };
 
+      const selectedSize =
+        logoSizes[settings.logoSize] ||
+        logoSizes.medium;
 
-  <script src="script.js"></script>
+      logo.style.width =
+        selectedSize;
+
+      logo.style.height =
+        selectedSize;
+    }
+
+    const footerText =
+      document.getElementById(
+        "footerText"
+      );
+
+    if (footerText) {
+      footerText.textContent =
+        settings.footerText ||
+        defaultSettings.footerText;
+    }
+
+    const copyrightText =
+      document.getElementById(
+        "copyrightText"
+      );
+
+    if (copyrightText) {
+      copyrightText.textContent =
+        settings.copyright ||
+        defaultSettings.copyright;
+    }
+
+    if (settings.favicon) {
+      const favicon =
+        document.getElementById(
+          "siteFavicon"
+        );
+
+      if (favicon) {
+        favicon.href =
+          settings.favicon;
+      }
+    }
+
+    if (settings.pageTitle) {
+      document.title =
+        settings.pageTitle;
+    }
+
+    const metaDescription =
+      document.querySelector(
+        'meta[name="description"]'
+      );
+
+    if (
+      metaDescription &&
+      settings.seoDescription
+    ) {
+      metaDescription.setAttribute(
+        "content",
+        settings.seoDescription
+      );
+    }
+
+    setupSmartsupp();
+  }
+
+  function setupSmartsupp() {
+    const button =
+      document.getElementById(
+        "smartSupportButton"
+      );
+
+    if (
+      !settings.smartsuppEnabled ||
+      !settings.smartsuppKey
+    ) {
+      if (button) {
+        button.style.display = "none";
+      }
+
+      return;
+    }
+
+    if (button) {
+      button.textContent =
+        settings.smartsuppButtonText ||
+        "Live Support";
+
+      button.style.display =
+        "block";
+
+      button.onclick = function () {
+        if (
+          typeof window.smartsupp ===
+          "function"
+        ) {
+          window.smartsupp(
+            "chat:open"
+          );
+        }
+      };
+    }
+
+    if (
+      typeof window.smartsupp ===
+      "function"
+    ) {
+      return;
+    }
+
+    window._smartsupp =
+      window._smartsupp || {};
+
+    window._smartsupp.key =
+      settings.smartsuppKey;
+
+    const script =
+      document.createElement(
+        "script"
+      );
+
+    script.src =
+      "https://www.smartsuppchat.com/loader.js?";
+
+    script.async = true;
+
+    document.head.appendChild(
+      script
+    );
+  }
+
+  const registerForm =
+    document.getElementById(
+      "registerForm"
+    );
+
+  const registerButton =
+    document.getElementById(
+      "registerButton"
+    );
+
+  const formMessage =
+    document.getElementById(
+      "formMessage"
+    );
+
+  registerForm.addEventListener(
+    "submit",
+    async function (event) {
+      event.preventDefault();
+
+      const firstName =
+        document.getElementById(
+          "firstName"
+        ).value.trim();
+
+      const lastName =
+        document.getElementById(
+          "lastName"
+        ).value.trim();
+
+      const email =
+        document.getElementById(
+          "email"
+        ).value.trim();
+
+      const phone =
+        document.getElementById(
+          "phone"
+        ).value.trim();
+
+      const address =
+        document.getElementById(
+          "address"
+        ).value.trim();
+
+      const password =
+        document.getElementById(
+          "password"
+        ).value;
+
+      const confirmPassword =
+        document.getElementById(
+          "confirmPassword"
+        ).value;
+
+      formMessage.className =
+        "message";
+
+      formMessage.textContent =
+        "";
+
+      if (password !== confirmPassword) {
+        formMessage.className =
+          "message error";
+
+        formMessage.textContent =
+          "Passwords do not match.";
+
+        return;
+      }
+
+      if (password.length < 6) {
+        formMessage.className =
+          "message error";
+
+        formMessage.textContent =
+          "Password must be at least 6 characters.";
+
+        return;
+      }
+
+      registerButton.disabled =
+        true;
+
+      registerButton.textContent =
+        "Creating Account...";
+
+      try {
+        const { data, error } =
+          await supabaseClient.auth.signUp(
+            {
+              email: email,
+              password: password,
+              options: {
+                data: {
+                  first_name: firstName,
+                  last_name: lastName,
+                  phone: phone,
+                  address: address
+                }
+              }
+            }
+          );
+
+        if (error) {
+          throw error;
+        }
+
+        formMessage.className =
+          "message success";
+
+        if (
+          data &&
+          data.session
+        ) {
+          localStorage.setItem(
+            "customerLoggedIn",
+            "true"
+          );
+
+          localStorage.setItem(
+            "customerEmail",
+            email
+          );
+
+          formMessage.textContent =
+            "Your account has been created successfully. Redirecting...";
+
+          setTimeout(
+            function () {
+              window.location.href =
+                "index.html";
+            },
+            900
+          );
+
+        } else {
+          formMessage.textContent =
+            "Your account has been created. Please check your email if email confirmation is required, then sign in.";
+
+          registerForm.reset();
+        }
+
+      } catch (error) {
+        console.error(
+          "Registration error:",
+          error
+        );
+
+        formMessage.className =
+          "message error";
+
+        formMessage.textContent =
+          error.message ||
+          "Unable to create your account. Please try again.";
+
+      } finally {
+        registerButton.disabled =
+          false;
+
+        registerButton.textContent =
+          "Create Account";
+      }
+    }
+  );
+
+  const menuToggle =
+    document.getElementById(
+      "menuToggle"
+    );
+
+  const navLinks =
+    document.getElementById(
+      "navLinks"
+    );
+
+  menuToggle.addEventListener(
+    "click",
+    function () {
+      const isOpen =
+        navLinks.classList.toggle(
+          "open"
+        );
+
+      menuToggle.setAttribute(
+        "aria-expanded",
+        isOpen
+          ? "true"
+          : "false"
+      );
+
+      menuToggle.setAttribute(
+        "aria-label",
+        isOpen
+          ? "Close menu"
+          : "Open menu"
+      );
+    }
+  );
+
+  navLinks
+    .querySelectorAll("a")
+    .forEach(function (link) {
+      link.addEventListener(
+        "click",
+        function () {
+          navLinks.classList.remove(
+            "open"
+          );
+
+          menuToggle.setAttribute(
+            "aria-expanded",
+            "false"
+          );
+
+          menuToggle.setAttribute(
+            "aria-label",
+            "Open menu"
+          );
+        }
+      );
+    });
+
+  loadWebsiteSettings();
+</script>
 
 </body>
 </html>
