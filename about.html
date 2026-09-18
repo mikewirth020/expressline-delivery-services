@@ -4,14 +4,40 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>About Us | ExpressLine Delivery Services</title>
+  <title id="pageTitle">About Us | ExpressLine Delivery Services</title>
 
   <meta
+    id="pageDescription"
     name="description"
     content="Learn about ExpressLine Delivery Services and our approach to professional courier and logistics solutions."
   >
 
+  <meta id="pageKeywords" name="keywords" content="ExpressLine, logistics, delivery, courier, shipping">
+
   <link rel="stylesheet" href="style.css">
+
+  <style>
+    .about-hero {
+      min-height: 430px;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+
+    .about-image {
+      width: 100%;
+      max-width: 900px;
+      height: 320px;
+      object-fit: cover;
+      border-radius: 18px;
+      display: block;
+      margin: 30px auto 0;
+    }
+
+    .about-image-wrapper {
+      margin-top: 30px;
+    }
+  </style>
 </head>
 
 <body>
@@ -22,8 +48,13 @@
     <div class="container navbar">
 
       <a href="index.html" class="logo">
+
         <span class="logo-mark">EL</span>
-        <span>ExpressLine</span>
+
+        <span id="siteShortName">
+          ExpressLine
+        </span>
+
       </a>
 
       <button
@@ -36,19 +67,35 @@
 
       <nav class="nav-links">
 
-        <a href="index.html">Home</a>
+        <a id="navHome" href="index.html">
+          Home
+        </a>
 
-        <a href="track.html">Track Shipment</a>
+        <a id="navTrack" href="track.html">
+          Track Shipment
+        </a>
 
-        <a href="services.html">Services</a>
+        <a id="navServices" href="services.html">
+          Services
+        </a>
 
-        <a href="about.html">About Us</a>
+        <a id="navAbout" href="about.html">
+          About Us
+        </a>
 
-        <a href="contact.html">Contact Us</a>
+        <a id="navContact" href="contact.html">
+          Contact Us
+        </a>
 
-        <a href="request.html">Request Shipment</a>
+        <a id="navRequest" href="request.html">
+          Request Shipment
+        </a>
 
-        <a href="login.html" class="nav-button">
+        <a
+          id="navLogin"
+          href="login.html"
+          class="nav-button"
+        >
           Customer Login
         </a>
 
@@ -63,7 +110,10 @@
   <main>
 
     <!-- HERO -->
-    <section class="hero" style="min-height: 430px;">
+    <section
+      id="aboutHero"
+      class="hero about-hero"
+    >
 
       <div class="container hero-content">
 
@@ -113,6 +163,17 @@
             convenient system.
           </p>
 
+        </div>
+
+
+        <div class="about-image-wrapper">
+          <img
+            id="aboutImage"
+            class="about-image"
+            src=""
+            alt="ExpressLine Delivery Services"
+            style="display: none;"
+          >
         </div>
 
 
@@ -297,6 +358,7 @@
         </p>
 
         <a
+          id="aboutRequestButton"
           href="request.html"
           class="btn btn-primary"
         >
@@ -304,6 +366,7 @@
         </a>
 
         <a
+          id="aboutTrackButton"
           href="track.html"
           class="btn btn-secondary"
         >
@@ -327,10 +390,472 @@
         <div>
 
           <div class="logo">
-            <span class="logo-mark">EL</span>
-            <span>ExpressLine</span>
+
+            <span class="logo-mark">
+              EL
+            </span>
+
+            <span id="footerCompanyName">
+              ExpressLine
+            </span>
+
           </div>
 
-          <p>
+          <p id="footerText">
             Professional courier and logistics solutions
-           
+            designed around reliable service, shipment
+            visibility and customer convenience.
+          </p>
+
+        </div>
+
+
+        <div>
+
+          <h3>
+            Quick Links
+          </h3>
+
+          <p>
+            <a href="index.html">
+              Home
+            </a>
+          </p>
+
+          <p>
+            <a href="services.html">
+              Services
+            </a>
+          </p>
+
+          <p>
+            <a href="track.html">
+              Track Shipment
+            </a>
+          </p>
+
+          <p>
+            <a href="request.html">
+              Request Shipment
+            </a>
+          </p>
+
+        </div>
+
+
+        <div>
+
+          <h3>
+            Contact
+          </h3>
+
+          <p id="footerContactEmail">
+            Contact us for more information.
+          </p>
+
+          <p id="footerContactPhone">
+          </p>
+
+        </div>
+
+      </div>
+
+
+      <div class="footer-bottom">
+
+        <p id="copyrightText">
+          © 2026 ExpressLine Delivery Services. All rights reserved.
+        </p>
+
+      </div>
+
+    </div>
+
+  </footer>
+
+
+  <!-- WEBSITE SETTINGS CONNECTION -->
+  <script>
+
+    const WEBSITE_SETTINGS_KEY = "expresslineWebsiteSettings";
+
+
+    function getWebsiteSettings() {
+
+      try {
+
+        const saved =
+          localStorage.getItem(WEBSITE_SETTINGS_KEY);
+
+        return saved
+          ? JSON.parse(saved)
+          : {};
+
+      } catch (error) {
+
+        console.error(
+          "Unable to load website settings:",
+          error
+        );
+
+        return {};
+
+      }
+
+    }
+
+
+    function setText(id, value) {
+
+      const element =
+        document.getElementById(id);
+
+      if (
+        element &&
+        value !== undefined &&
+        value !== null &&
+        String(value).trim() !== ""
+      ) {
+
+        element.textContent = value;
+
+      }
+
+    }
+
+
+    function applyWebsiteSettings() {
+
+      const settings =
+        getWebsiteSettings();
+
+
+      /* COMPANY */
+
+      setText(
+        "siteShortName",
+        settings.shortName || settings.companyName
+      );
+
+      setText(
+        "footerCompanyName",
+        settings.companyName || settings.shortName
+      );
+
+
+      /* NAVIGATION */
+
+      setText(
+        "navHome",
+        settings.navHome
+      );
+
+      setText(
+        "navServices",
+        settings.navServices
+      );
+
+      setText(
+        "navTrack",
+        settings.navTrack
+      );
+
+      setText(
+        "navAbout",
+        settings.navAbout
+      );
+
+      setText(
+        "navContact",
+        settings.navContact
+      );
+
+      setText(
+        "navRequest",
+        settings.navRequest
+      );
+
+      setText(
+        "navLogin",
+        settings.navLogin
+      );
+
+
+      /* FOOTER */
+
+      setText(
+        "footerText",
+        settings.footerText
+      );
+
+      setText(
+        "copyrightText",
+        settings.copyrightText
+      );
+
+
+      /* CONTACT */
+
+      setText(
+        "footerContactEmail",
+        settings.contactEmail
+          ? "Email: " + settings.contactEmail
+          : ""
+      );
+
+      setText(
+        "footerContactPhone",
+        settings.contactPhone
+          ? "Phone: " + settings.contactPhone
+          : ""
+      );
+
+
+      /* ABOUT IMAGE */
+
+      const aboutImage =
+        document.getElementById("aboutImage");
+
+      if (
+        aboutImage &&
+        settings.aboutImage &&
+        String(settings.aboutImage).trim() !== ""
+      ) {
+
+        aboutImage.src =
+          settings.aboutImage;
+
+        aboutImage.style.display =
+          "block";
+
+      }
+
+
+      /* WEBSITE TITLE */
+
+      if (
+        settings.websiteTitle &&
+        String(settings.websiteTitle).trim() !== ""
+      ) {
+
+        document.title =
+          settings.websiteTitle;
+
+      }
+
+
+      /* SEO */
+
+      const description =
+        document.getElementById("pageDescription");
+
+      if (
+        description &&
+        settings.seoDescription
+      ) {
+
+        description.setAttribute(
+          "content",
+          settings.seoDescription
+        );
+
+      }
+
+
+      const keywords =
+        document.getElementById("pageKeywords");
+
+      if (
+        keywords &&
+        settings.seoKeywords
+      ) {
+
+        keywords.setAttribute(
+          "content",
+          settings.seoKeywords
+        );
+
+      }
+
+
+      /* COLORS */
+
+      if (settings.primaryColor) {
+
+        document.documentElement.style.setProperty(
+          "--primary-color",
+          settings.primaryColor
+        );
+
+      }
+
+      if (settings.primaryColorText) {
+
+        document.documentElement.style.setProperty(
+          "--primary-text",
+          settings.primaryColorText
+        );
+
+      }
+
+      if (settings.secondaryColor) {
+
+        document.documentElement.style.setProperty(
+          "--secondary-color",
+          settings.secondaryColor
+        );
+
+      }
+
+      if (settings.secondaryColorText) {
+
+        document.documentElement.style.setProperty(
+          "--secondary-text",
+          settings.secondaryColorText
+        );
+
+      }
+
+      if (settings.accentColor) {
+
+        document.documentElement.style.setProperty(
+          "--accent-color",
+          settings.accentColor
+        );
+
+      }
+
+      if (settings.accentColorText) {
+
+        document.documentElement.style.setProperty(
+          "--accent-text",
+          settings.accentColorText
+        );
+
+      }
+
+      if (settings.textColor) {
+
+        document.documentElement.style.setProperty(
+          "--text-color",
+          settings.textColor
+        );
+
+      }
+
+      if (settings.textColorText) {
+
+        document.documentElement.style.setProperty(
+          "--text-color-text",
+          settings.textColorText
+        );
+
+      }
+
+
+      /* TYPOGRAPHY */
+
+      if (settings.fontFamily) {
+
+        document.documentElement.style.setProperty(
+          "--font-family",
+          settings.fontFamily
+        );
+
+      }
+
+      if (settings.fontSize) {
+
+        document.documentElement.style.setProperty(
+          "--font-size",
+          settings.fontSize
+        );
+
+      }
+
+
+      /* FAVICON */
+
+      if (
+        settings.faviconUrl &&
+        String(settings.faviconUrl).trim() !== ""
+      ) {
+
+        let favicon =
+          document.querySelector(
+            'link[rel="icon"]'
+          );
+
+        if (!favicon) {
+
+          favicon =
+            document.createElement("link");
+
+          favicon.rel = "icon";
+
+          document.head.appendChild(
+            favicon
+          );
+
+        }
+
+        favicon.href =
+          settings.faviconUrl;
+
+      }
+
+    }
+
+
+    /* MOBILE MENU */
+
+    const menuToggle =
+      document.querySelector(".menu-toggle");
+
+    const navLinks =
+      document.querySelector(".nav-links");
+
+
+    if (
+      menuToggle &&
+      navLinks
+    ) {
+
+      menuToggle.addEventListener(
+        "click",
+        function () {
+
+          navLinks.classList.toggle(
+            "active"
+          );
+
+        }
+      );
+
+
+      navLinks
+        .querySelectorAll("a")
+        .forEach(function (link) {
+
+          link.addEventListener(
+            "click",
+            function () {
+
+              navLinks.classList.remove(
+                "active"
+              );
+
+            }
+          );
+
+        });
+
+    }
+
+
+    applyWebsiteSettings();
+
+  </script>
+
+</body>
+</html>
