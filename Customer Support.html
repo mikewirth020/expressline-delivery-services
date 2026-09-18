@@ -6,216 +6,643 @@
 
 <title>Customer Support | ExpressLine Delivery Services</title>
 
+<meta
+    name="description"
+    content="Get help with shipment tracking, delivery questions, account assistance, and ExpressLine services."
+>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+>
+
 <style>
+:root {
+    --primary: #F97316;
+    --secondary: #111111;
+    --accent: #C2410C;
+    --text: #111111;
+    --muted: #64748b;
+    --light: #f8fafc;
+    --border: #e2e8f0;
+    --white: #ffffff;
+}
+
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 body {
-    font-family: Arial, Helvetica, sans-serif;
-    background: #f5f7fa;
-    color: #172033;
-    line-height: 1.6;
+    font-family: Inter, Arial, Helvetica, sans-serif;
+    background: #f8fafc;
+    color: var(--text);
+    line-height: 1.65;
+    overflow-x: hidden;
 }
 
-header {
-    background: #ffffff;
-    border-bottom: 1px solid #e5e7eb;
-}
-
-.topbar {
-    background: #111827;
-    color: #ffffff;
-    padding: 10px 6%;
-    text-align: right;
-    font-size: 13px;
-}
-
-.navbar {
-    padding: 18px 6%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 20px;
-}
-
-.logo {
-    font-size: 25px;
-    font-weight: 800;
-    color: #c8102e;
-}
-
-.logo span {
-    color: #172033;
-}
-
-nav {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 16px;
-}
-
-nav a {
-    color: #172033;
+a {
+    color: inherit;
     text-decoration: none;
-    font-size: 14px;
-    font-weight: 600;
 }
 
-nav a:hover {
-    color: #c8102e;
+button,
+input,
+select,
+textarea {
+    font: inherit;
 }
+
+/* =========================
+   HEADER
+========================= */
+
+.site-header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background: rgba(255,255,255,0.98);
+    border-bottom: 1px solid var(--border);
+    box-shadow: 0 4px 18px rgba(15,23,42,0.06);
+}
+
+.header-inner {
+    width: min(1180px, 92%);
+    min-height: 78px;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 25px;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0;
+}
+
+.logo-mark {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    background: var(--primary);
+    color: white;
+    display: grid;
+    place-items: center;
+    font-size: 18px;
+    font-weight: 800;
+}
+
+.brand-text {
+    font-size: 20px;
+    font-weight: 800;
+    color: var(--secondary);
+    white-space: nowrap;
+}
+
+.brand-text span {
+    color: var(--primary);
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 5px;
+}
+
+.nav-links a {
+    padding: 10px 11px;
+    border-radius: 8px;
+    color: #334155;
+    font-size: 13px;
+    font-weight: 700;
+    transition: 0.2s ease;
+    white-space: nowrap;
+}
+
+.nav-links a:hover {
+    background: #fff7ed;
+    color: var(--primary);
+}
+
+.nav-links a.active {
+    color: var(--primary);
+    background: #fff7ed;
+}
+
+.nav-links .login-link {
+    background: var(--secondary);
+    color: #ffffff;
+    margin-left: 4px;
+}
+
+.nav-links .login-link:hover {
+    background: #292929;
+    color: #ffffff;
+}
+
+.menu-toggle {
+    display: none;
+    width: 44px;
+    height: 44px;
+    border: 1px solid var(--border);
+    border-radius: 9px;
+    background: #ffffff;
+    color: var(--secondary);
+    font-size: 23px;
+    cursor: pointer;
+}
+
+/* =========================
+   HERO
+========================= */
 
 .hero {
-    background: #172033;
+    background:
+        linear-gradient(135deg, rgba(17,17,17,0.97), rgba(17,17,17,0.91)),
+        linear-gradient(135deg, var(--primary), var(--secondary));
     color: #ffffff;
-    padding: 70px 6%;
+    padding: 82px 4%;
+}
+
+.hero-inner {
+    width: min(1180px, 92%);
+    margin: auto;
+}
+
+.hero-label {
+    display: inline-block;
+    margin-bottom: 14px;
+    padding: 7px 12px;
+    border-radius: 999px;
+    background: rgba(249,115,22,0.18);
+    border: 1px solid rgba(249,115,22,0.45);
+    color: #fed7aa;
+    font-size: 13px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
 }
 
 .hero h1 {
-    font-size: 46px;
-    margin-bottom: 15px;
+    max-width: 760px;
+    font-size: clamp(38px, 5vw, 58px);
+    line-height: 1.08;
+    margin-bottom: 18px;
+    color: #ffffff;
 }
 
 .hero p {
-    max-width: 720px;
+    max-width: 760px;
+    color: #e2e8f0;
     font-size: 18px;
-    color: #dbe2ea;
 }
 
+/* =========================
+   MAIN
+========================= */
+
 .container {
-    width: 88%;
-    max-width: 1150px;
-    margin: 50px auto;
+    width: min(1180px, 92%);
+    margin: 55px auto;
 }
+
+.section-heading {
+    margin-bottom: 25px;
+}
+
+.section-heading h2 {
+    font-size: 30px;
+    line-height: 1.2;
+    color: var(--secondary);
+    margin-bottom: 8px;
+}
+
+.section-heading p {
+    color: var(--muted);
+}
+
+/* =========================
+   SUPPORT CARDS
+========================= */
 
 .cards {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 25px;
-    margin-bottom: 35px;
+    gap: 22px;
+    margin-bottom: 30px;
 }
 
 .card {
-    background: #ffffff;
-    padding: 30px;
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 28px;
+    box-shadow: 0 10px 30px rgba(15,23,42,0.06);
+}
+
+.card-icon {
+    width: 46px;
+    height: 46px;
     border-radius: 12px;
-    box-shadow: 0 8px 25px rgba(0,0,0,0.07);
+    background: #fff7ed;
+    color: var(--primary);
+    display: grid;
+    place-items: center;
+    font-size: 21px;
+    font-weight: 800;
+    margin-bottom: 18px;
 }
 
 .card h3 {
-    color: #c8102e;
+    color: var(--secondary);
+    font-size: 19px;
     margin-bottom: 10px;
 }
 
+.card p {
+    color: #64748b;
+    font-size: 15px;
+}
+
+/* =========================
+   CONTENT BOX
+========================= */
+
 .support-box {
     background: #ffffff;
-    padding: 30px;
-    border-radius: 12px;
-    box-shadow: 0 8px 25px rgba(0,0,0,0.07);
-    margin-bottom: 35px;
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 32px;
+    margin-bottom: 30px;
+    box-shadow: 0 10px 30px rgba(15,23,42,0.05);
 }
 
 .support-box h2 {
-    margin-bottom: 20px;
+    color: var(--secondary);
+    font-size: 27px;
+    margin-bottom: 24px;
 }
 
 .faq {
-    padding-bottom: 18px;
+    padding: 0 0 18px;
     margin-bottom: 18px;
-    border-bottom: 1px solid #e5e7eb;
+    border-bottom: 1px solid var(--border);
+}
+
+.faq:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
 }
 
 .faq strong {
     display: block;
-    margin-bottom: 6px;
+    color: var(--secondary);
+    margin-bottom: 7px;
+    font-size: 16px;
 }
+
+.faq p {
+    color: #64748b;
+    font-size: 15px;
+}
+
+/* =========================
+   FORM
+========================= */
 
 form {
     display: grid;
-    gap: 15px;
+    gap: 18px;
+}
+
+.form-group {
+    display: grid;
+    gap: 6px;
 }
 
 label {
-    font-weight: 600;
+    color: var(--secondary);
     font-size: 14px;
+    font-weight: 700;
 }
 
 input,
 select,
 textarea {
     width: 100%;
-    padding: 13px;
-    margin-top: 6px;
-    border: 1px solid #d1d5db;
-    border-radius: 7px;
+    padding: 14px 15px;
+    border: 1px solid #cbd5e1;
+    border-radius: 9px;
+    background: #ffffff;
+    color: var(--text);
     font-size: 15px;
+    outline: none;
+    transition: 0.2s ease;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(249,115,22,0.12);
 }
 
 textarea {
-    min-height: 150px;
+    min-height: 155px;
     resize: vertical;
 }
 
-button {
+.submit-button {
+    width: fit-content;
+    min-width: 210px;
     border: none;
-    padding: 14px 20px;
-    border-radius: 7px;
-    background: #c8102e;
+    padding: 14px 22px;
+    border-radius: 9px;
+    background: var(--primary);
     color: #ffffff;
-    font-size: 16px;
-    font-weight: 700;
+    font-size: 15px;
+    font-weight: 800;
     cursor: pointer;
+    transition: 0.2s ease;
 }
 
-button:hover {
-    background: #a90d27;
+.submit-button:hover {
+    background: var(--accent);
+    transform: translateY(-1px);
 }
 
 .message {
     display: none;
-    padding: 12px;
+    padding: 14px 16px;
+    border-radius: 9px;
     background: #ecfdf5;
+    border: 1px solid #a7f3d0;
     color: #065f46;
-    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 600;
 }
 
-footer {
-    background: #111827;
-    color: #d1d5db;
-    padding: 35px 6%;
-    margin-top: 60px;
-}
+/* =========================
+   SUPPORT CTA
+========================= */
 
-.footer-content {
-    max-width: 1150px;
-    margin: auto;
-    display: flex;
-    justify-content: space-between;
-    gap: 20px;
-    flex-wrap: wrap;
-}
-
-footer a {
+.support-cta {
+    background: var(--secondary);
     color: #ffffff;
-    text-decoration: none;
+    border-radius: 18px;
+    padding: 38px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+.support-cta h2 {
+    font-size: 28px;
+    margin-bottom: 10px;
+}
+
+.support-cta p {
+    color: #cbd5e1;
+    max-width: 700px;
+    margin-bottom: 20px;
+}
+
+.cta-button {
+    display: inline-block;
+    background: var(--primary);
+    color: #ffffff;
+    padding: 13px 20px;
+    border-radius: 9px;
+    font-weight: 800;
+}
+
+.cta-button:hover {
+    background: var(--accent);
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+.site-footer {
+    background: #111111;
+    color: #cbd5e1;
+    margin-top: 70px;
+    padding: 50px 4% 25px;
+}
+
+.footer-grid {
+    width: min(1180px, 92%);
+    margin: auto;
+    display: grid;
+    grid-template-columns: 1.4fr 1fr 1fr;
+    gap: 40px;
+}
+
+.footer-column h3 {
+    color: #ffffff;
+    font-size: 17px;
+    margin-bottom: 14px;
+}
+
+.footer-column p {
+    color: #94a3b8;
+    font-size: 14px;
+    max-width: 360px;
+}
+
+.footer-links {
+    display: grid;
+    gap: 8px;
+}
+
+.footer-links a {
+    color: #cbd5e1;
+    font-size: 14px;
+}
+
+.footer-links a:hover {
+    color: var(--primary);
+}
+
+.footer-bottom {
+    width: min(1180px, 92%);
+    margin: 35px auto 0;
+    padding-top: 20px;
+    border-top: 1px solid #292929;
+    color: #94a3b8;
+    font-size: 13px;
+}
+
+/* =========================
+   SMART SUPPORT BUTTON
+========================= */
+
+.support-button {
+    position: fixed;
+    right: 22px;
+    bottom: 22px;
+    z-index: 900;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--primary);
+    color: #ffffff;
+    padding: 13px 18px;
+    border-radius: 999px;
+    font-size: 14px;
+    font-weight: 800;
+    box-shadow: 0 10px 25px rgba(15,23,42,0.20);
+    transition: 0.2s ease;
+}
+
+.support-button:hover {
+    background: var(--accent);
+    transform: translateY(-2px);
+}
+
+/* =========================
+   MAINTENANCE
+========================= */
+
+.maintenance-message {
+    display: none;
+    min-height: 60vh;
+    padding: 100px 20px;
+    text-align: center;
+}
+
+.maintenance-message h1 {
+    font-size: 38px;
+    margin-bottom: 12px;
+}
+
+.maintenance-message p {
+    color: var(--muted);
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 1050px) {
+
+    .nav-links {
+        gap: 1px;
+    }
+
+    .nav-links a {
+        padding: 9px 7px;
+        font-size: 12px;
+    }
 }
 
 @media (max-width: 850px) {
 
-    .navbar {
+    .header-inner {
+        min-height: 70px;
+    }
+
+    .menu-toggle {
+        display: block;
+    }
+
+    .nav-links {
+        display: none;
+        position: absolute;
+        top: 70px;
+        left: 0;
+        right: 0;
+        padding: 14px 4%;
+        background: #ffffff;
+        border-bottom: 1px solid var(--border);
+        box-shadow: 0 12px 25px rgba(15,23,42,0.10);
         flex-direction: column;
-        align-items: flex-start;
+        align-items: stretch;
+        gap: 4px;
+    }
+
+    .nav-links.open {
+        display: flex;
+    }
+
+    .nav-links a {
+        width: 100%;
+        padding: 13px 14px;
+        font-size: 14px;
+    }
+
+    .nav-links .login-link {
+        margin-left: 0;
+        text-align: center;
     }
 
     .cards {
         grid-template-columns: 1fr;
     }
 
+    .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 28px;
+    }
+}
+
+@media (max-width: 600px) {
+
+    .brand-text {
+        font-size: 17px;
+    }
+
+    .logo-mark {
+        width: 36px;
+        height: 36px;
+        font-size: 16px;
+    }
+
+    .hero {
+        padding: 62px 4%;
+    }
+
     .hero h1 {
-        font-size: 36px;
+        font-size: 38px;
+    }
+
+    .hero p {
+        font-size: 16px;
+    }
+
+    .container {
+        margin: 40px auto;
+    }
+
+    .support-box {
+        padding: 22px;
+    }
+
+    .support-cta {
+        padding: 28px 22px;
+    }
+
+    .support-button {
+        right: 14px;
+        bottom: 14px;
+        padding: 12px 15px;
+        font-size: 13px;
+    }
+
+    .submit-button {
+        width: 100%;
     }
 }
 </style>
@@ -223,240 +650,855 @@ footer a {
 
 <body>
 
-<header>
+<header class="site-header">
 
-<div class="topbar">
-ExpressLine Delivery Services | Customer Support
-</div>
+    <div class="header-inner">
 
-<div class="navbar">
+        <a href="index.html" class="brand">
+            <div class="logo-mark">EL</div>
+            <div class="brand-text">
+                Express<span>Line</span>
+            </div>
+        </a>
 
-<div class="logo">
-Express<span>Line</span>
-</div>
+        <button
+            type="button"
+            class="menu-toggle"
+            id="menuToggle"
+            aria-label="Open navigation"
+            aria-expanded="false"
+        >
+            ☰
+        </button>
 
-<nav>
-<a href="index.html">Home</a>
-<a href="services.html">Services</a>
-<a href="track.html">Track Shipment</a>
-<a href="request.html">Request a Shipment</a>
-<a href="about.html">About Us</a>
-<a href="Contact.html">Contact</a>
-<a href="Customer Support.html">Customer Support</a>
-<a href="login.html">Login</a>
-</nav>
+        <nav class="nav-links" id="navLinks">
 
-</div>
+            <a href="index.html" id="navHome">Home</a>
+
+            <a href="services.html" id="navServices">Services</a>
+
+            <a href="track.html" id="navTrack">Track Shipment</a>
+
+            <a href="request.html" id="navRequest">Request a Shipment</a>
+
+            <a href="about.html" id="navAbout">About Us</a>
+
+            <a href="Customer Support.html" id="navSupport" class="active">
+                Support
+            </a>
+
+            <a href="Contact.html" id="navContact">Contact</a>
+
+            <a href="login.html" id="navLogin" class="login-link">
+                Customer Login
+            </a>
+
+        </nav>
+
+    </div>
 
 </header>
 
+
 <section class="hero">
 
-<h1>Customer Support</h1>
+    <div class="hero-inner">
 
-<p>
-We're here to help with shipment tracking, delivery questions,
-account assistance, and other ExpressLine services.
-</p>
+        <div class="hero-label">Smart Support</div>
+
+        <h1 id="supportHeroTitle">
+            Customer Support
+        </h1>
+
+        <p id="supportHeroDescription">
+            We're here to help with shipment tracking, delivery questions,
+            account assistance, and other ExpressLine services.
+        </p>
+
+    </div>
 
 </section>
 
+
 <main class="container">
 
-<div class="cards">
+    <div class="section-heading">
 
-<div class="card">
-<h3>Shipment Support</h3>
+        <h2>How Can We Help?</h2>
 
-<p>
-Need help locating your shipment or understanding its current status?
-Our support team can help.
-</p>
+        <p>
+            Get assistance with your shipment, delivery, account, or general questions.
+        </p>
 
-</div>
+    </div>
 
-<div class="card">
 
-<h3>Account Support</h3>
+    <div class="cards">
 
-<p>
-Get assistance with your account, login information, profile details,
-and account-related questions.
-</p>
+        <div class="card">
 
-</div>
+            <div class="card-icon">✓</div>
 
-<div class="card">
+            <h3>Shipment Support</h3>
 
-<h3>Delivery Support</h3>
+            <p>
+                Need help locating your shipment or understanding its current status?
+                Our support team can help.
+            </p>
 
-<p>
-Questions about delivery times, delivery status, or shipment issues?
-We're here to help.
-</p>
+        </div>
 
-</div>
 
-</div>
+        <div class="card">
 
-<div class="support-box">
+            <div class="card-icon">◎</div>
 
-<h2>Frequently Asked Questions</h2>
+            <h3>Account Support</h3>
 
-<div class="faq">
+            <p>
+                Get assistance with your account, login information, profile details,
+                and account-related questions.
+            </p>
 
-<strong>How can I track my shipment?</strong>
+        </div>
 
-<p>
-Go to the Track Shipment page and enter your shipment tracking information.
-</p>
 
-</div>
+        <div class="card">
 
-<div class="faq">
+            <div class="card-icon">→</div>
 
-<strong>How do I request a shipment?</strong>
+            <h3>Delivery Support</h3>
 
-<p>
-Select Request a Shipment from the navigation menu and complete the request form.
-</p>
+            <p>
+                Questions about delivery times, delivery status, or shipment issues?
+                We're here to help.
+            </p>
 
-</div>
+        </div>
 
-<div class="faq">
+    </div>
 
-<strong>How can I contact ExpressLine?</strong>
 
-<p>
-Visit our Contact page to send us a message or view our customer service information.
-</p>
+    <div class="support-box">
 
-</div>
+        <h2>Frequently Asked Questions</h2>
 
-<div class="faq">
 
-<strong>What if I have a delivery problem?</strong>
+        <div class="faq">
 
-<p>
-Contact our support team with your shipment details and we will review the issue.
-</p>
+            <strong>How can I track my shipment?</strong>
 
-</div>
+            <p>
+                Go to the Track Shipment page and enter your shipment tracking number.
+            </p>
 
-</div>
+        </div>
 
-<div class="support-box">
 
-<h2>Submit a Support Request</h2>
+        <div class="faq">
 
-<form onsubmit="submitSupport(event)">
+            <strong>How do I request a shipment?</strong>
 
-<div>
+            <p>
+                Select Request a Shipment from the navigation menu and complete the request form.
+            </p>
 
-<label>Full Name</label>
+        </div>
 
-<input
-type="text"
-required
-placeholder="Enter your full name"
->
 
-</div>
+        <div class="faq">
 
-<div>
+            <strong>How can I contact ExpressLine?</strong>
 
-<label>Email Address</label>
+            <p>
+                Visit our Contact page to send us a message or view our customer service information.
+            </p>
 
-<input
-type="email"
-required
-placeholder="Enter your email"
->
+        </div>
 
-</div>
 
-<div>
+        <div class="faq">
 
-<label>Support Category</label>
+            <strong>What if I have a delivery problem?</strong>
 
-<select required>
+            <p>
+                Contact our support team with your shipment details and we will review the issue.
+            </p>
 
-<option value="">Select a category</option>
-<option>Shipment Tracking</option>
-<option>Delivery Issue</option>
-<option>Account Help</option>
-<option>Payment Question</option>
-<option>General Question</option>
+        </div>
 
-</select>
+    </div>
 
-</div>
 
-<div>
+    <div class="support-box">
 
-<label>Message</label>
+        <h2>Submit a Support Request</h2>
 
-<textarea
-required
-placeholder="Describe your issue"
-></textarea>
+        <form onsubmit="submitSupport(event)">
 
-</div>
+            <div class="form-group">
 
-<button type="submit">
-Submit Support Request
-</button>
+                <label for="supportName">
+                    Full Name
+                </label>
 
-<div id="supportMessage" class="message">
+                <input
+                    id="supportName"
+                    type="text"
+                    required
+                    placeholder="Enter your full name"
+                >
 
-Your support request has been received.
-Our team will review your message.
+            </div>
 
-</div>
 
-</form>
+            <div class="form-group">
 
-</div>
+                <label for="supportEmail">
+                    Email Address
+                </label>
+
+                <input
+                    id="supportEmail"
+                    type="email"
+                    required
+                    placeholder="Enter your email"
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="supportCategory">
+                    Support Category
+                </label>
+
+                <select id="supportCategory" required>
+
+                    <option value="">
+                        Select a category
+                    </option>
+
+                    <option value="Shipment Tracking">
+                        Shipment Tracking
+                    </option>
+
+                    <option value="Delivery Issue">
+                        Delivery Issue
+                    </option>
+
+                    <option value="Account Help">
+                        Account Help
+                    </option>
+
+                    <option value="Payment Question">
+                        Payment Question
+                    </option>
+
+                    <option value="General Question">
+                        General Question
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="supportText">
+                    Message
+                </label>
+
+                <textarea
+                    id="supportText"
+                    required
+                    placeholder="Describe your issue"
+                ></textarea>
+
+            </div>
+
+
+            <button
+                type="submit"
+                class="submit-button"
+            >
+                Submit Support Request
+            </button>
+
+
+            <div
+                id="supportMessage"
+                class="message"
+            >
+                Your support request has been received.
+                Our team will review your message.
+            </div>
+
+        </form>
+
+    </div>
+
+
+    <div class="support-cta">
+
+        <h2>Need More Help?</h2>
+
+        <p>
+            If you need additional assistance, contact ExpressLine directly
+            through our Contact page.
+        </p>
+
+        <a
+            href="Contact.html"
+            class="cta-button"
+        >
+            Contact ExpressLine
+        </a>
+
+    </div>
 
 </main>
 
-<footer>
 
-<div class="footer-content">
+<footer class="site-footer">
 
-<div>
+    <div class="footer-grid">
 
-<strong>ExpressLine Delivery Services</strong>
+        <div class="footer-column">
 
-<p>
-Reliable logistics and delivery solutions.
-</p>
+            <h3 id="footerCompany">
+                ExpressLine Delivery Services
+            </h3>
 
-</div>
+            <p id="footerText">
+                Reliable logistics and delivery solutions for individuals and businesses.
+            </p>
 
-<div>
+        </div>
 
-<a href="index.html">Home</a> |
-<a href="Contact.html">Contact</a> |
-<a href="Customer Support.html">Customer Support</a>
 
-</div>
+        <div class="footer-column">
 
-</div>
+            <h3>Quick Links</h3>
+
+            <div class="footer-links">
+
+                <a href="index.html">Home</a>
+
+                <a href="services.html">Services</a>
+
+                <a href="track.html">Track Shipment</a>
+
+                <a href="request.html">Request a Shipment</a>
+
+                <a href="about.html">About Us</a>
+
+            </div>
+
+        </div>
+
+
+        <div class="footer-column">
+
+            <h3>Customer Support</h3>
+
+            <div class="footer-links">
+
+                <a href="Customer Support.html">
+                    Smart Support
+                </a>
+
+                <a href="Contact.html">
+                    Contact Us
+                </a>
+
+                <a href="login.html">
+                    Customer Login
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="footer-bottom">
+
+        <span id="copyrightText">
+            © 2026 ExpressLine Delivery Services. All rights reserved.
+        </span>
+
+    </div>
 
 </footer>
 
+
+<a
+    href="Customer Support.html"
+    class="support-button"
+    aria-label="Smart Support"
+>
+    💬 Smart Support
+</a>
+
+
+<div
+    id="maintenanceMessage"
+    class="maintenance-message"
+>
+    <h1>Website Maintenance</h1>
+
+    <p>
+        ExpressLine Delivery Services is currently updating the website.
+        Please check back shortly.
+    </p>
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
 <script>
+
+const SUPABASE_URL =
+    "https://uhjgietvznkfzckmxqfz.supabase.co";
+
+const SUPABASE_PUBLISHABLE_KEY =
+    "sb_publishable_zZ0JiBW-2uarX2gnR5w9hQ_77RpB6SM";
+
+const supabaseClient =
+    window.supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_PUBLISHABLE_KEY
+    );
+
+
+/* =========================
+   MOBILE MENU
+========================= */
+
+const menuToggle =
+    document.getElementById("menuToggle");
+
+const navLinks =
+    document.getElementById("navLinks");
+
+
+if (menuToggle && navLinks) {
+
+    menuToggle.addEventListener("click", function () {
+
+        const isOpen =
+            navLinks.classList.toggle("open");
+
+        menuToggle.setAttribute(
+            "aria-expanded",
+            isOpen ? "true" : "false"
+        );
+
+        menuToggle.textContent =
+            isOpen ? "✕" : "☰";
+
+    });
+
+
+    navLinks.querySelectorAll("a").forEach(function(link) {
+
+        link.addEventListener("click", function() {
+
+            navLinks.classList.remove("open");
+
+            menuToggle.setAttribute(
+                "aria-expanded",
+                "false"
+            );
+
+            menuToggle.textContent = "☰";
+
+        });
+
+    });
+
+
+    document.addEventListener("click", function(event) {
+
+        if (
+            !navLinks.contains(event.target) &&
+            !menuToggle.contains(event.target)
+        ) {
+
+            navLinks.classList.remove("open");
+
+            menuToggle.setAttribute(
+                "aria-expanded",
+                "false"
+            );
+
+            menuToggle.textContent = "☰";
+
+        }
+
+    });
+
+}
+
+
+/* =========================
+   SUPPORT FORM
+========================= */
 
 function submitSupport(event) {
 
     event.preventDefault();
 
-    document.getElementById("supportMessage").style.display = "block";
+    const message =
+        document.getElementById("supportMessage");
+
+    if (message) {
+
+        message.style.display = "block";
+
+        message.scrollIntoView({
+            behavior: "smooth",
+            block: "nearest"
+        });
+
+    }
 
     event.target.reset();
 
 }
+
+
+/* =========================
+   WEBSITE SETTINGS
+========================= */
+
+async function loadWebsiteSettings() {
+
+    try {
+
+        const { data, error } =
+            await supabaseClient
+                .from("website_settings")
+                .select("settings")
+                .eq("id", 1)
+                .maybeSingle();
+
+
+        if (error) {
+
+            console.error(
+                "Website settings error:",
+                error
+            );
+
+            return;
+
+        }
+
+
+        if (!data || !data.settings) {
+            return;
+        }
+
+
+        const settings = data.settings;
+
+
+        /* COMPANY */
+
+        if (settings.companyName) {
+
+            const company =
+                document.getElementById("footerCompany");
+
+            if (company) {
+                company.textContent =
+                    settings.companyName;
+            }
+
+        }
+
+
+        /* NAVIGATION */
+
+        const navMap = {
+
+            navHome: "navHome",
+            navServices: "navServices",
+            navTrack: "navTrack",
+            navRequest: "navRequest",
+            navAbout: "navAbout",
+            navSupport: "navSupport",
+            navContact: "navContact",
+            navLogin: "navLogin"
+
+        };
+
+
+        Object.keys(navMap).forEach(function(key) {
+
+            if (
+                settings[key] &&
+                document.getElementById(navMap[key])
+            ) {
+
+                document.getElementById(
+                    navMap[key]
+                ).textContent = settings[key];
+
+            }
+
+        });
+
+
+        /* FOOTER */
+
+        if (settings.footerText) {
+
+            const footerText =
+                document.getElementById("footerText");
+
+            if (footerText) {
+                footerText.textContent =
+                    settings.footerText;
+            }
+
+        }
+
+
+        if (settings.copyrightText) {
+
+            const copyright =
+                document.getElementById("copyrightText");
+
+            if (copyright) {
+                copyright.textContent =
+                    settings.copyrightText;
+            }
+
+        }
+
+
+        /* HERO */
+
+        if (settings.supportHeroTitle) {
+
+            document.getElementById(
+                "supportHeroTitle"
+            ).textContent =
+                settings.supportHeroTitle;
+
+        }
+
+
+        if (settings.supportHeroDescription) {
+
+            document.getElementById(
+                "supportHeroDescription"
+            ).textContent =
+                settings.supportHeroDescription;
+
+        }
+
+
+        /* COLORS */
+
+        if (settings.primaryColor) {
+
+            document.documentElement.style
+                .setProperty(
+                    "--primary",
+                    settings.primaryColor
+                );
+
+        }
+
+
+        if (settings.secondaryColor) {
+
+            document.documentElement.style
+                .setProperty(
+                    "--secondary",
+                    settings.secondaryColor
+                );
+
+        }
+
+
+        if (settings.accentColor) {
+
+            document.documentElement.style
+                .setProperty(
+                    "--accent",
+                    settings.accentColor
+                );
+
+        }
+
+
+        if (settings.textColor) {
+
+            document.documentElement.style
+                .setProperty(
+                    "--text",
+                    settings.textColor
+                );
+
+        }
+
+
+        /* FONT */
+
+        if (settings.fontFamily) {
+
+            document.body.style.fontFamily =
+                settings.fontFamily;
+
+        }
+
+
+        if (settings.fontSize) {
+
+            document.body.style.fontSize =
+                settings.fontSize;
+
+        }
+
+
+        /* FAVICON */
+
+        if (settings.favicon) {
+
+            let favicon =
+                document.querySelector(
+                    'link[rel="icon"]'
+                );
+
+            if (!favicon) {
+
+                favicon =
+                    document.createElement("link");
+
+                favicon.rel = "icon";
+
+                document.head.appendChild(
+                    favicon
+                );
+
+            }
+
+            favicon.href =
+                settings.favicon;
+
+        }
+
+
+        /* SEO TITLE */
+
+        if (settings.websiteTitle) {
+
+            document.title =
+                settings.websiteTitle;
+
+        }
+
+
+        /* SEO DESCRIPTION */
+
+        if (settings.seoDescription) {
+
+            let description =
+                document.querySelector(
+                    'meta[name="description"]'
+                );
+
+            if (!description) {
+
+                description =
+                    document.createElement("meta");
+
+                description.name =
+                    "description";
+
+                document.head.appendChild(
+                    description
+                );
+
+            }
+
+            description.content =
+                settings.seoDescription;
+
+        }
+
+
+        /* SEO KEYWORDS */
+
+        if (settings.seoKeywords) {
+
+            let keywords =
+                document.querySelector(
+                    'meta[name="keywords"]'
+                );
+
+            if (!keywords) {
+
+                keywords =
+                    document.createElement("meta");
+
+                keywords.name =
+                    "keywords";
+
+                document.head.appendChild(
+                    keywords
+                );
+
+            }
+
+            keywords.content =
+                settings.seoKeywords;
+
+        }
+
+
+        /* MAINTENANCE MODE */
+
+        if (settings.maintenanceMode === true) {
+
+            document
+                .querySelectorAll(
+                    "body > header, body > section, body > main, body > footer, body > a.support-button"
+                )
+                .forEach(function(element) {
+
+                    element.style.display = "none";
+
+                });
+
+
+            document.getElementById(
+                "maintenanceMessage"
+            ).style.display = "block";
+
+        }
+
+    } catch (error) {
+
+        console.error(
+            "Settings loading failed:",
+            error
+        );
+
+    }
+
+}
+
+
+loadWebsiteSettings();
 
 </script>
 
