@@ -179,8 +179,9 @@
     .preview {
       display: none;
       margin-top: 12px;
+      width: 100%;
       max-width: 100%;
-      max-height: 180px;
+      max-height: 220px;
       border-radius: 8px;
       border: 1px solid #d5dbe5;
       object-fit: contain;
@@ -281,6 +282,16 @@
       border: 1px solid #efb8b8;
     }
 
+    .service-title {
+      margin-top: 20px;
+      margin-bottom: 12px;
+      padding: 10px 12px;
+      background: #f4f7fb;
+      border-left: 4px solid #e30613;
+      border-radius: 5px;
+      font-weight: 700;
+    }
+
     @media (max-width: 750px) {
       header .header-inner {
         flex-direction: column;
@@ -319,6 +330,7 @@
 
 <header>
   <div class="header-inner">
+
     <div>
       <h1>Website Control Center</h1>
       <p>ExpressLine Website Editor</p>
@@ -327,6 +339,7 @@
     <a href="admin.html" class="back-link">
       ← Back to Admin
     </a>
+
   </div>
 </header>
 
@@ -336,18 +349,23 @@
     <strong>Website image management:</strong>
     Choose your images directly from your phone or computer below.
     Your website settings are saved online through the ExpressLine database.
+    Images are stored inside your website settings.
   </div>
 
   <div id="message" class="message"></div>
 
+
   <!-- COMPANY IDENTITY -->
   <section class="section">
+
     <h2>Company Identity</h2>
+
     <p class="section-description">
       Set the company name, short name, tagline and branding.
     </p>
 
     <div class="grid">
+
       <div>
         <label for="companyName">Company Name</label>
         <input id="companyName" type="text">
@@ -362,17 +380,23 @@
         <label for="tagline">Tagline</label>
         <input id="tagline" type="text">
       </div>
+
     </div>
+
   </section>
+
 
   <!-- WEBSITE GENERAL -->
   <section class="section">
+
     <h2>Website General</h2>
+
     <p class="section-description">
       Control the website title, status, description and announcement.
     </p>
 
     <div class="grid">
+
       <div>
         <label for="websiteTitle">Website Title</label>
         <input id="websiteTitle" type="text">
@@ -380,6 +404,7 @@
 
       <div>
         <label for="websiteStatus">Website Status</label>
+
         <select id="websiteStatus">
           <option value="online">Online</option>
           <option value="maintenance">Maintenance</option>
@@ -398,164 +423,341 @@
 
       <div>
         <label>Announcement</label>
+
         <div class="checkbox-row">
           <input id="announcementEnabled" type="checkbox">
           <span>Show announcement on website</span>
         </div>
       </div>
+
     </div>
+
   </section>
+
 
   <!-- WEBSITE IMAGES -->
   <section class="section">
+
     <h2>Website Images</h2>
+
     <p class="section-description">
-      Upload images directly from your device. They will be stored with your online website settings.
+      Upload images directly from your device. Images are saved with your online website settings.
     </p>
 
     <div class="grid">
 
+
+      <!-- LOGO -->
       <div class="image-box">
-        <label for="logoFile">Company Logo</label>
-        <input id="logoFile" type="file" accept="image/*">
+
+        <label for="logoFile">
+          Company Logo
+        </label>
+
+        <input
+          id="logoFile"
+          type="file"
+          accept="image/*"
+        >
 
         <p class="image-help">
           Choose the logo image that should appear in the website header.
         </p>
 
-        <img id="logoPreview" class="preview" alt="Logo preview">
+        <img
+          id="logoPreview"
+          class="preview"
+          alt="Logo preview"
+        >
 
         <div class="image-actions">
-          <button type="button" class="small-button" onclick="removeImage('logo')">
+
+          <button
+            type="button"
+            class="small-button"
+            onclick="removeImage('logo')"
+          >
             Remove Logo
           </button>
+
         </div>
+
       </div>
 
+
+      <!-- FAVICON -->
       <div class="image-box">
-        <label for="faviconFile">Website Favicon</label>
-        <input id="faviconFile" type="file" accept="image/png,image/jpeg,image/webp,image/x-icon,.ico">
+
+        <label for="faviconFile">
+          Website Favicon
+        </label>
+
+        <input
+          id="faviconFile"
+          type="file"
+          accept="image/png,image/jpeg,image/webp,image/x-icon,.ico"
+        >
 
         <p class="image-help">
           Choose the small icon used in the browser tab.
         </p>
 
-        <img id="faviconPreview" class="preview" alt="Favicon preview">
+        <img
+          id="faviconPreview"
+          class="preview"
+          alt="Favicon preview"
+        >
 
         <div class="image-actions">
-          <button type="button" class="small-button" onclick="removeImage('favicon')">
+
+          <button
+            type="button"
+            class="small-button"
+            onclick="removeImage('favicon')"
+          >
             Remove Favicon
           </button>
+
         </div>
+
       </div>
 
+
+      <!-- HERO -->
       <div class="image-box">
-        <label for="heroImageFile">Homepage Hero Image</label>
-        <input id="heroImageFile" type="file" accept="image/*">
+
+        <label for="heroImageFile">
+          Homepage Hero Image
+        </label>
+
+        <input
+          id="heroImageFile"
+          type="file"
+          accept="image/*"
+        >
 
         <p class="image-help">
-          This image is used by the homepage hero section.
+          This image will appear behind the main homepage hero section.
         </p>
 
-        <img id="heroImagePreview" class="preview" alt="Homepage hero preview">
+        <img
+          id="heroImagePreview"
+          class="preview"
+          alt="Homepage hero preview"
+        >
 
         <div class="image-actions">
-          <button type="button" class="small-button" onclick="removeImage('heroImage')">
+
+          <button
+            type="button"
+            class="small-button"
+            onclick="removeImage('heroImage')"
+          >
             Remove Image
           </button>
+
         </div>
+
       </div>
 
+
+      <!-- SERVICES PAGE -->
       <div class="image-box">
-        <label for="servicesImageFile">Services Page Image</label>
-        <input id="servicesImageFile" type="file" accept="image/*">
+
+        <label for="servicesImageFile">
+          Services Page Image
+        </label>
+
+        <input
+          id="servicesImageFile"
+          type="file"
+          accept="image/*"
+        >
 
         <p class="image-help">
           This image is connected to the Services page.
         </p>
 
-        <img id="servicesImagePreview" class="preview" alt="Services image preview">
+        <img
+          id="servicesImagePreview"
+          class="preview"
+          alt="Services image preview"
+        >
 
         <div class="image-actions">
-          <button type="button" class="small-button" onclick="removeImage('servicesImage')">
+
+          <button
+            type="button"
+            class="small-button"
+            onclick="removeImage('servicesImage')"
+          >
             Remove Image
           </button>
+
         </div>
+
       </div>
 
+
+      <!-- BUSINESS -->
       <div class="image-box">
-        <label for="businessImageFile">Business Image</label>
-        <input id="businessImageFile" type="file" accept="image/*">
+
+        <label for="businessImageFile">
+          Business Image
+        </label>
+
+        <input
+          id="businessImageFile"
+          type="file"
+          accept="image/*"
+        >
 
         <p class="image-help">
           Choose the image used for business/company sections.
         </p>
 
-        <img id="businessImagePreview" class="preview" alt="Business image preview">
+        <img
+          id="businessImagePreview"
+          class="preview"
+          alt="Business image preview"
+        >
 
         <div class="image-actions">
-          <button type="button" class="small-button" onclick="removeImage('businessImage')">
+
+          <button
+            type="button"
+            class="small-button"
+            onclick="removeImage('businessImage')"
+          >
             Remove Image
           </button>
+
         </div>
+
       </div>
 
+
+      <!-- ABOUT -->
       <div class="image-box">
-        <label for="aboutImageFile">About Page Image</label>
-        <input id="aboutImageFile" type="file" accept="image/*">
+
+        <label for="aboutImageFile">
+          About Page Image
+        </label>
+
+        <input
+          id="aboutImageFile"
+          type="file"
+          accept="image/*"
+        >
 
         <p class="image-help">
           This image is connected to the About page.
         </p>
 
-        <img id="aboutImagePreview" class="preview" alt="About image preview">
+        <img
+          id="aboutImagePreview"
+          class="preview"
+          alt="About image preview"
+        >
 
         <div class="image-actions">
-          <button type="button" class="small-button" onclick="removeImage('aboutImage')">
+
+          <button
+            type="button"
+            class="small-button"
+            onclick="removeImage('aboutImage')"
+          >
             Remove Image
           </button>
+
         </div>
+
       </div>
 
+
+      <!-- CONTACT -->
       <div class="image-box">
-        <label for="contactImageFile">Contact Page Image</label>
-        <input id="contactImageFile" type="file" accept="image/*">
+
+        <label for="contactImageFile">
+          Contact Page Image
+        </label>
+
+        <input
+          id="contactImageFile"
+          type="file"
+          accept="image/*"
+        >
 
         <p class="image-help">
           This image is connected to the Contact page.
         </p>
 
-        <img id="contactImagePreview" class="preview" alt="Contact image preview">
+        <img
+          id="contactImagePreview"
+          class="preview"
+          alt="Contact image preview"
+        >
 
         <div class="image-actions">
-          <button type="button" class="small-button" onclick="removeImage('contactImage')">
+
+          <button
+            type="button"
+            class="small-button"
+            onclick="removeImage('contactImage')"
+          >
             Remove Image
           </button>
+
         </div>
+
       </div>
 
+
+      <!-- BACKGROUND -->
       <div class="image-box full">
-        <label for="backgroundImageFile">Website Background Image</label>
-        <input id="backgroundImageFile" type="file" accept="image/*">
+
+        <label for="backgroundImageFile">
+          Website Background Image
+        </label>
+
+        <input
+          id="backgroundImageFile"
+          type="file"
+          accept="image/*"
+        >
 
         <p class="image-help">
           Choose the background image for website sections that use a background image.
         </p>
 
-        <img id="backgroundImagePreview" class="preview" alt="Background image preview">
+        <img
+          id="backgroundImagePreview"
+          class="preview"
+          alt="Background image preview"
+        >
 
         <div class="image-actions">
-          <button type="button" class="small-button" onclick="removeImage('backgroundImage')">
+
+          <button
+            type="button"
+            class="small-button"
+            onclick="removeImage('backgroundImage')"
+          >
             Remove Image
           </button>
+
         </div>
+
       </div>
 
     </div>
+
   </section>
+
 
   <!-- LOGO SIZE -->
   <section class="section">
+
     <h2>Logo Display Size</h2>
 
     <p class="section-description">
@@ -563,25 +765,44 @@
     </p>
 
     <div class="grid">
+
       <div>
-        <label for="logoSize">Logo Size</label>
+
+        <label for="logoSize">
+          Logo Size
+        </label>
 
         <select id="logoSize">
-          <option value="small">Small</option>
-          <option value="medium">Medium</option>
-          <option value="large">Large</option>
+
+          <option value="small">
+            Small
+          </option>
+
+          <option value="medium">
+            Medium
+          </option>
+
+          <option value="large">
+            Large
+          </option>
+
         </select>
 
         <p class="image-help">
           Small keeps the logo compact. Medium gives it normal visibility.
           Large makes the logo more prominent.
         </p>
+
       </div>
+
     </div>
+
   </section>
+
 
   <!-- HEADER -->
   <section class="section">
+
     <h2>Header Navigation</h2>
 
     <p class="section-description">
@@ -589,6 +810,7 @@
     </p>
 
     <div class="grid">
+
       <div>
         <label for="navHome">Home</label>
         <input id="navHome" type="text">
@@ -628,11 +850,15 @@
         <label for="navRegister">Register</label>
         <input id="navRegister" type="text">
       </div>
+
     </div>
+
   </section>
+
 
   <!-- HOMEPAGE -->
   <section class="section">
+
     <h2>Homepage</h2>
 
     <p class="section-description">
@@ -640,30 +866,66 @@
     </p>
 
     <div class="grid">
+
       <div class="full">
-        <label for="heroHeading">Hero Heading</label>
-        <input id="heroHeading" type="text">
+
+        <label for="heroHeading">
+          Hero Heading
+        </label>
+
+        <input
+          id="heroHeading"
+          type="text"
+        >
+
       </div>
 
       <div class="full">
-        <label for="heroDescription">Hero Description</label>
-        <textarea id="heroDescription"></textarea>
+
+        <label for="heroDescription">
+          Hero Description
+        </label>
+
+        <textarea
+          id="heroDescription"
+        ></textarea>
+
       </div>
 
       <div>
-        <label for="heroPrimaryButton">Primary Button</label>
-        <input id="heroPrimaryButton" type="text">
+
+        <label for="heroPrimaryButton">
+          Primary Button
+        </label>
+
+        <input
+          id="heroPrimaryButton"
+          type="text"
+        >
+
       </div>
 
       <div>
-        <label for="heroSecondaryButton">Secondary Button</label>
-        <input id="heroSecondaryButton" type="text">
+
+        <label for="heroSecondaryButton">
+          Secondary Button
+        </label>
+
+        <input
+          id="heroSecondaryButton"
+          type="text"
+        >
+
       </div>
+
     </div>
+
   </section>
+
 
   <!-- COLORS -->
   <section class="section">
+
     <h2>Website Colors</h2>
 
     <p class="section-description">
@@ -671,34 +933,95 @@
     </p>
 
     <div class="grid">
+
       <div>
-        <label for="primaryColor">Primary Color</label>
-        <input id="primaryColor" type="color" value="#e30613">
-        <input id="primaryColorText" type="text" value="#e30613">
+
+        <label for="primaryColor">
+          Primary Color
+        </label>
+
+        <input
+          id="primaryColor"
+          type="color"
+          value="#e30613"
+        >
+
+        <input
+          id="primaryColorText"
+          type="text"
+          value="#e30613"
+        >
+
       </div>
 
       <div>
-        <label for="secondaryColor">Secondary Color</label>
-        <input id="secondaryColor" type="color" value="#172033">
-        <input id="secondaryColorText" type="text" value="#172033">
+
+        <label for="secondaryColor">
+          Secondary Color
+        </label>
+
+        <input
+          id="secondaryColor"
+          type="color"
+          value="#172033"
+        >
+
+        <input
+          id="secondaryColorText"
+          type="text"
+          value="#172033"
+        >
+
       </div>
 
       <div>
-        <label for="accentColor">Accent Color</label>
-        <input id="accentColor" type="color" value="#111827">
-        <input id="accentColorText" type="text" value="#111827">
+
+        <label for="accentColor">
+          Accent Color
+        </label>
+
+        <input
+          id="accentColor"
+          type="color"
+          value="#111827"
+        >
+
+        <input
+          id="accentColorText"
+          type="text"
+          value="#111827"
+        >
+
       </div>
 
       <div>
-        <label for="textColor">Text Color</label>
-        <input id="textColor" type="color" value="#172033">
-        <input id="textColorText" type="text" value="#172033">
+
+        <label for="textColor">
+          Text Color
+        </label>
+
+        <input
+          id="textColor"
+          type="color"
+          value="#172033"
+        >
+
+        <input
+          id="textColorText"
+          type="text"
+          value="#172033"
+        >
+
       </div>
+
     </div>
+
   </section>
+
 
   <!-- TYPOGRAPHY -->
   <section class="section">
+
     <h2>Typography</h2>
 
     <p class="section-description">
@@ -706,68 +1029,499 @@
     </p>
 
     <div class="grid">
+
       <div>
-        <label for="fontFamily">Font Family</label>
+
+        <label for="fontFamily">
+          Font Family
+        </label>
 
         <select id="fontFamily">
-          <option value="Arial, Helvetica, sans-serif">Arial</option>
-          <option value="Inter, Arial, Helvetica, sans-serif">Inter</option>
-          <option value="Georgia, serif">Georgia</option>
-          <option value="Verdana, sans-serif">Verdana</option>
-          <option value="Tahoma, sans-serif">Tahoma</option>
+
+          <option value="Arial, Helvetica, sans-serif">
+            Arial
+          </option>
+
+          <option value="Inter, Arial, Helvetica, sans-serif">
+            Inter
+          </option>
+
+          <option value="Georgia, serif">
+            Georgia
+          </option>
+
+          <option value="Verdana, sans-serif">
+            Verdana
+          </option>
+
+          <option value="Tahoma, sans-serif">
+            Tahoma
+          </option>
+
         </select>
+
       </div>
 
       <div>
-        <label for="fontSize">Base Font Size</label>
-        <input id="fontSize" type="text" placeholder="16px">
+
+        <label for="fontSize">
+          Base Font Size
+        </label>
+
+        <input
+          id="fontSize"
+          type="text"
+          placeholder="16px"
+        >
+
       </div>
+
     </div>
+
   </section>
+
 
   <!-- SERVICES -->
   <section class="section">
-    <h2>Services</h2>
+
+    <h2>Homepage Services</h2>
 
     <p class="section-description">
-      Manage the first three service cards shown on the website.
+      Manage all six service cards shown on the homepage. Each service can have its own name, description and image.
     </p>
 
-    <div class="grid">
-      <div>
-        <label for="service1Name">Service 1 Name</label>
-        <input id="service1Name" type="text">
-      </div>
 
-      <div>
-        <label for="service1Description">Service 1 Description</label>
-        <textarea id="service1Description"></textarea>
-      </div>
-
-      <div>
-        <label for="service2Name">Service 2 Name</label>
-        <input id="service2Name" type="text">
-      </div>
-
-      <div>
-        <label for="service2Description">Service 2 Description</label>
-        <textarea id="service2Description"></textarea>
-      </div>
-
-      <div>
-        <label for="service3Name">Service 3 Name</label>
-        <input id="service3Name" type="text">
-      </div>
-
-      <div>
-        <label for="service3Description">Service 3 Description</label>
-        <textarea id="service3Description"></textarea>
-      </div>
+    <!-- SERVICE 1 -->
+    <div class="service-title">
+      Service 1 — Air Freight
     </div>
+
+    <div class="grid">
+
+      <div>
+
+        <label for="service1Title">
+          Service 1 Name
+        </label>
+
+        <input
+          id="service1Title"
+          type="text"
+        >
+
+      </div>
+
+      <div>
+
+        <label for="service1Description">
+          Service 1 Description
+        </label>
+
+        <textarea
+          id="service1Description"
+        ></textarea>
+
+      </div>
+
+      <div class="image-box full">
+
+        <label for="service1ImageFile">
+          Air Freight Image
+        </label>
+
+        <input
+          id="service1ImageFile"
+          type="file"
+          accept="image/*"
+        >
+
+        <p class="image-help">
+          This image will appear on the Air Freight card on the homepage.
+        </p>
+
+        <img
+          id="service1ImagePreview"
+          class="preview"
+          alt="Air Freight preview"
+        >
+
+        <div class="image-actions">
+
+          <button
+            type="button"
+            class="small-button"
+            onclick="removeImage('service1Image')"
+          >
+            Remove Image
+          </button>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <!-- SERVICE 2 -->
+    <div class="service-title">
+      Service 2 — Sea Freight
+    </div>
+
+    <div class="grid">
+
+      <div>
+
+        <label for="service2Title">
+          Service 2 Name
+        </label>
+
+        <input
+          id="service2Title"
+          type="text"
+        >
+
+      </div>
+
+      <div>
+
+        <label for="service2Description">
+          Service 2 Description
+        </label>
+
+        <textarea
+          id="service2Description"
+        ></textarea>
+
+      </div>
+
+      <div class="image-box full">
+
+        <label for="service2ImageFile">
+          Sea Freight Image
+        </label>
+
+        <input
+          id="service2ImageFile"
+          type="file"
+          accept="image/*"
+        >
+
+        <p class="image-help">
+          This image will appear on the Sea Freight card on the homepage.
+        </p>
+
+        <img
+          id="service2ImagePreview"
+          class="preview"
+          alt="Sea Freight preview"
+        >
+
+        <div class="image-actions">
+
+          <button
+            type="button"
+            class="small-button"
+            onclick="removeImage('service2Image')"
+          >
+            Remove Image
+          </button>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <!-- SERVICE 3 -->
+    <div class="service-title">
+      Service 3 — Road Freight
+    </div>
+
+    <div class="grid">
+
+      <div>
+
+        <label for="service3Title">
+          Service 3 Name
+        </label>
+
+        <input
+          id="service3Title"
+          type="text"
+        >
+
+      </div>
+
+      <div>
+
+        <label for="service3Description">
+          Service 3 Description
+        </label>
+
+        <textarea
+          id="service3Description"
+        ></textarea>
+
+      </div>
+
+      <div class="image-box full">
+
+        <label for="service3ImageFile">
+          Road Freight Image
+        </label>
+
+        <input
+          id="service3ImageFile"
+          type="file"
+          accept="image/*"
+        >
+
+        <p class="image-help">
+          This image will appear on the Road Freight card on the homepage.
+        </p>
+
+        <img
+          id="service3ImagePreview"
+          class="preview"
+          alt="Road Freight preview"
+        >
+
+        <div class="image-actions">
+
+          <button
+            type="button"
+            class="small-button"
+            onclick="removeImage('service3Image')"
+          >
+            Remove Image
+          </button>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <!-- SERVICE 4 -->
+    <div class="service-title">
+      Service 4 — Express Courier
+    </div>
+
+    <div class="grid">
+
+      <div>
+
+        <label for="service4Title">
+          Service 4 Name
+        </label>
+
+        <input
+          id="service4Title"
+          type="text"
+        >
+
+      </div>
+
+      <div>
+
+        <label for="service4Description">
+          Service 4 Description
+        </label>
+
+        <textarea
+          id="service4Description"
+        ></textarea>
+
+      </div>
+
+      <div class="image-box full">
+
+        <label for="service4ImageFile">
+          Express Courier Image
+        </label>
+
+        <input
+          id="service4ImageFile"
+          type="file"
+          accept="image/*"
+        >
+
+        <p class="image-help">
+          This image will appear on the Express Courier card on the homepage.
+        </p>
+
+        <img
+          id="service4ImagePreview"
+          class="preview"
+          alt="Express Courier preview"
+        >
+
+        <div class="image-actions">
+
+          <button
+            type="button"
+            class="small-button"
+            onclick="removeImage('service4Image')"
+          >
+            Remove Image
+          </button>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <!-- SERVICE 5 -->
+    <div class="service-title">
+      Service 5 — Customs Clearance
+    </div>
+
+    <div class="grid">
+
+      <div>
+
+        <label for="service5Title">
+          Service 5 Name
+        </label>
+
+        <input
+          id="service5Title"
+          type="text"
+        >
+
+      </div>
+
+      <div>
+
+        <label for="service5Description">
+          Service 5 Description
+        </label>
+
+        <textarea
+          id="service5Description"
+        ></textarea>
+
+      </div>
+
+      <div class="image-box full">
+
+        <label for="service5ImageFile">
+          Customs Clearance Image
+        </label>
+
+        <input
+          id="service5ImageFile"
+          type="file"
+          accept="image/*"
+        >
+
+        <p class="image-help">
+          This image will appear on the Customs Clearance card on the homepage.
+        </p>
+
+        <img
+          id="service5ImagePreview"
+          class="preview"
+          alt="Customs Clearance preview"
+        >
+
+        <div class="image-actions">
+
+          <button
+            type="button"
+            class="small-button"
+            onclick="removeImage('service5Image')"
+          >
+            Remove Image
+          </button>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <!-- SERVICE 6 -->
+    <div class="service-title">
+      Service 6 — Warehousing &amp; Distribution
+    </div>
+
+    <div class="grid">
+
+      <div>
+
+        <label for="service6Title">
+          Service 6 Name
+        </label>
+
+        <input
+          id="service6Title"
+          type="text"
+        >
+
+      </div>
+
+      <div>
+
+        <label for="service6Description">
+          Service 6 Description
+        </label>
+
+        <textarea
+          id="service6Description"
+        ></textarea>
+
+      </div>
+
+      <div class="image-box full">
+
+        <label for="service6ImageFile">
+          Warehousing &amp; Distribution Image
+        </label>
+
+        <input
+          id="service6ImageFile"
+          type="file"
+          accept="image/*"
+        >
+
+        <p class="image-help">
+          This image will appear on the Warehousing &amp; Distribution card on the homepage.
+        </p>
+
+        <img
+          id="service6ImagePreview"
+          class="preview"
+          alt="Warehousing and Distribution preview"
+        >
+
+        <div class="image-actions">
+
+          <button
+            type="button"
+            class="small-button"
+            onclick="removeImage('service6Image')"
+          >
+            Remove Image
+          </button>
+
+        </div>
+
+      </div>
+
+    </div>
+
   </section>
+
 
   <!-- CONTACT -->
   <section class="section">
+
     <h2>Contact Information</h2>
 
     <p class="section-description">
@@ -775,35 +1529,69 @@
     </p>
 
     <div class="grid">
+
       <div>
-        <label for="contactEmail">Contact Email</label>
-        <input id="contactEmail" type="email">
+        <label for="contactEmail">
+          Contact Email
+        </label>
+
+        <input
+          id="contactEmail"
+          type="email"
+        >
       </div>
 
       <div>
-        <label for="contactPhone">Contact Phone</label>
-        <input id="contactPhone" type="text">
+        <label for="contactPhone">
+          Contact Phone
+        </label>
+
+        <input
+          id="contactPhone"
+          type="text"
+        >
       </div>
 
       <div>
-        <label for="whatsappNumber">WhatsApp Number</label>
-        <input id="whatsappNumber" type="text">
+        <label for="whatsappNumber">
+          WhatsApp Number
+        </label>
+
+        <input
+          id="whatsappNumber"
+          type="text"
+        >
       </div>
 
       <div>
-        <label for="businessHours">Business Hours</label>
-        <input id="businessHours" type="text">
+        <label for="businessHours">
+          Business Hours
+        </label>
+
+        <input
+          id="businessHours"
+          type="text"
+        >
       </div>
 
       <div class="full">
-        <label for="businessAddress">Business Address</label>
-        <textarea id="businessAddress"></textarea>
+        <label for="businessAddress">
+          Business Address
+        </label>
+
+        <textarea
+          id="businessAddress"
+        ></textarea>
       </div>
+
     </div>
+
   </section>
+
 
   <!-- SUPPORT -->
   <section class="section">
+
     <h2>Customer Support</h2>
 
     <p class="section-description">
@@ -813,45 +1601,103 @@
     <div class="grid">
 
       <div>
-        <label for="supportEmail">Support Email</label>
-        <input id="supportEmail" type="email">
+
+        <label for="supportEmail">
+          Support Email
+        </label>
+
+        <input
+          id="supportEmail"
+          type="email"
+        >
+
       </div>
 
       <div>
-        <label for="supportPhone">Support Phone</label>
-        <input id="supportPhone" type="text">
+
+        <label for="supportPhone">
+          Support Phone
+        </label>
+
+        <input
+          id="supportPhone"
+          type="text"
+        >
+
       </div>
 
       <div>
-        <label for="supportHours">Support Hours</label>
-        <input id="supportHours" type="text">
+
+        <label for="supportHours">
+          Support Hours
+        </label>
+
+        <input
+          id="supportHours"
+          type="text"
+        >
+
       </div>
 
       <div>
-        <label>Live Chat</label>
+
+        <label>
+          Live Chat
+        </label>
 
         <div class="checkbox-row">
-          <input id="liveChat" type="checkbox">
-          <span>Enable live chat</span>
+
+          <input
+            id="liveChat"
+            type="checkbox"
+          >
+
+          <span>
+            Enable live chat
+          </span>
+
         </div>
+
       </div>
 
       <div class="full">
-        <label for="supportMessage">Support Message</label>
-        <textarea id="supportMessage"></textarea>
+
+        <label for="supportMessage">
+          Support Message
+        </label>
+
+        <textarea
+          id="supportMessage"
+        ></textarea>
+
       </div>
 
       <div>
-        <label>Smartsupp</label>
+
+        <label>
+          Smartsupp
+        </label>
 
         <div class="checkbox-row">
-          <input id="smartsuppEnabled" type="checkbox">
-          <span>Enable Smartsupp live support</span>
+
+          <input
+            id="smartsuppEnabled"
+            type="checkbox"
+          >
+
+          <span>
+            Enable Smartsupp live support
+          </span>
+
         </div>
+
       </div>
 
       <div>
-        <label for="smartsuppKey">Smartsupp Key</label>
+
+        <label for="smartsuppKey">
+          Smartsupp Key
+        </label>
 
         <input
           id="smartsuppKey"
@@ -863,70 +1709,142 @@
         <p class="key-help">
           Enter your Smartsupp website key here. Do not paste your password.
         </p>
+
       </div>
 
       <div>
-        <label for="smartsuppButtonText">Live Support Button Text</label>
+
+        <label for="smartsuppButtonText">
+          Live Support Button Text
+        </label>
 
         <input
           id="smartsuppButtonText"
           type="text"
           placeholder="Live Support"
         >
+
       </div>
 
     </div>
+
   </section>
+
 
   <!-- SEO -->
   <section class="section">
+
     <h2>SEO</h2>
 
     <div class="grid">
+
       <div class="full">
-        <label for="seoTitle">SEO Title</label>
-        <input id="seoTitle" type="text">
+
+        <label for="seoTitle">
+          SEO Title
+        </label>
+
+        <input
+          id="seoTitle"
+          type="text"
+        >
+
       </div>
 
       <div class="full">
-        <label for="seoDescription">SEO Description</label>
-        <textarea id="seoDescription"></textarea>
+
+        <label for="seoDescription">
+          SEO Description
+        </label>
+
+        <textarea
+          id="seoDescription"
+        ></textarea>
+
       </div>
 
       <div class="full">
-        <label for="seoKeywords">SEO Keywords</label>
-        <input id="seoKeywords" type="text">
+
+        <label for="seoKeywords">
+          SEO Keywords
+        </label>
+
+        <input
+          id="seoKeywords"
+          type="text"
+        >
+
       </div>
+
     </div>
+
   </section>
+
 
   <!-- FOOTER -->
   <section class="section">
+
     <h2>Footer</h2>
 
     <div class="grid">
+
       <div class="full">
-        <label for="footerText">Footer Text</label>
-        <textarea id="footerText"></textarea>
+
+        <label for="footerText">
+          Footer Text
+        </label>
+
+        <textarea
+          id="footerText"
+        ></textarea>
+
       </div>
 
       <div>
-        <label for="copyrightText">Copyright Text</label>
-        <input id="copyrightText" type="text">
+
+        <label for="copyrightText">
+          Copyright Text
+        </label>
+
+        <input
+          id="copyrightText"
+          type="text"
+        >
+
       </div>
 
       <div>
-        <label for="privacyUrl">Privacy Page</label>
-        <input id="privacyUrl" type="text">
+
+        <label for="privacyUrl">
+          Privacy Page
+        </label>
+
+        <input
+          id="privacyUrl"
+          type="text"
+        >
+
       </div>
 
       <div>
-        <label for="termsUrl">Terms Page</label>
-        <input id="termsUrl" type="text">
+
+        <label for="termsUrl">
+          Terms Page
+        </label>
+
+        <input
+          id="termsUrl"
+          type="text"
+        >
+
       </div>
+
     </div>
+
   </section>
 
+
+  <!-- ACTIONS -->
   <div class="actions">
 
     <button
@@ -957,6 +1875,7 @@
 
 </main>
 
+
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <script>
@@ -984,7 +1903,8 @@
       }
     );
 
-  const SETTINGS_TABLE = "website_settings";
+  const SETTINGS_TABLE =
+    "website_settings";
 
 
   /* ==========================================
@@ -1039,6 +1959,42 @@
       inputId: "backgroundImageFile",
       previewId: "backgroundImagePreview",
       settingKey: "backgroundImage"
+    },
+
+    service1Image: {
+      inputId: "service1ImageFile",
+      previewId: "service1ImagePreview",
+      settingKey: "service1Image"
+    },
+
+    service2Image: {
+      inputId: "service2ImageFile",
+      previewId: "service2ImagePreview",
+      settingKey: "service2Image"
+    },
+
+    service3Image: {
+      inputId: "service3ImageFile",
+      previewId: "service3ImagePreview",
+      settingKey: "service3Image"
+    },
+
+    service4Image: {
+      inputId: "service4ImageFile",
+      previewId: "service4ImagePreview",
+      settingKey: "service4Image"
+    },
+
+    service5Image: {
+      inputId: "service5ImageFile",
+      previewId: "service5ImagePreview",
+      settingKey: "service5Image"
+    },
+
+    service6Image: {
+      inputId: "service6ImageFile",
+      previewId: "service6ImagePreview",
+      settingKey: "service6Image"
     }
 
   };
@@ -1088,12 +2044,23 @@
     "fontFamily",
     "fontSize",
 
-    "service1Name",
+    "service1Title",
     "service1Description",
-    "service2Name",
+
+    "service2Title",
     "service2Description",
-    "service3Name",
+
+    "service3Title",
     "service3Description",
+
+    "service4Title",
+    "service4Description",
+
+    "service5Title",
+    "service5Description",
+
+    "service6Title",
+    "service6Description",
 
     "contactEmail",
     "contactPhone",
@@ -1135,7 +2102,8 @@
     const box =
       document.getElementById("message");
 
-    box.textContent = message;
+    box.textContent =
+      message;
 
     box.className =
       "message " + type;
@@ -1147,9 +2115,11 @@
 
     setTimeout(function() {
 
-      box.className = "message";
+      box.className =
+        "message";
 
-      box.textContent = "";
+      box.textContent =
+        "";
 
     }, 6000);
 
@@ -1167,15 +2137,21 @@
       const reader =
         new FileReader();
 
-      reader.onload = function() {
-        resolve(reader.result);
-      };
+      reader.onload =
+        function() {
+          resolve(reader.result);
+        };
 
-      reader.onerror = function() {
-        reject(
-          new Error("Unable to read image.")
-        );
-      };
+      reader.onerror =
+        function() {
+
+          reject(
+            new Error(
+              "Unable to read image."
+            )
+          );
+
+        };
 
       reader.readAsDataURL(file);
 
@@ -1194,7 +2170,9 @@
   ) {
 
     const preview =
-      document.getElementById(previewId);
+      document.getElementById(
+        previewId
+      );
 
     if (!preview) {
       return;
@@ -1202,16 +2180,24 @@
 
     if (!source) {
 
-      preview.removeAttribute("src");
+      preview.removeAttribute(
+        "src"
+      );
 
-      preview.classList.remove("show");
+      preview.classList.remove(
+        "show"
+      );
 
       return;
+
     }
 
-    preview.src = source;
+    preview.src =
+      source;
 
-    preview.classList.add("show");
+    preview.classList.add(
+      "show"
+    );
 
   }
 
@@ -1220,7 +2206,9 @@
      IMAGE UPLOAD
      ========================================== */
 
-  function setupImageUpload(imageName) {
+  function setupImageUpload(
+    imageName
+  ) {
 
     const config =
       imageFields[imageName];
@@ -1250,9 +2238,14 @@
           return;
         }
 
-        if (!file.type.startsWith("image/")) {
+        if (
+          !file.type.startsWith(
+            "image/"
+          )
+        ) {
 
-          input.value = "";
+          input.value =
+            "";
 
           showMessage(
             "Please choose an image file.",
@@ -1260,14 +2253,22 @@
           );
 
           return;
+
         }
+
+
+        /*
+          Maximum image size:
+          700 KB
+        */
 
         const maxSize =
           700 * 1024;
 
         if (file.size > maxSize) {
 
-          input.value = "";
+          input.value =
+            "";
 
           showMessage(
             "Please choose an image smaller than 700 KB.",
@@ -1275,14 +2276,20 @@
           );
 
           return;
+
         }
+
 
         try {
 
           const dataUrl =
-            await readFileAsDataURL(file);
+            await readFileAsDataURL(
+              file
+            );
 
-          uploadedImages[imageName] =
+          uploadedImages[
+            imageName
+          ] =
             dataUrl;
 
           showImagePreview(
@@ -1298,9 +2305,12 @@
 
         } catch (error) {
 
-          console.error(error);
+          console.error(
+            error
+          );
 
-          input.value = "";
+          input.value =
+            "";
 
           showMessage(
             "The image could not be loaded.",
@@ -1319,7 +2329,9 @@
      REMOVE IMAGE
      ========================================== */
 
-  function removeImage(imageName) {
+  function removeImage(
+    imageName
+  ) {
 
     const config =
       imageFields[imageName];
@@ -1328,7 +2340,10 @@
       return;
     }
 
-    uploadedImages[imageName] = "";
+    uploadedImages[
+      imageName
+    ] =
+      "";
 
     const input =
       document.getElementById(
@@ -1336,7 +2351,8 @@
       );
 
     if (input) {
-      input.value = "";
+      input.value =
+        "";
     }
 
     showImagePreview(
@@ -1356,17 +2372,26 @@
      FORM VALUES
      ========================================== */
 
-  function getFormValue(id) {
+  function getFormValue(
+    id
+  ) {
 
     const element =
-      document.getElementById(id);
+      document.getElementById(
+        id
+      );
 
     if (!element) {
       return "";
     }
 
-    if (element.type === "checkbox") {
+    if (
+      element.type ===
+      "checkbox"
+    ) {
+
       return element.checked;
+
     }
 
     return element.value;
@@ -1374,21 +2399,30 @@
   }
 
 
-  function setFormValue(id, value) {
+  function setFormValue(
+    id,
+    value
+  ) {
 
     const element =
-      document.getElementById(id);
+      document.getElementById(
+        id
+      );
 
     if (!element) {
       return;
     }
 
-    if (element.type === "checkbox") {
+    if (
+      element.type ===
+      "checkbox"
+    ) {
 
       element.checked =
         Boolean(value);
 
       return;
+
     }
 
     element.value =
@@ -1405,16 +2439,20 @@
 
     const settings = {};
 
-    fields.forEach(function(field) {
+    fields.forEach(
+      function(field) {
 
-      settings[field] =
-        getFormValue(field);
+        settings[field] =
+          getFormValue(field);
 
-    });
+      }
+    );
 
 
-    Object.keys(imageFields)
-      .forEach(function(imageName) {
+    Object.keys(
+      imageFields
+    ).forEach(
+      function(imageName) {
 
         const config =
           imageFields[imageName];
@@ -1426,12 +2464,17 @@
           )
         ) {
 
-          settings[config.settingKey] =
-            uploadedImages[imageName];
+          settings[
+            config.settingKey
+          ] =
+            uploadedImages[
+              imageName
+            ];
 
         }
 
-      });
+      }
+    );
 
 
     return settings;
@@ -1450,9 +2493,12 @@
 
     if (result.error) {
 
-      console.error(result.error);
+      console.error(
+        result.error
+      );
 
       return null;
+
     }
 
     return result.data.session;
@@ -1465,7 +2511,10 @@
     const session =
       await getSupabaseSession();
 
-    if (!session || !session.user) {
+    if (
+      !session ||
+      !session.user
+    ) {
 
       showMessage(
         "Your Supabase Admin session is not active. We will connect the Admin login next.",
@@ -1473,6 +2522,7 @@
       );
 
       return false;
+
     }
 
     return true;
@@ -1499,9 +2549,13 @@
         collectSettings();
 
 
-      const { error } =
+      const {
+        error
+      } =
         await supabaseClient
-          .from(SETTINGS_TABLE)
+          .from(
+            SETTINGS_TABLE
+          )
           .upsert(
             {
               id: 1,
@@ -1517,7 +2571,9 @@
 
       if (error) {
 
-        console.error(error);
+        console.error(
+          error
+        );
 
         showMessage(
           "Supabase could not save the website settings: " +
@@ -1526,6 +2582,7 @@
         );
 
         return;
+
       }
 
 
@@ -1533,12 +2590,16 @@
 
         localStorage.setItem(
           "expresslineWebsiteSettings",
-          JSON.stringify(settings)
+          JSON.stringify(
+            settings
+          )
         );
 
       } catch (localError) {
 
-        console.warn(localError);
+        console.warn(
+          localError
+        );
 
       }
 
@@ -1550,7 +2611,9 @@
 
     } catch (error) {
 
-      console.error(error);
+      console.error(
+        error
+      );
 
       showMessage(
         "An unexpected error occurred while saving.",
@@ -1570,17 +2633,29 @@
 
     try {
 
-      const { data, error } =
+      const {
+        data,
+        error
+      } =
         await supabaseClient
-          .from(SETTINGS_TABLE)
-          .select("settings")
-          .eq("id", 1)
+          .from(
+            SETTINGS_TABLE
+          )
+          .select(
+            "settings"
+          )
+          .eq(
+            "id",
+            1
+          )
           .maybeSingle();
 
 
       if (error) {
 
-        console.error(error);
+        console.error(
+          error
+        );
 
         showMessage(
           "Supabase could not load the website settings: " +
@@ -1589,18 +2664,24 @@
         );
 
         return;
+
       }
 
 
       let settings =
-        data && data.settings
+        data &&
+        data.settings
           ? data.settings
           : {};
 
 
       if (
-        (!settings ||
-          Object.keys(settings).length === 0) &&
+        (
+          !settings ||
+          Object.keys(
+            settings
+          ).length === 0
+        ) &&
         localStorage.getItem(
           "expresslineWebsiteSettings"
         )
@@ -1617,38 +2698,43 @@
 
         } catch (localError) {
 
-          console.warn(localError);
+          console.warn(
+            localError
+          );
 
         }
 
       }
 
 
-      fields.forEach(function(field) {
+      fields.forEach(
+        function(field) {
 
-        if (
-          Object.prototype.hasOwnProperty.call(
-            settings,
-            field
-          )
-        ) {
+          if (
+            Object.prototype.hasOwnProperty.call(
+              settings,
+              field
+            )
+          ) {
 
-          setFormValue(
-            field,
-            settings[field]
-          );
+            setFormValue(
+              field,
+              settings[field]
+            );
+
+          }
 
         }
-
-      });
+      );
 
 
       /*
-        If no logo size has been saved yet,
-        use Medium as the default.
+        Default logo size
       */
 
-      if (!settings.logoSize) {
+      if (
+        !settings.logoSize
+      ) {
 
         setFormValue(
           "logoSize",
@@ -1659,11 +2745,12 @@
 
 
       /*
-        If no Smartsupp button text has
-        been saved yet, use Live Support.
+        Default support button
       */
 
-      if (!settings.smartsuppButtonText) {
+      if (
+        !settings.smartsuppButtonText
+      ) {
 
         setFormValue(
           "smartsuppButtonText",
@@ -1673,21 +2760,32 @@
       }
 
 
-      uploadedImages = {};
+      /*
+        Load images
+      */
+
+      uploadedImages =
+        {};
 
 
-      Object.keys(imageFields)
-        .forEach(function(imageName) {
+      Object.keys(
+        imageFields
+      ).forEach(
+        function(imageName) {
 
           const config =
-            imageFields[imageName];
+            imageFields[
+              imageName
+            ];
 
           const savedImage =
             settings[
               config.settingKey
             ] || "";
 
-          uploadedImages[imageName] =
+          uploadedImages[
+            imageName
+          ] =
             savedImage;
 
           showImagePreview(
@@ -1695,12 +2793,15 @@
             savedImage
           );
 
-        });
+        }
+      );
 
 
     } catch (error) {
 
-      console.error(error);
+      console.error(
+        error
+      );
 
       showMessage(
         "Website settings could not be loaded.",
@@ -1738,9 +2839,13 @@
       }
 
 
-      const { error } =
+      const {
+        error
+      } =
         await supabaseClient
-          .from(SETTINGS_TABLE)
+          .from(
+            SETTINGS_TABLE
+          )
           .upsert(
             {
               id: 1,
@@ -1756,7 +2861,9 @@
 
       if (error) {
 
-        console.error(error);
+        console.error(
+          error
+        );
 
         showMessage(
           "The online settings could not be cleared: " +
@@ -1765,41 +2872,54 @@
         );
 
         return;
+
       }
 
 
-      uploadedImages = {};
+      uploadedImages =
+        {};
 
 
-      fields.forEach(function(field) {
+      fields.forEach(
+        function(field) {
 
-        const element =
-          document.getElementById(field);
+          const element =
+            document.getElementById(
+              field
+            );
 
-        if (!element) {
-          return;
+          if (!element) {
+            return;
+          }
+
+          if (
+            element.type ===
+            "checkbox"
+          ) {
+
+            element.checked =
+              false;
+
+          } else {
+
+            element.value =
+              "";
+
+          }
+
         }
-
-        if (
-          element.type === "checkbox"
-        ) {
-
-          element.checked = false;
-
-        } else {
-
-          element.value = "";
-
-        }
-
-      });
+      );
 
 
-      Object.keys(imageFields)
-        .forEach(function(imageName) {
+      Object.keys(
+        imageFields
+      ).forEach(
+        function(imageName) {
 
           const config =
-            imageFields[imageName];
+            imageFields[
+              imageName
+            ];
 
           const input =
             document.getElementById(
@@ -1807,7 +2927,8 @@
             );
 
           if (input) {
-            input.value = "";
+            input.value =
+              "";
           }
 
           showImagePreview(
@@ -1815,7 +2936,8 @@
             ""
           );
 
-        });
+        }
+      );
 
 
       setFormValue(
@@ -1901,7 +3023,9 @@
 
     } catch (error) {
 
-      console.error(error);
+      console.error(
+        error
+      );
 
       showMessage(
         "The website settings could not be cleared.",
@@ -1923,12 +3047,19 @@
   ) {
 
     const color =
-      document.getElementById(colorId);
+      document.getElementById(
+        colorId
+      );
 
     const text =
-      document.getElementById(textId);
+      document.getElementById(
+        textId
+      );
 
-    if (!color || !text) {
+    if (
+      !color ||
+      !text
+    ) {
       return;
     }
 
@@ -1986,14 +3117,17 @@
      IMAGE CONTROLS
      ========================================== */
 
-  Object.keys(imageFields)
-    .forEach(function(imageName) {
+  Object.keys(
+    imageFields
+  ).forEach(
+    function(imageName) {
 
       setupImageUpload(
         imageName
       );
 
-    });
+    }
+  );
 
 
   /* ==========================================
