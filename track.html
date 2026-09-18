@@ -20,7 +20,6 @@ body {
     line-height: 1.6;
 }
 
-/* HEADER */
 header {
     background: #fff;
     border-bottom: 1px solid #e5e7eb;
@@ -31,7 +30,6 @@ header {
     margin: auto;
     min-height: 76px;
     padding: 0 22px;
-
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -85,7 +83,6 @@ header {
     cursor: pointer;
 }
 
-/* HERO */
 .hero {
     background: linear-gradient(135deg, #111827, #202938);
     color: white;
@@ -119,7 +116,6 @@ header {
     font-size: 16px;
 }
 
-/* TRACK CARD */
 .track-container {
     max-width: 850px;
     margin: -55px auto 0;
@@ -182,13 +178,6 @@ header {
     background: #c9000b;
 }
 
-.example {
-    margin-top: 12px;
-    color: #9ca3af;
-    font-size: 12px;
-}
-
-/* MESSAGE */
 .message {
     display: none;
     margin-top: 22px;
@@ -213,7 +202,6 @@ header {
     color: #166534;
 }
 
-/* RESULT */
 .result {
     display: none;
     margin-top: 25px;
@@ -240,6 +228,29 @@ header {
 .result-title p {
     color: #6b7280;
     font-size: 13px;
+}
+
+.shipment-image-box {
+    padding: 22px;
+    background: white;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.shipment-image-title {
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 12px;
+}
+
+.shipment-image-box img {
+    display: block;
+    width: 100%;
+    max-width: 400px;
+    max-height: 300px;
+    object-fit: contain;
+    margin: auto;
+    border-radius: 10px;
+    border: 1px solid #e5e7eb;
 }
 
 .details {
@@ -275,7 +286,6 @@ header {
     font-size: 11px;
 }
 
-/* TIMELINE */
 .history {
     padding: 25px;
     background: white;
@@ -321,7 +331,6 @@ header {
     font-size: 11px;
 }
 
-/* INFO */
 .info {
     max-width: 1050px;
     margin: 75px auto;
@@ -371,7 +380,6 @@ header {
     font-size: 13px;
 }
 
-/* FOOTER */
 footer {
     background: #111827;
     color: #9ca3af;
@@ -426,7 +434,6 @@ footer {
     font-size: 11px;
 }
 
-/* MOBILE */
 @media (max-width: 800px) {
 
     .nav-links {
@@ -494,8 +501,6 @@ footer {
 
 <body>
 
-<!-- NAVIGATION -->
-
 <header>
 <nav class="navbar">
 
@@ -510,9 +515,7 @@ footer {
     <div class="nav-links" id="navLinks">
 
         <a href="index.html">Home</a>
-
         <a href="Services.html">Services</a>
-
         <a href="Track.html" class="active">Track</a>
 
         <a href="Request.html" class="ship-btn">
@@ -520,20 +523,14 @@ footer {
         </a>
 
         <a href="About.html">About</a>
-
         <a href="Customer Support.html">Support</a>
-
         <a href="Contact.html">Contact</a>
-
         <a href="Login.html">Login</a>
 
     </div>
 
 </nav>
 </header>
-
-
-<!-- HERO -->
 
 <section class="hero">
 
@@ -552,9 +549,6 @@ footer {
 
 </section>
 
-
-<!-- TRACKING -->
-
 <div class="track-container">
 
     <div class="track-card">
@@ -566,12 +560,6 @@ footer {
         <p>
             Enter your tracking number below to check your shipment status.
         </p>
-
-
-        <!-- IMPORTANT:
-             There is NO action="..." here.
-             The form stays on this page.
-        -->
 
         <form id="trackForm" class="track-form">
 
@@ -592,24 +580,13 @@ footer {
 
         </form>
 
-        
-
-
-        <!-- MESSAGE -->
-
         <div id="message" class="message"></div>
-
-
-        <!-- SHIPMENT RESULT -->
 
         <div id="result" class="result"></div>
 
     </div>
 
 </div>
-
-
-<!-- INFORMATION -->
 
 <section class="info">
 
@@ -625,10 +602,10 @@ footer {
 
     </div>
 
-
     <div class="cards">
 
         <div class="card">
+
             <div class="card-icon">🔎</div>
 
             <h3>
@@ -639,10 +616,11 @@ footer {
                 Enter the tracking number provided when your shipment
                 was created.
             </p>
+
         </div>
 
-
         <div class="card">
+
             <div class="card-icon">📦</div>
 
             <h3>
@@ -653,10 +631,11 @@ footer {
                 See the latest available status, location and destination
                 of your shipment.
             </p>
+
         </div>
 
-
         <div class="card">
+
             <div class="card-icon">🚚</div>
 
             <h3>
@@ -666,14 +645,12 @@ footer {
             <p>
                 Review the available tracking history for your shipment.
             </p>
+
         </div>
 
     </div>
 
 </section>
-
-
-<!-- FOOTER -->
 
 <footer>
 
@@ -694,7 +671,6 @@ footer {
 
         </div>
 
-
         <div>
 
             <h4>Company</h4>
@@ -705,7 +681,6 @@ footer {
 
         </div>
 
-
         <div>
 
             <h4>Shipping</h4>
@@ -714,7 +689,6 @@ footer {
             <a href="Request.html">Ship Now</a>
 
         </div>
-
 
         <div>
 
@@ -728,7 +702,6 @@ footer {
 
     </div>
 
-
     <div class="copyright">
         © 2026 ExpressLine Delivery Services. All rights reserved.
     </div>
@@ -737,245 +710,495 @@ footer {
 
 </footer>
 
-
 <script>
 
-/* MOBILE MENU */
-
 function toggleMenu() {
-    document.getElementById("navLinks").classList.toggle("open");
+
+    document
+        .getElementById("navLinks")
+        .classList
+        .toggle("open");
+
 }
 
 
-/* DEMO SHIPMENTS */
+/* GET SHIPMENTS SAVED BY ADMIN */
 
-const shipments = {
+function getShipments() {
 
-    "EXP-10284": {
-        customer: "Michael Johnson",
-        origin: "Lagos",
-        destination: "Abuja",
-        status: "In Transit",
-        location: "Kaduna",
-        date: "September 18, 2026",
+    try {
 
-        history: [
-            ["Shipment picked up", "Lagos", "September 16, 2026"],
-            ["Shipment processed", "Lagos Distribution Center", "September 16, 2026"],
-            ["Shipment in transit", "Kaduna", "September 18, 2026"]
-        ]
-    },
+        return JSON.parse(
+            localStorage.getItem("expresslineShipments") || "[]"
+        );
 
-    "EXP-10283": {
-        customer: "Sarah Williams",
-        origin: "Lagos",
-        destination: "Abuja",
-        status: "Delivered",
-        location: "Abuja",
-        date: "September 17, 2026",
+    } catch (error) {
 
-        history: [
-            ["Shipment picked up", "Lagos", "September 15, 2026"],
-            ["Shipment in transit", "Kaduna", "September 16, 2026"],
-            ["Shipment delivered", "Abuja", "September 17, 2026"]
-        ]
-    },
+        console.error(error);
 
-    "EXP-10282": {
-        customer: "Daniel Smith",
-        origin: "Port Harcourt",
-        destination: "Lagos",
-        status: "Pending",
-        location: "Port Harcourt",
-        date: "September 18, 2026",
+        return [];
 
-        history: [
-            ["Shipment request received", "Port Harcourt", "September 18, 2026"]
-        ]
     }
 
-};
+}
 
 
-/* TRACKING FORM */
+/* PROTECT DISPLAYED DATA */
 
-document.getElementById("trackForm").addEventListener("submit", function(e) {
+function escapeHTML(value) {
 
-    /*
-       VERY IMPORTANT:
-       Prevents the browser from opening another page.
-    */
-
-    e.preventDefault();
-
-    const input = document.getElementById("trackingNumber");
-
-    const message = document.getElementById("message");
-
-    const result = document.getElementById("result");
-
-    const number = input.value.trim().toUpperCase();
-
-
-    /* CLEAR OLD RESULT */
-
-    result.className = "result";
-    result.innerHTML = "";
-
-    message.className = "message";
-    message.innerHTML = "";
-
-
-    /* EMPTY */
-
-    if (number === "") {
-
-        message.className = "message show error";
-
-        message.innerHTML =
-            "<strong>Tracking number required.</strong> Please enter your shipment tracking number.";
-
-        input.focus();
-
-        return;
+    if (
+        value === undefined ||
+        value === null
+    ) {
+        return "";
     }
 
+    return String(value)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
 
-    /* WRONG FORMAT */
+}
 
-    if (!number.startsWith("EXP-")) {
 
-        message.className = "message show error";
+/* FORMAT DATE */
 
-        message.innerHTML =
-            "<strong>Invalid tracking number.</strong> Please check the number and try again.";
+function formatDate(dateValue) {
 
-        return;
+    if (!dateValue) {
+        return "Not provided";
     }
 
+    const date = new Date(dateValue);
 
-    /* NOT FOUND */
-
-    if (!shipments[number]) {
-
-        message.className = "message show error";
-
-        message.innerHTML =
-            "<strong>Tracking not found.</strong> We could not find a shipment with the tracking number <strong>"
-            + number +
-            "</strong>. Please check the number and try again.";
-
-        return;
+    if (isNaN(date.getTime())) {
+        return escapeHTML(dateValue);
     }
 
+    return date.toLocaleDateString(
+        undefined,
+        {
+            year: "numeric",
+            month: "long",
+            day: "numeric"
+        }
+    );
 
-    /* SHIPMENT FOUND */
-
-    const shipment = shipments[number];
+}
 
 
-    let historyHTML = "";
+/* TRACK SHIPMENT */
 
-    shipment.history.forEach(function(item) {
+document
+    .getElementById("trackForm")
+    .addEventListener("submit", function(e) {
 
-        historyHTML += `
+        e.preventDefault();
 
-            <div class="history-item">
+        const input =
+            document.getElementById("trackingNumber");
 
-                <div class="dot"></div>
+        const message =
+            document.getElementById("message");
 
-                <strong>${item[0]}</strong>
+        const result =
+            document.getElementById("result");
 
-                <p>${item[1]}</p>
+        const number =
+            input.value.trim().toUpperCase();
 
-                <time>${item[2]}</time>
+
+        result.className = "result";
+        result.innerHTML = "";
+
+        message.className = "message";
+        message.innerHTML = "";
+
+
+        if (number === "") {
+
+            message.className =
+                "message show error";
+
+            message.innerHTML =
+                "<strong>Tracking number required.</strong> " +
+                "Please enter your shipment tracking number.";
+
+            input.focus();
+
+            return;
+
+        }
+
+
+        const shipments = getShipments();
+
+
+        const shipment =
+            shipments.find(function(item) {
+
+                return String(
+                    item.trackingNumber || ""
+                )
+                .trim()
+                .toUpperCase() === number;
+
+            });
+
+
+        if (!shipment) {
+
+            message.className =
+                "message show error";
+
+            message.innerHTML =
+                "<strong>Tracking not found.</strong> " +
+                "We could not find a shipment with the tracking number " +
+                "<strong>" +
+                escapeHTML(number) +
+                "</strong>. Please check the number and try again.";
+
+            return;
+
+        }
+
+
+        /* BUILD HISTORY */
+
+        let historyHTML = "";
+
+
+        if (
+            Array.isArray(shipment.history) &&
+            shipment.history.length > 0
+        ) {
+
+            shipment.history.forEach(function(item) {
+
+                let title = "";
+                let location = "";
+                let date = "";
+
+
+                if (Array.isArray(item)) {
+
+                    title = item[0] || "";
+                    location = item[1] || "";
+                    date = item[2] || "";
+
+                }
+
+
+                else if (
+                    typeof item === "object" &&
+                    item !== null
+                ) {
+
+                    title =
+                        item.status ||
+                        item.title ||
+                        item.event ||
+                        "";
+
+                    location =
+                        item.location ||
+                        "";
+
+                    date =
+                        item.date ||
+                        item.time ||
+                        item.timestamp ||
+                        "";
+
+                }
+
+
+                historyHTML += `
+
+                    <div class="history-item">
+
+                        <div class="dot"></div>
+
+                        <strong>
+                            ${escapeHTML(title)}
+                        </strong>
+
+                        <p>
+                            ${escapeHTML(location)}
+                        </p>
+
+                        <time>
+                            ${escapeHTML(
+                                formatDate(date)
+                            )}
+                        </time>
+
+                    </div>
+
+                `;
+
+            });
+
+        }
+
+
+        if (historyHTML === "") {
+
+            historyHTML = `
+
+                <div class="history-item">
+
+                    <div class="dot"></div>
+
+                    <strong>
+                        Shipment created
+                    </strong>
+
+                    <p>
+                        Shipment information received.
+                    </p>
+
+                    <time>
+                        ${escapeHTML(
+                            formatDate(
+                                shipment.createdAt ||
+                                shipment.shipmentDate
+                            )
+                        )}
+                    </time>
+
+                </div>
+
+            `;
+
+        }
+
+
+        /* SHIPMENT IMAGE */
+
+        let imageHTML = "";
+
+
+        if (shipment.shipmentImage) {
+
+            imageHTML = `
+
+                <div class="shipment-image-box">
+
+                    <div class="shipment-image-title">
+                        Shipment Image
+                    </div>
+
+                    <img
+                        src="${escapeHTML(
+                            shipment.shipmentImage
+                        )}"
+                        alt="Shipment image"
+                    >
+
+                </div>
+
+            `;
+
+        }
+
+
+        /* SHOW RESULT */
+
+        result.className =
+            "result show";
+
+        result.innerHTML = `
+
+            <div class="result-title">
+
+                <h3>
+                    Shipment found
+                </h3>
+
+                <p>
+                    Tracking number:
+                    <strong>
+                        ${escapeHTML(
+                            shipment.trackingNumber
+                        )}
+                    </strong>
+                </p>
+
+            </div>
+
+
+            ${imageHTML}
+
+
+            <div class="details">
+
+                <div class="detail">
+
+                    <small>Status</small>
+
+                    <span class="status">
+                        ${escapeHTML(
+                            shipment.status ||
+                            "Pending"
+                        )}
+                    </span>
+
+                </div>
+
+
+                <div class="detail">
+
+                    <small>Current location</small>
+
+                    <strong>
+                        ${escapeHTML(
+                            shipment.location ||
+                            shipment.origin ||
+                            "Not provided"
+                        )}
+                    </strong>
+
+                </div>
+
+
+                <div class="detail">
+
+                    <small>Destination</small>
+
+                    <strong>
+                        ${escapeHTML(
+                            shipment.destination ||
+                            "Not provided"
+                        )}
+                    </strong>
+
+                </div>
+
+
+                <div class="detail">
+
+                    <small>Customer</small>
+
+                    <strong>
+                        ${escapeHTML(
+                            shipment.receiverName ||
+                            shipment.customer ||
+                            "Not provided"
+                        )}
+                    </strong>
+
+                </div>
+
+
+                <div class="detail">
+
+                    <small>Origin</small>
+
+                    <strong>
+                        ${escapeHTML(
+                            shipment.origin ||
+                            "Not provided"
+                        )}
+                    </strong>
+
+                </div>
+
+
+                <div class="detail">
+
+                    <small>Shipment Date</small>
+
+                    <strong>
+                        ${escapeHTML(
+                            formatDate(
+                                shipment.shipmentDate ||
+                                shipment.createdAt
+                            )
+                        )}
+                    </strong>
+
+                </div>
+
+
+                <div class="detail">
+
+                    <small>Estimated Delivery</small>
+
+                    <strong>
+                        ${escapeHTML(
+                            formatDate(
+                                shipment.estimatedDelivery
+                            )
+                        )}
+                    </strong>
+
+                </div>
+
+
+                <div class="detail">
+
+                    <small>Shipment Type</small>
+
+                    <strong>
+                        ${escapeHTML(
+                            shipment.shipmentType ||
+                            "Not provided"
+                        )}
+                    </strong>
+
+                </div>
+
+
+                <div class="detail">
+
+                    <small>Weight</small>
+
+                    <strong>
+                        ${escapeHTML(
+                            shipment.weight ||
+                            "Not provided"
+                        )}
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <div class="history">
+
+                <h3>
+                    Tracking History
+                </h3>
+
+                ${historyHTML}
 
             </div>
 
         `;
 
+
+        message.className =
+            "message show success";
+
+        message.innerHTML =
+            "<strong>Shipment located.</strong> " +
+            "The latest available tracking information is shown below.";
+
+
+        result.scrollIntoView({
+
+            behavior: "smooth",
+
+            block: "center"
+
+        });
+
     });
-
-
-    result.className = "result show";
-
-    result.innerHTML = `
-
-        <div class="result-title">
-
-            <h3>Shipment found</h3>
-
-            <p>
-                Tracking number: <strong>${number}</strong>
-            </p>
-
-        </div>
-
-
-        <div class="details">
-
-            <div class="detail">
-                <small>Status</small>
-                <span class="status">${shipment.status}</span>
-            </div>
-
-            <div class="detail">
-                <small>Current location</small>
-                <strong>${shipment.location}</strong>
-            </div>
-
-            <div class="detail">
-                <small>Destination</small>
-                <strong>${shipment.destination}</strong>
-            </div>
-
-            <div class="detail">
-                <small>Customer</small>
-                <strong>${shipment.customer}</strong>
-            </div>
-
-            <div class="detail">
-                <small>Origin</small>
-                <strong>${shipment.origin}</strong>
-            </div>
-
-            <div class="detail">
-                <small>Shipment date</small>
-                <strong>${shipment.date}</strong>
-            </div>
-
-        </div>
-
-
-        <div class="history">
-
-            <h3>
-                Tracking History
-            </h3>
-
-            ${historyHTML}
-
-        </div>
-
-    `;
-
-
-    /* SUCCESS MESSAGE */
-
-    message.className = "message show success";
-
-    message.innerHTML =
-        "<strong>Shipment located.</strong> The available tracking information is shown below.";
-
-
-    /* MOVE TO RESULT */
-
-    result.scrollIntoView({
-        behavior: "smooth",
-        block: "center"
-    });
-
-});
 
 </script>
 
