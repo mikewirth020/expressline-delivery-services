@@ -6,670 +6,2212 @@
 
   <title>Manage Shipments | ExpressLine Admin</title>
 
-  <meta
-    name="description"
-    content="Manage ExpressLine Delivery Services shipments."
-  >
-
-  <meta
-    name="robots"
-    content="noindex, nofollow"
-  >
+  <meta name="description" content="Manage ExpressLine Delivery Services shipments.">
+  <meta name="robots" content="noindex, nofollow">
 
   <link rel="stylesheet" href="style.css">
+
+  <style>
+    .shipment-admin {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .admin-actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 20px;
+    }
+
+    .shipment-list {
+      display: grid;
+      gap: 16px;
+      margin-top: 25px;
+    }
+
+    .shipment-card {
+      background: #fff;
+      border: 1px solid #e5e7eb;
+      border-radius: 14px;
+      padding: 20px;
+      box-shadow: 0 4px 15px rgba(0,0,0,.05);
+    }
+
+    .shipment-card-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+
+    .tracking-number {
+      font-size: 19px;
+      font-weight: 700;
+    }
+
+    .status-badge {
+      display: inline-block;
+      padding: 6px 10px;
+      border-radius: 20px;
+      background: #eef2ff;
+      color: #3730a3;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .progress-area {
+      margin: 18px 0;
+    }
+
+    .progress-bar {
+      width: 100%;
+      height: 10px;
+      background: #e5e7eb;
+      border-radius: 20px;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: #111827;
+      border-radius: 20px;
+    }
+
+    .progress-label {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 7px;
+      font-size: 13px;
+      color: #6b7280;
+    }
+
+    .shipment-info {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-top: 15px;
+    }
+
+    .info-box {
+      padding: 12px;
+      background: #f9fafb;
+      border-radius: 9px;
+    }
+
+    .info-box small {
+      display: block;
+      color: #6b7280;
+      margin-bottom: 4px;
+    }
+
+    .editor {
+      display: none;
+      margin-top: 30px;
+      background: #fff;
+      border-radius: 15px;
+      padding: 25px;
+      border: 1px solid #e5e7eb;
+      box-shadow: 0 4px 18px rgba(0,0,0,.06);
+    }
+
+    .editor-section {
+      margin-top: 25px;
+      padding-top: 20px;
+      border-top: 1px solid #e5e7eb;
+    }
+
+    .editor-section h3 {
+      margin-bottom: 18px;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 15px;
+    }
+
+    .full-width {
+      grid-column: 1 / -1;
+    }
+
+    .image-preview {
+      margin-top: 15px;
+    }
+
+    .image-preview img {
+      max-width: 350px;
+      width: 100%;
+      max-height: 260px;
+      object-fit: cover;
+      border-radius: 12px;
+      border: 1px solid #ddd;
+    }
+
+    .history-item {
+      border: 1px solid #e5e7eb;
+      background: #f9fafb;
+      border-radius: 12px;
+      padding: 16px;
+      margin-bottom: 14px;
+    }
+
+    .history-item-header {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+
+    .history-actions {
+      display: flex;
+      gap: 8px;
+    }
+
+    .small-button {
+      border: 0;
+      border-radius: 7px;
+      padding: 7px 10px;
+      cursor: pointer;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .delete-button {
+      background: #fee2e2;
+      color: #991b1b;
+    }
+
+    .message {
+      display: none;
+      padding: 13px 15px;
+      margin: 20px 0;
+      border-radius: 9px;
+      background: #ecfdf5;
+      color: #065f46;
+      border: 1px solid #a7f3d0;
+    }
+
+    .no-shipments {
+      text-align: center;
+      padding: 45px 20px;
+      background: #fff;
+      border-radius: 14px;
+      border: 1px solid #e5e7eb;
+      color: #6b7280;
+    }
+
+    @media (max-width: 700px) {
+      .shipment-info,
+      .form-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .full-width {
+        grid-column: auto;
+      }
+
+      .editor {
+        padding: 18px;
+      }
+    }
+  </style>
 </head>
 
 <body>
 
-  <!-- ADMIN HEADER -->
-  <header class="site-header">
+<header class="site-header">
 
-    <div class="container navbar">
+  <div class="container navbar">
 
-      <a href="admin-dashboard.html" class="logo">
-        <span class="logo-mark">EL</span>
-        <span>ExpressLine Admin</span>
+    <a href="admin.html" class="logo">
+      <span class="logo-mark">EL</span>
+      <span>ExpressLine Admin</span>
+    </a>
+
+    <nav class="nav-links">
+
+      <a href="admin.html">
+        Dashboard
       </a>
 
-      <nav class="nav-links">
+      <a href="admin-shipments.html">
+        Shipments
+      </a>
 
-        <a href="admin-dashboard.html">
-          Dashboard
-        </a>
+      <a href="admin-requests.html">
+        Requests
+      </a>
 
-        <a href="admin-shipments.html">
-          Shipments
-        </a>
+      <a href="index.html">
+        View Website
+      </a>
 
-        <a href="index.html">
-          View Website
-        </a>
+      <a href="admin-login.html">
+        Logout
+      </a>
 
-        <a href="admin-login.html">
-          Logout
-        </a>
+    </nav>
 
-      </nav>
+  </div>
+
+</header>
+
+
+<main>
+
+<section class="section section-light">
+
+  <div class="container shipment-admin">
+
+    <div class="section-heading">
+
+      <p class="section-label">
+        ADMINISTRATION
+      </p>
+
+      <h1>
+        Manage Shipments
+      </h1>
+
+      <p>
+        Create, edit and manage shipment tracking information.
+      </p>
 
     </div>
 
-  </header>
+
+    <div class="admin-actions">
+
+      <a
+        href="request.html"
+        class="btn btn-primary"
+      >
+        Create Shipment
+      </a>
+
+      <a
+        href="admin.html"
+        class="btn btn-secondary"
+      >
+        Back to Admin
+      </a>
+
+    </div>
 
 
-  <main>
-
-    <!-- PAGE HEADER -->
-    <section class="section section-light">
-
-      <div class="container">
-
-        <div class="section-heading">
-
-          <p class="section-label">
-            ADMINISTRATION
-          </p>
-
-          <h1>
-            Manage Shipments
-          </h1>
-
-          <p>
-            Create and manage shipment records, tracking
-            numbers, shipment status, and delivery information.
-          </p>
-
-        </div>
+    <div
+      id="message"
+      class="message"
+    ></div>
 
 
-        <!-- ACTION BUTTONS -->
-        <div class="button-group">
+    <!-- SEARCH -->
 
-          <a
-            href="#create-shipment"
-            class="btn btn-primary"
-          >
-            Create Shipment
-          </a>
+    <div class="form-card" style="margin-top:25px;">
 
-          <a
-            href="admin-dashboard.html"
-            class="btn btn-secondary"
-          >
-            Back to Dashboard
-          </a>
+      <div class="form-group">
 
-        </div>
+        <label for="shipmentSearch">
+          Search Shipments
+        </label>
+
+        <input
+          type="search"
+          id="shipmentSearch"
+          placeholder="Tracking number, sender, receiver or destination"
+        >
 
       </div>
 
-    </section>
-
-
-    <!-- CREATE SHIPMENT -->
-    <section
-      class="section"
-      id="create-shipment"
-    >
-
-      <div class="container">
-
-        <div class="section-heading">
-
-          <p class="section-label">
-            CREATE
-          </p>
-
-          <h2>
-            Create New Shipment
-          </h2>
-
-          <p>
-            Tracking numbers must be entered manually by an
-            authorized administrator. The system will verify
-            that the tracking number is unique.
-          </p>
-
-        </div>
-
-
-        <div class="form-card">
-
-          <form
-            id="adminShipmentForm"
-            method="post"
-            autocomplete="off"
-          >
-
-            <!-- TRACKING NUMBER -->
-            <div class="form-group">
-
-              <label for="trackingNumber">
-                Tracking Number
-              </label>
-
-              <input
-                type="text"
-                id="trackingNumber"
-                name="trackingNumber"
-                placeholder="Enter tracking number"
-                required
-              >
-
-              <small>
-                Enter the official tracking number manually.
-              </small>
-
-            </div>
-
-
-            <!-- CUSTOMER -->
-            <div class="form-group">
-
-              <label for="customer">
-                Customer
-              </label>
-
-              <input
-                type="text"
-                id="customer"
-                name="customer"
-                placeholder="Customer name or account"
-                required
-              >
-
-            </div>
-
-
-            <!-- ORIGIN -->
-            <div class="form-group">
-
-              <label for="origin">
-                Origin
-              </label>
-
-              <input
-                type="text"
-                id="origin"
-                name="origin"
-                placeholder="Shipment origin"
-                required
-              >
-
-            </div>
-
-
-            <!-- DESTINATION -->
-            <div class="form-group">
-
-              <label for="destination">
-                Destination
-              </label>
-
-              <input
-                type="text"
-                id="destination"
-                name="destination"
-                placeholder="Shipment destination"
-                required
-              >
-
-            </div>
-
-
-            <!-- SHIPPING METHOD -->
-            <div class="form-group">
-
-              <label for="shippingMethod">
-                Shipping Method
-              </label>
-
-              <select
-                id="shippingMethod"
-                name="shippingMethod"
-                required
-              >
-
-                <option value="">
-                  Select shipping method
-                </option>
-
-                <option value="Standard Delivery">
-                  Standard Delivery
-                </option>
-
-                <option value="Express Delivery">
-                  Express Delivery
-                </option>
-
-                <option value="Priority Delivery">
-                  Priority Delivery
-                </option>
-
-                <option value="International Delivery">
-                  International Delivery
-                </option>
-
-                <option value="Custom">
-                  Custom
-                </option>
-
-              </select>
-
-            </div>
-
-
-            <!-- PACKAGE DESCRIPTION -->
-            <div class="form-group">
-
-              <label for="packageDescription">
-                Package Description
-              </label>
-
-              <textarea
-                id="packageDescription"
-                name="packageDescription"
-                rows="4"
-                placeholder="Describe the package"
-                required
-              ></textarea>
-
-            </div>
-
-
-            <!-- WEIGHT -->
-            <div class="form-group">
-
-              <label for="weight">
-                Weight
-              </label>
-
-              <input
-                type="text"
-                id="weight"
-                name="weight"
-                placeholder="Example: 5 lb"
-              >
-
-            </div>
-
-
-            <!-- QUANTITY -->
-            <div class="form-group">
-
-              <label for="quantity">
-                Quantity
-              </label>
-
-              <input
-                type="number"
-                id="quantity"
-                name="quantity"
-                min="1"
-                placeholder="Package quantity"
-                required
-              >
-
-            </div>
-
-
-            <!-- STATUS -->
-            <div class="form-group">
-
-              <label for="status">
-                Shipment Status
-              </label>
-
-              <select
-                id="status"
-                name="status"
-                required
-              >
-
-                <option value="">
-                  Select status
-                </option>
-
-                <option value="Shipment Created">
-                  Shipment Created
-                </option>
-
-                <option value="Awaiting Pickup">
-                  Awaiting Pickup
-                </option>
-
-                <option value="Package Picked Up">
-                  Package Picked Up
-                </option>
-
-                <option value="Processing Facility">
-                  Processing Facility
-                </option>
-
-                <option value="Customs Clearance">
-                  Customs Clearance
-                </option>
-
-                <option value="In Transit">
-                  In Transit
-                </option>
-
-                <option value="Delayed">
-                  Delayed
-                </option>
-
-                <option value="Arrived at Destination">
-                  Arrived at Destination
-                </option>
-
-                <option value="Destination Warehouse">
-                  Destination Warehouse
-                </option>
-
-                <option value="Out for Delivery">
-                  Out for Delivery
-                </option>
-
-                <option value="Delivered">
-                  Delivered
-                </option>
-
-                <option value="Cancelled">
-                  Cancelled
-                </option>
-
-              </select>
-
-            </div>
-
-
-            <!-- ESTIMATED DELIVERY -->
-            <div class="form-group">
-
-              <label for="estimatedDelivery">
-                Estimated Delivery
-              </label>
-
-              <input
-                type="datetime-local"
-                id="estimatedDelivery"
-                name="estimatedDelivery"
-              >
-
-            </div>
-
-
-            <!-- PROGRESS -->
-            <div class="form-group">
-
-              <label for="progress">
-                Progress Percentage
-              </label>
-
-              <input
-                type="number"
-                id="progress"
-                name="progress"
-                min="0"
-                max="100"
-                placeholder="0–100"
-              >
-
-            </div>
-
-
-            <!-- SUBMIT -->
-            <button
-              type="submit"
-              class="btn btn-primary"
-            >
-              Create Shipment
-            </button>
-
-          </form>
-
-        </div>
-
-      </div>
-
-    </section>
+    </div>
 
 
     <!-- SHIPMENT LIST -->
-    <section class="section section-light">
 
-      <div class="container">
+    <div id="shipmentList" class="shipment-list"></div>
 
-        <div class="section-heading">
 
-          <p class="section-label">
-            SHIPMENTS
-          </p>
+    <!-- EDITOR -->
 
-          <h2>
-            Shipment Records
-          </h2>
+    <section
+      id="shipmentEditor"
+      class="editor"
+    >
 
-          <p>
-            Shipment records will appear here after the
-            production database is connected.
-          </p>
+      <h2>
+        Edit Shipment
+      </h2>
+
+      <p>
+        Tracking Number:
+        <strong id="editingTrackingNumber"></strong>
+      </p>
+
+
+      <!-- STATUS -->
+
+      <div class="editor-section">
+
+        <h3>
+          Status & Progress
+        </h3>
+
+        <div class="form-grid">
+
+          <div class="form-group">
+
+            <label for="editStatus">
+              Shipment Status
+            </label>
+
+            <input
+              type="text"
+              id="editStatus"
+              placeholder="Example: In Transit"
+            >
+
+          </div>
+
+
+          <div class="form-group">
+
+            <label for="editProgress">
+              Progress Percentage
+            </label>
+
+            <input
+              type="number"
+              id="editProgress"
+              min="0"
+              max="100"
+              step="1"
+              placeholder="0 - 100"
+            >
+
+          </div>
 
         </div>
 
+      </div>
 
-        <!-- SEARCH -->
-        <div class="form-card">
 
-          <form
-            id="shipmentSearchForm"
-            method="get"
+      <!-- CUSTOMER -->
+
+      <div class="editor-section">
+
+        <h3>
+          Customer Information
+        </h3>
+
+        <div class="form-grid">
+
+          <div class="form-group">
+
+            <label for="editCustomerName">
+              Customer Name
+            </label>
+
+            <input
+              type="text"
+              id="editCustomerName"
+            >
+
+          </div>
+
+
+          <div class="form-group">
+
+            <label for="editCustomerPhone">
+              Customer Phone
+            </label>
+
+            <input
+              type="text"
+              id="editCustomerPhone"
+            >
+
+          </div>
+
+
+          <div class="form-group full-width">
+
+            <label for="editCustomerEmail">
+              Customer Email
+            </label>
+
+            <input
+              type="email"
+              id="editCustomerEmail"
+            >
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <!-- SENDER -->
+
+      <div class="editor-section">
+
+        <h3>
+          Sender Information
+        </h3>
+
+        <div class="form-grid">
+
+          <div class="form-group">
+
+            <label for="editSenderName">
+              Sender Name
+            </label>
+
+            <input
+              type="text"
+              id="editSenderName"
+            >
+
+          </div>
+
+
+          <div class="form-group">
+
+            <label for="editSenderPhone">
+              Sender Phone Number
+            </label>
+
+            <input
+              type="text"
+              id="editSenderPhone"
+            >
+
+          </div>
+
+
+          <div class="form-group full-width">
+
+            <label for="editSenderAddress">
+              Sender Address
+            </label>
+
+            <textarea
+              id="editSenderAddress"
+              rows="4"
+            ></textarea>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <!-- RECEIVER -->
+
+      <div class="editor-section">
+
+        <h3>
+          Receiver Information
+        </h3>
+
+        <div class="form-grid">
+
+          <div class="form-group">
+
+            <label for="editReceiverName">
+              Receiver Name
+            </label>
+
+            <input
+              type="text"
+              id="editReceiverName"
+            >
+
+          </div>
+
+
+          <div class="form-group">
+
+            <label for="editReceiverPhone">
+              Receiver Phone
+            </label>
+
+            <input
+              type="text"
+              id="editReceiverPhone"
+            >
+
+          </div>
+
+
+          <div class="form-group full-width">
+
+            <label for="editReceiverAddress">
+              Receiver Address
+            </label>
+
+            <textarea
+              id="editReceiverAddress"
+              rows="4"
+            ></textarea>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <!-- PACKAGE -->
+
+      <div class="editor-section">
+
+        <h3>
+          Package Information
+        </h3>
+
+        <div class="form-grid">
+
+          <div class="form-group">
+
+            <label for="editPackageDescription">
+              Package Description
+            </label>
+
+            <input
+              type="text"
+              id="editPackageDescription"
+            >
+
+          </div>
+
+
+          <div class="form-group">
+
+            <label for="editWeight">
+              Weight (kg)
+            </label>
+
+            <input
+              type="number"
+              id="editWeight"
+              step="0.01"
+            >
+
+          </div>
+
+
+          <div class="form-group">
+
+            <label for="editQuantity">
+              Quantity
+            </label>
+
+            <input
+              type="number"
+              id="editQuantity"
+              min="1"
+            >
+
+          </div>
+
+
+          <div class="form-group">
+
+            <label for="editPackageType">
+              Package Type
+            </label>
+
+            <select id="editPackageType">
+
+              <option value="Parcel">
+                Parcel
+              </option>
+
+              <option value="Envelope">
+                Envelope
+              </option>
+
+              <option value="Pallet">
+                Pallet
+              </option>
+
+              <option value="Container">
+                Container
+              </option>
+
+              <option value="Freight">
+                Freight
+              </option>
+
+            </select>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <!-- SHIPPING -->
+
+      <div class="editor-section">
+
+        <h3>
+          Shipping Information
+        </h3>
+
+        <div class="form-grid">
+
+          <div class="form-group full-width">
+
+            <label for="editPickupAddress">
+              Pickup Address
+            </label>
+
+            <textarea
+              id="editPickupAddress"
+              rows="4"
+            ></textarea>
+
+          </div>
+
+
+          <div class="form-group full-width">
+
+            <label for="editDeliveryAddress">
+              Delivery Address
+            </label>
+
+            <textarea
+              id="editDeliveryAddress"
+              rows="4"
+            ></textarea>
+
+          </div>
+
+
+          <div class="form-group">
+
+            <label for="editShippingMethod">
+              Shipment Method
+            </label>
+
+            <select id="editShippingMethod">
+
+              <option value="Air Freight">
+                Air Freight
+              </option>
+
+              <option value="Sea Freight">
+                Sea Freight
+              </option>
+
+              <option value="Road Transport">
+                Road Transport
+              </option>
+
+              <option value="Express Courier">
+                Express Courier
+              </option>
+
+            </select>
+
+          </div>
+
+
+          <div class="form-group">
+
+            <label for="editEstimatedDate">
+              Estimated Delivery Date
+            </label>
+
+            <input
+              type="date"
+              id="editEstimatedDate"
+            >
+
+          </div>
+
+
+          <div class="form-group">
+
+            <label for="editEstimatedTime">
+              Estimated Delivery Time
+            </label>
+
+            <input
+              type="time"
+              id="editEstimatedTime"
+            >
+
+          </div>
+
+
+          <div class="form-group full-width">
+
+            <label for="editSpecialInstructions">
+              Special Instructions
+            </label>
+
+            <textarea
+              id="editSpecialInstructions"
+              rows="4"
+            ></textarea>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <!-- ORIGIN -->
+
+      <div class="editor-section">
+
+        <h3>
+          Origin Information
+        </h3>
+
+        <div class="form-grid">
+
+          <div class="form-group">
+
+            <label for="editOriginLabel">
+              Origin Label
+            </label>
+
+            <input
+              type="text"
+              id="editOriginLabel"
+            >
+
+          </div>
+
+
+          <div class="form-group">
+
+            <label for="editOrigin">
+              Origin
+            </label>
+
+            <input
+              type="text"
+              id="editOrigin"
+            >
+
+          </div>
+
+
+          <div class="form-group">
+
+            <label for="editOriginLatitude">
+              Origin Latitude
+            </label>
+
+            <input
+              type="number"
+              id="editOriginLatitude"
+              step="any"
+            >
+
+          </div>
+
+
+          <div class="form-group">
+
+            <label for="editOriginLongitude">
+              Origin Longitude
+            </label>
+
+            <input
+              type="number"
+              id="editOriginLongitude"
+              step="any"
+            >
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <!-- DESTINATION -->
+
+      <div class="editor-section">
+
+        <h3>
+          Destination Information
+        </h3>
+
+        <div class="form-grid">
+
+          <div class="form-group">
+
+            <label for="editDestinationLabel">
+              Destination Label
+            </label>
+
+            <input
+              type="text"
+              id="editDestinationLabel"
+            >
+
+          </div>
+
+
+          <div class="form-group">
+
+            <label for="editDestination">
+              Destination
+            </label>
+
+            <input
+              type="text"
+              id="editDestination"
+            >
+
+          </div>
+
+
+          <div class="form-group">
+
+            <label for="editDestinationLatitude">
+              Destination Latitude
+            </label>
+
+            <input
+              type="number"
+              id="editDestinationLatitude"
+              step="any"
+            >
+
+          </div>
+
+
+          <div class="form-group">
+
+            <label for="editDestinationLongitude">
+              Destination Longitude
+            </label>
+
+            <input
+              type="number"
+              id="editDestinationLongitude"
+              step="any"
+            >
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <!-- SHIPMENT IMAGE -->
+
+      <div class="editor-section">
+
+        <h3>
+          Shipment Image
+        </h3>
+
+        <div class="form-group">
+
+          <label for="editShipmentImage">
+            Replace Shipment Image
+          </label>
+
+          <input
+            type="file"
+            id="editShipmentImage"
+            accept="image/*"
           >
 
-            <div class="form-group">
-
-              <label for="shipmentSearch">
-                Search Shipments
-              </label>
-
-              <input
-                type="search"
-                id="shipmentSearch"
-                name="search"
-                placeholder="Search by tracking number or customer"
-              >
-
-            </div>
-
-            <button
-              type="submit"
-              class="btn btn-primary"
-            >
-              Search
-            </button>
-
-          </form>
+          <div
+            id="currentImage"
+            class="image-preview"
+          ></div>
 
         </div>
 
+      </div>
 
-        <!-- TABLE -->
-        <div class="table-wrapper">
 
-          <table>
+      <!-- TRANSIT HISTORY -->
 
-            <thead>
+      <div class="editor-section">
 
-              <tr>
+        <h3>
+          Transit / Tracking History
+        </h3>
 
-                <th>
-                  Tracking Number
-                </th>
+        <div id="historyContainer"></div>
 
-                <th>
-                  Customer
-                </th>
+        <button
+          type="button"
+          class="btn btn-secondary"
+          onclick="addHistory()"
+        >
+          + Add Transit Update
+        </button>
 
-                <th>
-                  Origin
-                </th>
+      </div>
 
-                <th>
-                  Destination
-                </th>
 
-                <th>
-                  Status
-                </th>
+      <!-- SAVE -->
 
-                <th>
-                  Actions
-                </th>
+      <div class="admin-actions">
 
-              </tr>
+        <button
+          type="button"
+          class="btn btn-primary"
+          onclick="saveShipment()"
+        >
+          Save Shipment
+        </button>
 
-            </thead>
-
-            <tbody>
-
-              <tr>
-
-                <td>
-                  —
-                </td>
-
-                <td>
-                  —
-                </td>
-
-                <td>
-                  —
-                </td>
-
-                <td>
-                  —
-                </td>
-
-                <td>
-                  —
-                </td>
-
-                <td>
-                  No shipments available yet.
-                </td>
-
-              </tr>
-
-            </tbody>
-
-          </table>
-
-        </div>
+        <button
+          type="button"
+          class="btn btn-secondary"
+          onclick="closeEditor()"
+        >
+          Close Editor
+        </button>
 
       </div>
 
     </section>
 
+  </div>
 
-    <!-- TRACKING EVENTS -->
-    <section class="section">
+</section>
 
-      <div class="container">
-
-        <div class="section-heading">
-
-          <p class="section-label">
-            TRACKING
-          </p>
-
-          <h2>
-            Shipment Updates
-          </h2>
-
-          <p>
-            Administrators will be able to add tracking events
-            to a shipment. These updates will automatically
-            appear on the public tracking page.
-          </p>
-
-        </div>
+</main>
 
 
-        <div class="cards-grid">
+<footer class="site-footer">
 
-          <article class="feature-card">
+  <div class="container">
 
-            <h3>
-              Manual Tracking Updates
-            </h3>
+    <div class="footer-bottom">
 
-            <p>
-              Add shipment events and status changes from the
-              administration system.
-            </p>
+      <p>
+        © 2026 ExpressLine Delivery Services.
+        All rights reserved.
+      </p>
 
-          </article>
-
-
-          <article class="feature-card">
-
-            <h3>
-              Public Tracking
-            </h3>
-
-            <p>
-              Approved tracking updates will become visible
-              to customers through the tracking page.
-            </p>
-
-          </article>
-
-
-          <article class="feature-card">
-
-            <h3>
-              Shipment History
-            </h3>
-
-            <p>
-              Each shipment will maintain a chronological
-              history of tracking events.
-            </p>
-
-          </article>
-
-        </div>
-
-      </div>
-
-    </section>
-
-  </main>
-
-
-  <!-- FOOTER -->
-  <footer class="site-footer">
-
-    <div class="container">
-
-      <div class="footer-bottom">
-
-        <p>
-          © 2026 ExpressLine Delivery Services.
-          All rights reserved.
-        </p>
-
-        <p>
-          Administrator Portal
-        </p>
-
-      </div>
+      <p>
+        Administrator Portal
+      </p>
 
     </div>
 
-  </footer>
+  </div>
+
+</footer>
 
 
-  <script src="script.js"></script>
+<script>
+
+  let shipments = [];
+
+  let currentShipmentIndex = null;
+
+
+  /* LOAD SHIPMENTS */
+
+  function loadShipments() {
+
+    try {
+
+      shipments =
+        JSON.parse(
+          localStorage.getItem(
+            "expresslineShipments"
+          )
+        ) || [];
+
+    } catch (error) {
+
+      shipments = [];
+
+    }
+
+    renderShipments();
+
+  }
+
+
+  /* SAVE SHIPMENTS */
+
+  function saveToStorage() {
+
+    localStorage.setItem(
+      "expresslineShipments",
+      JSON.stringify(shipments)
+    );
+
+  }
+
+
+  /* RENDER SHIPMENTS */
+
+  function renderShipments(search = "") {
+
+    const container =
+      document.getElementById(
+        "shipmentList"
+      );
+
+    container.innerHTML = "";
+
+
+    const searchText =
+      search.toLowerCase().trim();
+
+
+    const filtered =
+      shipments.filter(function(shipment) {
+
+        const tracking =
+          String(
+            shipment.trackingNumber || ""
+          ).toLowerCase();
+
+        const sender =
+          String(
+            shipment.sender?.name || ""
+          ).toLowerCase();
+
+        const receiver =
+          String(
+            shipment.receiver?.name || ""
+          ).toLowerCase();
+
+        const destination =
+          String(
+            shipment.destination?.location || ""
+          ).toLowerCase();
+
+
+        return (
+          tracking.includes(searchText) ||
+          sender.includes(searchText) ||
+          receiver.includes(searchText) ||
+          destination.includes(searchText)
+        );
+
+      });
+
+
+    if (filtered.length === 0) {
+
+      container.innerHTML = `
+
+        <div class="no-shipments">
+
+          <h3>
+            No shipments found
+          </h3>
+
+          <p>
+            Create a shipment from the Request Shipment page.
+          </p>
+
+        </div>
+
+      `;
+
+      return;
+
+    }
+
+
+    filtered.forEach(function(shipment) {
+
+      const index =
+        shipments.indexOf(shipment);
+
+      const progress =
+        Math.max(
+          0,
+          Math.min(
+            100,
+            Number(shipment.progress || 0)
+          )
+        );
+
+
+      const card =
+        document.createElement("div");
+
+      card.className =
+        "shipment-card";
+
+
+      card.innerHTML = `
+
+        <div class="shipment-card-top">
+
+          <div>
+
+            <div class="tracking-number">
+              ${escapeHtml(
+                shipment.trackingNumber || "No Tracking Number"
+              )}
+            </div>
+
+            <div>
+              ${escapeHtml(
+                shipment.sender?.name || "No sender"
+              )}
+              →
+              ${escapeHtml(
+                shipment.receiver?.name || "No receiver"
+              )}
+            </div>
+
+          </div>
+
+          <span class="status-badge">
+            ${escapeHtml(
+              shipment.status || "Pending"
+            )}
+          </span>
+
+        </div>
+
+
+        <div class="progress-area">
+
+          <div class="progress-label">
+
+            <span>
+              Shipment Progress
+            </span>
+
+            <strong>
+              ${progress}%
+            </strong>
+
+          </div>
+
+          <div class="progress-bar">
+
+            <div
+              class="progress-fill"
+              style="width:${progress}%"
+            ></div>
+
+          </div>
+
+        </div>
+
+
+        <div class="shipment-info">
+
+          <div class="info-box">
+
+            <small>
+              Origin
+            </small>
+
+            ${escapeHtml(
+              shipment.origin?.location || "N/A"
+            )}
+
+          </div>
+
+
+          <div class="info-box">
+
+            <small>
+              Destination
+            </small>
+
+            ${escapeHtml(
+              shipment.destination?.location || "N/A"
+            )}
+
+          </div>
+
+
+          <div class="info-box">
+
+            <small>
+              Method
+            </small>
+
+            ${escapeHtml(
+              shipment.shipping?.method || "N/A"
+            )}
+
+          </div>
+
+        </div>
+
+
+        <div class="admin-actions">
+
+          <button
+            type="button"
+            class="btn btn-primary"
+            onclick="openShipment(${index})"
+          >
+            Edit Shipment
+          </button>
+
+        </div>
+
+      `;
+
+
+      container.appendChild(card);
+
+    });
+
+  }
+
+
+  /* OPEN SHIPMENT */
+
+  function openShipment(index) {
+
+    currentShipmentIndex =
+      index;
+
+
+    const shipment =
+      shipments[index];
+
+
+    if (!shipment) {
+      return;
+    }
+
+
+    document.getElementById(
+      "shipmentEditor"
+    ).style.display =
+      "block";
+
+
+    document.getElementById(
+      "editingTrackingNumber"
+    ).textContent =
+      shipment.trackingNumber || "";
+
+
+    document.getElementById(
+      "editStatus"
+    ).value =
+      shipment.status || "";
+
+
+    document.getElementById(
+      "editProgress"
+    ).value =
+      shipment.progress || 0;
+
+
+    document.getElementById(
+      "editCustomerName"
+    ).value =
+      shipment.customer?.name || "";
+
+
+    document.getElementById(
+      "editCustomerPhone"
+    ).value =
+      shipment.customer?.phone || "";
+
+
+    document.getElementById(
+      "editCustomerEmail"
+    ).value =
+      shipment.customer?.email || "";
+
+
+    document.getElementById(
+      "editSenderName"
+    ).value =
+      shipment.sender?.name || "";
+
+
+    document.getElementById(
+      "editSenderPhone"
+    ).value =
+      shipment.sender?.phone || "";
+
+
+    document.getElementById(
+      "editSenderAddress"
+    ).value =
+      shipment.sender?.address || "";
+
+
+    document.getElementById(
+      "editReceiverName"
+    ).value =
+      shipment.receiver?.name || "";
+
+
+    document.getElementById(
+      "editReceiverPhone"
+    ).value =
+      shipment.receiver?.phone || "";
+
+
+    document.getElementById(
+      "editReceiverAddress"
+    ).value =
+      shipment.receiver?.address || "";
+
+
+    document.getElementById(
+      "editPackageDescription"
+    ).value =
+      shipment.package?.description || "";
+
+
+    document.getElementById(
+      "editWeight"
+    ).value =
+      shipment.package?.weight || "";
+
+
+    document.getElementById(
+      "editQuantity"
+    ).value =
+      shipment.package?.quantity || "";
+
+
+    document.getElementById(
+      "editPackageType"
+    ).value =
+      shipment.package?.type || "Parcel";
+
+
+    document.getElementById(
+      "editPickupAddress"
+    ).value =
+      shipment.shipping?.pickupAddress || "";
+
+
+    document.getElementById(
+      "editDeliveryAddress"
+    ).value =
+      shipment.shipping?.deliveryAddress || "";
+
+
+    document.getElementById(
+      "editShippingMethod"
+    ).value =
+      shipment.shipping?.method || "Road Transport";
+
+
+    document.getElementById(
+      "editEstimatedDate"
+    ).value =
+      shipment.estimatedDelivery?.date || "";
+
+
+    document.getElementById(
+      "editEstimatedTime"
+    ).value =
+      shipment.estimatedDelivery?.time || "";
+
+
+    document.getElementById(
+      "editSpecialInstructions"
+    ).value =
+      shipment.shipping?.specialInstructions || "";
+
+
+    document.getElementById(
+      "editOriginLabel"
+    ).value =
+      shipment.origin?.label || "";
+
+
+    document.getElementById(
+      "editOrigin"
+    ).value =
+      shipment.origin?.location || "";
+
+
+    document.getElementById(
+      "editOriginLatitude"
+    ).value =
+      shipment.origin?.latitude || "";
+
+
+    document.getElementById(
+      "editOriginLongitude"
+    ).value =
+      shipment.origin?.longitude || "";
+
+
+    document.getElementById(
+      "editDestinationLabel"
+    ).value =
+      shipment.destination?.label || "";
+
+
+    document.getElementById(
+      "editDestination"
+    ).value =
+      shipment.destination?.location || "";
+
+
+    document.getElementById(
+      "editDestinationLatitude"
+    ).value =
+      shipment.destination?.latitude || "";
+
+
+    document.getElementById(
+      "editDestinationLongitude"
+    ).value =
+      shipment.destination?.longitude || "";
+
+
+    renderImage(shipment);
+
+    renderHistory(shipment);
+
+
+    document.getElementById(
+      "shipmentEditor"
+    ).scrollIntoView({
+      behavior: "smooth"
+    });
+
+  }
+
+
+  /* IMAGE */
+
+  function renderImage(shipment) {
+
+    const box =
+      document.getElementById(
+        "currentImage"
+      );
+
+
+    if (shipment.shipmentImage) {
+
+      box.innerHTML = `
+
+        <img
+          src="${shipment.shipmentImage}"
+          alt="Shipment item"
+        >
+
+      `;
+
+    } else {
+
+      box.innerHTML =
+        "<p>No shipment image uploaded.</p>";
+
+    }
+
+  }
+
+
+  document.getElementById(
+    "editShipmentImage"
+  ).addEventListener(
+    "change",
+    function() {
+
+      const file =
+        this.files[0];
+
+
+      if (!file) {
+        return;
+      }
+
+
+      const reader =
+        new FileReader();
+
+
+      reader.onload =
+        function(event) {
+
+          if (
+            currentShipmentIndex === null
+          ) {
+            return;
+          }
+
+
+          shipments[
+            currentShipmentIndex
+          ].shipmentImage =
+            event.target.result;
+
+
+          renderImage(
+            shipments[
+              currentShipmentIndex
+            ]
+          );
+
+        };
+
+
+      reader.readAsDataURL(file);
+
+    }
+  );
+
+
+  /* HISTORY */
+
+  function renderHistory(shipment) {
+
+    const container =
+      document.getElementById(
+        "historyContainer"
+      );
+
+
+    container.innerHTML = "";
+
+
+    if (
+      !Array.isArray(
+        shipment.transitHistory
+      )
+    ) {
+
+      shipment.transitHistory = [];
+
+    }
+
+
+    shipment.transitHistory.forEach(
+      function(entry, index) {
+
+        createHistoryElement(
+          entry,
+          index
+        );
+
+      }
+    );
+
+  }
+
+
+  function createHistoryElement(
+    entry,
+    index
+  ) {
+
+    const container =
+      document.getElementById(
+        "historyContainer"
+      );
+
+
+    const item =
+      document.createElement("div");
+
+
+    item.className =
+      "history-item";
+
+
+    item.innerHTML = `
+
+      <div class="history-item-header">
+
+        <strong>
+          Transit Update ${index + 1}
+        </strong>
+
+        <div class="history-actions">
+
+          <button
+            type="button"
+            class="small-button delete-button"
+            onclick="deleteHistory(${index})"
+          >
+            Delete
+          </button>
+
+        </div>
+
+      </div>
+
+
+      <div class="form-grid">
+
+        <div class="form-group">
+
+          <label>
+            Date
+          </label>
+
+          <input
+            type="date"
+            class="history-date"
+            value="${escapeAttribute(
+              entry.date || ""
+            )}"
+          >
+
+        </div>
+
+
+        <div class="form-group">
+
+          <label>
+            Time
+          </label>
+
+          <input
+            type="time"
+            class="history-time"
+            value="${escapeAttribute(
+              entry.time || ""
+            )}"
+          >
+
+        </div>
+
+
+        <div class="form-group">
+
+          <label>
+            Location
+          </label>
+
+          <input
+            type="text"
+            class="history-location"
+            value="${escapeAttribute(
+              entry.location || ""
+            )}"
+            placeholder="Example: Lagos Sorting Center"
+          >
+
+        </div>
+
+
+        <div class="form-group">
+
+          <label>
+            Status
+          </label>
+
+          <input
+            type="text"
+            class="history-status"
+            value="${escapeAttribute(
+              entry.status || ""
+            )}"
+            placeholder="Example: In Transit"
+          >
+
+        </div>
+
+
+        <div class="form-group full-width">
+
+          <label>
+            Update Details
+          </label>
+
+          <textarea
+            class="history-details"
+            rows="4"
+            placeholder="Describe the shipment update"
+          >${escapeHtml(
+            entry.details || ""
+          )}</textarea>
+
+        </div>
+
+      </div>
+
+    `;
+
+
+    container.appendChild(item);
+
+  }
+
+
+  function addHistory() {
+
+    if (
+      currentShipmentIndex === null
+    ) {
+      return;
+    }
+
+
+    const shipment =
+      shipments[
+        currentShipmentIndex
+      ];
+
+
+    if (
+      !Array.isArray(
+        shipment.transitHistory
+      )
+    ) {
+
+      shipment.transitHistory = [];
+
+    }
+
+
+    shipment.transitHistory.push({
+
+      date: "",
+
+      time: "",
+
+      location: "",
+
+      status: "",
+
+      details: ""
+
+    });
+
+
+    renderHistory(shipment);
+
+  }
+
+
+  function deleteHistory(index) {
+
+    if (
+      currentShipmentIndex === null
+    ) {
+      return;
+    }
+
+
+    const shipment =
+      shipments[
+        currentShipmentIndex
+      ];
+
+
+    shipment.transitHistory.splice(
+      index,
+      1
+    );
+
+
+    renderHistory(shipment);
+
+  }
+
+
+  function collectHistory() {
+
+    const items =
+      document.querySelectorAll(
+        "#historyContainer .history-item"
+      );
+
+
+    const history = [];
+
+
+    items.forEach(function(item) {
+
+      history.push({
+
+        date:
+          item.querySelector(
+            ".history-date"
+          ).value,
+
+        time:
+          item.querySelector(
+            ".history-time"
+          ).value,
+
+        location:
+          item.querySelector(
+            ".history-location"
+          ).value,
+
+        status:
+          item.querySelector(
+            ".history-status"
+          ).value,
+
+        details:
+          item.querySelector(
+            ".history-details"
+          ).value
+
+      });
+
+    });
+
+
+    return history;
+
+  }
+
+
+  /* SAVE */
+
+  function saveShipment() {
+
+    if (
+      currentShipmentIndex === null
+    ) {
+      return;
+    }
+
+
+    const shipment =
+      shipments[
+        currentShipmentIndex
+      ];
+
+
+    let progress =
+      Number(
+        document.getElementById(
+          "editProgress"
+        ).value
+      );
+
+
+    if (isNaN(progress)) {
+      progress = 0;
+    }
+
+
+    progress =
+      Math.max(
+        0,
+        Math.min(
+          100,
+          progress
+        )
+      );
+
+
+    shipment.progress =
+      progress;
+
+
+    shipment.status =
+      document.getElementById(
+        "editStatus"
+      ).value;
+
+
+    shipment.customer = {
+
+      name:
+        document.getElementById(
+          "editCustomerName"
+        ).value,
+
+      phone:
+        document.getElementById(
+          "editCustomerPhone"
+        ).value,
+
+      email:
+        document.getElementById(
+          "editCustomerEmail"
+        ).value
+
+    };
+
+
+    shipment.sender = {
+
+      name:
+        document.getElementById(
+          "editSenderName"
+        ).value,
+
+      phone:
+        document.getElementById(
+          "editSenderPhone"
+        ).value,
+
+      address:
+        document.getElementById(
+          "editSenderAddress"
+        ).value
+
+    };
+
+
+    shipment.receiver = {
+
+      name:
+        document.getElementById(
+          "editReceiverName"
+        ).value,
+
+      phone:
+        document.getElementById(
+          "editReceiverPhone"
+        ).value,
+
+      address:
+        document.getElementById(
+          "editReceiverAddress"
+        ).value
+
+    };
+
+
+    shipment.package = {
+
+      description:
+        document.getElementById(
+          "editPackageDescription"
+        ).value,
+
+      weight:
+        document.getElementById(
+          "editWeight"
+        ).value,
+
+      quantity:
+        document.getElementById(
+          "editQuantity"
+        ).value,
+
+      type:
+        document.getElementById(
+          "editPackageType"
+        ).value
+
+    };
+
+
+    shipment.shipping = {
+
+      pickupAddress:
+        document.getElementById(
+          "editPickupAddress"
+        ).value,
+
+      deliveryAddress:
+        document.getElementById(
+          "editDeliveryAddress"
+        ).value,
+
+      method:
+        document.getElementById(
+          "editShippingMethod"
+        ).value,
+
+      specialInstructions:
+        document.getElementById(
+          "editSpecialInstructions"
+        ).value
+
+    };
+
+
+    shipment.estimatedDelivery = {
+
+      date:
+        document.getElementById(
+          "editEstimatedDate"
+        ).value,
+
+      time:
+        document.getElementById(
+          "editEstimatedTime"
+        ).value
+
+    };
+
+
+    shipment.origin = {
+
+      label:
+        document.getElementById(
+          "editOriginLabel"
+        ).value,
+
+      location:
+        document.getElementById(
+          "editOrigin"
+        ).value,
+
+      latitude:
+        document.getElementById(
+          "editOriginLatitude"
+        ).value,
+
+      longitude:
+        document.getElementById(
+          "editOriginLongitude"
+        ).value
+
+    };
+
+
+    shipment.destination = {
+
+      label:
+        document.getElementById(
+          "editDestinationLabel"
+        ).value,
+
+      location:
+        document.getElementById(
+          "editDestination"
+        ).value,
+
+      latitude:
+        document.getElementById(
+          "editDestinationLatitude"
+        ).value,
+
+      longitude:
+        document.getElementById(
+          "editDestinationLongitude"
+        ).value
+
+    };
+
+
+    shipment.transitHistory =
+      collectHistory();
+
+
+    saveToStorage();
+
+    renderShipments(
+      document.getElementById(
+        "shipmentSearch"
+      ).value
+    );
+
+
+    showMessage(
+      "Shipment saved successfully."
+    );
+
+  }
+
+
+  /* CLOSE */
+
+  function closeEditor() {
+
+    currentShipmentIndex =
+      null;
+
+
+    document.getElementById(
+      "shipmentEditor"
+    ).style.display =
+      "none";
+
+  }
+
+
+  /* SEARCH */
+
+  document.getElementById(
+    "shipmentSearch"
+  ).addEventListener(
+    "input",
+    function() {
+
+      renderShipments(
+        this.value
+      );
+
+    }
+  );
+
+
+  /* MESSAGE */
+
+  function showMessage(text) {
+
+    const message =
+      document.getElementById(
+        "message"
+      );
+
+
+    message.textContent =
+      text;
+
+
+    message.style.display =
+      "block";
+
+
+    setTimeout(
+      function() {
+
+        message.style.display =
+          "none";
+
+      },
+      3000
+    );
+
+  }
+
+
+  /* SECURITY */
+
+  function escapeHtml(value) {
+
+    return String(value)
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&#039;");
+
+  }
+
+
+  function escapeAttribute(value) {
+
+    return escapeHtml(value);
+
+  }
+
+
+  /* START */
+
+  loadShipments();
+
+</script>
 
 </body>
 </html>
