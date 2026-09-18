@@ -66,8 +66,6 @@ body {
     color: var(--primary-color);
 }
 
-/* RIGHT CORNER NAVIGATION */
-
 .nav-area {
     display: flex;
     align-items: center;
@@ -691,12 +689,7 @@ footer {
 
 <body>
 
-<!-- WEBSITE ANNOUNCEMENT -->
 <div id="announcementBar"></div>
-
-<!-- =========================
-     HEADER + CORNER NAVIGATION
-========================= -->
 
 <header class="header">
 
@@ -742,11 +735,6 @@ footer {
 
 </header>
 
-
-<!-- =========================
-     HERO
-========================= -->
-
 <section class="hero" id="heroSection">
 
     <div class="hero-content">
@@ -782,11 +770,6 @@ footer {
 
 </section>
 
-
-<!-- =========================
-     QUICK ACTIONS
-========================= -->
-
 <section class="quick-actions">
 
     <div class="quick-box">
@@ -805,7 +788,6 @@ footer {
 
         </div>
 
-
         <div class="quick-item">
 
             <h3>Ship With Us</h3>
@@ -819,7 +801,6 @@ footer {
             </a>
 
         </div>
-
 
         <div class="quick-item">
 
@@ -838,11 +819,6 @@ footer {
     </div>
 
 </section>
-
-
-<!-- =========================
-     TRACKING
-========================= -->
 
 <section class="track-section">
 
@@ -888,11 +864,6 @@ footer {
 
 </section>
 
-
-<!-- =========================
-     SERVICES
-========================= -->
-
 <section class="services">
 
     <div class="section-title">
@@ -909,7 +880,6 @@ footer {
         </p>
 
     </div>
-
 
     <div class="service-grid">
 
@@ -930,7 +900,6 @@ footer {
 
         </div>
 
-
         <div class="service">
 
             <div class="service-number">02</div>
@@ -947,7 +916,6 @@ footer {
             </a>
 
         </div>
-
 
         <div class="service">
 
@@ -966,7 +934,6 @@ footer {
 
         </div>
 
-
         <div class="service">
 
             <div class="service-number">04</div>
@@ -984,7 +951,6 @@ footer {
 
         </div>
 
-
         <div class="service">
 
             <div class="service-number">05</div>
@@ -1001,7 +967,6 @@ footer {
             </a>
 
         </div>
-
 
         <div class="service">
 
@@ -1023,11 +988,6 @@ footer {
     </div>
 
 </section>
-
-
-<!-- =========================
-     BUSINESS
-========================= -->
 
 <section class="business">
 
@@ -1067,7 +1027,6 @@ footer {
 
         </div>
 
-
         <div class="business-card">
 
             <h3>
@@ -1088,11 +1047,6 @@ footer {
     </div>
 
 </section>
-
-
-<!-- =========================
-     STATS
-========================= -->
 
 <section class="stats">
 
@@ -1122,11 +1076,6 @@ footer {
 
 </section>
 
-
-<!-- =========================
-     CTA
-========================= -->
-
 <section class="cta">
 
     <h2>
@@ -1151,11 +1100,6 @@ footer {
 
 </section>
 
-
-<!-- =========================
-     FOOTER
-========================= -->
-
 <footer>
 
     <div class="footer-grid">
@@ -1173,7 +1117,6 @@ footer {
 
         </div>
 
-
         <div class="footer-column">
 
             <h3>Company</h3>
@@ -1188,7 +1131,6 @@ footer {
 
         </div>
 
-
         <div class="footer-column">
 
             <h3>Shipping</h3>
@@ -1200,7 +1142,6 @@ footer {
             <a href="Shipment History.html">Shipment History</a>
 
         </div>
-
 
         <div class="footer-column">
 
@@ -1222,7 +1163,6 @@ footer {
 
     </div>
 
-
     <div class="copyright" id="copyrightText">
 
         © 2026 ExpressLine Delivery Services. All rights reserved.
@@ -1230,11 +1170,6 @@ footer {
     </div>
 
 </footer>
-
-
-<!-- =========================
-     MAINTENANCE MESSAGE
-========================= -->
 
 <div id="maintenanceMessage">
 
@@ -1252,33 +1187,70 @@ footer {
 
 </div>
 
+<!-- SUPABASE -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <script>
+
+/* =========================
+   SUPABASE
+========================= */
+
+const SUPABASE_URL =
+    "https://uhjgietvznkfzckmxqfz.supabase.co";
+
+const SUPABASE_PUBLISHABLE_KEY =
+    "sb_publishable_zZ0JiBW-2uarX2gnR5w9hQ_77RpB6SM";
+
+const supabaseClient =
+    window.supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_PUBLISHABLE_KEY
+    );
+
 
 /* =========================
    WEBSITE SETTINGS
 ========================= */
 
-const WEBSITE_SETTINGS_KEY = "expresslineWebsiteSettings";
-
-
-function getWebsiteSettings() {
+async function getWebsiteSettings() {
 
     try {
 
-        const saved =
-            localStorage.getItem(WEBSITE_SETTINGS_KEY);
+        const { data, error } =
+            await supabaseClient
+                .from("website_settings")
+                .select("settings")
+                .eq("id", 1)
+                .maybeSingle();
 
-        if (!saved) {
+        if (error) {
+
+            console.error(
+                "Unable to load website settings:",
+                error
+            );
+
             return {};
+
         }
 
-        return JSON.parse(saved) || {};
+        if (
+            data &&
+            data.settings &&
+            typeof data.settings === "object"
+        ) {
+
+            return data.settings;
+
+        }
+
+        return {};
 
     } catch (error) {
 
         console.error(
-            "Unable to load website settings:",
+            "Website settings error:",
             error
         );
 
@@ -1349,10 +1321,10 @@ function setLinkText(settings, id, key) {
 }
 
 
-function applyWebsiteSettings() {
+async function applyWebsiteSettings() {
 
     const settings =
-        getWebsiteSettings();
+        await getWebsiteSettings();
 
     /* =========================
        COMPANY IDENTITY
@@ -1392,11 +1364,44 @@ function applyWebsiteSettings() {
 
     if (logo) {
 
-        logo.innerHTML =
-            shortName.replace(
-                /Line/i,
-                "<span>Line</span>"
-            );
+        const safeShortName =
+            shortName || "ExpressLine";
+
+        const lineIndex =
+            safeShortName.toLowerCase().indexOf("line");
+
+        if (lineIndex !== -1) {
+
+            const before =
+                safeShortName.substring(
+                    0,
+                    lineIndex
+                );
+
+            const line =
+                safeShortName.substring(
+                    lineIndex,
+                    lineIndex + 4
+                );
+
+            const after =
+                safeShortName.substring(
+                    lineIndex + 4
+                );
+
+            logo.innerHTML =
+                before +
+                "<span>" +
+                line +
+                "</span>" +
+                after;
+
+        } else {
+
+            logo.textContent =
+                safeShortName;
+
+        }
 
     }
 
