@@ -12,6 +12,27 @@
   >
 
   <link rel="stylesheet" href="style.css">
+
+  <style>
+    .services-hero {
+      min-height: 430px;
+      position: relative;
+      display: flex;
+      align-items: center;
+      color: var(--white);
+      background:
+        linear-gradient(rgba(7, 31, 74, 0.82), rgba(11, 46, 107, 0.86)),
+        url('https://images.unsplash.com/photo-1494412651409-8963ce7935a7?auto=format&fit=crop&w=1800&q=80')
+        center/cover no-repeat;
+    }
+
+    .services-hero.has-custom-image {
+      background:
+        linear-gradient(rgba(7, 31, 74, 0.82), rgba(11, 46, 107, 0.86)),
+        var(--services-hero-image)
+        center/cover no-repeat;
+    }
+  </style>
 </head>
 
 <body>
@@ -22,32 +43,43 @@
 
       <a href="index.html" class="logo">
         <span class="logo-mark">EL</span>
-        <span>ExpressLine</span>
+        <span id="siteShortName">ExpressLine</span>
       </a>
 
       <button
         class="menu-toggle"
         type="button"
         aria-label="Open navigation menu"
+        aria-expanded="false"
       >
         ☰
       </button>
 
       <nav class="nav-links">
 
-        <a href="index.html">Home</a>
+        <a href="index.html" id="navHome">Home</a>
 
-        <a href="track.html">Track Shipment</a>
+        <a href="track.html" id="navTrack">
+          Track Shipment
+        </a>
 
-        <a href="services.html">Services</a>
+        <a href="services.html" id="navServices">
+          Services
+        </a>
 
-        <a href="about.html">About Us</a>
+        <a href="about.html" id="navAbout">
+          About Us
+        </a>
 
-        <a href="contact.html">Contact Us</a>
+        <a href="contact.html" id="navContact">
+          Contact Us
+        </a>
 
-        <a href="request.html">Request Shipment</a>
+        <a href="request.html" id="navRequest">
+          Request a Shipment
+        </a>
 
-        <a href="login.html" class="nav-button">
+        <a href="login.html" class="nav-button" id="navLogin">
           Customer Login
         </a>
 
@@ -60,7 +92,7 @@
 
   <main>
 
-    <section class="hero" style="min-height: 430px;">
+    <section class="services-hero" id="servicesHero">
 
       <div class="container hero-content">
 
@@ -68,11 +100,11 @@
           COURIER & LOGISTICS
         </span>
 
-        <h1>
+        <h1 id="servicesHeroHeading">
           Logistics solutions built around your needs.
         </h1>
 
-        <p>
+        <p id="servicesHeroDescription">
           From express courier services to international freight,
           ExpressLine provides flexible transportation and logistics
           solutions for businesses and individuals.
@@ -114,13 +146,12 @@
               ✈
             </div>
 
-            <h3>
-              Air Freight
+            <h3 id="service1Name">
+              Express Delivery
             </h3>
 
-            <p>
-              International air freight solutions for shipments
-              where efficient transportation is important.
+            <p id="service1Description">
+              Fast delivery for urgent shipments.
             </p>
 
           </article>
@@ -132,13 +163,12 @@
               🚚
             </div>
 
-            <h3>
-              Road Delivery
+            <h3 id="service2Name">
+              Business Logistics
             </h3>
 
-            <p>
-              Reliable road transportation for local, regional
-              and scheduled delivery requirements.
+            <p id="service2Description">
+              Reliable logistics solutions for businesses.
             </p>
 
           </article>
@@ -150,13 +180,12 @@
               📦
             </div>
 
-            <h3>
-              Express Courier
+            <h3 id="service3Name">
+              International Shipping
             </h3>
 
-            <p>
-              Courier solutions designed for packages that need
-              dependable handling and transportation.
+            <p id="service3Description">
+              Shipping solutions for destinations worldwide.
             </p>
 
           </article>
@@ -332,10 +361,12 @@
 
           <div class="logo">
             <span class="logo-mark">EL</span>
-            <span>ExpressLine</span>
+            <span id="footerCompanyName">
+              ExpressLine Delivery Services
+            </span>
           </div>
 
-          <p>
+          <p id="footerText">
             Professional courier and logistics solutions
             designed to keep shipments moving with confidence.
           </p>
@@ -423,7 +454,7 @@
 
       <div class="footer-bottom">
 
-        <p>
+        <p id="copyrightText">
           © 2026 ExpressLine Delivery Services.
           All rights reserved.
         </p>
@@ -436,6 +467,367 @@
 
 
   <script src="script.js"></script>
+
+
+  <script>
+
+    /* =========================
+       WEBSITE SETTINGS
+    ========================= */
+
+    const WEBSITE_SETTINGS_KEY =
+      "expresslineWebsiteSettings";
+
+    function getWebsiteSettings() {
+
+      const saved =
+        localStorage.getItem(
+          WEBSITE_SETTINGS_KEY
+        );
+
+      if (!saved) {
+        return {};
+      }
+
+      try {
+        return JSON.parse(saved);
+      } catch (error) {
+        console.error(
+          "Invalid website settings:",
+          error
+        );
+
+        return {};
+      }
+    }
+
+
+    function applyServicesSettings() {
+
+      const settings =
+        getWebsiteSettings();
+
+
+      /* =========================
+         COMPANY
+      ========================= */
+
+      if (settings.shortName) {
+
+        const siteShortName =
+          document.getElementById(
+            "siteShortName"
+          );
+
+        if (siteShortName) {
+          siteShortName.textContent =
+            settings.shortName;
+        }
+      }
+
+
+      /* =========================
+         NAVIGATION
+      ========================= */
+
+      const navigationFields = {
+
+        navHome: "navHome",
+        navServices: "navServices",
+        navTrack: "navTrack",
+        navRequest: "navRequest",
+        navAbout: "navAbout",
+        navContact: "navContact",
+        navLogin: "navLogin"
+
+      };
+
+
+      Object.keys(navigationFields)
+        .forEach((settingId) => {
+
+          const element =
+            document.getElementById(
+              navigationFields[settingId]
+            );
+
+          if (
+            element &&
+            settings[settingId]
+          ) {
+
+            element.textContent =
+              settings[settingId];
+
+          }
+
+        });
+
+
+      /* =========================
+         SERVICES
+      ========================= */
+
+      const serviceFields = [
+
+        [
+          "service1Name",
+          "service1Description"
+        ],
+
+        [
+          "service2Name",
+          "service2Description"
+        ],
+
+        [
+          "service3Name",
+          "service3Description"
+        ]
+
+      ];
+
+
+      serviceFields.forEach(
+        ([nameId, descriptionId]) => {
+
+          const nameElement =
+            document.getElementById(
+              nameId
+            );
+
+          const descriptionElement =
+            document.getElementById(
+              descriptionId
+            );
+
+
+          if (
+            nameElement &&
+            settings[nameId]
+          ) {
+
+            nameElement.textContent =
+              settings[nameId];
+
+          }
+
+
+          if (
+            descriptionElement &&
+            settings[descriptionId]
+          ) {
+
+            descriptionElement.textContent =
+              settings[descriptionId];
+
+          }
+
+        }
+      );
+
+
+      /* =========================
+         SERVICES IMAGE
+      ========================= */
+
+      const servicesHero =
+        document.getElementById(
+          "servicesHero"
+        );
+
+
+      if (
+        servicesHero &&
+        settings.servicesImage
+      ) {
+
+        servicesHero.style
+          .setProperty(
+            "--services-hero-image",
+            `url("${settings.servicesImage}")`
+          );
+
+        servicesHero.classList.add(
+          "has-custom-image"
+        );
+
+      }
+
+
+      /* =========================
+         FOOTER
+      ========================= */
+
+      const footerText =
+        document.getElementById(
+          "footerText"
+        );
+
+      if (
+        footerText &&
+        settings.footerText
+      ) {
+
+        footerText.textContent =
+          settings.footerText;
+
+      }
+
+
+      const footerCompanyName =
+        document.getElementById(
+          "footerCompanyName"
+        );
+
+      if (
+        footerCompanyName &&
+        settings.companyName
+      ) {
+
+        footerCompanyName.textContent =
+          settings.companyName;
+
+      }
+
+
+      const copyrightText =
+        document.getElementById(
+          "copyrightText"
+        );
+
+      if (
+        copyrightText &&
+        settings.copyrightText
+      ) {
+
+        copyrightText.textContent =
+          settings.copyrightText;
+
+      }
+
+
+      /* =========================
+         WEBSITE TITLE
+      ========================= */
+
+      if (settings.websiteTitle) {
+
+        document.title =
+          settings.websiteTitle;
+
+      }
+
+
+      /* =========================
+         FONT
+      ========================= */
+
+      if (settings.fontFamily) {
+
+        document.body.style.fontFamily =
+          settings.fontFamily;
+
+      }
+
+
+      if (settings.fontSize) {
+
+        document.documentElement.style
+          .fontSize =
+          settings.fontSize;
+
+      }
+
+
+      /* =========================
+         BRAND COLORS
+      ========================= */
+
+      if (settings.primaryColor) {
+
+        document.documentElement.style
+          .setProperty(
+            "--navy",
+            settings.primaryColor
+          );
+
+      }
+
+
+      if (settings.secondaryColor) {
+
+        document.documentElement.style
+          .setProperty(
+            "--navy-dark",
+            settings.secondaryColor
+          );
+
+      }
+
+
+      if (settings.accentColor) {
+
+        document.documentElement.style
+          .setProperty(
+            "--orange",
+            settings.accentColor
+          );
+
+      }
+
+
+      if (settings.textColor) {
+
+        document.documentElement.style
+          .setProperty(
+            "--text",
+            settings.textColor
+          );
+
+      }
+
+
+      /* =========================
+         FAVICON
+      ========================= */
+
+      if (settings.faviconUrl) {
+
+        let favicon =
+          document.querySelector(
+            'link[rel="icon"]'
+          );
+
+        if (!favicon) {
+
+          favicon =
+            document.createElement(
+              "link"
+            );
+
+          favicon.rel = "icon";
+
+          document.head.appendChild(
+            favicon
+          );
+
+        }
+
+        favicon.href =
+          settings.faviconUrl;
+
+      }
+
+    }
+
+
+    document.addEventListener(
+      "DOMContentLoaded",
+      applyServicesSettings
+    );
+
+  </script>
 
 </body>
 </html>
