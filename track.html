@@ -601,8 +601,6 @@
 
     </div>
 
-    <!-- Shipment Information -->
-
     <section class="section-card">
 
       <h3>
@@ -612,82 +610,38 @@
       <div class="info-grid">
 
         <div class="info-box">
-
-          <small>
-            Tracking Number
-          </small>
-
-          <strong id="infoTracking">
-            —
-          </strong>
-
+          <small>Tracking Number</small>
+          <strong id="infoTracking">—</strong>
         </div>
 
         <div class="info-box">
-
-          <small>
-            Shipment Status
-          </small>
-
-          <strong id="infoStatus">
-            —
-          </strong>
-
+          <small>Shipment Status</small>
+          <strong id="infoStatus">—</strong>
         </div>
 
         <div class="info-box">
-
-          <small>
-            Shipment Created
-          </small>
-
-          <strong id="infoCreated">
-            —
-          </strong>
-
+          <small>Shipment Created</small>
+          <strong id="infoCreated">—</strong>
         </div>
 
         <div class="info-box">
-
-          <small>
-            Created Date
-          </small>
-
-          <strong id="infoCreatedDate">
-            —
-          </strong>
-
+          <small>Created Date</small>
+          <strong id="infoCreatedDate">—</strong>
         </div>
 
         <div class="info-box">
-
-          <small>
-            Estimated Delivery
-          </small>
-
-          <strong id="infoEstimated">
-            —
-          </strong>
-
+          <small>Estimated Delivery</small>
+          <strong id="infoEstimated">—</strong>
         </div>
 
         <div class="info-box">
-
-          <small>
-            Destination
-          </small>
-
-          <strong id="infoDestination">
-            —
-          </strong>
-
+          <small>Destination</small>
+          <strong id="infoDestination">—</strong>
         </div>
 
       </div>
 
     </section>
-
-    <!-- Shipment Progress -->
 
     <section class="section-card">
 
@@ -734,8 +688,6 @@
 
     </section>
 
-    <!-- Location -->
-
     <section class="section-card">
 
       <h3>
@@ -776,8 +728,6 @@
 
     </section>
 
-    <!-- Transit Timeline -->
-
     <section class="section-card">
 
       <h3>
@@ -790,8 +740,6 @@
       ></div>
 
     </section>
-
-    <!-- Sender and Receiver -->
 
     <section class="section-card">
 
@@ -808,39 +756,18 @@
           </h4>
 
           <div class="person-row">
-
-            <small>
-              Name
-            </small>
-
-            <strong id="senderName">
-              —
-            </strong>
-
+            <small>Name</small>
+            <strong id="senderName">—</strong>
           </div>
 
           <div class="person-row">
-
-            <small>
-              Phone
-            </small>
-
-            <strong id="senderPhone">
-              —
-            </strong>
-
+            <small>Phone</small>
+            <strong id="senderPhone">—</strong>
           </div>
 
           <div class="person-row">
-
-            <small>
-              Address
-            </small>
-
-            <strong id="senderAddress">
-              —
-            </strong>
-
+            <small>Address</small>
+            <strong id="senderAddress">—</strong>
           </div>
 
         </div>
@@ -852,39 +779,18 @@
           </h4>
 
           <div class="person-row">
-
-            <small>
-              Name
-            </small>
-
-            <strong id="receiverName">
-              —
-            </strong>
-
+            <small>Name</small>
+            <strong id="receiverName">—</strong>
           </div>
 
           <div class="person-row">
-
-            <small>
-              Phone
-            </small>
-
-            <strong id="receiverPhone">
-              —
-            </strong>
-
+            <small>Phone</small>
+            <strong id="receiverPhone">—</strong>
           </div>
 
           <div class="person-row">
-
-            <small>
-              Address
-            </small>
-
-            <strong id="receiverAddress">
-              —
-            </strong>
-
+            <small>Address</small>
+            <strong id="receiverAddress">—</strong>
           </div>
 
         </div>
@@ -892,8 +798,6 @@
       </div>
 
     </section>
-
-    <!-- Package Details -->
 
     <section class="section-card">
 
@@ -904,46 +808,23 @@
       <div class="info-grid">
 
         <div class="info-box">
-
-          <small>
-            Shipment Type
-          </small>
-
-          <strong id="shipmentType">
-            —
-          </strong>
-
+          <small>Shipment Type</small>
+          <strong id="shipmentType">—</strong>
         </div>
 
         <div class="info-box">
-
-          <small>
-            Weight
-          </small>
-
-          <strong id="weight">
-            —
-          </strong>
-
+          <small>Weight</small>
+          <strong id="weight">—</strong>
         </div>
 
         <div class="info-box">
-
-          <small>
-            Origin
-          </small>
-
-          <strong id="origin">
-            —
-          </strong>
-
+          <small>Origin</small>
+          <strong id="origin">—</strong>
         </div>
 
       </div>
 
     </section>
-
-    <!-- Shipment Photo -->
 
     <section
       id="photoSection"
@@ -962,8 +843,6 @@
       >
 
     </section>
-
-    <!-- Notes -->
 
     <section
       id="notesSection"
@@ -986,10 +865,24 @@
 
 </main>
 
+<!-- Supabase -->
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
 <script>
 
-const STORAGE_KEY =
-  "expresslineShipments";
+const SUPABASE_URL =
+  "https://uhjgietvznkfzckmxqfz.supabase.co";
+
+const SUPABASE_PUBLISHABLE_KEY =
+  "sb_publishable_zZ0JiBW-2uarX2gnR5w9hQ_77RpB6SM";
+
+const supabaseClient =
+  window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_PUBLISHABLE_KEY
+  );
+
 
 function escapeHTML(value) {
 
@@ -1001,6 +894,7 @@ function escapeHTML(value) {
     .replace(/'/g, "&#039;");
 
 }
+
 
 function getText(value) {
 
@@ -1021,6 +915,7 @@ function getText(value) {
 
 }
 
+
 function getLocation(value) {
 
   if (!value) {
@@ -1038,10 +933,10 @@ function getLocation(value) {
   ) {
 
     return (
-      value.location ||
-      value.address ||
-      value.city ||
-      value.name ||
+      getText(value.location) ||
+      getText(value.address) ||
+      getText(value.city) ||
+      getText(value.name) ||
       ""
     );
 
@@ -1051,7 +946,11 @@ function getLocation(value) {
 
 }
 
+
 function normalizeShipment(shipment) {
+
+  shipment =
+    shipment || {};
 
   const sender =
     shipment.sender &&
@@ -1063,6 +962,12 @@ function normalizeShipment(shipment) {
     shipment.receiver &&
     typeof shipment.receiver === "object"
       ? shipment.receiver
+      : {};
+
+  const packageData =
+    shipment.package &&
+    typeof shipment.package === "object"
+      ? shipment.package
       : {};
 
   return {
@@ -1118,8 +1023,7 @@ function normalizeShipment(shipment) {
         shipment.shipmentType
       ) ||
       getText(
-        shipment.package &&
-        shipment.package.type
+        packageData.type
       ),
 
     weight:
@@ -1127,8 +1031,7 @@ function normalizeShipment(shipment) {
         shipment.weight
       ) ||
       getText(
-        shipment.package &&
-        shipment.package.weight
+        packageData.weight
       ),
 
     customerName:
@@ -1247,28 +1150,97 @@ function normalizeShipment(shipment) {
 
 }
 
-function loadShipments() {
 
-  try {
+/*
+  Read shipment directly from Supabase.
 
-    const data =
-      JSON.parse(
-        localStorage.getItem(
-          STORAGE_KEY
-        ) || "[]"
-      );
+  Database structure:
 
-    return Array.isArray(data)
-      ? data
-      : [];
+  shipments
+  ├── id
+  ├── tracking_number
+  ├── data
+  ├── created_at
+  └── updated_at
 
-  } catch (error) {
+  All shipment details are stored inside data.
+*/
 
-    return [];
+async function findShipment(
+  trackingNumber
+) {
+
+  const normalizedTracking =
+    String(
+      trackingNumber || ""
+    )
+      .trim()
+      .toUpperCase();
+
+  if (!normalizedTracking) {
+    return null;
+  }
+
+  const {
+    data,
+    error
+  } =
+    await supabaseClient
+      .from("shipments")
+      .select(
+        "id, tracking_number, data, created_at, updated_at"
+      )
+      .eq(
+        "tracking_number",
+        normalizedTracking
+      )
+      .maybeSingle();
+
+  if (error) {
+
+    console.error(
+      "Supabase shipment lookup error:",
+      error
+    );
+
+    throw error;
 
   }
 
+  if (!data) {
+    return null;
+  }
+
+  /*
+    The complete shipment is stored in data.
+
+    We also use the database tracking_number
+    as a fallback.
+  */
+
+  const shipmentData =
+    data.data &&
+    typeof data.data === "object"
+      ? {
+          ...data.data,
+          trackingNumber:
+            getText(
+              data.data.trackingNumber
+            ) ||
+            getText(
+              data.tracking_number
+            ) ||
+            data.tracking_number
+        }
+      : {
+          trackingNumber:
+            data.tracking_number
+        };
+
+  return shipmentData;
+
 }
+
 
 function formatDate(value) {
 
@@ -1298,6 +1270,7 @@ function formatDate(value) {
 
 }
 
+
 function formatHistoryDate(
   date,
   time
@@ -1326,6 +1299,7 @@ function formatHistoryDate(
 
 }
 
+
 function showMessage(
   text,
   type
@@ -1345,6 +1319,7 @@ function showMessage(
 
 }
 
+
 function clearMessage() {
 
   const box =
@@ -1359,6 +1334,7 @@ function clearMessage() {
     "message";
 
 }
+
 
 function setText(
   id,
@@ -1382,6 +1358,7 @@ function setText(
 
 }
 
+
 function renderTimeline(
   history,
   shipment
@@ -1397,15 +1374,10 @@ function renderTimeline(
       ? [...history]
       : [];
 
-  /*
-    If Admin has not added a history entry yet,
-    the customer still sees the shipment's
-    creation event.
-  */
-
   if (!updates.length) {
 
     updates.push({
+
       status:
         shipment.status ||
         "Shipment Created",
@@ -1423,6 +1395,7 @@ function renderTimeline(
 
       details:
         "Shipment record created."
+
     });
 
   }
@@ -1431,6 +1404,9 @@ function renderTimeline(
     updates
       .map(
         item => {
+
+          item =
+            item || {};
 
           const status =
             getText(
@@ -1456,6 +1432,9 @@ function renderTimeline(
           const details =
             getText(
               item.details
+            ) ||
+            getText(
+              item.note
             );
 
           return `
@@ -1510,6 +1489,7 @@ function renderTimeline(
       .join("");
 
 }
+
 
 function displayShipment(
   shipment
@@ -1670,13 +1650,6 @@ function displayShipment(
     s
   );
 
-  /*
-    Photo is OPTIONAL.
-
-    If Admin did not upload a photo,
-    the entire photo section remains hidden.
-  */
-
   const photoSection =
     document.getElementById(
       "photoSection"
@@ -1706,10 +1679,6 @@ function displayShipment(
     );
 
   }
-
-  /*
-    Notes are also optional.
-  */
 
   const notesSection =
     document.getElementById(
@@ -1748,13 +1717,21 @@ function displayShipment(
 
 }
 
-function trackShipment(event) {
+
+async function trackShipment(
+  event
+) {
 
   event.preventDefault();
 
   const input =
     document.getElementById(
       "trackingInput"
+    );
+
+  const button =
+    document.querySelector(
+      ".track-btn"
     );
 
   const trackingNumber =
@@ -1773,58 +1750,78 @@ function trackShipment(event) {
 
   }
 
-  const shipments =
-    loadShipments();
+  /*
+    Prevent multiple clicks while
+    Supabase is loading the shipment.
+  */
 
-  const found =
-    shipments.find(
-      shipment => {
+  button.disabled = true;
+  button.textContent = "Searching...";
 
-        const normalized =
-          normalizeShipment(
-            shipment
-          );
+  clearMessage();
 
-        return (
-          normalized.trackingNumber
-            .trim()
-            .toUpperCase() ===
-          trackingNumber
-        );
+  document.getElementById(
+    "shipment"
+  ).classList.remove(
+    "show"
+  );
 
-      }
+  document.getElementById(
+    "notFound"
+  ).classList.remove(
+    "show"
+  );
+
+  try {
+
+    const found =
+      await findShipment(
+        trackingNumber
+      );
+
+    if (!found) {
+
+      document.getElementById(
+        "notFound"
+      ).classList.add(
+        "show"
+      );
+
+      showMessage(
+        "No shipment was found for that tracking number.",
+        "error"
+      );
+
+      return;
+
+    }
+
+    displayShipment(
+      found
     );
 
-  if (!found) {
+  } catch (error) {
 
-    document.getElementById(
-      "shipment"
-    ).classList.remove(
-      "show"
-    );
-
-    document.getElementById(
-      "notFound"
-    ).classList.add(
-      "show"
+    console.error(
+      error
     );
 
     showMessage(
-      "No shipment was found for that tracking number.",
+      "Unable to connect to the shipment database. Please try again.",
       "error"
     );
 
-    return;
+  } finally {
+
+    button.disabled = false;
+    button.textContent = "Track Shipment";
 
   }
 
-  displayShipment(
-    found
-  );
-
 }
 
-function loadTrackingFromURL() {
+
+async function loadTrackingFromURL() {
 
   const params =
     new URLSearchParams(
@@ -1848,11 +1845,12 @@ function loadTrackingFromURL() {
   input.value =
     tracking;
 
-  trackShipment(
+  await trackShipment(
     new Event("submit")
   );
 
 }
+
 
 document.addEventListener(
   "DOMContentLoaded",
