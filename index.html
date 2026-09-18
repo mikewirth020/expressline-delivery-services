@@ -3,10 +3,7 @@
 <head>
   <meta charset="UTF-8">
 
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
-  >
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>ExpressLine Delivery Services</title>
 
@@ -15,16 +12,9 @@
     content="ExpressLine Delivery Services provides reliable air freight, sea freight, road freight, express courier, customs clearance and warehousing solutions."
   >
 
-  <meta
-    name="robots"
-    content="index, follow"
-  >
+  <meta name="robots" content="index, follow">
 
-  <link
-    id="favicon"
-    rel="icon"
-    href=""
-  >
+  <link id="favicon" rel="icon" href="">
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
@@ -57,7 +47,7 @@
     }
 
     /* =========================
-       HEADER
+       HEADER / NAVIGATION
     ========================= */
 
     .site-header {
@@ -73,9 +63,9 @@
     .nav-container {
       width: 100%;
       max-width: 1200px;
-      margin: 0 auto;
       min-height: 76px;
-      padding: 12px 24px;
+      margin: 0 auto;
+      padding: 10px 24px;
 
       display: flex;
       align-items: center;
@@ -86,8 +76,8 @@
     .brand {
       display: flex;
       align-items: center;
-      gap: 12px;
-      min-width: 0;
+      gap: 10px;
+      flex-shrink: 0;
     }
 
     .brand-logo {
@@ -95,7 +85,6 @@
       height: 52px;
       object-fit: contain;
       display: none;
-      flex-shrink: 0;
     }
 
     .brand-text {
@@ -105,24 +94,44 @@
       white-space: nowrap;
     }
 
+    .main-navigation {
+      margin-left: auto;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+    }
+
     .nav-menu {
       display: flex;
       align-items: center;
       justify-content: flex-end;
-      gap: 24px;
+      gap: 20px;
       list-style: none;
-      flex-wrap: wrap;
+      margin: 0;
+      padding: 0;
+    }
+
+    .nav-menu li {
+      margin: 0;
+      padding: 0;
     }
 
     .nav-menu a {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      padding: 8px 4px;
+
+      padding: 8px 3px;
+
       font-size: 15px;
       font-weight: 700;
       color: #172033;
-      transition: color 0.2s ease;
+
+      white-space: nowrap;
+
+      transition:
+        color 0.2s ease,
+        background 0.2s ease;
     }
 
     .nav-menu a:hover {
@@ -132,7 +141,9 @@
     .nav-button {
       background: #e30613 !important;
       color: #ffffff !important;
-      padding: 11px 18px !important;
+
+      padding: 11px 17px !important;
+
       border-radius: 7px;
     }
 
@@ -146,8 +157,8 @@
     ========================= */
 
     .hero {
-      min-height: 600px;
       width: 100%;
+      min-height: 600px;
 
       display: flex;
       align-items: center;
@@ -206,7 +217,6 @@
       padding: 13px 24px;
       border-radius: 7px;
       font-weight: 700;
-      transition: 0.2s ease;
     }
 
     .primary-button {
@@ -279,14 +289,6 @@
       overflow: hidden;
       border: 1px solid #e5e7eb;
       box-shadow: 0 8px 25px rgba(0, 0, 0, 0.05);
-      transition:
-        transform 0.2s ease,
-        box-shadow 0.2s ease;
-    }
-
-    .service-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 14px 35px rgba(0, 0, 0, 0.08);
     }
 
     .service-image {
@@ -419,29 +421,29 @@
     }
 
     /* =========================
-       MOBILE
+       TABLET
     ========================= */
 
-    @media (max-width: 900px) {
+    @media (max-width: 1000px) {
+
       .nav-container {
-        min-height: auto;
-        padding: 14px 18px;
-        flex-direction: column;
-        align-items: center;
+        padding: 10px 18px;
       }
 
-      .brand {
-        justify-content: center;
+      .brand-text {
+        font-size: 17px;
       }
 
       .nav-menu {
-        width: 100%;
-        justify-content: center;
-        gap: 7px 16px;
+        gap: 12px;
       }
 
       .nav-menu a {
-        font-size: 14px;
+        font-size: 13px;
+      }
+
+      .nav-button {
+        padding: 9px 12px !important;
       }
 
       .services-grid {
@@ -457,7 +459,69 @@
       }
     }
 
-    @media (max-width: 600px) {
+    /* =========================
+       MOBILE
+    ========================= */
+
+    @media (max-width: 700px) {
+
+      .site-header {
+        position: relative;
+      }
+
+      .nav-container {
+        min-height: 64px;
+        padding: 8px 12px;
+
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+
+        gap: 8px;
+      }
+
+      .brand {
+        min-width: 0;
+        max-width: 42%;
+      }
+
+      .brand-logo {
+        width: 42px;
+        height: 42px;
+      }
+
+      .brand-text {
+        font-size: 13px;
+        line-height: 1.2;
+        white-space: normal;
+      }
+
+      .main-navigation {
+        margin-left: auto;
+        max-width: 58%;
+      }
+
+      .nav-menu {
+        width: auto;
+
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: flex-end;
+
+        gap: 5px;
+      }
+
+      .nav-menu a {
+        font-size: 10px;
+        padding: 5px 2px;
+      }
+
+      .nav-button {
+        padding: 7px 8px !important;
+        border-radius: 5px;
+      }
+
       .hero {
         min-height: 560px;
       }
@@ -485,17 +549,46 @@
       .footer-grid {
         grid-template-columns: 1fr;
       }
+    }
+
+    /* =========================
+       VERY SMALL PHONES
+    ========================= */
+
+    @media (max-width: 430px) {
+
+      .nav-container {
+        padding-left: 9px;
+        padding-right: 9px;
+      }
+
+      .brand {
+        max-width: 38%;
+      }
+
+      .brand-text {
+        font-size: 11px;
+      }
+
+      .brand-logo {
+        width: 36px;
+        height: 36px;
+      }
+
+      .main-navigation {
+        max-width: 62%;
+      }
 
       .nav-menu {
-        gap: 5px 10px;
+        gap: 3px;
       }
 
       .nav-menu a {
-        font-size: 13px;
+        font-size: 9px;
       }
 
       .nav-button {
-        padding: 9px 13px !important;
+        padding: 6px 6px !important;
       }
     }
   </style>
@@ -508,9 +601,11 @@
   ========================= -->
 
   <header class="site-header">
+
     <div class="nav-container">
 
       <a href="index.html" class="brand">
+
         <img
           id="logoImage"
           class="brand-logo"
@@ -524,9 +619,15 @@
         >
           ExpressLine Delivery Services
         </span>
+
       </a>
 
-      <nav aria-label="Main Navigation">
+
+      <nav
+        class="main-navigation"
+        aria-label="Main Navigation"
+      >
+
         <ul class="nav-menu">
 
           <li>
@@ -543,7 +644,7 @@
 
           <li>
             <a href="track.html">
-              Track Shipment
+              Track
             </a>
           </li>
 
@@ -558,14 +659,16 @@
               href="request.html"
               class="nav-button"
             >
-              Request a Shipment
+              Request
             </a>
           </li>
 
         </ul>
+
       </nav>
 
     </div>
+
   </header>
 
 
@@ -583,8 +686,7 @@
       <div class="hero-content">
 
         <h1 id="heroTitle">
-          Reliable Delivery.
-          Global Reach.
+          Reliable Delivery. Global Reach.
         </h1>
 
         <p id="heroDescription">
@@ -640,8 +742,6 @@
         <div class="services-grid">
 
 
-          <!-- SERVICE 1 -->
-
           <article class="service-card">
 
             <img
@@ -666,8 +766,6 @@
 
           </article>
 
-
-          <!-- SERVICE 2 -->
 
           <article class="service-card">
 
@@ -694,8 +792,6 @@
           </article>
 
 
-          <!-- SERVICE 3 -->
-
           <article class="service-card">
 
             <img
@@ -720,8 +816,6 @@
 
           </article>
 
-
-          <!-- SERVICE 4 -->
 
           <article class="service-card">
 
@@ -748,8 +842,6 @@
           </article>
 
 
-          <!-- SERVICE 5 -->
-
           <article class="service-card">
 
             <img
@@ -775,8 +867,6 @@
           </article>
 
 
-          <!-- SERVICE 6 -->
-
           <article class="service-card">
 
             <img
@@ -800,7 +890,6 @@
             </div>
 
           </article>
-
 
         </div>
 
@@ -829,6 +918,7 @@
             >
 
           </div>
+
 
           <div class="about-content">
 
@@ -1066,10 +1156,6 @@
     };
 
 
-    /* =========================================
-       HELPER
-    ========================================= */
-
     function valueOrDefault(
       settings,
       key
@@ -1138,10 +1224,6 @@
     }
 
 
-    /* =========================================
-       HERO IMAGE
-    ========================================= */
-
     function setHeroImage(
       source
     ) {
@@ -1173,10 +1255,6 @@
     }
 
 
-    /* =========================================
-       APPLY SETTINGS
-    ========================================= */
-
     function applySettings(
       settings
     ) {
@@ -1184,8 +1262,6 @@
       settings =
         settings || {};
 
-
-      /* Company */
 
       const companyName =
         valueOrDefault(
@@ -1209,8 +1285,6 @@
       );
 
 
-      /* Hero */
-
       setText(
         "heroTitle",
         valueOrDefault(
@@ -1232,8 +1306,6 @@
       );
 
 
-      /* Logo */
-
       const logo =
         settings.logoUrl;
 
@@ -1253,8 +1325,6 @@
       }
 
 
-      /* Favicon */
-
       const favicon =
         settings.faviconUrl;
 
@@ -1273,8 +1343,6 @@
 
       }
 
-
-      /* Services */
 
       setImage(
         "service1Image",
@@ -1415,14 +1483,13 @@
       );
 
 
-      /* About */
-
       setImage(
         "aboutImage",
         settings.aboutImage ||
         settings.businessImage,
         "ExpressLine Delivery Services"
       );
+
 
       setText(
         "aboutText1",
@@ -1440,8 +1507,6 @@
         )
       );
 
-
-      /* Footer */
 
       setText(
         "footerDescription",
@@ -1491,10 +1556,6 @@
 
     }
 
-
-    /* =========================================
-       LOAD WEBSITE SETTINGS
-    ========================================= */
 
     async function loadWebsiteSettings() {
 
@@ -1560,10 +1621,6 @@
     }
 
 
-    /* =========================================
-       YEAR
-    ========================================= */
-
     const year =
       document.getElementById(
         "footerYear"
@@ -1576,10 +1633,6 @@
 
     }
 
-
-    /* =========================================
-       START
-    ========================================= */
 
     applySettings(
       defaultSettings
